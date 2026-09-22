@@ -1,102 +1,103 @@
-import { IEEE_DAY_REGISTRATION_URL } from "@/lib/data";
+import Image from "next/image";
+import { WHATSAPP_INVITE_URL } from "@/lib/data";
+
+const BADGES = [
+  "IEEE DAY 2026",
+  "IEEEXTREME",
+  "REGION 8",
+  "INNOVATION",
+];
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden">
-      {/* gradient mesh backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -top-32 left-[8%] h-[420px] w-[420px] rounded-full bg-mesh-violet blur-3xl animate-float" />
-        <div className="absolute top-10 right-[4%] h-[380px] w-[380px] rounded-full bg-mesh-cyan blur-3xl animate-floatSlow" />
-        <div className="absolute bottom-[-140px] left-[35%] h-[300px] w-[300px] rounded-full bg-mesh-ember blur-3xl animate-float" />
+    <section
+      id="top"
+      className="relative flex min-h-screen w-full flex-col justify-between overflow-hidden px-6 pt-28 pb-10 sm:px-10 md:px-14 lg:px-16"
+    >
+      {/* Background Hero Image populating the entire hero section */}
+      <div className="pointer-events-none absolute inset-0 -z-10 select-none overflow-hidden bg-[#070A16]">
+        {/* Full cover background image */}
+        <Image
+          src="/images/Hero1.png"
+          alt="Cavendish University Uganda Campus"
+          fill
+          priority
+          className="object-cover object-center scale-[1.01]"
+        />
+
+        {/* Top gradient to ensure floating navbar legibility */}
+        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/75 via-black/30 to-transparent pointer-events-none" />
+
+        {/* Ambient overlay to ensure contrast for central & bottom typography */}
+        <div className="absolute inset-0 bg-black/40 pointer-events-none" />
+
+        {/* Subtle radial vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.15)_0%,rgba(7,10,22,0.75)_100%)] pointer-events-none" />
+
+        {/* Bottom smooth dark gradient blend seamlessly into the next section */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#070A16] via-[#070A16]/75 to-transparent pointer-events-none" />
       </div>
 
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-6 pb-24 pt-20 md:grid-cols-[1.15fr_0.85fr] md:pb-28 md:pt-28">
-        <div className="animate-fadeUp">
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-1.5 text-xs font-medium text-white/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-ember animate-pulseDot" />
-            IEEE Uganda Section · Region 8
+      {/* Top spacing to accommodate floating header */}
+      <div className="h-6 sm:h-10" />
+
+      {/* Center Hero Heading overlaying the hand */}
+      <div className="relative z-10 mx-auto my-auto flex flex-col items-center justify-center text-center">
+        <h1 className="font-serif italic text-4xl font-normal tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] sm:text-5xl md:text-6xl lg:text-7xl">
+          IEEE Student Branch
+        </h1>
+        <p className="mt-3 text-[11px] font-semibold tracking-[0.25em] text-white/80 drop-shadow-md sm:text-xs md:text-sm uppercase flex items-center justify-center gap-1.5">
+          <span>Cavendish University Uganda</span>
+          <span className="text-base leading-none">🇺🇬</span>
+        </p>
+      </div>
+
+      {/* Bottom Hero Content: Left Details + Right Badges */}
+      <div className="relative z-10 mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        {/* Bottom Left: Tag, Large Headline, Action Buttons */}
+        <div className="max-w-xl">
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.2em] text-white/60 uppercase sm:text-xs">
+            <span>IEEE UGANDA SECTION · REGION 8</span>
+            <span className="text-sm leading-none">🇺🇬</span>
           </span>
 
-          <h1 className="text-balance font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
-            Where Cavendish students{" "}
-            <span className="gradient-text">learn, build and connect</span> with technology, globally.
-          </h1>
+          <h2 className="mt-2 font-serif italic text-3xl font-normal leading-[1.1] tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] sm:text-4xl md:text-5xl lg:text-6xl">
+            Learn, Build,
+            <br />
+            & Connect Globally.
+          </h2>
 
-          <p className="mt-6 max-w-xl text-balance text-lg text-white/60">
-            The IEEE Student Branch at Cavendish University Uganda is a home for students who want to go
-            beyond the classroom — through technical talks, hands-on projects, competitions and a worldwide
-            network of engineers, researchers and computing professionals.
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3.5">
+          {/* Action Buttons matching reference styling */}
+          <div className="mt-6 flex flex-wrap items-center gap-3.5">
             <a
               href="#event"
-              className="rounded-xl bg-gradient-to-r from-ember to-[#ff9a63] px-6 py-3.5 text-sm font-semibold text-bg shadow-[0_0_30px_-6px_rgba(255,122,69,0.6)] transition hover:-translate-y-0.5"
+              className="rounded-full bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-black shadow-[0_4px_20px_rgba(255,255,255,0.25)] transition duration-200 hover:bg-neutral-200 hover:scale-[1.02]"
             >
               Register for IEEE Day
             </a>
             <a
-              href="#join"
-              className="rounded-xl border border-white/20 px-6 py-3.5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/5"
+              href={WHATSAPP_INVITE_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-sm backdrop-blur-md transition duration-200 hover:border-white/35 hover:bg-white/10 hover:scale-[1.02]"
             >
               Join our WhatsApp group
             </a>
           </div>
-
-          <div className="mt-14 flex flex-wrap gap-8">
-            {[
-              { value: "6 Oct 2026", label: "Branch launch & IEEE Day" },
-              { value: "Region 8", label: "Europe, Middle East & Africa" },
-              { value: "24 hrs", label: "IEEEXtreme global challenge" },
-            ].map((s) => (
-              <div key={s.label}>
-                <b className="block font-display text-xl text-white">{s.value}</b>
-                <span className="text-xs text-muted">{s.label}</span>
-              </div>
-            ))}
-          </div>
         </div>
 
-        <OrbitGraphic />
+        {/* Bottom Right: Pill Badges */}
+        <div className="flex flex-wrap items-center gap-2 md:justify-end">
+          {BADGES.map((badge) => (
+            <span
+              key={badge}
+              className="rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[10px] sm:text-xs font-semibold tracking-[0.14em] uppercase text-white/70 shadow-sm backdrop-blur-md transition hover:border-white/35 hover:bg-white/10 hover:text-white"
+            >
+              {badge}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-function OrbitGraphic() {
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-[380px]" aria-hidden="true">
-      <div className="absolute inset-0 rounded-full glass" />
-      <div className="absolute inset-6 animate-spinSlow rounded-full border border-dashed border-white/15" />
-      <div className="absolute inset-16 rounded-full border border-white/10" />
-
-      {[
-        { top: "6%", left: "48%", color: "bg-ember" },
-        { top: "50%", left: "94%", color: "bg-cyan" },
-        { top: "88%", left: "58%", color: "bg-violet-soft" },
-        { top: "70%", left: "10%", color: "bg-mint" },
-        { top: "22%", left: "14%", color: "bg-cyan" },
-      ].map((n, i) => (
-        <span
-          key={i}
-          className={`absolute h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ${n.color} shadow-[0_0_16px_2px_rgba(255,255,255,0.25)] animate-pulseDot`}
-          style={{ top: n.top, left: n.left, animationDelay: `${i * 0.4}s` }}
-        />
-      ))}
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="flex h-28 w-28 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-violet to-cyan text-center shadow-[0_0_40px_-4px_rgba(124,92,255,0.6)]">
-          <span className="font-display text-2xl font-extrabold text-white">IEEE</span>
-          <span className="text-[10px] font-medium text-white/80">CUU BRANCH</span>
-        </div>
-      </div>
-
-      <a
-        href={IEEE_DAY_REGISTRATION_URL}
-        className="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full border border-white/15 bg-surface/90 px-4 py-2 text-xs font-semibold text-white shadow-lg backdrop-blur"
-      >
-        IEEE Day · 6 Oct 2026
-      </a>
-    </div>
   );
 }

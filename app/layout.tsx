@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, IBM_Plex_Sans } from "next/font/google";
+import { Sora, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const sora = Sora({
@@ -16,6 +16,14 @@ const plex = IBM_Plex_Sans({
   display: "swap",
 });
 
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "IEEE Student Branch — Cavendish University Uganda",
   description:
@@ -25,8 +33,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sora.variable} ${plex.variable}`}>
-      <body className="bg-bg bg-grain">{children}</body>
+    <html lang="en" className={`${sora.variable} ${plex.variable} ${playfair.variable}`}>
+      <body className="bg-bg bg-grain text-white">{children}</body>
     </html>
   );
 }
