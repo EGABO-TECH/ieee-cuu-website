@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/IEEE-Logo.png" alt="IEEE Cavendish University Student Branch" width="520" />
+  <img src="public/images/ieee-logo.png" alt="IEEE Cavendish University Student Branch" width="520" />
 </p>
 
 # IEEE Student Branch — Cavendish University Uganda
