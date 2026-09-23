@@ -16,6 +16,23 @@ const config: Config = {
         paper: "#F6F5FB",
         ink: "#0D1023",
         muted: "#9AA1C4",
+        ieee: {
+          DEFAULT: "#00629B",
+          dark: "#004975",
+          sky: "#0284C7",
+          light: "#38BDF8",
+        },
+        cuu: {
+          DEFAULT: "#C8A96E",
+          gold: "#C8A96E",
+          amber: "#B89355",
+          dark: "#A07C3D",
+        },
+        obsidian: {
+          DEFAULT: "#0B0F19",
+          card: "#111827",
+          border: "rgba(255, 255, 255, 0.08)",
+        },
         violet: {
           DEFAULT: "#7C5CFF",
           soft: "#A996FF",

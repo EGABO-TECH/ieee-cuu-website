@@ -12,7 +12,7 @@ body {
 }
 
 ::selection {
-  background: theme("colors.violet.DEFAULT");
+  background: #00629B;
   color: white;
 }
 
@@ -27,22 +27,13 @@ body {
 
 .text-balance { text-wrap: balance; }
 
+.surface-card {
+  background-color: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .glass {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(14px);
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #B9A9FF 0%, #8FEEF4 60%, #7CFFC4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.gradient-text-warm {
-  background: linear-gradient(90deg, #FFC79A 0%, #FF7A45 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
 }

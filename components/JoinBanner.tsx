@@ -38,47 +38,24 @@ const PERKS = [
 export function JoinBanner() {
   return (
     <section id="join" className="relative overflow-hidden px-4 pb-28 pt-8 sm:px-8 sm:pb-36">
-      {/* ── Ambient Background Lighting ── */}
+      {/* ── Subtle Ambient Background Lighting ── */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[550px] w-[950px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.06] blur-3xl"
         style={{
-          background:
-            "radial-gradient(circle, #25D366 0%, #018FFC 40%, #7C5CFF 70%, transparent 85%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-1/4 h-[350px] w-[350px] rounded-full opacity-15 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, #C8A96E 0%, transparent 70%)",
+          background: "radial-gradient(circle, #00629B 0%, #C8A96E 60%, transparent 80%)",
         }}
       />
 
       <div className="relative mx-auto max-w-6xl">
         {/* ── Main High-Impact Card ── */}
-        <div className="relative overflow-hidden rounded-3xl sm:rounded-[36px] border border-white/[0.12] bg-gradient-to-b from-[#0f1424]/90 via-[#0a0d18]/95 to-[#060810] p-8 sm:p-14 lg:p-16 text-center shadow-[0_30px_90px_rgba(0,0,0,0.7)] backdrop-blur-2xl">
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111827] p-8 sm:p-14 lg:p-16 text-center shadow-[0_30px_90px_rgba(0,0,0,0.6)]">
           
-          {/* Subtle top border gradient shine */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#25D366]/60 to-transparent" />
-
-          {/* Dot matrix grid */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 opacity-[0.04]"
-            style={{
-              backgroundImage:
-                "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.8) 1px, transparent 0)",
-              backgroundSize: "24px 24px",
-            }}
-          />
+          {/* Subtle top border accent */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#C8A96E]/50 to-transparent" />
 
           {/* ── Live Community Status Badge ── */}
-          <div className="relative z-10 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.2em] uppercase text-emerald-400 backdrop-blur-md shadow-[0_0_20px_rgba(37,211,102,0.2)]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
+          <div className="relative z-10 inline-flex items-center gap-2 rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#C8A96E]">
             Official Community Hub · Cavendish University Uganda
           </div>
 
@@ -87,13 +64,11 @@ export function JoinBanner() {
             Move from awareness{" "}
             <br className="hidden sm:inline" />
             to{" "}
-            <span className="bg-gradient-to-r from-[#25D366] via-emerald-300 to-[#C8A96E] bg-clip-text text-transparent">
-              participation.
-            </span>
+            <em className="not-italic italic text-[#C8A96E]">participation.</em>
           </h2>
 
           {/* ── Subtitle ── */}
-          <p className="relative z-10 mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#CBD5E1] sm:text-lg">
+          <p className="relative z-10 mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#94A3B8] sm:text-lg">
             Learn something. Build something. Connect with someone. The IEEE CUU community 
             is where announcements, hackathons, mentorship, and breakthrough student opportunities 
             land first.
@@ -106,12 +81,12 @@ export function JoinBanner() {
               return (
                 <div
                   key={perk.title}
-                  className="group rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 transition-all duration-300 hover:border-emerald-500/30 hover:bg-emerald-500/[0.04] hover:-translate-y-0.5"
+                  className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 transition-all duration-300 hover:border-[#00629B]/40 hover:bg-[#00629B]/[0.04] hover:-translate-y-0.5"
                 >
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/25">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#00629B]/30 bg-[#00629B]/10 text-[#38BDF8]">
                     <Icon size={16} />
                   </div>
-                  <h3 className="mt-3 text-sm font-bold text-white group-hover:text-emerald-300 transition-colors">
+                  <h3 className="mt-3 text-sm font-bold text-white group-hover:text-[#38BDF8] transition-colors">
                     {perk.title}
                   </h3>
                   <p className="mt-1 text-xs leading-relaxed text-[#94A3B8]">
@@ -129,11 +104,11 @@ export function JoinBanner() {
               href={WHATSAPP_INVITE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] px-7 py-4 text-sm font-extrabold text-black shadow-[0_0_35px_rgba(37,211,102,0.35)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_55px_rgba(37,211,102,0.55)] hover:from-[#2af377] hover:to-[#17a594]"
+              className="group inline-flex items-center gap-2.5 rounded-full bg-[#25D366] px-7 py-3.5 text-sm font-bold text-black shadow-lg transition-all duration-300 hover:bg-[#20ba5a] hover:-translate-y-0.5"
             >
               {/* WhatsApp Official SVG Icon */}
               <svg
-                className="h-5 w-5 fill-current shrink-0"
+                className="h-4 w-4 fill-current shrink-0"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
@@ -141,7 +116,7 @@ export function JoinBanner() {
               </svg>
               <span>Join the WhatsApp Group</span>
               <ArrowUpRight
-                size={16}
+                size={15}
                 className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               />
             </a>
@@ -149,18 +124,18 @@ export function JoinBanner() {
             {/* Secondary: Register for IEEE Day */}
             <a
               href="#event"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#C8A96E]/40 bg-white/[0.04] px-6 py-4 text-sm font-bold text-[#E6CA85] backdrop-blur-sm transition-all duration-300 hover:border-[#C8A96E] hover:bg-[#C8A96E]/15 hover:text-white hover:-translate-y-0.5"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:border-[#C8A96E]/50 hover:bg-[#C8A96E]/10 hover:text-[#C8A96E] hover:-translate-y-0.5"
             >
-              <Calendar size={16} className="text-[#C8A96E] group-hover:text-white transition-colors" />
+              <Calendar size={15} className="text-[#C8A96E]" />
               <span>Register for IEEE Day</span>
             </a>
 
             {/* Tertiary: Membership */}
             <a
               href="#membership"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-5 py-4 text-xs font-semibold text-white/70 transition-all hover:border-white/20 hover:text-white hover:bg-white/[0.06]"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3.5 text-xs font-semibold text-white/70 transition-all hover:border-white/20 hover:text-white hover:bg-white/[0.06]"
             >
-              <Sparkles size={14} className="text-sky-400" />
+              <Sparkles size={14} className="text-[#38BDF8]" />
               <span>Explore Membership Tiers</span>
             </a>
           </div>
@@ -168,15 +143,15 @@ export function JoinBanner() {
           {/* ── Social Proof & Assurance Strip ── */}
           <div className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-6 border-t border-white/[0.08] pt-6 text-xs text-[#94A3B8]">
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+              <CheckCircle2 size={15} className="text-[#C8A96E] shrink-0" />
               <span>Open to all Cavendish Faculties & Year Groups</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+              <CheckCircle2 size={15} className="text-[#C8A96E] shrink-0" />
               <span>Free Community Access · No Prerequisite Fees</span>
             </div>
             <div className="flex items-center gap-2">
-              <CheckCircle2 size={15} className="text-emerald-400 shrink-0" />
+              <CheckCircle2 size={15} className="text-[#C8A96E] shrink-0" />
               <span>Official Student Branch Channel</span>
             </div>
           </div>

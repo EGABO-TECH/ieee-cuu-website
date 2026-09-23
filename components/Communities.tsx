@@ -70,8 +70,7 @@ function SocietyVisual({
           {category}
         </span>
 
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-0.5 text-[10px] font-semibold text-white/90 backdrop-blur-md shadow-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-[10px] font-semibold text-white/80 backdrop-blur-md">
           {impact}
         </span>
       </div>
@@ -255,7 +254,7 @@ export function Communities() {
               Specialized communities to{" "}
               <em className="not-italic italic text-[#C8A96E]">change the world.</em>
             </h2>
-            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#C56C47]" />
+            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#C8A96E]" />
           </div>
 
           <div className="lg:col-span-5">

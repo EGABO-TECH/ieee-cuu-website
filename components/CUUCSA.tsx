@@ -54,73 +54,48 @@ const MOTTO = [
 
 export function CUUCSA() {
   return (
-    <section id="cuucsa" className="relative overflow-hidden bg-[#07090E] py-28 sm:py-36">
-      {/* Ambient background glows */}
+    <section id="cuucsa" className="relative overflow-hidden bg-[#09090B] py-28 sm:py-36 border-t border-white/[0.06]">
+      {/* Subtle ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-24 left-1/2 h-[650px] w-[900px] -translate-x-1/2 rounded-full opacity-20 blur-3xl"
+        className="pointer-events-none absolute -top-24 left-1/2 h-[650px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.05]"
         style={{
-          background: "radial-gradient(circle, #018FFC 0%, #023791 40%, transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-20 right-0 h-[450px] w-[500px] rounded-full opacity-15 blur-3xl"
-        style={{
-          background: "radial-gradient(circle, #38BDF8 0%, transparent 70%)",
-        }}
-      />
-
-      {/* Subtle digital grid backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+          background: "radial-gradient(circle, #00629B 0%, transparent 70%)",
         }}
       />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* ── Section Kicker ── */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#018FFC]/30 bg-[#018FFC]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#38BDF8] backdrop-blur-md shadow-[0_0_20px_rgba(1,143,252,0.2)]">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#38BDF8] opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-[#018FFC]" />
-            </span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#00629B]/30 bg-[#00629B]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#38BDF8]">
             Official Arrival · Cavendish University Uganda
           </div>
 
           <h2 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
-            Introducing{" "}
-            <span className="bg-gradient-to-r from-[#018FFC] via-[#38BDF8] to-blue-300 bg-clip-text text-transparent">
-              CUUCSA
-            </span>
+            Introducing <span className="text-[#38BDF8]">CUUCSA</span>
           </h2>
 
-          <p className="mt-4 text-base font-medium uppercase tracking-[0.18em] text-[#94A3B8] sm:text-lg">
+          <p className="mt-4 text-base font-semibold uppercase tracking-[0.2em] text-[#C8A96E] sm:text-sm">
             Cavendish University Uganda Computing Students’ Association
           </p>
 
-          <p className="mt-4 text-base leading-relaxed text-[#CBD5E1] sm:text-lg">
+          <p className="mt-4 text-base leading-relaxed text-[#94A3B8] sm:text-lg">
             A disciplined student technology ecosystem arriving to ignite builders, software engineers, 
             and innovators at Siyani Campus. Grounded in a unified operational framework for 2026–2027.
           </p>
         </div>
 
-        {/* ── High-Impact 4-Pillar Motto Strip ── */}
+        {/* ── 4-Pillar Motto Strip ── */}
         <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {MOTTO.map((m, idx) => (
             <div
               key={m.word}
-              className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 text-center backdrop-blur-sm transition-all duration-300 hover:border-[#018FFC]/40 hover:bg-[#018FFC]/[0.06] hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(1,143,252,0.15)]"
+              className="group relative overflow-hidden rounded-2xl border border-white/[0.08] bg-[#111827] p-5 text-center transition-all duration-300 hover:border-[#00629B]/50 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
             >
-              <div className="text-[10px] font-bold tracking-widest text-[#018FFC] uppercase">
+              <div className="text-[10px] font-bold tracking-widest text-[#38BDF8] uppercase">
                 Phase 0{idx + 1}
               </div>
-              <div className="mt-1 font-mono text-xl font-black tracking-wider text-white group-hover:text-[#38BDF8] transition-colors">
+              <div className="mt-1 font-mono text-xl font-bold tracking-wider text-white group-hover:text-[#38BDF8] transition-colors">
                 {m.word}.
               </div>
               <p className="mt-2 text-xs leading-snug text-[#94A3B8]">
@@ -131,7 +106,7 @@ export function CUUCSA() {
         </div>
 
         {/* ── Master Showcase Card ── */}
-        <div className="mt-10 overflow-hidden rounded-3xl border border-white/[0.1] bg-[#0c101a]/90 backdrop-blur-xl shadow-[0_30px_90px_rgba(0,0,0,0.7)]">
+        <div className="mt-10 overflow-hidden rounded-3xl border border-white/[0.08] bg-[#111827] shadow-[0_30px_90px_rgba(0,0,0,0.7)]">
           <div className="grid grid-cols-1 items-stretch lg:grid-cols-12">
             
             {/* ── Left Column: Identity & What to Expect (7 cols) ── */}
@@ -223,7 +198,7 @@ export function CUUCSA() {
                 </div>
                 <a
                   href="#join"
-                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#018FFC] to-[#023791] px-5 py-2.5 text-xs font-bold text-white shadow-lg shadow-[#018FFC]/25 transition hover:scale-105 hover:shadow-[#018FFC]/40"
+                  className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#00629B] px-5 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#004f7d] hover:-translate-y-0.5"
                 >
                   <span>Connect with CUUCSA</span>
                   <ArrowRight size={14} className="transition group-hover:translate-x-0.5" />
@@ -232,33 +207,23 @@ export function CUUCSA() {
             </div>
 
             {/* ── Right Column: Visual Emblem & Blueprint Card (5 cols) ── */}
-            <div className="relative flex flex-col justify-between border-t border-white/[0.08] bg-gradient-to-b from-[#090e1a] via-[#0b1222] to-[#050810] p-8 sm:p-10 lg:border-l lg:border-t-0 lg:col-span-5 lg:p-12">
-              {/* Radial backdrop */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 opacity-25"
-                style={{
-                  background: "radial-gradient(circle at 50% 30%, #018FFC 0%, transparent 60%)",
-                }}
-              />
-
+            <div className="relative flex flex-col justify-between border-t border-white/[0.08] bg-[#0d1424] p-8 sm:p-10 lg:border-l lg:border-t-0 lg:col-span-5 lg:p-12">
               {/* Emblem Stage */}
               <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="relative flex h-40 w-40 sm:h-44 sm:w-44 items-center justify-center rounded-3xl border border-[#018FFC]/40 bg-[#060a14] p-5 shadow-[0_0_60px_rgba(1,143,252,0.35)] transition-all duration-500 hover:scale-105 hover:shadow-[0_0_80px_rgba(1,143,252,0.5)]">
+                <div className="relative flex h-36 w-36 sm:h-40 sm:w-40 items-center justify-center rounded-2xl border border-white/10 bg-[#090d16] p-4 shadow-xl">
                   <div className="relative h-full w-full">
                     <Image
                       src="/images/cuucsa/cuucsa-emblem.png"
                       alt="CUUCSA Official Emblem"
                       fill
                       className="object-contain"
-                      sizes="176px"
+                      sizes="160px"
                       priority
                     />
                   </div>
                   {/* Status Indicator Badge */}
-                  <div className="absolute -bottom-3 rounded-full border border-[#018FFC]/40 bg-[#090e1c] px-3 py-1 shadow-md">
-                    <span className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-widest text-[#38BDF8]">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#38BDF8] animate-pulse" />
+                  <div className="absolute -bottom-3 rounded-full border border-white/10 bg-[#111827] px-3 py-0.5 shadow-md">
+                    <span className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#38BDF8]">
                       Official Seal
                     </span>
                   </div>
@@ -267,7 +232,7 @@ export function CUUCSA() {
                 <h3 className="mt-8 font-serif text-2xl font-bold tracking-tight text-white">
                   Student Tech Powerhouse
                 </h3>
-                <p className="mt-1 text-xs font-semibold text-[#018FFC] uppercase tracking-wider">
+                <p className="mt-1 text-xs font-semibold text-[#C8A96E] uppercase tracking-wider">
                   Cavendish University Uganda · Siyani Campus
                 </p>
               </div>

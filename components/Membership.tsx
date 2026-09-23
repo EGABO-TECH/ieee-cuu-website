@@ -54,11 +54,11 @@ export function Membership() {
               Find the category that{" "}
               <em className="not-italic italic text-[#C8A96E]">fits you.</em>
             </h2>
-            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#C56C47]" />
+            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#C8A96E]" />
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-base leading-[1.8] text-[#A8A8B3] sm:text-lg">
+            <p className="text-base leading-[1.8] text-[#94A3B8] sm:text-lg">
               Membership is individual. As a Cavendish University Uganda student or scholar, you qualify for
               heavily subsidised student rates, local Branch voting rights, global research access, and entry into
               prestigious competitions like IEEEXtreme.
@@ -75,17 +75,17 @@ export function Membership() {
             return (
               <div
                 key={m.tier}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border p-8 sm:p-10 transition-all duration-500 hover:-translate-y-1 ${
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border p-8 sm:p-10 transition-all duration-500 hover:-translate-y-1 bg-[#111827] ${
                   isHero
-                    ? "border-[#C8A96E]/50 bg-gradient-to-b from-[#C8A96E]/[0.09] via-white/[0.03] to-[#0c0d14] shadow-[0_0_50px_rgba(200,169,110,0.12)] hover:border-[#C8A96E]/80 hover:shadow-[0_0_70px_rgba(200,169,110,0.22)]"
-                    : "border-white/[0.12] bg-gradient-to-b from-violet-500/[0.08] via-white/[0.03] to-[#0c0d14] hover:border-violet-400/50 hover:shadow-[0_0_50px_rgba(139,92,246,0.15)]"
+                    ? "border-[#C8A96E]/50 shadow-[0_0_50px_rgba(200,169,110,0.12)] hover:border-[#C8A96E]/80"
+                    : "border-sky-500/30 hover:border-sky-400/50 hover:shadow-[0_0_50px_rgba(2,132,199,0.15)]"
                 }`}
               >
                 {/* Decorative background glow */}
                 <div
                   aria-hidden
-                  className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-60 ${
-                    isHero ? "bg-[#C8A96E]" : "bg-violet-600"
+                  className={`pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full opacity-20 blur-3xl transition-opacity duration-500 group-hover:opacity-40 ${
+                    isHero ? "bg-[#C8A96E]" : "bg-[#00629B]"
                   }`}
                 />
 
@@ -96,12 +96,12 @@ export function Membership() {
                       className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold tracking-wide ${
                         isHero
                           ? "border-[#C8A96E]/40 bg-[#C8A96E]/15 text-[#E6CA85]"
-                          : "border-violet-400/40 bg-violet-500/15 text-violet-300"
+                          : "border-sky-400/40 bg-sky-500/15 text-sky-300"
                       }`}
                     >
                       <span
                         className={`h-1.5 w-1.5 rounded-full ${
-                          isHero ? "bg-[#E6CA85] animate-pulse" : "bg-violet-300"
+                          isHero ? "bg-[#E6CA85]" : "bg-sky-300"
                         }`}
                       />
                       {m.badge}
@@ -118,7 +118,7 @@ export function Membership() {
                       className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border shadow-inner transition-transform duration-300 group-hover:scale-105 ${
                         isHero
                           ? "border-[#C8A96E]/40 bg-[#C8A96E]/20 text-[#E6CA85]"
-                          : "border-violet-400/40 bg-violet-500/20 text-violet-300"
+                          : "border-sky-400/40 bg-sky-500/20 text-sky-300"
                       }`}
                     >
                       <IconComp size={28} />
@@ -127,25 +127,25 @@ export function Membership() {
                       <h3 className="font-serif text-2xl font-bold tracking-tight text-white group-hover:text-[#C8A96E] transition-colors">
                         {m.tier}
                       </h3>
-                      <p className="mt-0.5 text-xs font-semibold text-[#A8A8B3]">
+                      <p className="mt-0.5 text-xs font-semibold text-[#94A3B8]">
                         {isHero ? "Undergraduate / Diploma" : "Master's & PhD Candidates"}
                       </p>
                     </div>
                   </div>
 
                   {/* Who it's for description */}
-                  <p className="mb-6 text-sm leading-relaxed text-[#D1D1DB]">{m.who}</p>
+                  <p className="mb-6 text-sm leading-relaxed text-[#94A3B8]">{m.who}</p>
 
                   {/* Perks list */}
                   <div className="mb-8 space-y-2.5 border-t border-white/[0.08] pt-6">
-                    <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-white/50 block mb-3">
+                    <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/50 block mb-3">
                       Key Branch & Global Perks
                     </span>
                     {m.perks.map((perk) => (
                       <div key={perk} className="flex items-center gap-2.5 text-xs font-medium text-white/85">
                         <CheckCircle2
                           size={14}
-                          className={`shrink-0 ${isHero ? "text-[#C8A96E]" : "text-violet-400"}`}
+                          className={`shrink-0 ${isHero ? "text-[#C8A96E]" : "text-sky-400"}`}
                         />
                         <span>{perk}</span>
                       </div>
@@ -158,10 +158,10 @@ export function Membership() {
                   href={m.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold shadow-lg transition-all duration-300 hover:-translate-y-0.5 ${
+                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold shadow-md transition-all duration-300 hover:-translate-y-0.5 ${
                     isHero
-                      ? "bg-gradient-to-r from-[#C8A96E] to-[#B38D48] text-black shadow-[#C8A96E]/25 hover:from-[#DFC27D] hover:to-[#C8A96E]"
-                      : "bg-white/[0.08] text-white border border-white/20 hover:bg-white/[0.14] hover:border-white/30"
+                      ? "bg-[#C8A96E] hover:bg-[#b89355] text-black"
+                      : "bg-[#00629B] hover:bg-[#004f7d] text-white"
                   }`}
                 >
                   <span>{m.cta}</span>
