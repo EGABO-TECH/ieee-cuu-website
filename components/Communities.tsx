@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Cpu,
   Bot,
@@ -16,6 +17,7 @@ import {
   Compass,
   Users,
   CheckCircle2,
+  Camera,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { communities, WHATSAPP_INVITE_URL } from "@/lib/data";
@@ -32,6 +34,104 @@ const ICONS: Record<string, LucideIcon> = {
   AudioLines,
   Globe,
 };
+
+/** Top-half visual component for society cards (Official image or themed placeholder) */
+function SocietyVisual({
+  name,
+  category,
+  impact,
+  image,
+  icon: IconComp,
+  theme,
+}: {
+  name: string;
+  category: string;
+  impact: string;
+  image?: string;
+  icon: LucideIcon;
+  theme: {
+    tag: string;
+    iconBg: string;
+    iconColor: string;
+    cardBorder: string;
+    glow: string;
+  };
+}) {
+  const [imgError, setImgError] = useState(false);
+  const hasImage = Boolean(image && image.length > 0 && !imgError);
+
+  return (
+    <div className="relative h-48 w-full overflow-hidden border-b border-white/[0.08] bg-[#07080d]">
+      {/* ── Top Floating Badges ── */}
+      <div className="absolute left-4 right-4 top-4 z-20 flex items-center justify-between gap-2 pointer-events-none">
+        <span
+          className={`inline-block rounded-full border px-3 py-1 text-[10px] font-bold tracking-wide backdrop-blur-md shadow-sm ${theme.tag}`}
+        >
+          {category}
+        </span>
+
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/60 px-2.5 py-0.5 text-[10px] font-semibold text-white/90 backdrop-blur-md shadow-sm">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          {impact}
+        </span>
+      </div>
+
+      {/* ── Image or Placeholder Visual ── */}
+      {hasImage ? (
+        <div className="relative h-full w-full">
+          <Image
+            src={image!}
+            alt={name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+          {/* Subtle gradient vignette to blend with card and maintain contrast */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0c0d14] via-black/20 to-black/50" />
+        </div>
+      ) : (
+        <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
+          {/* Subtle circuit/dot pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-20 pointer-events-none"
+            style={{
+              backgroundImage: `radial-gradient(circle at 1px 1px, rgba(255,255,255,0.25) 1px, transparent 0)`,
+              backgroundSize: "18px 18px",
+            }}
+          />
+
+          {/* Ambient colored glowing backdrop */}
+          <div
+            className="pointer-events-none absolute h-36 w-36 rounded-full opacity-35 blur-2xl transition-all duration-500 group-hover:scale-125 group-hover:opacity-60"
+            style={{
+              background: theme.glow.replace("0.15", "0.45"),
+            }}
+          />
+
+          {/* Centered society emblem & placeholder cue */}
+          <div className="relative z-10 flex flex-col items-center gap-2.5 pt-3">
+            <div
+              className={`flex h-14 w-14 items-center justify-center rounded-2xl border shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-110 group-hover:border-white/30 ${theme.iconBg}`}
+            >
+              <IconComp size={28} className={theme.iconColor} />
+            </div>
+
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/50 backdrop-blur-sm transition-colors group-hover:border-white/20 group-hover:text-white/80">
+              <Camera size={9} />
+              <span>Official Media Slot</span>
+            </div>
+          </div>
+
+          {/* Subtle corner tech decoration */}
+          <div className="pointer-events-none absolute bottom-2 right-3 font-mono text-[9px] uppercase tracking-widest text-white/15">
+            IEEE SOCIETY MEDIA
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const COLOR_MAP: Record<
   string,
@@ -197,7 +297,7 @@ export function Communities() {
             return (
               <div
                 key={c.id}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0d14] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${theme.cardBorder}`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0d14] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${theme.cardBorder}`}
               >
                 {/* Ambient glow on hover */}
                 <div
@@ -207,61 +307,58 @@ export function Communities() {
                   }}
                 />
 
-                <div>
-                  {/* Card Top Row: Category tag + Impact badge */}
-                  <div className="mb-6 flex items-center justify-between gap-2">
-                    <span
-                      className={`inline-block rounded-full border px-3 py-1 text-[11px] font-bold tracking-wide ${theme.tag}`}
-                    >
-                      {c.category}
-                    </span>
+                {/* ── Top Half: Official Image or Themed Visual Placeholder ── */}
+                <SocietyVisual
+                  name={c.name}
+                  category={c.category}
+                  impact={c.impact}
+                  image={c.image}
+                  icon={IconComp}
+                  theme={theme}
+                />
 
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 text-[10px] font-semibold text-white/80">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      {c.impact}
-                    </span>
-                  </div>
-
-                  {/* Icon & Title */}
-                  <div className="mb-4 flex items-center gap-4">
-                    <div
-                      className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border transition-transform duration-300 group-hover:scale-110 ${theme.iconBg}`}
-                    >
-                      <IconComp size={22} className={theme.iconColor} />
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-lg font-bold leading-tight text-white group-hover:text-[#C8A96E] transition-colors">
+                {/* ── Bottom Half: Society Details & Link ── */}
+                <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
+                  <div>
+                    {/* Icon & Title */}
+                    <div className="mb-3.5 flex items-center gap-3.5">
+                      <div
+                        className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-transform duration-300 group-hover:scale-105 ${theme.iconBg}`}
+                      >
+                        <IconComp size={20} className={theme.iconColor} />
+                      </div>
+                      <h3 className="font-serif text-lg font-bold leading-snug text-white transition-colors group-hover:text-[#C8A96E]">
                         {c.name}
                       </h3>
                     </div>
+
+                    {/* Focus Subtitle */}
+                    <p className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-[#C8A96E]/90">
+                      {c.focus}
+                    </p>
+
+                    {/* Description */}
+                    <p className="mb-6 text-sm leading-relaxed text-[#A8A8B3]">{c.description}</p>
                   </div>
 
-                  {/* Focus Subtitle */}
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#C8A96E]/90 mb-3">
-                    {c.focus}
-                  </p>
-
-                  {/* Description */}
-                  <p className="text-sm leading-relaxed text-[#A8A8B3] mb-6">{c.description}</p>
-                </div>
-
-                {/* Card Action Link */}
-                <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
-                  <span className="text-xs text-white/50 group-hover:text-white/80 transition-colors">
-                    Global Society
-                  </span>
-                  <a
-                    href={c.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white group-hover:text-[#C8A96E] transition-colors"
-                  >
-                    <span>Visit Society</span>
-                    <ArrowUpRight
-                      size={14}
-                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </a>
+                  {/* Card Action Link */}
+                  <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
+                    <span className="text-xs text-white/50 transition-colors group-hover:text-white/80">
+                      Global Society
+                    </span>
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white transition-colors group-hover:text-[#C8A96E]"
+                    >
+                      <span>Visit Society</span>
+                      <ArrowUpRight
+                        size={14}
+                        className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
             );

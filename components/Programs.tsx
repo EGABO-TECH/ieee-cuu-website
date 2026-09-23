@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Award, BadgeCheck, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowUpRight, Award, BadgeCheck, Camera, CheckCircle2, Sparkles, User } from "lucide-react";
 import { programs } from "@/lib/data";
 
 /* Per-accent colour tokens tailored to official logos */
@@ -64,6 +65,75 @@ function initials(name: string) {
     .join("")
     .toUpperCase()
     .slice(0, 2);
+}
+
+/** Ambassador avatar with photo support and stylish placeholder */
+function AmbassadorAvatar({
+  name,
+  image,
+  accent,
+}: {
+  name: string;
+  image?: string;
+  accent: {
+    avatarBorder: string;
+    avatarBg: string;
+    badgeCheck: string;
+  };
+}) {
+  const [imgError, setImgError] = useState(false);
+  const hasImage = Boolean(image && image.length > 0 && !imgError);
+
+  return (
+    <div className="relative shrink-0">
+      <div
+        className={`relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-xl border shadow-inner transition-all duration-300 group-hover/amb:scale-105 group-hover/amb:shadow-md ${
+          !hasImage ? "border-dashed" : ""
+        }`}
+        style={{
+          borderColor: accent.avatarBorder,
+          background: accent.avatarBg,
+        }}
+      >
+        {hasImage ? (
+          <Image
+            src={image!}
+            alt={name}
+            fill
+            sizes="48px"
+            className="object-cover transition-transform duration-500 group-hover/amb:scale-110"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="relative flex h-full w-full flex-col items-center justify-center bg-black/20">
+            {/* Ambient subtle user backdrop */}
+            <User
+              size={26}
+              className="absolute -bottom-1 text-white/10 pointer-events-none"
+            />
+            <span className="relative z-10 font-serif text-sm font-black tracking-wider text-white drop-shadow-sm">
+              {initials(name)}
+            </span>
+            {/* Camera badge indicating photo slot */}
+            <span
+              className="absolute bottom-1 right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-black/60 text-white/70 ring-1 ring-white/10"
+              title="Ambassador Photo Slot"
+            >
+              <Camera size={8} />
+            </span>
+          </div>
+        )}
+      </div>
+
+      {/* Verified check badge */}
+      <div
+        className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0c0d14] ring-1 ring-white/20 shadow"
+        title="Verified CUU Campus Ambassador"
+      >
+        <BadgeCheck size={12} className={accent.badgeCheck} />
+      </div>
+    </div>
+  );
 }
 
 export function Programs() {
@@ -209,28 +279,29 @@ export function Programs() {
                           key={amb.name}
                           className="group/amb relative flex items-center gap-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] p-3 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
                         >
-                          {/* Ambassador Avatar Shield */}
-                          <div
-                            className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border shadow-inner transition-transform duration-300 group-hover/amb:scale-105"
-                            style={{
-                              borderColor: s.avatarBorder,
-                              background: s.avatarBg,
-                            }}
-                          >
-                            <span className="font-serif text-sm font-black tracking-wider text-white">
-                              {initials(amb.name)}
-                            </span>
-                            {/* Verified check badge */}
-                            <div className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0c0d14] ring-1 ring-white/20">
-                              <BadgeCheck size={12} className={s.badgeCheck} />
-                            </div>
-                          </div>
+                          {/* Ambassador Avatar (Photo with fallback placeholder) */}
+                          <AmbassadorAvatar
+                            name={amb.name}
+                            image={amb.image}
+                            accent={s}
+                          />
 
                           {/* Ambassador Name & Role */}
                           <div className="min-w-0 flex-1">
-                            <h4 className="text-[15px] font-bold tracking-tight text-white group-hover/amb:text-white transition-colors">
-                              {amb.name}
-                            </h4>
+                            <div className="flex items-center justify-between gap-1.5">
+                              <h4 className="text-[14px] font-bold tracking-tight text-white group-hover/amb:text-white transition-colors truncate">
+                                {amb.name}
+                              </h4>
+                              {!Boolean(amb.image) && (
+                                <span
+                                  className="shrink-0 inline-flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 text-[9px] font-medium text-white/40 group-hover/amb:border-white/20 group-hover/amb:text-white/70 transition-colors"
+                                  title="Ambassador portrait placeholder slot"
+                                >
+                                  <Camera size={9} />
+                                  <span>Photo</span>
+                                </span>
+                              )}
+                            </div>
                             <p className="mt-0.5 text-xs font-semibold text-[#C8A96E] truncate">
                               {amb.role}
                             </p>

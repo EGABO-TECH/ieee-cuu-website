@@ -30,6 +30,12 @@ export const journey = [
   { step: "06", title: "Grow", body: "Keep learning, contributing and building a professional record of participation." },
 ];
 
+export interface Ambassador {
+  name: string;
+  role: string;
+  image?: string;
+}
+
 export const programs = [
   {
     tag: "Cloud & AI",
@@ -39,7 +45,11 @@ export const programs = [
     href: "https://aws.amazon.com/education/student-builders/",
     image: "/images/AWS_Student_Builders.png",
     ambassadors: [
-      { name: "Niwasiima Ashelycole", role: "CUU Student Builder & Campus Ambassador" },
+      {
+        name: "Niwasiima Ashelycole",
+        role: "CUU Student Builder & Campus Ambassador",
+        image: "", // Place photo in /public/images/ambassadors/ and set path here
+      },
     ],
     perks: ["AWS Credits", "Skill Builder Premium", "Paid Role", "AWS Network"],
   },
@@ -51,8 +61,16 @@ export const programs = [
     href: "https://blackpythondevs.com",
     image: "/images/Black_Python_Devs.png",
     ambassadors: [
-      { name: "Egabo Aaron", role: "CUU Campus Ambassador & Community Lead" },
-      { name: "Twikirize Achilles", role: "CUU Campus Ambassador & Python Advocate" },
+      {
+        name: "Egabo Aaron",
+        role: "CUU Campus Ambassador & Community Lead",
+        image: "", // Place photo in /public/images/ambassadors/ and set path here
+      },
+      {
+        name: "Twikirize Achilles",
+        role: "CUU Campus Ambassador & Python Advocate",
+        image: "", // Place photo in /public/images/ambassadors/ and set path here
+      },
     ],
     perks: ["Mentorship", "Career Support", "Grants", "Global Network"],
   },
@@ -64,11 +82,28 @@ export const programs = [
     href: "https://www.computer.org/communities/students-and-young-professionals",
     image: "/images/IEEE_CS_SYP_Micro_Mentoring.png",
     ambassadors: [
-      { name: "Egabo Aaron", role: "CUU Lead Ambassador & SYP Mentee" },
+      {
+        name: "Egabo Aaron",
+        role: "CUU Lead Ambassador & SYP Mentee",
+        image: "", // Place photo in /public/images/ambassadors/ and set path here
+      },
     ],
     perks: ["1-on-1 Mentoring", "Career Guidance", "IEEE CS Network", "Leadership"],
   },
 ] as const;
+
+export interface Community {
+  id: string;
+  name: string;
+  category: string;
+  icon: string;
+  focus: string;
+  description: string;
+  impact: string;
+  href: string;
+  color: string;
+  image?: string;
+}
 
 export const communities = [
   {
@@ -81,6 +116,7 @@ export const communities = [
     impact: "Digital Infrastructure",
     href: "https://www.computer.org",
     color: "sky",
+    image: "", // Place visual in /public/images/societies/cs.jpg
   },
   {
     id: "ras",
@@ -92,6 +128,7 @@ export const communities = [
     impact: "Autonomous Systems",
     href: "https://www.ieee-ras.org",
     color: "amber",
+    image: "", // Place visual in /public/images/societies/ras.jpg
   },
   {
     id: "cis",
@@ -103,6 +140,7 @@ export const communities = [
     impact: "Next-Gen AI",
     href: "https://cis.ieee.org",
     color: "violet",
+    image: "", // Place visual in /public/images/societies/cis.jpg
   },
   {
     id: "embs",
@@ -114,6 +152,7 @@ export const communities = [
     impact: "Saving Lives",
     href: "https://www.embs.org",
     color: "rose",
+    image: "", // Place visual in /public/images/societies/embs.jpg
   },
   {
     id: "wie",
@@ -125,6 +164,7 @@ export const communities = [
     impact: "Diversity & Equity",
     href: "https://wie.ieee.org",
     color: "fuchsia",
+    image: "", // Place visual in /public/images/societies/wie.jpg
   },
   {
     id: "pes",
@@ -136,6 +176,7 @@ export const communities = [
     impact: "Planet Sustainability",
     href: "https://www.ieee-pes.org",
     color: "emerald",
+    image: "", // Place visual in /public/images/societies/pes.jpg
   },
   {
     id: "comsoc",
@@ -147,6 +188,7 @@ export const communities = [
     impact: "Global Connectivity",
     href: "https://www.comsoc.org",
     color: "cyan",
+    image: "", // Place visual in /public/images/societies/comsoc.jpg
   },
   {
     id: "edu",
@@ -158,6 +200,7 @@ export const communities = [
     impact: "Empowering Minds",
     href: "https://ieee-edusociety.org",
     color: "indigo",
+    image: "", // Place visual in /public/images/societies/edu.jpg
   },
   {
     id: "sps",
@@ -169,6 +212,7 @@ export const communities = [
     impact: "Sensory Tech",
     href: "https://signalprocessingsociety.org",
     color: "teal",
+    image: "", // Place visual in /public/images/societies/sps.jpg
   },
   {
     id: "sight",
@@ -180,27 +224,150 @@ export const communities = [
     impact: "Tech for Good",
     href: "https://sight.ieee.org",
     color: "orange",
+    image: "", // Place visual in /public/images/societies/sight.jpg
   },
 ] as const;
 
-export const membership = [
-  { tier: "Student Member", who: "Eligible students enrolled in programmes within IEEE fields of interest." },
-  { tier: "Graduate Student Member", who: "Eligible postgraduate students within IEEE fields of interest." },
-  { tier: "Associate Member", who: "Anyone interested in or working in an IEEE field who doesn't yet meet Member-grade requirements." },
-  { tier: "Member", who: "Individuals who meet the applicable educational or professional requirements." },
-  { tier: "Senior Member", who: "A higher grade attained through applicable experience and review." },
+export interface MembershipTier {
+  tier: string;
+  badge: string;
+  who: string;
+  perks: string[];
+  highlight?: boolean;
+  href: string;
+  cta: string;
+}
+
+export const membership: MembershipTier[] = [
+  {
+    tier: "Student Member",
+    badge: "Recommended for CUU Undergrads",
+    who: "Eligible students enrolled in diploma or undergraduate programmes within IEEE fields of interest.",
+    perks: ["Subsidised Student Rates", "CUU Branch Voting Rights", "Competitions & Hackathons", "IEEE Xplore Access"],
+    highlight: true,
+    href: "https://students.ieee.org/membership/",
+    cta: "Join as Student",
+  },
+  {
+    tier: "Graduate Student Member",
+    badge: "Postgraduate & Researchers",
+    who: "Eligible postgraduate students enrolled in master's, doctoral, or advanced technical degree programmes.",
+    perks: ["Graduate Subsidies", "Research Paper Publishing", "Conference Travel Grants", "Global Mentorship"],
+    highlight: false,
+    href: "https://students.ieee.org/membership/",
+    cta: "Join as Graduate",
+  },
+  {
+    tier: "Associate Member",
+    badge: "Open to All Disciplines",
+    who: "Anyone interested in or working in an IEEE field who doesn't yet meet Member-grade requirements.",
+    perks: ["Non-STEM Friendly", "Society Access", "Lifelong Learning"],
+    highlight: false,
+    href: "https://www.ieee.org/membership/join/index.html",
+    cta: "Explore Grade",
+  },
+  {
+    tier: "Member",
+    badge: "Practicing Professionals",
+    who: "Individuals who meet the applicable educational, degree, or professional engineering practice requirements.",
+    perks: ["Full Voting Rights", "Chapter Leadership", "Professional Elevation"],
+    highlight: false,
+    href: "https://www.ieee.org/membership/join/index.html",
+    cta: "Explore Grade",
+  },
+  {
+    tier: "Senior Member",
+    badge: "Highest Branch Honor",
+    who: "A higher professional grade attained through 10+ years of active practice and peer review.",
+    perks: ["Peer-Reviewed Elevation", "Fellowship Nomination", "Executive Distinction"],
+    highlight: false,
+    href: "https://www.ieee.org/membership/senior/index.html",
+    cta: "Learn Elevation",
+  },
 ];
 
-export const team = [
-  { name: "Mulondo Andrew", role: "Chair" },
-  { name: "Basiima Nicholas", role: "General Secretary" },
-  { name: "Sadiyo Abdullahi Hussen", role: "Assistant Secretary" },
-  { name: "Makhoha Joanita", role: "Treasurer" },
-  { name: "Kasongo Kamwankana Dondi", role: "Assistant Treasurer" },
-  { name: "Mulo Ausi", role: "Technical Coordinator" },
-  { name: "Niwasiima Ashelycole", role: "Technical Coordinator" },
-  { name: "Dahomey Mortifer", role: "Mobilizer" },
-  { name: "Biyinzika Daniel", role: "Mobilizer" },
+export interface TeamMember {
+  name: string;
+  role: string;
+  department: string;
+  description: string;
+  linkedin: string; // Replace "#" with the actual LinkedIn profile URL
+  image: string;    // Place photo in /public/images/team/<filename>.jpg
+}
+
+export const team: TeamMember[] = [
+  {
+    name: "Mulondo Andrew",
+    role: "Chair",
+    department: "Branch Leadership",
+    description: "Leads the IEEE CUU Student Branch, sets strategic direction, chairs meetings, and serves as the principal liaison between the Branch, faculty advisors, and the IEEE Region 8 hierarchy.",
+    linkedin: "#", // Replace with actual LinkedIn URL
+    image: "",     // Place photo at /public/images/team/mulondo.jpg
+  },
+  {
+    name: "Basiima Nicholas",
+    role: "General Secretary",
+    department: "Administration & Records",
+    description: "Manages official Branch correspondence, maintains accurate records of proceedings, and ensures all governance documentation meets IEEE Student Branch reporting standards.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Sadiyo Abdullahi Hussen",
+    role: "Assistant Secretary",
+    department: "Administration & Records",
+    description: "Supports the General Secretary in records management, assists with scheduling, and helps coordinate meeting logistics and Branch communications.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Makhoha Joanita",
+    role: "Treasurer",
+    department: "Finance",
+    description: "Oversees all Branch finances, maintains transparent budget reporting, manages event funding allocations, and ensures compliance with IEEE financial policies.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Kasongo Kamwankana Dondi",
+    role: "Assistant Treasurer",
+    department: "Finance",
+    description: "Assists in financial record-keeping, processes reimbursements, and supports the Treasurer in all budget management and expenditure tracking activities.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Mulo Ausi",
+    role: "Technical Coordinator",
+    department: "Technical & Projects",
+    description: "Plans and executes technical workshops, hackathons, and project-based learning sessions, bridging classroom theory with real-world engineering applications at CUU.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Niwasiima Ashelycole",
+    role: "Technical Coordinator",
+    department: "Technical & Projects",
+    description: "Co-leads technical programming, supports community coding initiatives, and serves as the CUU AWS Student Builder driving cloud and AI adoption on campus.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Dahomey Mortifer",
+    role: "Mobilizer",
+    department: "Outreach & Engagement",
+    description: "Drives membership growth and student engagement, coordinates outreach efforts across disciplines, and represents the Branch at campus events and inter-faculty activities.",
+    linkedin: "#",
+    image: "",
+  },
+  {
+    name: "Biyinzika Daniel",
+    role: "Mobilizer",
+    department: "Outreach & Engagement",
+    description: "Expands the Branch's reach through targeted outreach campaigns, builds peer networks across CUU faculties, and helps onboard new members into Branch activities.",
+    linkedin: "#",
+    image: "",
+  },
 ];
 
 export const faqs = [

@@ -11,6 +11,7 @@ const LINKS = [
   { href: "#branch", id: "branch", label: "The Branch" },
   { href: "#event", id: "event", label: "IEEE Day" },
   { href: "#xtreme", id: "xtreme", label: "IEEEXtreme" },
+  { href: "#cuucsa", id: "cuucsa", label: "CUUCSA" },
   { href: "#programs", id: "programs", label: "Programs" },
   { href: "#team", id: "team", label: "Team" },
   { href: "#join", id: "join", label: "Join us" },

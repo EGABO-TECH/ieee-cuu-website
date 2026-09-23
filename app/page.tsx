@@ -4,6 +4,7 @@ import { WhatIsIEEE } from "@/components/WhatIsIEEE";
 import { Journey } from "@/components/Journey";
 import { EventSpotlight } from "@/components/EventSpotlight";
 import { IEEExtreme } from "@/components/IEEExtreme";
+import { CUUCSA } from "@/components/CUUCSA";
 import { Programs } from "@/components/Programs";
 import { Communities } from "@/components/Communities";
 import { Membership } from "@/components/Membership";
@@ -23,6 +24,7 @@ export default function Home() {
         <Journey />
         <EventSpotlight />
         <IEEExtreme />
+        <CUUCSA />
         <Programs />
         <Communities />
         <Membership />
