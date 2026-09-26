@@ -46,7 +46,7 @@ export function Hero() {
 
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="/events"
+                href="/branch"
                 className="inline-flex items-center gap-2 rounded-full bg-[#0d5b8f] px-5 py-3 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-[#0a446f]"
               >
                 Explore the branch
