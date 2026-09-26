@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -38,7 +38,8 @@ export default function CUUCSAPage() {
 
         {/* ── PAGE HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-block rounded-full border border-cuu-steel/30 bg-cuu-steel/10 px-4 py-1.5 text-xs font-bold tracking-[0.25em] uppercase text-cuu-steel">
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-cuu-steel/10 px-3 py-1 text-[12px] font-medium text-cuu-steel">
+            <span className="h-1 w-1 rounded-full bg-cuu-steel/50" aria-hidden="true" />
             Faculty of Science &amp; Technology Society
           </span>
 
