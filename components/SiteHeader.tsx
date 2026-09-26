@@ -80,7 +80,7 @@ export function SiteHeader() {
 
         {/* Center: Floating Pill Navigation */}
         <nav
-          className="hidden md:flex items-center gap-1 rounded-full border border-ieee/10 bg-[#0B1E2E]/90 p-1.5 shadow-[0_8px_32px_rgba(5,26,26,0.35)] backdrop-blur-xl"
+          className="hidden md:flex items-center gap-1 rounded-full border border-ieee/10 bg-[#0B1E2E]/90 p-1.5 shadow-[0_8px_32px_rgba(5,26,26,0.35)] backdrop-blur-xl max-[1023px]:gap-0.5 max-[1023px]:p-1 max-[1023px]:px-1.5 max-[1023px]:text-[10px]"
           aria-label="Main Navigation"
         >
           {LINKS.map((l) => {
@@ -98,7 +98,7 @@ export function SiteHeader() {
                     href="/events"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex items-center gap-1.5 rounded-full text-xs transition-all duration-300 ${
+                    className={`inline-flex items-center gap-1.5 rounded-full text-xs transition-all duration-300 max-[1023px]:gap-1 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
                       active || eventsDropdownOpen
                         ? "bg-[#FFFFFF] px-3.5 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"
                         : "px-3.5 py-1.5 font-medium text-muted hover:text-[#FFFFFF] hover:bg-ieee/10"
@@ -209,7 +209,7 @@ export function SiteHeader() {
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1 rounded-full text-xs transition-all duration-300 ${
+                  className={`inline-flex items-center gap-1 rounded-full text-xs transition-all duration-300 max-[1023px]:gap-0.5 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
                     active
                       ? "bg-[#FFFFFF] px-4 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"
                       : "px-3.5 py-1.5 font-medium text-muted hover:text-[#FFFFFF] hover:bg-ieee/10"
@@ -224,7 +224,7 @@ export function SiteHeader() {
               <Link
                 key={l.id}
                 href={l.href}
-                className={`rounded-full text-xs transition-all duration-300 ${
+                className={`rounded-full text-xs transition-all duration-300 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
                   active
                     ? "bg-[#FFFFFF] px-4 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"
                     : "px-3.5 py-1.5 font-medium text-muted hover:text-[#FFFFFF] hover:bg-ieee/10"
@@ -237,7 +237,7 @@ export function SiteHeader() {
         </nav>
 
         {/* Right: Floating Socials Pill */}
-        <div className="hidden md:flex items-center gap-3.5 rounded-full border border-ieee/10 bg-[#0B1E2E]/90 px-4 py-2 text-muted shadow-[0_8px_32px_rgba(5,26,26,0.35)] backdrop-blur-xl">
+        <div className="hidden md:flex items-center gap-3.5 rounded-full border border-ieee/10 bg-[#0B1E2E]/90 px-4 py-2 text-muted shadow-[0_8px_32px_rgba(5,26,26,0.35)] backdrop-blur-xl max-[1023px]:gap-2.5 max-[1023px]:px-3 max-[1023px]:py-1.5">
           {/* LinkedIn */}
           <a
             href={IEEE_LINKEDIN_URL}

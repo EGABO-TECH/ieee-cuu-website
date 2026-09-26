@@ -33,8 +33,8 @@ export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden bg-[#061821] text-white">
       <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12">
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-12">
-          <div className="pr-0 lg:pr-4 lg:border-r lg:border-white/10 lg:pr-8">
+        <div className="grid gap-10 md:gap-8 lg:grid-cols-[1.2fr_1.2fr_1fr] lg:gap-12">
+          <div className="pr-0 md:pr-4 lg:border-r lg:border-white/10 lg:pr-8">
             <div className="mb-5 flex w-full max-w-[180px] items-center justify-center sm:mb-6">
               <div className="relative h-[110px] w-[110px] overflow-hidden bg-transparent p-0">
                 <Image
@@ -92,7 +92,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-1 lg:gap-10 lg:pl-1">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-3 md:gap-6 lg:col-span-1 lg:gap-8 lg:pl-1">
             {Object.entries(NAV_LINKS).map(([title, links]) => (
               <FooterCol key={title} title={title} links={links} />
             ))}
@@ -141,19 +141,19 @@ function FooterCol({
   links: { href: string; label: string; external?: boolean }[];
 }) {
   return (
-    <div>
-      <h5 className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#dfeff0]">{title}</h5>
-      <ul className="space-y-2.5">
+    <div className="min-w-0 md:pr-2 lg:pr-3">
+      <h5 className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-[#dfeff0] md:mb-4 md:text-[10px]">{title}</h5>
+      <ul className="space-y-2 md:space-y-2.5">
         {links.map((l) => (
           <li key={l.label}>
             <a
               href={l.href}
               target={l.external ? "_blank" : undefined}
               rel={l.external ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-1 text-[0.96rem] leading-[1.6] text-white/80 transition-colors hover:text-white"
+              className="inline-flex w-full items-center gap-1 rounded-md px-2 py-1.5 text-[0.9rem] leading-[1.5] text-white/75 transition-all duration-200 hover:bg-white/5 hover:text-white md:px-2.5 md:text-[0.95rem]"
             >
-              <span>{l.label}</span>
-              {l.external && <ArrowUpRight size={12} className="opacity-70" />}
+              <span className="whitespace-normal break-words">{l.label}</span>
+              {l.external && <ArrowUpRight size={12} className="ml-0.5 shrink-0 opacity-70" />}
             </a>
           </li>
         ))}
