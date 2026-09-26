@@ -1,254 +1,272 @@
 <p align="center">
-  <img src="public/images/ieee-logo.png" alt="IEEE Cavendish University Student Branch" width="520" />
+  <img src="public/images/ieee-logo.png" alt="IEEE Student Branch logo" width="420" />
 </p>
 
 # IEEE Student Branch — Cavendish University Uganda
 
-Official website for the **IEEE Student Branch at Cavendish University Uganda (CUU)**, showcasing the Branch launch & IEEE Day, IEEEXtreme competition, ambassador programs, technical communities, student membership, and the Branch leadership team.
+This project is the official website for the IEEE Student Branch at Cavendish University Uganda. It is designed to help students, visitors, and partners understand who the branch is, what it does, how to join, and how to take part in branch events such as IEEE Day and IEEEXtreme.
 
-Built with **Next.js 14 (App Router)**, **TypeScript**, and **Tailwind CSS**.
-
----
-
-## Table of Contents
-
-1. [Features](#features)
-2. [Quick Start](#quick-start)
-3. [Network & Package Installation Note](#network--package-installation-note)
-4. [Project Structure](#project-structure)
-5. [Page Sections & Components](#page-sections--components)
-6. [Updating Content & Data](#updating-content--data)
-7. [Design System & Styling](#design-system--styling)
-8. [Known Development Notices](#known-development-notices)
-9. [Pre-Deployment Checklist](#pre-deployment-checklist)
-10. [Deployment Guide](#deployment-guide)
-11. [Tech Stack](#tech-stack)
+The site is built with Next.js, TypeScript, and Tailwind CSS. It has a modern, readable design, responsive mobile navigation, event countdowns, and real social/community links that can be updated from environment variables.
 
 ---
 
-## Features
+## What this site does
 
-- 🌌 **Custom Cyberpunk/Dark UI**: Glassmorphic cards, gradient meshes, animated orbital ring graphic, and subtle ambient glows.
-- ⏱️ **Live Countdown Timers**: Real-time client countdowns for IEEE Day 2026 and IEEEXtreme deadlines.
-- 📱 **Fully Responsive**: Mobile-first design with smooth collapsible drawer navigation and responsive grid layouts.
-- 🚀 **Next.js 14 App Router**: Server-side rendering, layout optimization, and SEO metadata preconfigured.
-- ♿ **Motion Accessibility**: Built-in support for `prefers-reduced-motion` to tone down animations automatically.
-- 🎯 **Single Data Hub**: All text copy, FAQs, timeline milestones, external links, and leadership profiles are organized in a single configuration file (`lib/data.ts`).
+For a simple person, this website is the branch’s digital front door. It explains:
+
+- what IEEE is
+- what the branch does at Cavendish University Uganda
+- upcoming events and registration links
+- how to join or connect with the branch
+- who the student leaders are
+- official community and social channels
+
+For a developer, this project is a multi-page Next.js app with shared components, centralized content data, and environment-based configuration for links and registration URLs.
 
 ---
 
-## Quick Start
+## Project overview
+
+This app includes:
+
+- a landing page with a slideshow hero section and call-to-action buttons
+- a branch overview page
+- a CUUCSA page
+- an events page with IEEE Day and IEEEXtreme sections
+- a join page and contact/community pathway
+- a team page and programs overview
+- a footer and floating WhatsApp button for quick access
+
+---
+
+## Tech stack
+
+- [Next.js 14](https://nextjs.org/)
+- [React 18](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide React](https://lucide.dev/)
+
+---
+
+## Quick start
 
 ### Prerequisites
-- **Node.js**: v18.17.0+ or v20+ recommended (Node v24 supported with `--legacy-peer-deps`)
-- **npm** or **pnpm**
 
-### Installation & Run
+- Node.js 18 or later
+- npm
+
+### Install dependencies
 
 ```bash
-# 1. Install dependencies
-npm install --legacy-peer-deps
-
-# 2. Run the development server
-npm run dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+### Start the app in development mode
+
+```bash
+npm run dev -- --hostname 0.0.0.0
+```
+
+Then open:
+
+- http://localhost:3000
+
+### Create a production build
+
+```bash
+npm run build
+```
+
+### Start the production build locally
+
+```bash
+npm run start -- --hostname 0.0.0.0
+```
 
 ---
 
-## Network & Package Installation Note
+## Environment variables
 
-If you experience `ECONNRESET` or download timeouts while running `npm install` on restrictive networks or local firewalls, install using the Cloudflare/Alibaba-backed global mirror:
+This project uses a root [.env](.env) file for social and registration links. These values are read in [lib/data.ts](lib/data.ts) and then reused across the site.
 
-```bash
-# Install using the mirror registry
-npm install --legacy-peer-deps --registry https://registry.npmmirror.com
+Example values in the current project:
+
+```env
+# IEEE social links
+NEXT_PUBLIC_IEEE_LINKEDIN_URL=https://www.linkedin.com/company/ieee-cavendish-university-student-branch/
+NEXT_PUBLIC_IEEE_X_URL=https://x.com/IEEECavendish
+NEXT_PUBLIC_IEEE_TIKTOK_URL=https://www.tiktok.com/@cavendishieee?_r=1&_t=ZS-9A3Zys0H1r2
+NEXT_PUBLIC_IEEE_WHATSAPP_URL=https://chat.whatsapp.com/D14xEzlcP9bF4JKXnAiMU8
+
+# Event and community links
+NEXT_PUBLIC_IEEE_EVENT_REGISTRATION_URL=https://forms.gle/oNnnQLsjNv4WWg1L9
+NEXT_PUBLIC_CUUCSA_LINKEDIN_URL=https://www.linkedin.com/company/cavendish-university-uganda-computing-students-association/
+NEXT_PUBLIC_CUUCSA_WHATSAPP_URL=https://chat.whatsapp.com/JRmTgNpDhRSLVOBPoIDj5W
 ```
 
-Or set it globally:
-```bash
-npm config set registry https://registry.npmmirror.com
-```
+Important:
+
+- Replace any placeholder or outdated link with the real one before publishing.
+- Do not hardcode social links inside components when they can be managed from the environment file.
 
 ---
 
-## Project Structure
+## Main project structure
 
 ```text
-d:\IEEE\
+IEEE/
 ├── app/
-│   ├── layout.tsx          # Root layout: metadata, fonts, body wrapper
-│   ├── page.tsx            # Main one-page site assembling all sections
-│   └── globals.css         # Tailwind base layers, glass tokens & custom utilities
-│
+│   ├── about/
+│   ├── branch/
+│   ├── cuucsa/
+│   ├── events/
+│   ├── join/
+│   ├── programs/
+│   ├── team/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
 ├── components/
-│   ├── SiteHeader.tsx      # Sticky navigation bar with announcement ticker & mobile menu
-│   ├── Hero.tsx            # Hero section with animated orbital graphic and primary CTAs
-│   ├── WhatIsIEEE.tsx      # Core pillars (Technology, Research, Leadership, Global)
-│   ├── Journey.tsx         # 6-step member onboarding pathway
-│   ├── EventSpotlight.tsx  # IEEE Day feature spotlight with live countdown clock
-│   ├── IEEExtreme.tsx      # 24-hour virtual programming competition showcase
-│   ├── Programs.tsx        # Ambassador programs (AWS Builders, Black Python Devs, GitHub)
-│   ├── Communities.tsx     # IEEE Technical Societies directory
-│   ├── Membership.tsx      # Membership grade overview table
-│   ├── Team.tsx            # Executive committee roster cards
-│   ├── Faq.tsx             # Frequently asked questions
-│   ├── Resources.tsx       # Quick links to official IEEE portals
-│   ├── JoinBanner.tsx      # Call-to-action banner for joining the branch community
-│   ├── SiteFooter.tsx      # Multi-column footer and copyright
-│   ├── SectionHead.tsx     # Reusable section kicker, title, and body layout
-│   ├── Ticker.tsx          # Continuous scrolling announcement marquee
+│   ├── SiteHeader.tsx
+│   ├── Hero.tsx
+│   ├── EventSpotlight.tsx
+│   ├── IEEExtreme.tsx
+│   ├── CUUCSA.tsx
+│   ├── SiteFooter.tsx
+│   ├── Partnerships.tsx
+│   ├── Resources.tsx
+│   ├── Faq.tsx
+│   ├── Team.tsx
 │   └── ui/
-│       └── Countdown.tsx   # Reusable countdown timer component
-│
+│       └── Countdown.tsx
 ├── lib/
-│   ├── data.ts             # Central data source: copy, dates, links, team roster, FAQ
-│   └── useCountdown.ts     # Client hook calculating remaining days/hours/mins/secs
-│
+│   ├── data.ts
+│   └── useCountdown.ts
 ├── public/
-│   └── favicon.svg         # IEEE CUU SVG favicon
-│
-├── tailwind.config.ts      # Tailwind configuration with custom theme colors & keyframes
-├── next.config.mjs         # Next.js configuration
-├── tsconfig.json           # TypeScript path mappings (@/*)
-└── package.json
+│   ├── images/
+│   └── favicon.svg
+├── .env
+├── .gitignore
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+├── README.md
+└── next-env.d.ts
 ```
 
 ---
 
-## Page Sections & Components
+## Where content lives
 
-| Component | Anchor ID | Purpose |
-| :--- | :--- | :--- |
-| **SiteHeader** | — | Sticky branding, navigation anchors, live ticker, and mobile menu |
-| **Hero** | `#top` | Headline, mission statement, primary CTAs, and dynamic orbit visualization |
-| **WhatIsIEEE** | `#about` | Four core pillars of IEEE membership and engagement |
-| **Journey** | `#branch` | Six steps from learning and joining to building and connecting |
-| **EventSpotlight** | `#event` | Details and countdown for IEEE Day / Branch launch |
-| **IEEExtreme** | `#xtreme` | Global 24-hour competitive programming challenge details |
-| **Programs** | `#programs` | Campus ambassador programs (AWS, GitHub, Python communities) |
-| **Communities** | `#communities` | Technical societies (Computer Society, ComSoc, Robotics, etc.) |
-| **Membership** | `#membership` | Breakdown of student, graduate, and professional membership grades |
-| **Team** | `#team` | Executive committee officer profiles |
-| **Faq** | `#faq` | Common questions about eligibility and interdisciplinary participation |
-| **Resources** | — | Curated list of direct links to IEEE portals and standards |
-| **JoinBanner** | `#join` | Direct action banner to connect with the student community |
-| **SiteFooter** | — | Navigation columns, legal info, and external IEEE links |
+### Social and event links
 
----
+All key external URLs are managed in [lib/data.ts](lib/data.ts). This includes:
 
-## Updating Content & Data
+- IEEE WhatsApp link
+- event registration link
+- CUUCSA WhatsApp link
+- CUUCSA LinkedIn link
+- IEEE social media URLs
 
-All website copy and dynamic links are centralized in [`lib/data.ts`](file:///d:/IEEE/lib/data.ts).
+### Page content and data
 
-### 1. Update Registration and WhatsApp Links
-```typescript
-// lib/data.ts
-export const WHATSAPP_INVITE_URL = "https://chat.whatsapp.com/YOUR_ACTUAL_GROUP_INVITE";
-export const IEEE_DAY_REGISTRATION_URL = "https://forms.gle/YOUR_REGISTRATION_FORM";
-```
+The site uses reusable data objects for content such as:
 
-### 2. Update Countdown Dates
-Dates must be ISO-8601 strings:
-```typescript
-// lib/data.ts
-export const IEEE_DAY_TARGET_ISO = "2026-10-06T09:00:00+03:00";
-export const IEEEXTREME_DEADLINE_ISO = "2026-10-17T23:59:00Z";
-```
+- events
+- FAQs
+- team members
+- student programs
+- program and societies information
 
-### 3. Update the Executive Committee
-```typescript
-// lib/data.ts
-export const team = [
-  { name: "Mulondo Andrew", role: "Chair" },
-  { name: "Basiima Nicholas", role: "General Secretary" },
-  // add or update members...
-];
-```
-
-### 4. Edit Announcements
-To update the top banner message, edit [`components/Ticker.tsx`](file:///d:/IEEE/components/Ticker.tsx).
+This makes it easier to update content without changing layout code everywhere.
 
 ---
 
-## Design System & Styling
+## How the site works
 
-### Color Palette
-Defined in [`tailwind.config.ts`](file:///d:/IEEE/tailwind.config.ts):
+### Front-end flow
 
-- **Background & Surfaces**:
-  - `bg`: `#070A16` (Deep cosmic navy)
-  - `surface`: `#0E1328`
-  - `surface2`: `#151B38`
-  - `surface3`: `#1C2447`
-  - `line`: `#252C4E`
-- **Accents**:
-  - `violet`: `#7C5CFF` (Primary brand accent)
-  - `cyan`: `#2FD8E5` (High-tech accent)
-  - `ember`: `#FF7A45` (Call-to-action & warm accent)
-  - `mint`: `#7CFFC4` (Fresh contrast accent)
+1. The root layout in [app/layout.tsx](app/layout.tsx) wraps all pages.
+2. Each route under [app](app) renders specific sections.
+3. Shared components such as [components/SiteHeader.tsx](components/SiteHeader.tsx) and [components/SiteFooter.tsx](components/SiteFooter.tsx) are reused across pages.
+4. The homepage is assembled in [app/page.tsx](app/page.tsx).
+5. Event countdowns use the timer from [components/ui/Countdown.tsx](components/ui/Countdown.tsx).
 
-### Typography
-- **Headings**: Sora (`--font-sora`, Google Font)
-- **Body**: IBM Plex Sans (`--font-plex`, Google Font)
+### Main page routes
 
-### Custom CSS Classes
-Found in [`app/globals.css`](file:///d:/IEEE/app/globals.css):
-- `.glass`: Translucent surface with backdrop blur and border glow.
-- `.gradient-text`: Violet-to-cyan-to-mint gradient clip.
-- `.gradient-text-warm`: Peach-to-ember gradient clip.
+- Home: [app/page.tsx](app/page.tsx)
+- About: [app/about/page.tsx](app/about/page.tsx)
+- Branch: [app/branch/page.tsx](app/branch/page.tsx)
+- CUUCSA: [app/cuucsa/page.tsx](app/cuucsa/page.tsx)
+- Events: [app/events/page.tsx](app/events/page.tsx)
+- IEEE Day: [app/events/ieee-day/page.tsx](app/events/ieee-day/page.tsx)
+- IEEEXtreme: [app/events/ieeextreme/page.tsx](app/events/ieeextreme/page.tsx)
+- Join: [app/join/page.tsx](app/join/page.tsx)
+- Programs: [app/programs/page.tsx](app/programs/page.tsx)
+- Team: [app/team/page.tsx](app/team/page.tsx)
 
 ---
 
-## Known Development Notices
+## Useful notes for editing
 
-- **Google Fonts Offline Fallback**: If building without an active internet connection or behind a restrictive proxy, Next.js will fall back to system sans-serif fonts automatically without breaking the layout.
-- **Service Worker 404 (`/sw.js`)**: If your browser extensions look for a service worker, you may notice benign 404 messages in terminal logs. The app does not require a service worker.
+### Change the homepage CTA or hero text
+
+Edit [components/Hero.tsx](components/Hero.tsx).
+
+### Change the event flyer or upcoming event card
+
+Edit [components/EventSpotlight.tsx](components/EventSpotlight.tsx) and update the image in the public folder.
+
+### Change the list of social or registration URLs
+
+Edit [.env](.env) or [lib/data.ts](lib/data.ts).
+
+### Change team or branch content
+
+Edit the data exported in [lib/data.ts](lib/data.ts).
 
 ---
 
-## Pre-Deployment Checklist
+## Simple explanation for non-technical users
 
-Before publishing to production:
-- [ ] Replace `WHATSAPP_INVITE_URL` in `lib/data.ts` with the official link.
-- [ ] Replace `IEEE_DAY_REGISTRATION_URL` in `lib/data.ts` with the official Google Form or Eventbrite link.
-- [ ] Verify event dates and timezones (`IEEE_DAY_TARGET_ISO`).
-- [ ] Confirm Executive Committee names and roles in `team`.
-- [ ] Run a test build to ensure no TypeScript or compilation errors:
-  ```bash
-  npm run build
-  ```
+This website is a digital home for the IEEE Student Branch at Cavendish University Uganda. It helps people:
+
+- know what the branch stands for
+- see upcoming activities
+- register for events
+- connect with the branch on WhatsApp or social media
+- learn about student programs and leadership
+
+It is basically a modern online notice board, information center, and community hub for engineering students.
 
 ---
 
-## Deployment Guide
+## Deployment
 
-### Deploy to Vercel (Recommended)
-1. Push your repository to GitHub / GitLab / Bitbucket.
-2. Import the repository into [Vercel](https://vercel.com).
-3. Vercel automatically detects Next.js:
-   - **Framework Preset**: Next.js
-   - **Build Command**: `next build`
-   - **Output Directory**: `.next`
-4. Click **Deploy**.
+You can deploy this project on platforms such as Vercel, Netlify, or any Node.js hosting service.
 
-### Self-Hosted / Node.js Server
+Recommended:
+
 ```bash
-# Build the application
 npm run build
-
-# Start the production server on port 3000
-npm run start
 ```
-Configure Nginx, Caddy, or Cloudflare Tunnel as a reverse proxy pointing to `http://localhost:3000`.
+
+Then deploy the project using a platform that supports Next.js applications.
 
 ---
 
-## Tech Stack
+## Final note
 
-- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Fonts**: [Google Fonts (Sora & IBM Plex Sans)](https://fonts.google.com/)
+This project is structured to be easy to maintain. If you want to change site content or links, start in [lib/data.ts](lib/data.ts) and the root [.env](.env) file. If you want to change layout or section design, start in the relevant component under [components](components).
+
+If you are new to the project, begin with:
+
+1. [app/page.tsx](app/page.tsx)
+2. [components/Hero.tsx](components/Hero.tsx)
+3. [lib/data.ts](lib/data.ts)
+4. [.env](.env)
+
+That will give you the quickest understanding of how the site is assembled and where to edit information.
