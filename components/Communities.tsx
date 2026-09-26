@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -246,9 +246,9 @@ export function Communities() {
         {/* ── Section Header ── */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
-              <Globe size={12} className="text-[#1A9090]" />
-              Open to Every Innovator & Enthusiast
+            <span className="mb-5 inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0]">
+              <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
+              Open to every innovator &amp; enthusiast
             </span>
             <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Specialized communities to{" "}
@@ -376,9 +376,9 @@ export function Communities() {
 
           <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3.5 py-1 text-[11px] font-bold tracking-[0.2em] uppercase text-[#E8F5F5] mb-4">
-                <Users size={12} className="text-[#1A9090]" />
-                No Tech Background Required
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0] mb-4">
+                <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
+                No tech background required
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-ink">
                 You don’t need to be a coder to shape the future.

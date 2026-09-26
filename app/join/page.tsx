@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle2, Sparkles, ArrowUpRight, HelpCircle, ShieldCheck } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -82,8 +82,9 @@ export default function JoinPage() {
 
         {/* ── PAGE HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-block rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-xs font-bold tracking-[0.25em] uppercase text-slate-700">
-            Global Credentials · Subsidized Student Rates
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
+            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
+            Global credentials · subsidized student rates
           </span>
 
           <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
@@ -128,8 +129,9 @@ export default function JoinPage() {
         {/* ── MEMBERSHIP FAQS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-bold tracking-[0.2em] uppercase text-slate-700">
-              Clear Answers
+            <span className="inline-flex items-center gap-1.5 rounded-md bg-white border border-slate-100 px-3 py-1 text-[12px] font-medium text-slate-600">
+              <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
+              Clear answers
             </span>
             <h2 className="mt-4 font-serif text-3xl font-bold text-ink sm:text-4xl">
               Membership FAQs

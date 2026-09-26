@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -136,10 +136,10 @@ export function Team() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* ── Section Header ── */}
         <div className="mb-16">
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
-            <Star size={11} className="text-[#1A9090]" />
-            Who Runs the Branch
-          </span>
+          <span className="mb-5 inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0]">
+              <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
+              Who runs the branch
+            </span>
           <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl">
             Meet the CUU Student{" "}
             <em className="not-italic italic text-[#1A9090]">Branch team.</em>

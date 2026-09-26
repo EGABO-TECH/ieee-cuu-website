@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -150,9 +150,9 @@ export function Programs() {
         {/* ── Section header ── */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
-              <Sparkles size={11} className="text-[#1A9090]" />
-              Beyond the Branch
+            <span className="mb-5 inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0]">
+              <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
+              Beyond the branch
             </span>
             <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl">
               Ambassadorial programs{" "}

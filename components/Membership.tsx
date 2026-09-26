@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { membership } from "@/lib/data";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
@@ -24,8 +24,9 @@ export function Membership() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
-              IEEE Global Membership
+            <span className="mb-5 inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0]">
+              <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
+              IEEE global membership
             </span>
             <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Find the category that <em className="not-italic italic text-[#1A9090]">fits you.</em>

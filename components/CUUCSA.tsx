@@ -68,8 +68,9 @@ export function CUUCSA() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* ── Section Kicker ── */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-ieee/25 bg-ieee/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-ieee">
-            Official Arrival · Cavendish University Uganda
+          <div className="inline-flex items-center gap-1.5 rounded-md bg-ieee/10 px-3 py-1 text-[12px] font-medium text-ieee">
+            <span className="h-1 w-1 rounded-full bg-ieee/60" aria-hidden="true" />
+            Official arrival · Cavendish University Uganda
           </div>
 
           <h2 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
