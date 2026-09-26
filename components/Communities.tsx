@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -61,7 +61,7 @@ function SocietyVisual({
   const hasImage = Boolean(image && image.length > 0 && !imgError);
 
   return (
-    <div className="relative h-48 w-full overflow-hidden border-b border-white/[0.08] bg-[#07080d]">
+    <div className="relative h-48 w-full overflow-hidden border-b border-ink/[0.08] bg-ink/5">
       {/* ── Top Floating Badges ── */}
       <div className="absolute left-4 right-4 top-4 z-20 flex items-center justify-between gap-2 pointer-events-none">
         <span
@@ -70,7 +70,7 @@ function SocietyVisual({
           {category}
         </span>
 
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-0.5 text-[10px] font-semibold text-white/80 backdrop-blur-md">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-ink/10 px-2.5 py-0.5 text-[10px] font-semibold text-ink/80 backdrop-blur-md">
           {impact}
         </span>
       </div>
@@ -87,7 +87,7 @@ function SocietyVisual({
             onError={() => setImgError(true)}
           />
           {/* Subtle gradient vignette to blend with card and maintain contrast */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0c0d14] via-black/20 to-black/50" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#E8F0F0] via-black/20 to-black/50" />
         </div>
       ) : (
         <div className="relative flex h-full w-full items-center justify-center overflow-hidden">
@@ -116,7 +116,7 @@ function SocietyVisual({
               <IconComp size={28} className={theme.iconColor} />
             </div>
 
-            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-white/50 backdrop-blur-sm transition-colors group-hover:border-white/20 group-hover:text-white/80">
+            <div className="flex items-center gap-1.5 rounded-full border border-white/10 bg-black/50 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-muted backdrop-blur-sm transition-colors group-hover:border-white/20 group-hover:text-muted">
               <Camera size={9} />
               <span>Official Media Slot</span>
             </div>
@@ -143,10 +143,10 @@ const COLOR_MAP: Record<
   }
 > = {
   sky: {
-    tag: "bg-sky-500/15 text-sky-400 border-sky-500/30",
-    iconBg: "bg-sky-500/15 border-sky-500/30",
-    iconColor: "text-sky-400",
-    cardBorder: "hover:border-sky-500/40",
+    tag: "bg-cuu-steel/15 text-cuu-steel border-cuu-steel/30",
+    iconBg: "bg-cuu-steel/15 border-cuu-steel/30",
+    iconColor: "text-cuu-steel",
+    cardBorder: "hover:border-cuu-steel/40",
     glow: "rgba(14,165,233,0.15)",
   },
   amber: {
@@ -232,13 +232,13 @@ export function Communities() {
       : communities.filter((c) => c.category === selectedCategory);
 
   return (
-    <section id="communities" className="relative overflow-hidden bg-[#09090B] py-28 sm:py-36">
+    <section id="communities" className="relative overflow-hidden bg-bg py-28 sm:py-36 border-t border-ieee/10">
       {/* Background glow ambiance */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/4 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.05]"
+        className="pointer-events-none absolute left-1/2 top-1/4 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.08]"
         style={{
-          background: "radial-gradient(ellipse at center, #C8A96E 0%, #00629B 50%, transparent 75%)",
+          background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 75%)",
         }}
       />
 
@@ -246,22 +246,22 @@ export function Communities() {
         {/* ── Section Header ── */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-end">
           <div className="lg:col-span-7">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#C8A96E]">
-              <Globe size={12} />
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
+              <Globe size={12} className="text-[#1A9090]" />
               Open to Every Innovator & Enthusiast
             </span>
-            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               Specialized communities to{" "}
-              <em className="not-italic italic text-[#C8A96E]">change the world.</em>
+              <em className="not-italic italic text-[#1A9090]">change the world.</em>
             </h2>
-            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#C8A96E]" />
+            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#1A9090]" />
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-base leading-[1.8] text-[#A8A8B3] sm:text-lg">
+            <p className="text-base leading-[1.8] text-muted sm:text-lg">
               IEEE is not restricted to computer science. Advancing technology for humanity is an
               all-hands mission. Whether you are passionate about artificial intelligence, clean
-              energy, healthcare devices, robotics, education reform, or humanitarian solutions —
+              energy, healthcare devices, robotics, education reform, or humanitarian solutions
               there is a global society ready to empower you.
             </p>
           </div>
@@ -278,7 +278,7 @@ export function Communities() {
                 className={`rounded-full px-4 py-2 text-xs font-semibold transition-all duration-300 ${
                   isActive
                     ? "bg-white text-black shadow-lg shadow-white/10 scale-100"
-                    : "border border-white/10 bg-white/[0.03] text-white/70 hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
+                    : "border border-white/10 bg-white/[0.03] text-ink/70 hover:border-white/20 hover:bg-ink/[0.08] hover:text-ink"
                 }`}
               >
                 {cat}
@@ -296,7 +296,7 @@ export function Communities() {
             return (
               <div
                 key={c.id}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0d14] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${theme.cardBorder}`}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-ink/[0.08] bg-[#E8F0F0] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] ${theme.cardBorder}`}
               >
                 {/* Ambient glow on hover */}
                 <div
@@ -326,30 +326,30 @@ export function Communities() {
                       >
                         <IconComp size={20} className={theme.iconColor} />
                       </div>
-                      <h3 className="font-serif text-lg font-bold leading-snug text-white transition-colors group-hover:text-[#C8A96E]">
+                      <h3 className="font-serif text-lg font-bold leading-snug text-white transition-colors group-hover:text-[#1A9090]">
                         {c.name}
                       </h3>
                     </div>
 
                     {/* Focus Subtitle */}
-                    <p className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-[#C8A96E]/90">
+                    <p className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-[#1A9090]/90">
                       {c.focus}
                     </p>
 
                     {/* Description */}
-                    <p className="mb-6 text-sm leading-relaxed text-[#A8A8B3]">{c.description}</p>
+                    <p className="mb-6 text-sm leading-relaxed text-muted">{c.description}</p>
                   </div>
 
                   {/* Card Action Link */}
                   <div className="flex items-center justify-between border-t border-white/[0.06] pt-4">
-                    <span className="text-xs text-white/50 transition-colors group-hover:text-white/80">
+                    <span className="text-xs text-muted transition-colors group-hover:text-muted">
                       Global Society
                     </span>
                     <a
                       href={c.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white transition-colors group-hover:text-[#C8A96E]"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ink transition-colors group-hover:text-[#1A9090]"
                     >
                       <span>Visit Society</span>
                       <ArrowUpRight
@@ -365,43 +365,43 @@ export function Communities() {
         </div>
 
         {/* ── Inspiring Multi-Disciplinary Callout Banner ── */}
-        <div className="mt-14 relative overflow-hidden rounded-3xl border border-[#C8A96E]/25 bg-gradient-to-br from-[#13131c] via-[#0d0e14] to-[#09090b] p-8 sm:p-12 shadow-2xl">
+        <div className="mt-14 relative overflow-hidden rounded-3xl border border-ieee/10 bg-gradient-to-br from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-8 sm:p-12 shadow-2xl">
           {/* Subtle warm glow orb */}
           <div
             className="pointer-events-none absolute -left-20 -bottom-20 h-64 w-64 rounded-full opacity-20"
             style={{
-              background: "radial-gradient(circle, #C8A96E 0%, transparent 70%)",
+              background: "radial-gradient(circle, #0D6E6E 0%, transparent 70%)",
             }}
           />
 
           <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-3.5 py-1 text-[11px] font-bold tracking-[0.2em] uppercase text-[#C8A96E] mb-4">
-                <Users size={12} />
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3.5 py-1 text-[11px] font-bold tracking-[0.2em] uppercase text-[#E8F5F5] mb-4">
+                <Users size={12} className="text-[#1A9090]" />
                 No Tech Background Required
               </span>
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-ink">
                 You don’t need to be a coder to shape the future.
               </h3>
-              <p className="mt-4 text-sm sm:text-base leading-relaxed text-[#A8A8B3]">
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-muted">
                 Solving the world&apos;s toughest challenges requires multidisciplinary vision. Whether you study
-                Business, Public Health, Law, Design, Education, or Engineering — modern innovation
+                Business, Public Health, Law, Design, Education, or Engineering: modern innovation
                 demands diverse minds. In IEEE Cavendish University Uganda, your perspective is needed
                 to ensure technology truly serves humanity.
               </p>
 
               {/* Pill highlights */}
-              <div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-white/80">
+              <div className="mt-6 flex flex-wrap gap-4 text-xs font-medium text-muted">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <CheckCircle2 size={14} className="text-[#1A9090]" />
                   Cross-Faculty Teams
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <CheckCircle2 size={14} className="text-[#1A9090]" />
                   Mentorship & Workshops
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 size={14} className="text-emerald-400" />
+                  <CheckCircle2 size={14} className="text-[#1A9090]" />
                   Global IEEE Network
                 </span>
               </div>
@@ -410,18 +410,18 @@ export function Communities() {
             <div className="lg:col-span-5 flex flex-col items-start lg:items-end justify-center">
               <div className="flex items-center gap-6 mb-6">
                 <div className="text-center">
-                  <div className="font-serif text-3xl font-black text-white">40+</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-white/50">Societies</div>
+                  <div className="font-serif text-3xl font-black text-ink">40+</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-muted/70">Societies</div>
                 </div>
                 <div className="h-8 w-px bg-white/10" />
                 <div className="text-center">
-                  <div className="font-serif text-3xl font-black text-white">160+</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-white/50">Countries</div>
+                  <div className="font-serif text-3xl font-black text-ink">160+</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-muted/70">Countries</div>
                 </div>
                 <div className="h-8 w-px bg-white/10" />
                 <div className="text-center">
-                  <div className="font-serif text-3xl font-black text-[#C8A96E]">100%</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-white/50">Open to All</div>
+                  <div className="font-serif text-3xl font-black text-[#E8F5F5]">100%</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-muted/70">Open to All</div>
                 </div>
               </div>
 
@@ -429,7 +429,7 @@ export function Communities() {
                 href={WHATSAPP_INVITE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#C8A96E] to-[#B38D48] px-7 py-3.5 text-sm font-bold text-black shadow-lg shadow-[#C8A96E]/20 transition-all duration-300 hover:from-[#DFC27D] hover:to-[#C8A96E] hover:scale-[1.02]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3.5 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition-all duration-300 hover:bg-[#1A9090] hover:scale-[1.02]"
               >
                 <span>Find Your Community at CUU</span>
                 <ArrowUpRight size={16} />

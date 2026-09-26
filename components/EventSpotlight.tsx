@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { Calendar, MapPin, Users, Lightbulb, Settings, Network, Rocket, ArrowUpRight } from "lucide-react";
@@ -14,32 +14,32 @@ const HIGHLIGHTS = [
 
 export function EventSpotlight() {
   return (
-    <section id="event" className="relative overflow-hidden bg-[#09090B] py-28 sm:py-36">
+    <section id="event" className="relative overflow-hidden bg-bg py-28 sm:py-36">
       {/* Deep blue ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-32 right-0 h-[700px] w-[700px] rounded-full opacity-[0.12]"
-        style={{ background: "radial-gradient(ellipse at center, #1a56db 0%, transparent 70%)" }}
+        className="pointer-events-none absolute -top-32 right-0 h-[700px] w-[700px] rounded-full opacity-[0.06]"
+        style={{ background: "radial-gradient(ellipse at center, #9abec1 0%, transparent 70%)" }}
       />
       <div
         aria-hidden
         className="pointer-events-none absolute bottom-0 left-0 h-[500px] w-[500px] rounded-full opacity-[0.07]"
-        style={{ background: "radial-gradient(ellipse at center, #0ea5e9 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse at center, #dfeff0 0%, transparent 70%)" }}
       />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* Section kicker */}
         <div className="mb-14 text-center">
-          <span className="inline-block rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#C8A96E]">
+          <span className="inline-block rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#234a52]">
             Upcoming · Flagship Event
           </span>
         </div>
 
-        {/* Main card — split layout */}
-        <div className="grid grid-cols-1 items-stretch overflow-hidden rounded-3xl border border-white/[0.08] lg:grid-cols-2 bg-[#111827]">
+        {/* Main card, split layout */}
+        <div className="grid grid-cols-1 items-stretch overflow-hidden rounded-3xl border border-ink/[0.08] lg:grid-cols-2 bg-white">
 
           {/* ── LEFT: Flyer showcase ── */}
-          <div className="relative flex items-center justify-center bg-[#0d1424] p-8 sm:p-12 lg:p-14 border-b border-white/[0.08] lg:border-b-0 lg:border-r">
+          <div className="relative flex items-center justify-center bg-[#0d1424] p-8 sm:p-12 lg:p-14 border-b border-ink/[0.08] lg:border-b-0 lg:border-r">
             {/* Clean Flyer frame */}
             <div className="relative w-full max-w-[340px] overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
               <Image
@@ -57,32 +57,32 @@ export function EventSpotlight() {
           <div className="flex flex-col justify-between p-8 sm:p-12 lg:p-14">
             {/* Date badge */}
             <div>
-              <div className="mb-6 inline-flex items-center gap-3 rounded-xl border border-[#00629B]/30 bg-[#00629B]/10 px-4 py-2.5">
-                <Calendar size={18} className="text-[#38BDF8]" />
+              <div className="mb-6 inline-flex items-center gap-3 rounded-xl border border-[#9dbdc1] bg-[#dfeff0] px-4 py-2.5">
+                <Calendar size={18} className="text-[#234a52]" />
                 <div>
-                  <div className="font-display text-lg font-bold leading-none text-white">6th October</div>
-                  <div className="text-[11px] tracking-widest text-[#38BDF8] uppercase font-semibold">2026</div>
+                  <div className="font-display text-lg font-bold leading-none text-[#234a52]">6th October</div>
+                  <div className="text-[11px] tracking-widest text-[#234a52] uppercase font-semibold">2026</div>
                 </div>
               </div>
 
-              <h2 className="font-serif text-3xl font-bold leading-[1.15] tracking-tight text-white sm:text-4xl">
-                IEEE Day 2026 —<br />
-                <em className="not-italic italic text-[#C8A96E]">CUU Student Branch</em> Launch
+              <h2 className="font-serif text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
+                IEEE Day 2026<br />
+                <em className="not-italic italic text-[#2f5f68]">CUU Student Branch</em> Launch
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-[#94A3B8]">
+              <p className="mt-4 text-base leading-relaxed text-muted">
                 Meet the Branch, learn what IEEE membership unlocks, and be part of the first
                 cohort of students building this community from day one.
               </p>
 
               {/* Event meta */}
-              <ul className="mt-6 space-y-3 text-sm text-[#94A3B8]">
-                <li className="flex items-center gap-3">
-                  <MapPin size={16} className="shrink-0 text-[#38BDF8]" />
+              <ul className="mt-6 space-y-3 text-sm text-muted">
+                <li className="flex items-center gap-3 text-slate-700">
+                  <MapPin size={16} className="shrink-0 text-[#2f5f68]" />
                   Cavendish University Uganda · Siyani Campus
                 </li>
-                <li className="flex items-center gap-3">
-                  <Users size={16} className="shrink-0 text-[#38BDF8]" />
-                  Open to all CUU students — free entry
+                <li className="flex items-center gap-3 text-slate-700">
+                  <Users size={16} className="shrink-0 text-[#2f5f68]" />
+                  Open to all CUU students, free entry
                 </li>
               </ul>
 
@@ -91,9 +91,9 @@ export function EventSpotlight() {
                 {HIGHLIGHTS.map(({ icon: Icon, label }) => (
                   <span
                     key={label}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 text-xs font-medium text-white/80"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#9dbdc1] bg-[#edf7f8] px-3.5 py-1.5 text-xs font-medium text-[#244b52]"
                   >
-                    <Icon size={12} className="text-[#38BDF8]" />
+                    <Icon size={12} className="text-[#2f5f68]" />
                     {label}
                   </span>
                 ))}
@@ -101,15 +101,15 @@ export function EventSpotlight() {
             </div>
 
             {/* Countdown + CTA */}
-            <div className="mt-10 border-t border-white/[0.08] pt-8">
-              <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.2em] text-[#C8A96E]">
+            <div className="mt-10 border-t border-ink/[0.08] pt-8">
+              <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.2em] text-[#234a52]">
                 Counting down to IEEE Day
               </p>
               <Countdown targetISO={IEEE_DAY_TARGET_ISO} />
 
               <a
                 href={IEEE_DAY_REGISTRATION_URL}
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-[#00629B] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#00629B]/25 transition hover:bg-[#004f7d] hover:-translate-y-0.5"
+                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-[#2f5f68] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2f5f68]/25 transition hover:bg-[#234a52] hover:-translate-y-0.5"
               >
                 Register Now
                 <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -120,7 +120,7 @@ export function EventSpotlight() {
 
         {/* Bottom tagline */}
         <p className="mt-6 text-center text-xs tracking-widest text-white/30 uppercase">
-          IEEE Day 2026 — Together for a Brighter Future
+          IEEE Day 2026: Together for a Brighter Future
         </p>
       </div>
     </section>

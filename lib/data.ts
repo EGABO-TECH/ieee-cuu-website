@@ -16,7 +16,7 @@ export const pillars = [
   },
   {
     title: "Global technical communities",
-    body: "Connect with Societies, Sections and Regions — including IEEE Uganda Section and Region 8.",
+    body: "Connect with Societies, Sections and Regions, including IEEE Uganda Section and Region 8.",
     accent: "mint",
   },
 ] as const;
@@ -41,7 +41,7 @@ export const programs = [
     tag: "Cloud & AI",
     accent: "cyan",
     title: "AWS Student Builders",
-    body: "A paid, part-time campus leadership program where Student Builders promote the AWS Builder Center, host workshops and activations, and inspire peers to explore cloud, AI and data technologies. Builders receive AWS credits, 12 months of AWS Skill Builder Premium access, and hands-on training — while driving real community impact on campus.",
+    body: "A paid, part-time campus leadership program where Student Builders promote the AWS Builder Center, host workshops and activations, and inspire peers to explore cloud, AI and data technologies. Builders receive AWS credits, 12 months of AWS Skill Builder Premium access, and hands-on training while driving real community impact on campus.",
     href: "https://aws.amazon.com/education/student-builders/",
     image: "/images/AWS_Student_Builders.png",
     ambassadors: [
@@ -57,7 +57,7 @@ export const programs = [
     tag: "Python & Open Source",
     accent: "violet",
     title: "Black Python Devs",
-    body: "A global community empowering Black and Colou(u)red Pythonistas of all skill levels through mentorship, career support and financial grants. With a strong presence across Africa — supporting PyCon Africa and national events — BPD builds diverse Python leadership, advocates for Black developers in industry, and funds open-source communities in Black spaces.",
+    body: "A global community empowering Black and Colou(u)red Pythonistas of all skill levels through mentorship, career support and financial grants. With a strong presence across Africa, supporting PyCon Africa and national events, BPD builds diverse Python leadership, advocates for Black developers in industry, and funds open-source communities in Black spaces.",
     href: "https://blackpythondevs.com",
     image: "/images/Black_Python_Devs.png",
     ambassadors: [
@@ -78,7 +78,7 @@ export const programs = [
     tag: "Mentorship",
     accent: "ember",
     title: "IEEE CS SYP Micro-Mentoring",
-    body: "A flagship IEEE Computer Society program connecting students and young professionals with experienced industry mentors for short-duration, goal-oriented sessions. Participants receive guidance on career planning, internship prep, leadership and networking — while mentors refine coaching skills and expand their professional reach across the global IEEE CS community.",
+    body: "A flagship IEEE Computer Society program connecting students and young professionals with experienced industry mentors for short-duration, goal-oriented sessions. Participants receive guidance on career planning, internship prep, leadership and networking, while mentors refine coaching skills and expand their professional reach across the global IEEE CS community.",
     href: "https://www.computer.org/communities/students-and-young-professionals",
     image: "/images/IEEE_CS_SYP_Micro_Mentoring.png",
     ambassadors: [
@@ -377,15 +377,15 @@ export const faqs = [
   },
   {
     q: "Can Business, Health Sciences, Law or Social Sciences students take part?",
-    a: "Yes — students from any discipline can join suitable interdisciplinary activities where their studies intersect with technology. Membership eligibility is checked separately.",
+    a: "Yes, students from any discipline can join suitable interdisciplinary activities where their studies intersect with technology. Membership eligibility is checked separately.",
   },
   {
     q: "Can I participate without holding a leadership position?",
-    a: "Yes. You can attend, volunteer, learn and contribute to activities and projects at any stage — leadership is one option among many.",
+    a: "Yes. You can attend, volunteer, learn and contribute to activities and projects at any stage; leadership is one option among many.",
   },
   {
     q: "Where do I check current membership requirements?",
-    a: "Always use the official IEEE Students membership page linked in the resources section — fees and eligibility rules can change.",
+    a: "Always use the official IEEE Students membership page linked in the resources section; fees and eligibility rules can change.",
   },
 ];
 
@@ -401,10 +401,13 @@ export const resources = [
   { label: "Student Branches", href: "https://students.ieee.org/student-branches/" },
 ];
 
-// ⚠️ Replace with the real invite link before shipping.
-export const WHATSAPP_INVITE_URL = "https://chat.whatsapp.com/REPLACE-WITH-IEEE-CUU-INVITE-LINK";
-// ⚠️ Replace with the real registration URL once available (the flyer only has a QR code).
-export const IEEE_DAY_REGISTRATION_URL = "#";
+export const IEEE_LINKEDIN_URL = process.env.NEXT_PUBLIC_IEEE_LINKEDIN_URL ?? "https://www.linkedin.com/company/ieee-cavendish-university-uganda";
+export const IEEE_X_URL = process.env.NEXT_PUBLIC_IEEE_X_URL ?? "https://x.com";
+export const IEEE_TIKTOK_URL = process.env.NEXT_PUBLIC_IEEE_TIKTOK_URL ?? "https://www.tiktok.com";
+export const WHATSAPP_INVITE_URL = process.env.NEXT_PUBLIC_IEEE_WHATSAPP_URL ?? "https://chat.whatsapp.com/REPLACE-WITH-IEEE-CUU-INVITE-LINK";
+export const CUUCSA_LINKEDIN_URL = process.env.NEXT_PUBLIC_CUUCSA_LINKEDIN_URL ?? "https://www.linkedin.com";
+export const CUUCSA_WHATSAPP_URL = process.env.NEXT_PUBLIC_CUUCSA_WHATSAPP_URL ?? "https://chat.whatsapp.com/REPLACE-WITH-CUUCSA-INVITE-LINK";
+export const IEEE_DAY_REGISTRATION_URL = process.env.NEXT_PUBLIC_IEEE_EVENT_REGISTRATION_URL ?? "#";
 
 export const IEEE_DAY_TARGET_ISO = "2026-10-06T09:00:00+03:00";
 export const IEEEXTREME_DEADLINE_ISO = "2026-10-17T23:59:00Z";

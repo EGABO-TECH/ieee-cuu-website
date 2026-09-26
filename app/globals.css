@@ -2,19 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-bg: #f6f3ee;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f2efe9;
+  --color-ink: #0f172a;
+  --color-muted: #475569;
+  --color-border: rgba(15, 23, 42, 0.08);
+  --color-ieee: #0d5b8f;
+  --color-ieee-soft: #edf6fb;
+  --color-footer: #DFEFF0;
+}
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  @apply bg-bg text-white/90 font-body antialiased;
+  @apply bg-bg text-ink font-body antialiased;
+  background-image: radial-gradient(circle at top, rgba(13, 91, 143, 0.08), transparent 35%);
+}
+
+img {
+  display: block;
 }
 
 ::selection {
-  background: #00629B;
-  color: white;
+  background: rgba(13, 91, 143, 0.2);
+  color: var(--color-ink);
 }
+
+:focus-visible {
+  outline: 2px solid rgba(13, 91, 143, 0.8);
+  outline-offset: 3px;
+}
+
+@keyframes heroSlideFade {
+  0% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+  8% {
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 0;
+    transform: scale(1.09);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+}
+
+.hero-slideshow {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.hero-slide {
+  position: absolute;
+  inset: -2% -2%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: heroSlideFade 22s ease-in-out infinite;
+  transform: scale(1.06);
+}
+
+.hero-slide:nth-child(1) { animation-delay: 0s; }
+.hero-slide:nth-child(2) { animation-delay: 5.5s; }
+.hero-slide:nth-child(3) { animation-delay: 11s; }
+.hero-slide:nth-child(4) { animation-delay: 16.5s; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -25,15 +91,31 @@ body {
   }
 }
 
-.text-balance { text-wrap: balance; }
+.text-balance {
+  text-wrap: balance;
+}
 
 .surface-card {
-  background-color: #111827;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
 }
 
 .glass {
-  background: rgba(17, 24, 39, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.dark-section {
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.kicker-teal {
+  color: var(--color-ieee);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }

@@ -1,20 +1,21 @@
-import Image from "next/image";
-import { ArrowUpRight, Globe, Mail, MapPin, Phone } from "lucide-react";
+﻿import Image from "next/image";
+import { ArrowUpRight, Globe, MapPin, Phone } from "lucide-react";
 
 const NAV_LINKS = {
   Explore: [
-    { href: "#about", label: "What is IEEE" },
-    { href: "#branch", label: "The Branch" },
-    { href: "#membership", label: "Membership" },
-    { href: "#team", label: "Team" },
-    { href: "#faqs", label: "FAQs" },
+    { href: "/#about", label: "What is IEEE" },
+    { href: "/#branch", label: "The Branch" },
+    { href: "/#membership", label: "Membership" },
+    { href: "/#team", label: "Team" },
+    { href: "/#faqs", label: "FAQs" },
   ],
   "Get Involved": [
-    { href: "#event", label: "IEEE Day 2026" },
-    { href: "#xtreme", label: "IEEEXtreme" },
-    { href: "#programs", label: "Ambassador Programs" },
-    { href: "#communities", label: "Specialized Societies" },
-    { href: "#join", label: "Join WhatsApp Group" },
+    { href: "/events/ieee-day", label: "IEEE Day 2026", external: true },
+    { href: "/events/ieeextreme", label: "IEEEXtreme 20.0", external: true },
+    { href: "/events", label: "All Events Hub", external: true },
+    { href: "/#programs", label: "Ambassador Programs" },
+    { href: "/#communities", label: "Specialized Societies" },
+    { href: "/#join", label: "Join WhatsApp Group" },
   ],
   "Official IEEE": [
     { href: "https://www.ieee.org/", label: "IEEE.org", external: true },
@@ -25,209 +26,107 @@ const NAV_LINKS = {
   ],
 };
 
-// Cavendish University Uganda — Plot 1469 Ggaba Road, Kampala
 const MAP_EMBED_URL =
-  "https://www.google.com/maps?q=Plot+1469+Ggaba+Road+Kampala+Uganda+Cavendish+University&output=embed";
+  "https://www.google.com/maps?q=Plot+1469+Ggaba+Road+Kampala+Uganda+Cavendish+University&z=15&output=embed";
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.07] bg-[#070810]">
-      {/* ── Ambient top glow ── */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[300px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.05]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, #C8A96E 0%, #00629B 50%, transparent 75%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
-        {/* ══════════════════════════════════════════
-            TOP BLOCK — Logo + Nav + Map
-        ══════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 gap-14 py-20 lg:grid-cols-12 lg:gap-10">
-          {/* Brand column */}
-          <div className="flex flex-col gap-7 lg:col-span-3">
-            {/* Official IEEE CUU logo */}
-            <a href="#" aria-label="IEEE CUU Student Branch home" className="inline-block w-fit">
-              <div className="relative h-24 w-24 overflow-hidden rounded-2xl bg-white p-1 shadow-lg shadow-black/40 transition-transform duration-300 hover:scale-105">
+    <footer className="relative overflow-hidden bg-[#061821] text-white">
+      <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12">
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_1fr_1fr] lg:gap-12">
+          <div className="pr-0 lg:pr-4 lg:border-r lg:border-white/10 lg:pr-8">
+            <div className="mb-5 flex w-full max-w-[180px] items-center justify-center sm:mb-6">
+              <div className="relative h-[110px] w-[110px] overflow-hidden bg-transparent p-0">
                 <Image
                   src="/images/ieee-logo.png"
-                  alt="IEEE Cavendish University Student Branch"
+                  alt="IEEE logo"
                   fill
-                  sizes="96px"
+                  sizes="110px"
                   className="object-contain"
-                  priority
                 />
               </div>
-            </a>
-
-            {/* Branch description */}
-            <div>
-              <h3 className="mb-2 font-serif text-xl font-bold text-white">
-                IEEE CUU Student Branch
-              </h3>
-              <p className="text-sm leading-[1.8] text-[#A8A8B3]">
-                The official IEEE Student Branch at{" "}
-                <span className="font-semibold text-white/80">
-                  Cavendish University Uganda
-                </span>
-                — a member of the{" "}
-                <span className="text-[#C8A96E]">IEEE Uganda Section</span> and{" "}
-                <span className="text-[#C8A96E]">IEEE Region 8</span>.
-              </p>
             </div>
 
-            {/* Campus address pill */}
-            <a
-              href="https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex w-fit items-start gap-2.5 rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-3 text-xs text-[#A8A8B3] transition-all duration-300 hover:border-[#C8A96E]/40 hover:bg-[#C8A96E]/[0.06] hover:text-white"
-            >
-              <MapPin
-                size={14}
-                className="mt-0.5 shrink-0 text-[#C8A96E] transition-transform duration-300 group-hover:scale-110"
-              />
-              <span>
-                Plot 1469 Ggaba Road
-                <br />
-                Kampala, Uganda
-              </span>
-            </a>
+            <h3 className="max-w-md text-[2rem] font-bold leading-[1.05] tracking-[-0.055em] text-white sm:text-[2.15rem]">
+              IEEE CUU Student Branch
+            </h3>
 
-            {/* Contact row */}
-            <div className="flex flex-col gap-2">
+            <p className="mt-4 max-w-md text-[0.98rem] leading-7 text-white/70">
+              The official IEEE Student Branch at <span className="font-semibold text-white">Cavendish University Uganda</span> — a member of the IEEE Uganda Section and IEEE Region 8.
+            </p>
+
+            <div className="mt-7 flex flex-col gap-3">
+              <a
+                href="https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
+              >
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                  <MapPin size={13} />
+                </span>
+                <span className="truncate">Plot 1469 Ggaba Road, Kampala, Uganda</span>
+              </a>
+
               <a
                 href="http://www.cavendish.ac.ug/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#00629B]/50 hover:bg-[#00629B]/10 hover:text-white w-fit"
+                className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
-                <Globe size={11} />
-                www.cavendish.ac.ug
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                  <Globe size={13} />
+                </span>
+                <span className="truncate">www.cavendish.ac.ug</span>
               </a>
+
               <a
                 href="tel:+256414531700"
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#C8A96E]/40 hover:bg-[#C8A96E]/10 hover:text-white w-fit"
+                className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
-                <Phone size={11} />
-                +256 41 4531700
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                  <Phone size={13} />
+                </span>
+                <span className="truncate">+256 41 4531700</span>
               </a>
             </div>
           </div>
 
-          {/* Nav columns */}
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-5">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-1 lg:gap-10 lg:pl-1">
             {Object.entries(NAV_LINKS).map(([title, links]) => (
               <FooterCol key={title} title={title} links={links} />
             ))}
           </div>
 
-          {/* Map column */}
-          <div className="lg:col-span-4">
-            <h5 className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#A8A8B3]">
-              📍 Find Us on Campus
-            </h5>
-
-            {/* Map iframe */}
-            <div className="relative overflow-hidden rounded-2xl border border-white/[0.1] shadow-[0_0_40px_rgba(0,0,0,0.6)]">
-              {/* Glowing corner accent */}
-              <div
-                aria-hidden
-                className="pointer-events-none absolute -right-4 -top-4 h-16 w-16 rounded-full blur-xl opacity-40"
-                style={{ background: "rgba(200,169,110,0.5)" }}
-              />
-
-              <iframe
-                title="Cavendish University Uganda — Siyani Campus, Kampala"
-                src={MAP_EMBED_URL}
-                width="100%"
-                height="260"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="w-full grayscale-[20%] contrast-[1.05]"
-              />
-
-              {/* Overlay label */}
-              <div className="flex items-center justify-between border-t border-white/[0.08] bg-[#0c0d14]/95 px-4 py-2.5 backdrop-blur-sm">
-                <div className="flex items-center gap-2">
-                  <span className="flex h-2 w-2 rounded-full bg-[#C8A96E] animate-pulse" />
-                  <span className="text-xs font-semibold text-white/80">
-                    CUU — Plot 1469 Ggaba Road, Kampala
-                  </span>
-                </div>
-                <a
-                  href="https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-[10px] font-bold text-[#C8A96E] transition-colors hover:text-white"
-                >
-                  Open Maps
-                  <ArrowUpRight size={11} />
-                </a>
+          <div className="lg:pl-4 lg:pt-0.5">
+            <div className="overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#dfe7e8] shadow-[0_18px_34px_rgba(0,0,0,0.18)]">
+              <div className="relative h-[200px] w-full overflow-hidden bg-[#ebf0f2] sm:h-[220px] lg:h-[230px]">
+                <iframe
+                  title="Cavendish University Uganda location"
+                  src={MAP_EMBED_URL}
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
               </div>
             </div>
 
-            {/* Map helper text */}
-            <p className="mt-3 text-[11px] leading-relaxed text-[#A8A8B3]">
-              Plot 1469 Ggaba Road, Kampala — look for the{" "}
-              <span className="text-[#C8A96E]">IEEE CUU Student Branch pin</span> on the map above.
+            <p className="mt-3 text-sm leading-6 text-white/70 sm:mt-4">
+              Plot 1469 Ggaba Road, Kampala — look for the <span className="font-semibold text-white">IEEE CUU Student Branch pin</span> on the map above.
             </p>
           </div>
         </div>
 
-        {/* ══════════════════════════════════════════
-            DIVIDER — Decorative accent line
-        ══════════════════════════════════════════ */}
-        <div className="relative">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-[#C8A96E]/40 to-transparent" />
-          <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2">
-            <div className="h-1.5 w-1.5 rounded-full bg-[#C8A96E] shadow-[0_0_8px_rgba(200,169,110,0.8)]" />
-          </div>
-        </div>
+        <div className="mt-8 h-px w-full bg-white/10 sm:mt-10" />
 
-        {/* ══════════════════════════════════════════
-            BOTTOM BAR — Copyright + Credits
-        ══════════════════════════════════════════ */}
-        <div className="flex flex-wrap items-center justify-between gap-4 py-7 text-xs text-[#5C5C7A]">
+        <div className="mt-4 flex flex-col gap-3 pt-2 text-[12px] text-white/60 sm:mt-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-4">
-            <span>
-              © 2026{" "}
-              <span className="text-white/50">
-                IEEE Student Branch, Cavendish University Uganda.
-              </span>
-            </span>
-            <span className="hidden sm:inline text-white/10">|</span>
-            <span>
-              Part of{" "}
-              <a
-                href="https://ieeer8.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C8A96E]/70 hover:text-[#C8A96E] transition-colors"
-              >
-                IEEE Region 8
-              </a>{" "}
-              &amp;{" "}
-              <a
-                href="https://www.ieee.org/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#C8A96E]/70 hover:text-[#C8A96E] transition-colors"
-              >
-                IEEE Uganda Section
-              </a>
-            </span>
+            <span>© 2026 IEEE Student Branch, Cavendish University Uganda.</span>
+            <span className="hidden text-white/25 sm:inline">|</span>
+            <span>Part of IEEE Region 8 &amp; IEEE Uganda Section</span>
           </div>
-
-          <span className="text-[#5C5C7A]">
-            Built by the Branch,{" "}
-            <span className="text-[#C8A96E]/60">for the Branch.</span>
-          </span>
+          <span className="text-white/70">Built by the Branch, for the Branch.</span>
         </div>
       </div>
     </footer>
@@ -243,25 +142,18 @@ function FooterCol({
 }) {
   return (
     <div>
-      <h5 className="mb-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#A8A8B3]">
-        {title}
-      </h5>
-      <ul className="flex flex-col gap-2.5">
+      <h5 className="mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-[#dfeff0]">{title}</h5>
+      <ul className="space-y-2.5">
         {links.map((l) => (
           <li key={l.label}>
             <a
               href={l.href}
               target={l.external ? "_blank" : undefined}
               rel={l.external ? "noopener noreferrer" : undefined}
-              className="group inline-flex items-center gap-1.5 text-sm text-[#6B6B85] transition-all duration-200 hover:text-white"
+              className="inline-flex items-center gap-1 text-[0.96rem] leading-[1.6] text-white/80 transition-colors hover:text-white"
             >
               <span>{l.label}</span>
-              {l.external && (
-                <ArrowUpRight
-                  size={11}
-                  className="opacity-0 -translate-y-px transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-px group-hover:-translate-y-px"
-                />
-              )}
+              {l.external && <ArrowUpRight size={12} className="opacity-70" />}
             </a>
           </li>
         ))}

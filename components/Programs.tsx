@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Image from "next/image";
@@ -11,7 +11,7 @@ const ACCENT = {
     tag: "bg-[#FF9900]/10 text-[#FFB800] border border-[#FF9900]/30",
     glow: "rgba(255,153,0,0.12)",
     cardBorder: "hover:border-[#FF9900]/40",
-    pill: "bg-white/[0.04] text-white/80 border border-white/[0.08]",
+    pill: "bg-ink/[0.04] text-ink/80 border border-ink/[0.08]",
     cta: "bg-[#FF9900] hover:bg-[#e68a00] text-black font-bold shadow-md",
     badgeCheck: "text-[#FFB800]",
     avatarBg: "rgba(255,153,0,0.1)",
@@ -27,7 +27,7 @@ const ACCENT = {
     tag: "bg-[#8b5cf6]/10 text-[#c4b5fd] border border-[#8b5cf6]/30",
     glow: "rgba(139,92,246,0.12)",
     cardBorder: "hover:border-[#8b5cf6]/40",
-    pill: "bg-white/[0.04] text-white/80 border border-white/[0.08]",
+    pill: "bg-ink/[0.04] text-ink/80 border border-ink/[0.08]",
     cta: "bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold shadow-md",
     badgeCheck: "text-[#c4b5fd]",
     avatarBg: "rgba(139,92,246,0.1)",
@@ -40,20 +40,20 @@ const ACCENT = {
     check: "text-[#c4b5fd]",
   },
   ember: {
-    tag: "bg-[#C8A96E]/10 text-[#E6CA85] border border-[#C8A96E]/30",
-    glow: "rgba(200,169,110,0.12)",
-    cardBorder: "hover:border-[#C8A96E]/40",
-    pill: "bg-white/[0.04] text-white/80 border border-white/[0.08]",
-    cta: "bg-[#C8A96E] hover:bg-[#b89355] text-black font-bold shadow-md",
-    badgeCheck: "text-[#E6CA85]",
-    avatarBg: "rgba(200,169,110,0.1)",
-    avatarBorder: "rgba(200,169,110,0.3)",
+    tag: "bg-ieee/10 text-ieee border border-[#1A9090]/40",
+    glow: "rgba(13,110,110,0.2)",
+    cardBorder: "hover:border-[#1A9090]/50",
+    pill: "bg-ink/[0.04] text-muted border border-ieee/10",
+    cta: "bg-[#0D6E6E] hover:bg-[#1A9090] text-white font-bold shadow-md",
+    badgeCheck: "text-[#1A9090]",
+    avatarBg: "rgba(13,110,110,0.2)",
+    avatarBorder: "rgba(26,144,144,0.4)",
     logoBg: "bg-white",
-    logoBorder: "border-[#C8A96E]/30",
+    logoBorder: "border-[#1A9090]/30",
     logoShadow: "shadow-lg",
-    ambassadorBadgeBg: "bg-[#C8A96E]/10",
-    ambassadorBadgeIcon: "text-[#C8A96E]",
-    check: "text-[#E6CA85]",
+    ambassadorBadgeBg: "bg-[#0D6E6E]/20",
+    ambassadorBadgeIcon: "text-[#1A9090]",
+    check: "text-[#1A9090]",
   },
 } as const;
 
@@ -116,7 +116,7 @@ function AmbassadorAvatar({
             </span>
             {/* Camera badge indicating photo slot */}
             <span
-              className="absolute bottom-1 right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-black/60 text-white/70 ring-1 ring-white/10"
+              className="absolute bottom-1 right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-ink/10 text-ink/70 ring-1 ring-white/10"
               title="Ambassador Photo Slot"
             >
               <Camera size={8} />
@@ -127,7 +127,7 @@ function AmbassadorAvatar({
 
       {/* Verified check badge */}
       <div
-        className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0c0d14] ring-1 ring-white/20 shadow"
+        className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#E8F0F0] ring-1 ring-white/20 shadow"
         title="Verified CUU Campus Ambassador"
       >
         <BadgeCheck size={12} className={accent.badgeCheck} />
@@ -138,32 +138,32 @@ function AmbassadorAvatar({
 
 export function Programs() {
   return (
-    <section id="programs" className="relative overflow-hidden bg-[#09090B] py-28 sm:py-36">
+    <section id="programs" className="relative overflow-hidden bg-bg py-28 sm:py-36 border-t border-ieee/10">
       {/* Ambient background glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.06]"
-        style={{ background: "radial-gradient(ellipse at center, #C8A96E 0%, transparent 70%)" }}
+        className="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full opacity-[0.08]"
+        style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 70%)" }}
       />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* ── Section header ── */}
         <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#C8A96E]/30 bg-[#C8A96E]/10 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#C8A96E]">
-              <Sparkles size={11} />
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5 text-[11px] font-bold tracking-[0.22em] uppercase text-[#E8F5F5]">
+              <Sparkles size={11} className="text-[#1A9090]" />
               Beyond the Branch
             </span>
-            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl">
+            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl">
               Ambassadorial programs{" "}
-              <em className="not-italic italic text-[#C8A96E]">arriving at CUU.</em>
+              <em className="not-italic italic text-[#1A9090]">arriving at CUU.</em>
             </h2>
-            <div className="mt-6 h-[3px] w-14 rounded-full bg-[#C56C47]" />
+            <div className="mt-6 h-[3px] w-14 rounded-full bg-[#1A9090]" />
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-base leading-[1.8] text-[#A8A8B3] sm:text-lg">
+            <p className="text-base leading-[1.8] text-muted sm:text-lg">
               IEEE is one part of a vibrant student-tech ecosystem. These are globally recognised
-              programs arriving at Cavendish University Uganda — championed on campus by our own
+              programs arriving at Cavendish University Uganda, championed on campus by our own
               appointed student ambassadors. Application windows, workshops, and info sessions
               will be shared directly through the Branch.
             </p>
@@ -177,10 +177,10 @@ export function Programs() {
             return (
               <div
                 key={p.title}
-                className={`group relative flex flex-col overflow-hidden rounded-3xl border border-white/[0.08] bg-[#0c0d14] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_70px_rgba(0,0,0,0.6)] ${s.cardBorder}`}
+                className={`group relative flex flex-col overflow-hidden rounded-3xl border border-ieee/10 bg-white transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_28px_rgba(13,110,110,0.12)] ${s.cardBorder}`}
               >
                 {/* ── Logo Showcase Stage ── */}
-                <div className="relative flex h-52 sm:h-56 items-center justify-center overflow-hidden bg-[#08090e]">
+                <div className="relative flex h-52 sm:h-56 items-center justify-center overflow-hidden bg-[#E8F0F0]">
                   {/* Accent ambient glow */}
                   <div
                     className="pointer-events-none absolute inset-0 opacity-40 transition-opacity duration-500 group-hover:opacity-80"
@@ -191,7 +191,7 @@ export function Programs() {
 
                   {/* Dot matrix grid */}
                   <div
-                    className="pointer-events-none absolute inset-0 opacity-[0.12]"
+                    className="pointer-events-none absolute inset-0 opacity-[0.06]"
                     style={{
                       backgroundImage: `radial-gradient(rgba(255,255,255,0.4) 1px, transparent 1px)`,
                       backgroundSize: "16px 16px",
@@ -199,7 +199,7 @@ export function Programs() {
                   />
 
                   {/* Bottom fade into card body */}
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0c0d14] to-transparent" />
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#E8F0F0] to-transparent" />
 
                   {/* Top Category Badge */}
                   <span
@@ -209,7 +209,7 @@ export function Programs() {
                   </span>
 
                   {/* Top Right Status Badge */}
-                  <span className="absolute right-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2.5 py-1 text-[10px] font-semibold text-white/80 backdrop-blur-md">
+                  <span className="absolute right-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-ink/10 px-2.5 py-1 text-[10px] font-semibold text-ink/80 backdrop-blur-md">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     Arriving at CUU
                   </span>
@@ -233,10 +233,10 @@ export function Programs() {
                 {/* ── Card body ── */}
                 <div className="flex flex-1 flex-col p-7">
                   {/* Title */}
-                  <h3 className="font-serif text-2xl font-bold tracking-tight text-white">{p.title}</h3>
+                  <h3 className="font-serif text-2xl font-bold tracking-tight text-ink">{p.title}</h3>
 
                   {/* Body */}
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-[#A8A8B3]">{p.body}</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{p.body}</p>
 
                   {/* Perks */}
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -252,17 +252,17 @@ export function Programs() {
                   </div>
 
                   {/* Divider */}
-                  <div className="my-6 border-t border-white/[0.08]" />
+                  <div className="my-6 border-t border-ink/[0.08]" />
 
                   {/* ── Prominent Ambassador Spotlight ── */}
-                  <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-4">
+                  <div className="rounded-2xl border border-ink/[0.08] bg-gradient-to-b from-white/[0.05] via-white/[0.02] to-transparent p-4">
                     {/* Header with verified badge */}
                     <div className="mb-3.5 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <div className={`flex h-6 w-6 items-center justify-center rounded-lg ${s.ambassadorBadgeBg}`}>
                           <Award size={13} className={s.ambassadorBadgeIcon} />
                         </div>
-                        <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-white">
+                        <span className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-ink">
                           Campus Ambassador{p.ambassadors.length > 1 ? "s" : ""}
                         </span>
                       </div>
@@ -277,7 +277,7 @@ export function Programs() {
                       {p.ambassadors.map((amb) => (
                         <div
                           key={amb.name}
-                          className="group/amb relative flex items-center gap-3.5 rounded-xl border border-white/[0.08] bg-white/[0.03] p-3 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                          className="group/amb relative flex items-center gap-3.5 rounded-xl border border-ink/[0.08] bg-white/[0.03] p-3 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.07] hover:shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
                         >
                           {/* Ambassador Avatar (Photo with fallback placeholder) */}
                           <AmbassadorAvatar
@@ -294,7 +294,7 @@ export function Programs() {
                               </h4>
                               {!Boolean(amb.image) && (
                                 <span
-                                  className="shrink-0 inline-flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 text-[9px] font-medium text-white/40 group-hover/amb:border-white/20 group-hover/amb:text-white/70 transition-colors"
+                                  className="shrink-0 inline-flex items-center gap-1 rounded-full border border-ink/[0.08] bg-ink/[0.04] px-2 py-0.5 text-[9px] font-medium text-white/40 group-hover/amb:border-white/20 group-hover/amb:text-ink/70 transition-colors"
                                   title="Ambassador portrait placeholder slot"
                                 >
                                   <Camera size={9} />
@@ -302,7 +302,7 @@ export function Programs() {
                                 </span>
                               )}
                             </div>
-                            <p className="mt-0.5 text-xs font-semibold text-[#C8A96E] truncate">
+                            <p className="mt-0.5 text-xs font-semibold text-[#1A9090] truncate">
                               {amb.role}
                             </p>
                           </div>
@@ -332,11 +332,11 @@ export function Programs() {
 
         {/* ── Footer notice ── */}
         <div className="mt-12 flex items-start gap-4 rounded-2xl border border-[#C56C47]/20 bg-[#C56C47]/5 px-6 py-5">
-          <Sparkles size={18} className="mt-0.5 shrink-0 text-[#C8A96E]" />
-          <p className="text-sm leading-relaxed text-[#A8A8B3]">
-            <span className="font-semibold text-white">More programs on the horizon.</span>{" "}
-            As new ambassador and campus initiatives open applications — cloud, AI, open source, or
-            mentorship — the Branch will announce details, prerequisite workshops, and nomination links
+          <Sparkles size={18} className="mt-0.5 shrink-0 text-[#1A9090]" />
+          <p className="text-sm leading-relaxed text-muted">
+            <span className="font-semibold text-ink">More programs on the horizon.</span>{" "}
+            As new ambassador and campus initiatives open applications in cloud, AI, open source, or
+            mentorship, the Branch will announce details, prerequisite workshops, and nomination links
             first in the official CUU community channels.
           </p>
         </div>
