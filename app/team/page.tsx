@@ -42,12 +42,7 @@ export default function TeamPage() {
 
         {/* ── PAGE HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Executive committee &amp; coordinators
-          </span>
-
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Passionate Students Driving<br />
             <span className="text-[#1A9090] italic">Innovation on Campus</span>
           </h1>
@@ -77,9 +72,9 @@ export default function TeamPage() {
               {PILLARS_OF_LEADERSHIP.map((p) => {
                 const Icon = p.icon;
                 return (
-                  <div key={p.title} className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0D6E6E]/25 text-[#E8F5F5] mb-4">
-                      <Icon size={20} />
+                  <div key={p.title} className="rounded-md border border-ink/10 bg-[#f7f9f8] p-6">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-[#0D6E6E] text-white">
+                      <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
                     </div>
                     <h4 className="font-bold text-ink text-base mb-2">{p.title}</h4>
                     <p className="text-xs sm:text-sm text-muted leading-relaxed">{p.desc}</p>
