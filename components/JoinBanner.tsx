@@ -37,12 +37,7 @@ export function JoinBanner() {
         <div className="relative overflow-hidden rounded-3xl border border-[#9dbdc1] bg-white p-8 sm:p-14 lg:p-16 text-center shadow-[0_30px_90px_rgba(0,0,0,0.08)]">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#5f8a92]/60 to-transparent" />
 
-          <div className="relative z-10 inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Official community hub · Cavendish University Uganda
-          </div>
-
-          <h2 className="relative z-10 mx-auto mt-6 max-w-3xl font-serif text-3xl font-bold leading-[1.14] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h2 className="relative z-10 mx-auto max-w-3xl font-serif text-3xl font-bold leading-[1.14] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Move from awareness <br className="hidden sm:inline" /> to <em className="not-italic italic text-[#2f5f68]">participation.</em>
           </h2>
 
@@ -76,15 +71,6 @@ export function JoinBanner() {
             >
               <span>Join the WhatsApp Group</span>
               <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
-
-            <a
-              href="/events/ieee-day"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-6 py-3.5 text-sm font-semibold text-[#234a52] transition-all duration-300 hover:border-[#7aa3a9] hover:bg-[#edf7f8] hover:-translate-y-0.5"
-            >
-              <span>Register for IEEE Day</span>
             </a>
 
             <a

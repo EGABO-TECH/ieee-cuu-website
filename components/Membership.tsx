@@ -12,30 +12,17 @@ export function Membership() {
   );
 
   return (
-    <section id="membership" className="relative overflow-hidden bg-bg py-28 sm:py-36 text-ink">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.14]"
-        style={{
-          background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 75%)",
-        }}
-      />
-
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
-        <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12 items-end">
+    <section id="membership" className="bg-bg py-16 text-ink sm:py-20">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
+        <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-end lg:gap-12">
           <div className="lg:col-span-7">
-            <span className="mb-5 inline-flex items-center gap-1.5 rounded-md bg-[#0D6E6E]/25 px-3 py-1 text-[12px] font-medium text-[#b8e0e0]">
-              <span className="h-1 w-1 rounded-full bg-[#1A9090]" aria-hidden="true" />
-              IEEE global membership
-            </span>
-            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h2 className="font-serif text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-5xl">
               Find the category that <em className="not-italic italic text-[#1A9090]">fits you.</em>
             </h2>
-            <div className="mt-6 h-[3px] w-16 rounded-full bg-[#0D6E6E]" />
           </div>
 
           <div className="lg:col-span-5">
-            <p className="text-base leading-[1.8] text-muted sm:text-lg">
+            <p className="text-sm leading-relaxed text-slate-700 sm:text-base">
               Membership is individual. As a Cavendish University Uganda student or scholar, you qualify for
               heavily subsidised student rates, local Branch voting rights, global research access, and entry into
               prestigious competitions like IEEEXtreme.
@@ -43,62 +30,46 @@ export function Membership() {
           </div>
         </div>
 
-        <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mb-10 grid grid-cols-1 gap-5 xl:grid-cols-2">
           {studentTiers.map((m) => {
             const isHero = m.highlight;
 
             return (
               <div
                 key={m.tier}
-                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border p-8 sm:p-10 transition-all duration-500 hover:-translate-y-1 ${
+                className={`flex h-full flex-col rounded-md border border-ink/10 border-t-4 bg-white p-6 sm:p-8 ${
                   isHero
-                    ? "border-[#1A9090]/60 bg-white shadow-[0_0_50px_rgba(26,144,144,0.22)] hover:border-[#E8F5F5]/70"
-                    : "border-ieee/15 bg-[#0A1B2A] hover:border-[#1A9090]/50 hover:shadow-[0_0_50px_rgba(13,110,110,0.2)]"
+                    ? "border-t-[#0D6E6E]"
+                    : "border-t-slate-400"
                 }`}
               >
                 <div>
-                  <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-                    <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold tracking-wide ${
-                        isHero
-                          ? "border-[#1A9090]/50 bg-[#0D6E6E]/40 text-[#FFFFFF]"
-                          : "border-[#B0CCCC]/30 bg-[#1A9090]/20 text-[#E8F5F5]"
-                      }`}
-                    >
+                  <div className="mb-5">
+                    <p className="inline-flex rounded-sm border border-[#0D6E6E]/20 bg-[#edf5f4] px-2.5 py-1 text-xs font-semibold text-[#0D6E6E]">
                       {m.badge}
-                    </span>
-
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-muted/70">
-                      Academic Grade
-                    </span>
+                    </p>
+                    <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight text-ink sm:text-3xl">
+                      {m.tier}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-slate-600">
+                      {isHero ? "Undergraduate / Diploma" : "Master’s and PhD candidates"}
+                    </p>
                   </div>
 
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-xs font-bold ${isHero ? "border-[#1A9090]/50 bg-[#0D6E6E]/50 text-[#FFFFFF]" : "border-[#B0CCCC]/25 bg-[#1A9090]/25 text-[#E8F5F5]"}`}>
-                      {m.tier.slice(0, 2).toUpperCase()}
-                    </div>
-                    <div>
-                      <h3 className="font-serif text-2xl font-bold tracking-tight text-ink group-hover:text-ieee transition-colors">
-                        {m.tier}
-                      </h3>
-                      <p className="mt-0.5 text-xs font-semibold text-muted">
-                        {isHero ? "Undergraduate / Diploma" : "Master's & PhD Candidates"}
-                      </p>
-                    </div>
-                  </div>
+                  <p className="mb-6 text-sm leading-relaxed text-slate-700">{m.who}</p>
 
-                  <p className="mb-6 text-sm leading-relaxed text-muted">{m.who}</p>
-
-                  <div className="mb-8 space-y-2.5 border-t border-ieee/10 pt-6">
-                    <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted/70 block mb-3">
-                      Key Branch & Global Perks
-                    </span>
+                  <div className="border-t border-ink/10 pt-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+                      Membership benefits
+                    </p>
+                    <ul className="mt-3 space-y-2.5">
                     {m.perks.map((perk) => (
-                      <div key={perk} className="flex items-center gap-2.5 text-xs font-medium text-ink/90">
-                        <CheckCircle2 size={14} className={`shrink-0 ${isHero ? "text-[#E8F5F5]" : "text-[#1A9090]"}`} />
-                        <span>{perk}</span>
-                      </div>
+                        <li key={perk} className="flex items-start gap-2.5 text-sm leading-snug text-slate-700">
+                          <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                          <span>{perk}</span>
+                        </li>
                     ))}
+                    </ul>
                   </div>
                 </div>
 
@@ -106,10 +77,10 @@ export function Membership() {
                   href={m.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold shadow-md transition-all duration-300 hover:-translate-y-0.5 ${
+                  className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition-colors ${
                     isHero
-                      ? "bg-[#FFFFFF] hover:bg-[#E8F5F5] text-[#0D6E6E]"
-                      : "border border-[#B0CCCC]/30 bg-[#0D6E6E] hover:bg-[#1A9090] text-[#FFFFFF]"
+                      ? "bg-[#0D6E6E] text-white hover:bg-[#095757]"
+                      : "border border-[#0D6E6E]/30 bg-white text-[#0D6E6E] hover:border-[#0D6E6E] hover:bg-[#edf5f4]"
                   }`}
                 >
                   <span>{m.cta}</span>
@@ -120,45 +91,35 @@ export function Membership() {
           })}
         </div>
 
-        <div className="mb-10 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div className="mb-10 grid grid-cols-1 gap-5 md:grid-cols-3">
           {professionalTiers.map((m) => (
             <div
               key={m.tier}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-ieee/10 bg-white p-6 transition-all duration-300 hover:border-[#1A9090]/40 hover:bg-white hover:shadow-[0_10px_30px_rgba(0,0,0,0.5)]"
+              className="flex h-full flex-col rounded-md border border-ink/10 border-t-2 border-t-slate-300 bg-white p-5 sm:p-6"
             >
-              <div>
-                <div className="mb-4 flex items-center justify-between">
-                  <span className="rounded-full border border-ieee/15 bg-[#1A9090]/15 px-2.5 py-0.5 text-[10px] font-semibold text-muted">
-                    {m.badge}
-                  </span>
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-ieee/15 bg-[#0D6E6E]/30 text-[#E8F5F5] transition-transform duration-300 group-hover:scale-110 group-hover:text-ink">
-                    {m.tier.slice(0, 2).toUpperCase()}
-                  </div>
-                </div>
-
-                <h4 className="font-serif text-lg font-bold text-ink group-hover:text-ieee transition-colors mb-2">
+              <div className="flex-1">
+                <p className="text-xs font-semibold text-[#0D6E6E]">{m.badge}</p>
+                <h3 className="mt-2 font-serif text-xl font-bold text-ink">
                   {m.tier}
-                </h4>
+                </h3>
 
-                <p className="text-xs leading-relaxed text-muted/85 mb-4">{m.who}</p>
+                <p className="mt-2 text-sm leading-relaxed text-slate-700">{m.who}</p>
 
-                <div className="flex flex-wrap gap-1.5 mb-6">
+                <ul className="mt-4 space-y-2 border-t border-ink/10 pt-4">
                   {m.perks.map((p) => (
-                    <span
-                      key={p}
-                      className="rounded-md border border-ieee/10 bg-bg/60 px-2 py-0.5 text-[10px] font-medium text-muted"
-                    >
+                    <li key={p} className="flex items-start gap-2 text-xs leading-snug text-slate-700">
+                      <CheckCircle2 size={14} className="mt-0.5 shrink-0 text-[#0D6E6E]" aria-hidden="true" />
                       {p}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               <a
                 href={m.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-muted hover:text-[#FFFFFF] transition-colors pt-3 border-t border-ieee/10"
+                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-md border border-[#0D6E6E]/25 px-4 py-2.5 text-xs font-semibold text-[#0D6E6E] transition-colors hover:border-[#0D6E6E] hover:bg-[#edf5f4]"
               >
                 <span>{m.cta}</span>
                 <ArrowUpRight size={13} />
@@ -167,15 +128,15 @@ export function Membership() {
           ))}
         </div>
 
-        <div className="relative overflow-hidden rounded-2xl border border-[#1A9090]/40 bg-gradient-to-r from-[#0D6E6E]/20 via-[#E0DDD5] to-[#F7F4EF] p-6 sm:p-7 shadow-xl">
+        <div className="rounded-md border border-ink/10 bg-white p-5 sm:p-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h4 className="text-sm font-bold tracking-tight text-white sm:text-base">A direct CUU branch affiliation strengthens your profile across every tier.</h4>
-              <p className="mt-1 text-xs text-muted">Local membership, official branch support, and a stronger professional record.</p>
+              <h4 className="text-sm font-semibold text-ink sm:text-base">A direct CUU Branch affiliation strengthens your IEEE membership.</h4>
+              <p className="mt-1 text-sm text-slate-600">Get local guidance with membership selection and onboarding.</p>
             </div>
             <a
               href="/join"
-              className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-5 py-2.5 text-xs font-bold text-ink transition hover:bg-[#1A9090]"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-[#0D6E6E] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#095757]"
             >
               See onboarding steps
               <ArrowUpRight size={13} />
