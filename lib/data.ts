@@ -48,7 +48,7 @@ export const programs = [
       {
         name: "Niwasiima Ashelycole",
         role: "CUU Student Builder & Campus Ambassador",
-        image: "", // Place photo in /public/images/ambassadors/ and set path here
+        image: "/images/ambassadors/Niwasiima_Ashelycole.png",
       },
     ],
     perks: ["AWS Credits", "Skill Builder Premium", "Paid Role", "AWS Network"],
@@ -64,7 +64,7 @@ export const programs = [
       {
         name: "Egabo Aaron",
         role: "CUU Campus Ambassador & Community Lead",
-        image: "", // Place photo in /public/images/ambassadors/ and set path here
+        image: "/images/ambassadors/EGABO_AARON.png",
       },
       {
         name: "Twikirize Achilles",
@@ -85,7 +85,7 @@ export const programs = [
       {
         name: "Egabo Aaron",
         role: "CUU Lead Ambassador & SYP Mentee",
-        image: "", // Place photo in /public/images/ambassadors/ and set path here
+        image: "/images/ambassadors/EGABO_AARON.png",
       },
     ],
     perks: ["1-on-1 Mentoring", "Career Guidance", "IEEE CS Network", "Leadership"],
@@ -96,13 +96,13 @@ export interface Community {
   id: string;
   name: string;
   category: string;
-  icon: string;
   focus: string;
   description: string;
   impact: string;
   href: string;
   color: string;
-  image?: string;
+  status: "pioneering" | "future";
+  image: string;
 }
 
 export const communities = [
@@ -110,121 +110,121 @@ export const communities = [
     id: "cs",
     name: "IEEE Computer Society",
     category: "Computing & AI",
-    icon: "Cpu",
     focus: "Computing, Software Engineering & Cloud",
     description: "The premier global community for computer science and technology professionals, driving innovations in software, cybersecurity, cloud architecture, and open systems.",
     impact: "Digital Infrastructure",
     href: "https://www.computer.org",
     color: "sky",
-    image: "", // Place visual in /public/images/societies/cs.jpg
+    status: "pioneering",
+    image: "/images/societies/cs.jpg",
   },
   {
     id: "ras",
     name: "IEEE Robotics & Automation Society",
     category: "Robotics & Hardware",
-    icon: "Bot",
     focus: "Robotics, Automation & Intelligent Systems",
     description: "Pioneering the theory and application of robotics, drones, autonomous vehicles, and automated systems that enhance human capability and safety.",
     impact: "Autonomous Systems",
     href: "https://www.ieee-ras.org",
     color: "amber",
-    image: "", // Place visual in /public/images/societies/ras.jpg
+    status: "future",
+    image: "/images/societies/ras.jpg",
   },
   {
     id: "cis",
     name: "IEEE Computational Intelligence Society",
     category: "Computing & AI",
-    icon: "Brain",
     focus: "Neural Networks, Evolutionary Computation & Deep AI",
     description: "Advancing biological and nature-inspired computational paradigms, generative algorithms, and neural networks solving previously intractable real-world problems.",
     impact: "Next-Gen AI",
     href: "https://cis.ieee.org",
     color: "violet",
-    image: "", // Place visual in /public/images/societies/cis.jpg
+    status: "future",
+    image: "/images/societies/cis.jpg",
   },
   {
     id: "embs",
     name: "IEEE Engineering in Medicine & Biology",
     category: "Health & Life Sciences",
-    icon: "Activity",
     focus: "Biomedical Engineering & Digital Healthcare",
     description: "The world's largest international society of biomedical engineers, uniting doctors, engineers, and scientists to pioneer diagnostic devices, prosthetics, and digital health.",
     impact: "Saving Lives",
     href: "https://www.embs.org",
     color: "rose",
-    image: "", // Place visual in /public/images/societies/embs.jpg
+    status: "future",
+    image: "/images/societies/embs.jpg",
   },
   {
     id: "wie",
     name: "IEEE Women in Engineering (WIE)",
     category: "Equity & Leadership",
-    icon: "Sparkles",
     focus: "Women Leaders in STEM & Technology",
     description: "A global network dedicated to promoting women engineers and scientists, inspiring girls around the world to follow their academic and professional interests in STEM.",
     impact: "Diversity & Equity",
     href: "https://wie.ieee.org",
     color: "fuchsia",
-    image: "", // Place visual in /public/images/societies/wie.jpg
+    status: "pioneering",
+    image: "/images/societies/wie.jpg",
   },
   {
     id: "pes",
     name: "IEEE Power & Energy Society",
     category: "Robotics & Energy",
-    icon: "Zap",
     focus: "Clean Energy, Smart Grids & Climate Tech",
     description: "Leading the global transition toward decarbonized electric power, solar & wind microgrids, sustainable energy storage, and resilient civic infrastructure.",
     impact: "Planet Sustainability",
     href: "https://www.ieee-pes.org",
     color: "emerald",
-    image: "", // Place visual in /public/images/societies/pes.jpg
+    status: "future",
+    image: "/images/societies/pes.jpg",
   },
   {
     id: "comsoc",
     name: "IEEE Communications Society",
     category: "Connectivity & Systems",
-    icon: "Radio",
     focus: "5G/6G, Satellite Systems & Global Internet",
     description: "Connecting every corner of the planet through breakthroughs in wireless communication, optical networking, space telemetry, and decentralized communications.",
     impact: "Global Connectivity",
     href: "https://www.comsoc.org",
     color: "cyan",
-    image: "", // Place visual in /public/images/societies/comsoc.jpg
+    status: "future",
+    image: "/images/societies/comsoc.jpg",
   },
   {
     id: "edu",
     name: "IEEE Education Society",
     category: "Equity & Leadership",
-    icon: "GraduationCap",
     focus: "STEM Pedagogy & Next-Generation EdTech",
     description: "Transforming how engineering and tech are taught worldwide through experiential learning, educational accessibility, and community STEM outreach programs.",
     impact: "Empowering Minds",
     href: "https://ieee-edusociety.org",
     color: "indigo",
-    image: "", // Place visual in /public/images/societies/edu.jpg
+    status: "future",
+    image: "/images/societies/edu.jpg",
   },
   {
     id: "sps",
     name: "IEEE Signal Processing Society",
     category: "Connectivity & Systems",
-    icon: "AudioLines",
     focus: "Audio, Image, Video & Sensor Processing",
     description: "The dynamic engine behind modern digital media, speech recognition, radar imaging, biometric security, and computational vision.",
     impact: "Sensory Tech",
     href: "https://signalprocessingsociety.org",
     color: "teal",
-    image: "", // Place visual in /public/images/societies/sps.jpg
+    status: "future",
+    image: "/images/societies/sps.jpg",
   },
   {
     id: "sight",
     name: "IEEE Humanitarian Technology (SIGHT)",
     category: "Health & Life Sciences",
-    icon: "Globe",
     focus: "Tech for Good, Clean Water & Disaster Relief",
     description: "A global grassroots network partnering with underserved communities to deploy scalable, low-cost engineering solutions for healthcare, clean water, and disaster resilience.",
     impact: "Tech for Good",
     href: "https://sight.ieee.org",
     color: "orange",
-    image: "", // Place visual in /public/images/societies/sight.jpg
+    status: "future",
+    image: "/images/societies/sight.jpg",
   },
 ] as const;
 

@@ -22,12 +22,7 @@ export default function ProgramsPage() {
 
         {/* ── PAGE HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Global ecosystems · campus leadership
-          </span>
-
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Ambassador Programs &amp;<br />
             <span className="text-[#1A9090] italic">Specialized Technical</span> Societies
           </h1>

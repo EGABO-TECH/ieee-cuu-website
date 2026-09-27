@@ -3,7 +3,7 @@
 Place ambassador portrait photos in this directory so students and community members can get to know who the ambassadors are.
 
 ### Recommended Specifications:
-- **Aspect Ratio**: 1:1 (Square portrait)
+- **Aspect Ratio**: Portrait or square; images are cropped to fit the portrait frame
 - **Resolution**: 400x400px or higher (optimized JPG, PNG, or WebP)
 - **Framing**: Clean headshot/portrait on a simple or brand-themed background
 
@@ -16,4 +16,4 @@ Once you place a photo file here (e.g. `aaron.jpg`), reference it in the `progra
   image: "/images/ambassadors/aaron.jpg",
 }
 ```
-If `image` is left empty or omitted (`""`), a stylish photo placeholder is automatically shown with the ambassador's initials and photo indicator.
+If `image` is left empty or omitted (`""`), the card shows the ambassador's initials in a neutral portrait frame. The card uses `object-cover`, so keep the face centered with enough space around the head for a clean crop.
