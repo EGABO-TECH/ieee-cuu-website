@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowUpRight, Calendar, Zap, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import {
   IEEE_LINKEDIN_URL,
   IEEE_TIKTOK_URL,
@@ -134,88 +134,46 @@ export function SiteHeader() {
                     />
                   </a>
 
-                  {/* Dropdown Menu */}
+                  {/* Events menu */}
                   {eventsDropdownOpen && (
-                    <div className="absolute left-1/2 top-full mt-2 w-72 -translate-x-1/2 rounded-2xl border border-ieee/15 bg-[#0B1E2E]/95 p-2 shadow-[0_16px_40px_rgba(5,26,26,0.55)] backdrop-blur-2xl animate-fadeUp z-50">
-                      <div className="flex items-center justify-between px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-[#1A9090]">
-                        <span>Branch Events</span>
-                        <span className="flex h-1.5 w-1.5 rounded-full bg-[#1A9090] animate-pulse" />
-                      </div>
-
-                      <div className="mt-1 space-y-1">
-                        {/* IEEE Day 2026 */}
+                    <div className="absolute right-0 top-full z-[80] mt-2 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-white/15 bg-[#071722] py-1 shadow-[0_12px_32px_rgba(0,0,0,0.3)]">
                         <a
                           href="/events/ieee-day"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-xs transition-all hover:bg-ieee/10"
+                          className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
                         >
-                          <div className="flex items-start gap-2.5">
-                            <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#1A9090]/20 text-[#1A9090]">
-                              <Calendar size={13} />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-1.5 font-semibold text-ink group-hover:text-ieee">
-                                <span>IEEE Day 2026</span>
-                                <span className="rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/30 px-1.5 py-0.2 text-[9px] font-bold text-[#E8F5F5]">
-                                  Launch
-                                </span>
-                              </div>
-                              <div className="text-[11px] text-muted">
-                                Siyani Campus · 6 Oct 2026
-                              </div>
-                            </div>
-                          </div>
-                          <ArrowUpRight
-                            size={14}
-                            className="text-muted/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ieee"
-                          />
+                          <span className="flex items-baseline justify-between gap-4">
+                            <span className="text-sm font-semibold text-white">IEEE Day 2026</span>
+                            <span className="shrink-0 text-xs text-slate-400">6 Oct</span>
+                          </span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-300">Student Branch launch · Siyani Campus</span>
                         </a>
 
-                        {/* IEEEXtreme 20.0 */}
+                        <div className="mx-4 border-t border-white/10" />
+
                         <a
                           href="/events/ieeextreme"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-xs transition-all hover:bg-ieee/10"
+                          className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
                         >
-                          <div className="flex items-start gap-2.5">
-                            <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-[#0D6E6E]/40 text-[#1A9090]">
-                              <Zap size={13} />
-                            </div>
-                            <div>
-                              <div className="flex items-center gap-1.5 font-semibold text-ink group-hover:text-ieee">
-                                <span>IEEEXtreme 20.0</span>
-                                <span className="rounded-full border border-[#1A9090]/40 bg-[#1A9090]/20 px-1.5 py-0.2 text-[9px] font-bold text-[#E8F5F5]">
-                                  Hackathon
-                                </span>
-                              </div>
-                              <div className="text-[11px] text-muted">
-                                24h Global Contest · 17 Oct
-                              </div>
-                            </div>
-                          </div>
-                          <ArrowUpRight
-                            size={14}
-                            className="text-muted/60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-ieee"
-                          />
+                          <span className="flex items-baseline justify-between gap-4">
+                            <span className="text-sm font-semibold text-white">IEEEXtreme 20.0</span>
+                            <span className="shrink-0 text-xs text-slate-400">17 Oct</span>
+                          </span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-300">24-hour global programming contest</span>
                         </a>
-                      </div>
 
-                      <div className="my-1.5 border-t border-ieee/10" />
+                      <div className="mx-4 border-t border-white/10" />
 
-                      {/* All Events Hub */}
                       <a
                         href="/events"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex items-center justify-between rounded-xl px-3 py-2 text-[11px] font-medium text-muted hover:bg-ieee/10 hover:text-ieee"
+                        className="block px-4 py-3 text-xs font-medium text-slate-300 transition-colors hover:bg-white/[0.05] hover:text-white"
                       >
-                        <span className="flex items-center gap-1.5">
-                          <Sparkles size={11} className="text-[#1A9090]" />
-                          Explore All Events &amp; Hub
-                        </span>
-                        <ArrowUpRight size={12} className="text-muted/60 group-hover:text-ieee" />
+                        All events
                       </a>
                     </div>
                   )}

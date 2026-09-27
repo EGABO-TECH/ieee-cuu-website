@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CUUCSA } from "@/components/CUUCSA";
 
@@ -20,18 +18,6 @@ export default function CUUCSAPage() {
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
           style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 40%, transparent 75%)" }}
         />
-
-        {/* ── BREADCRUMB STRIP ── */}
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex items-center gap-2 text-xs text-slate-600 border-b border-slate-200 pb-4">
-            <Link href="/" className="inline-flex items-center gap-1.5 transition-colors hover:text-ieee">
-              <ArrowLeft size={13} />
-              <span>Home</span>
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-medium">CUUCSA</span>
-          </div>
-        </div>
 
         {/* ── PAGE HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">

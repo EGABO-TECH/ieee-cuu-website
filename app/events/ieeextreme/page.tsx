@@ -12,7 +12,6 @@ import {
   CheckCircle2,
   Terminal,
   Cpu,
-  ArrowLeft,
   ExternalLink,
   ShieldCheck,
   HelpCircle,
@@ -93,22 +92,9 @@ export default function IEEExtremePage() {
           style={{ background: "radial-gradient(ellipse at center, #1A9090 0%, transparent 70%)" }}
         />
 
-        {/* ── BREADCRUMB & CONTEXT STRIP ── */}
+        {/* ── EVENT STATUS & REGISTRATION ── */}
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 pb-4">
-            <div className="flex items-center gap-2 text-xs text-slate-600">
-              <Link href="/" className="inline-flex items-center gap-1.5 transition-colors hover:text-ieee">
-                <ArrowLeft size={13} />
-                <span>Home</span>
-              </Link>
-              <span>/</span>
-              <Link href="/events" className="transition-colors hover:text-ieee">
-                Events
-              </Link>
-              <span>/</span>
-              <span className="text-slate-900 font-medium">IEEEXtreme 20.0</span>
-            </div>
-
+          <div className="flex flex-wrap items-center justify-end gap-4">
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-1.5 rounded-full border border-cuu-steel/30 bg-cuu-steel/10 px-3 py-1 text-[11px] font-semibold text-cuu-steel">
                 <span className="h-1.5 w-1.5 rounded-full bg-cuu-steel animate-ping" />

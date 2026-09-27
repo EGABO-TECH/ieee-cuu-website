@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, Globe2, Cpu, BookOpenText, Users2, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
+import { Globe2, Cpu, BookOpenText, Users2, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatIsIEEE } from "@/components/WhatIsIEEE";
 
@@ -9,6 +9,13 @@ export const metadata: Metadata = {
   description:
     "Learn about IEEE, the world's largest technical professional organization, and the IEEE Student Branch at Cavendish University Uganda.",
 };
+
+const ABOUT_SLIDES = [
+  "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80",
+  "https://images.unsplash.com/photo-1745571479662-54a2ad1c747f?auto=format&fit=crop&w=1600&q=80",
+];
 
 const STATS = [
   { value: "400,000+", label: "Global IEEE Members", sub: "Engineers, scientists & students" },
@@ -43,52 +50,45 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 75%)" }}
-        />
-
-        {/* ── BREADCRUMB STRIP ── */}
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex items-center gap-2 text-xs text-slate-600 border-b border-slate-200 pb-4">
-            <Link href="/" className="inline-flex items-center gap-1.5 transition-colors hover:text-ieee">
-              <ArrowLeft size={13} />
-              <span>Home</span>
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-medium">About IEEE</span>
-          </div>
-        </div>
-
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900">
         {/* ── PAGE HERO ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Global institution · local campus impact
-          </span>
-
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            Advancing Technology<br />
-            <span className="text-[#1A9090] italic">for Humanity</span> at CUU
-          </h1>
-
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted">
-            The Institute of Electrical and Electronics Engineers (IEEE) is the world&apos;s largest technical
-            professional organization dedicated to advancing technology for the benefit of humanity.
-          </p>
-
-          {/* Key Stats Bar */}
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {STATS.map((s) => (
-              <div key={s.label} className="rounded-2xl border border-ieee/10 bg-white p-5 backdrop-blur-sm">
-                <div className="font-serif text-3xl font-bold text-ink">{s.value}</div>
-                <div className="text-xs font-semibold text-slate-700 mt-1">{s.label}</div>
-                <div className="text-[11px] text-muted mt-0.5">{s.sub}</div>
-              </div>
+        <section className="relative isolate overflow-hidden">
+          <div className="hero-slideshow absolute inset-0" aria-hidden="true">
+            {ABOUT_SLIDES.map((slide, index) => (
+              <div
+                key={slide}
+                className="hero-slide"
+                style={{
+                  backgroundImage: `linear-gradient(90deg, rgba(5,16,25,0.88), rgba(5,16,25,0.54) 52%, rgba(5,16,25,0.22)), url(${slide})`,
+                  animationDelay: `${index * 5.5}s`,
+                }}
+              />
             ))}
+          </div>
+
+          <div className="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-center px-6 pb-12 pt-32 sm:px-10 sm:pb-16 sm:pt-36 lg:px-12 lg:pt-40">
+            <div className="max-w-4xl">
+              <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+                Advancing Technology
+                <span className="block text-[#72d5cc] italic">for Humanity</span>
+                at CUU
+              </h1>
+
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+                The Institute of Electrical and Electronics Engineers (IEEE) is the world&apos;s largest technical
+                professional organization dedicated to advancing technology for the benefit of humanity.
+              </p>
+            </div>
+
+            <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-7 lg:grid-cols-4 lg:gap-6">
+              {STATS.map((s) => (
+                <div key={s.label} className="border-l border-white/25 pl-4 sm:pl-5">
+                  <div className="font-serif text-2xl font-bold text-white sm:text-3xl">{s.value}</div>
+                  <div className="mt-1 text-xs font-semibold text-white/90">{s.label}</div>
+                  <div className="mt-0.5 text-[11px] text-white/65">{s.sub}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -117,8 +117,8 @@ export default function AboutPage() {
                   key={v.title}
                   className="rounded-2xl border border-ieee/10 bg-white/80 p-6 transition duration-300 hover:border-[#1A9090]/40 hover:-translate-y-1"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0D6E6E]/25 text-[#E8F5F5] mb-4">
-                    <Icon size={20} />
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                    <Icon size={20} strokeWidth={2.25} />
                   </div>
                   <h3 className="font-bold text-ink text-base mb-2">{v.title}</h3>
                   <p className="text-xs sm:text-sm text-muted leading-relaxed">{v.desc}</p>

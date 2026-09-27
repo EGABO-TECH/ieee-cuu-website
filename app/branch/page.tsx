@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Rocket, Sparkles, BookOpen, Users, Compass, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Rocket, Sparkles, BookOpen, Users, Compass, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Journey } from "@/components/Journey";
 
@@ -36,43 +37,38 @@ const BRANCH_HIGHLIGHTS = [
 export default function BranchPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 40%, transparent 75%)" }}
-        />
-
-        {/* ── BREADCRUMB STRIP ── */}
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex items-center gap-2 text-xs text-slate-600 border-b border-slate-200 pb-4">
-            <Link href="/" className="inline-flex items-center gap-1.5 transition-colors hover:text-ieee">
-              <ArrowLeft size={13} />
-              <span>Home</span>
-            </Link>
-            <span>/</span>
-            <span className="text-slate-900 font-medium">The Branch</span>
-          </div>
-        </div>
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900">
 
         {/* ── PAGE HERO ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Cavendish University Uganda
-          </span>
+        <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden sm:min-h-[720px] lg:min-h-[760px]">
+          <Image
+            src="/images/The_Branch_Hero.png"
+            alt="Cavendish University Uganda students celebrating with regional flags"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-[58%_center]"
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-t from-[#03131f]/95 via-[#03131f]/55 to-[#03131f]/5 sm:bg-gradient-to-r sm:from-[#03131f]/90 sm:via-[#03131f]/45 sm:to-transparent"
+          />
 
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            The Branch: Where<br />
-            <span className="text-[#1A9090] italic">Ambition Meets</span> Technical Mastery
-          </h1>
+          <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-32 lg:px-12 lg:pb-20">
+            <div className="mt-auto max-w-4xl">
+              <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+                The Branch: Where
+                <span className="block text-[#72d5cc] italic">Ambition Meets</span>
+                Technical Mastery
+              </h1>
 
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted">
-            Founded to bridge classroom curricula with real-world engineering excellence.
-            Discover how the IEEE Student Branch at Cavendish University Uganda equips you
-            with global tools, networks, and opportunities.
-          </p>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+                Founded to bridge classroom curricula with real-world engineering excellence.
+                Discover how the IEEE Student Branch at Cavendish University Uganda equips you
+                with global tools, networks, and opportunities.
+              </p>
+            </div>
+          </div>
         </section>
 
         {/* ── CORE COMPONENT EMBED (JOURNEY) ── */}
@@ -85,7 +81,7 @@ export default function BranchPage() {
               Branch Architecture
             </span>
             <h2 className="mt-3 font-serif text-3xl font-bold text-ink sm:text-4xl">
-              Why Join the CUU Student Branch?
+              Why Join the IEEE CUU Student Branch?
             </h2>
             <p className="mt-3 text-sm text-muted">
               A dynamic campus ecosystem structured to support members at every phase of their university experience.
@@ -100,8 +96,8 @@ export default function BranchPage() {
                   key={item.title}
                   className="rounded-2xl border border-ieee/10 bg-white p-7 transition duration-300 hover:border-[#1A9090]/50"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#0D6E6E]/25 text-[#E8F5F5] mb-4">
-                    <Icon size={24} />
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                    <Icon size={24} strokeWidth={2.25} />
                   </div>
                   <h3 className="font-bold text-ink text-lg mb-2">{item.title}</h3>
                   <p className="text-sm text-muted leading-relaxed">{item.desc}</p>
