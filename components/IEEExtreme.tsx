@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Clock, Users, Trophy, Code2, ArrowUpRight, Zap } from "lucide-react";
+import { Clock, Users, Trophy, Code2, ArrowUpRight } from "lucide-react";
 import { IEEEXTREME_DEADLINE_ISO } from "@/lib/data";
 import { Countdown } from "./ui/Countdown";
 import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "./DeadlineRegistration";
@@ -50,19 +50,7 @@ export function IEEExtreme() {
 
           {/* ── LEFT: Event details ── */}
           <div className="order-2 flex flex-col justify-between p-8 sm:p-12 lg:order-1 lg:p-14">
-            {/* Live pill */}
             <div>
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5">
-                <Zap size={13} className="text-[#234a52]" fill="currentColor" />
-                <DeadlineRegistrationStatus
-                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
-                  openLabel="Registration is Live"
-                  closedLabel="Registration ended"
-                  openClassName="text-xs font-bold uppercase tracking-widest text-[#234a52]"
-                  closedClassName="text-xs font-bold uppercase tracking-widest text-slate-600"
-                />
-              </div>
-
               <h2 className="font-serif text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
                 IEEEXtreme 20.0{" "}
                 <em className="not-italic italic text-[#2f5f68]">Team Registration</em>{" "}
