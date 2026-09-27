@@ -29,6 +29,15 @@ main:not(.home-page) {
   overflow-x: clip;
 }
 
+.mobile-menu-panel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mobile-menu-panel::-webkit-scrollbar {
+  display: none;
+}
+
 img {
   display: block;
 }
