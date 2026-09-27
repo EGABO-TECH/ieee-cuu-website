@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { Calendar, MapPin, Users, Lightbulb, Settings, Network, Rocket, ArrowUpRight } from "lucide-react";
@@ -30,8 +30,9 @@ export function EventSpotlight() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* Section kicker */}
         <div className="mb-14 text-center">
-          <span className="inline-block rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#234a52]">
-            Upcoming · Flagship Event
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
+            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
+            Upcoming flagship event
           </span>
         </div>
 

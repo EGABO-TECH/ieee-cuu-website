@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import { Clock, Users, Trophy, Code2, ArrowUpRight, Zap } from "lucide-react";
@@ -25,8 +25,9 @@ export function IEEExtreme() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* Section kicker */}
         <div className="mb-14 text-center">
-          <span className="inline-block rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#234a52]">
-            Global Programming Challenge
+          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
+            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
+            Global programming challenge
           </span>
         </div>
 

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { WHATSAPP_INVITE_URL } from "@/lib/data";
@@ -37,8 +37,9 @@ export function JoinBanner() {
         <div className="relative overflow-hidden rounded-3xl border border-[#9dbdc1] bg-white p-8 sm:p-14 lg:p-16 text-center shadow-[0_30px_90px_rgba(0,0,0,0.08)]">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#5f8a92]/60 to-transparent" />
 
-          <div className="relative z-10 inline-flex items-center gap-2 rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5 text-[11px] font-bold tracking-[0.25em] uppercase text-[#234a52]">
-            Official Community Hub · Cavendish University Uganda
+          <div className="relative z-10 inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
+            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
+            Official community hub · Cavendish University Uganda
           </div>
 
           <h2 className="relative z-10 mx-auto mt-6 max-w-3xl font-serif text-3xl font-bold leading-[1.14] tracking-tight text-ink sm:text-5xl lg:text-6xl">

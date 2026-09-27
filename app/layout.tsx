@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Sora, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WHATSAPP_INVITE_URL } from "@/lib/data";

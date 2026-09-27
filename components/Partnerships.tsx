@@ -7,8 +7,6 @@ const partners = [
     alt: "Cavendish University Uganda",
   },
   { name: "CUUCSA", src: "/images/cuucsa/cuucsa-emblem.png", alt: "CUUCSA" },
-  { name: "Pepsi", src: "/images/Pepsi.png", alt: "Pepsi" },
-  { name: "MTN", src: "/images/MTN.jpeg", alt: "MTN" },
   { name: "Kahoot", src: "/images/Kahoot.png", alt: "Kahoot" },
   { name: "IEEE", src: "/images/IEEE.webp", alt: "IEEE" },
   { name: "AWS Student Builders", src: "/images/AWS_Student_Builders.png", alt: "AWS Student Builders" },
