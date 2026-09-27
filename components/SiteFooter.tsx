@@ -126,7 +126,12 @@ export function SiteFooter() {
             <span className="hidden text-white/25 sm:inline">|</span>
             <span>Part of IEEE Region 8 &amp; IEEE Uganda Section</span>
           </div>
-          <span className="text-white/70">Built by the Branch, for the Branch.</span>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <a href="/privacy" className="transition hover:text-white">Privacy</a>
+            <a href="/terms" className="transition hover:text-white">Terms</a>
+            <a href="/cookies" className="transition hover:text-white">Cookies</a>
+            <span className="text-white/70">Built by the Branch, for the Branch.</span>
+          </div>
         </div>
       </div>
     </footer>
