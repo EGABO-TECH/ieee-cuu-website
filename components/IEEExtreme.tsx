@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Clock, Users, Trophy, Code2, ArrowUpRight, Zap } from "lucide-react";
 import { IEEEXTREME_DEADLINE_ISO } from "@/lib/data";
 import { Countdown } from "./ui/Countdown";
+import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "./DeadlineRegistration";
 
 const FACTS = [
   { icon: Users, label: "Teams of 2 to 3" },
@@ -53,20 +54,29 @@ export function IEEExtreme() {
             <div>
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#9dbdc1] bg-[#dfeff0] px-4 py-1.5">
                 <Zap size={13} className="text-[#234a52]" fill="currentColor" />
-                <span className="text-xs font-bold uppercase tracking-widest text-[#234a52]">
-                  Registration is Live
-                </span>
+                <DeadlineRegistrationStatus
+                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
+                  openLabel="Registration is Live"
+                  closedLabel="Registration ended"
+                  openClassName="text-xs font-bold uppercase tracking-widest text-[#234a52]"
+                  closedClassName="text-xs font-bold uppercase tracking-widest text-slate-600"
+                />
               </div>
 
               <h2 className="font-serif text-3xl font-bold leading-[1.15] tracking-tight text-ink sm:text-4xl">
                 IEEEXtreme 20.0{" "}
                 <em className="not-italic italic text-[#2f5f68]">Team Registration</em>{" "}
-                is Open.
+                <DeadlineRegistrationStatus
+                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
+                  openLabel="is Open."
+                  closedLabel="has ended."
+                  openClassName="text-ink"
+                  closedClassName="text-slate-600"
+                />
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted">
-                A 24-hour, global programming challenge for teams of IEEE Student Members.
-                Algorithmic problem solving, teamwork and coding under real-time pressure.
-                Get your team of two or three and register now.
+                Teams of IEEE Student Members take on a 24-hour global programming challenge,
+                solving algorithmic problems collaboratively under real-time pressure.
               </p>
 
               {/* Fact pills */}
@@ -100,15 +110,17 @@ export function IEEExtreme() {
               <Countdown targetISO={IEEEXTREME_DEADLINE_ISO} showSeconds={false} />
 
               <div className="mt-7 flex flex-wrap gap-3">
-                <a
+                <DeadlineRegistrationAction
+                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
                   href="https://xtreme.vtools.ieee.org"
+                  closedLabel="Registration ended"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[#2f5f68] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2f5f68]/25 transition hover:bg-[#234a52] hover:-translate-y-0.5"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#2f5f68] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2f5f68]/25 transition hover:bg-[#234a52] hover:-translate-y-0.5"
                 >
                   Register your team
                   <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </DeadlineRegistrationAction>
                 <a
                   href="https://ieeextreme.org"
                   target="_blank"

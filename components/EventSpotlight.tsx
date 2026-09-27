@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { Calendar, MapPin, Users, Lightbulb, Settings, Network, Rocket, ArrowUpRight } from "lucide-react";
-import { IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO } from "@/lib/data";
+import { Calendar, Clock, MapPin, Users, Lightbulb, Settings, Network, Rocket, ArrowUpRight } from "lucide-react";
+import { IEEE_DAY_REGISTRATION_DEADLINE_ISO, IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO } from "@/lib/data";
 import { Countdown } from "./ui/Countdown";
+import { DeadlineRegistrationAction } from "./DeadlineRegistration";
 
 const HIGHLIGHTS = [
   { icon: Lightbulb, label: "Tech Talks" },
@@ -85,6 +86,10 @@ export function EventSpotlight() {
                   <Users size={16} className="shrink-0 text-[#2f5f68]" />
                   Open to all CUU students, free entry
                 </li>
+                <li className="flex items-center gap-3 text-slate-700">
+                  <Clock size={16} className="shrink-0 text-[#2f5f68]" />
+                  12:00 PM to 06:00 PM EAT
+                </li>
               </ul>
 
               {/* Activity pills */}
@@ -108,13 +113,15 @@ export function EventSpotlight() {
               </p>
               <Countdown targetISO={IEEE_DAY_TARGET_ISO} />
 
-              <a
+              <DeadlineRegistrationAction
+                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
                 href={IEEE_DAY_REGISTRATION_URL}
+                closedLabel="Registration closed"
                 className="group mt-7 inline-flex items-center gap-2 rounded-full bg-[#2f5f68] px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-[#2f5f68]/25 transition hover:bg-[#234a52] hover:-translate-y-0.5"
               >
                 Register Now
                 <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+              </DeadlineRegistrationAction>
             </div>
           </div>
         </div>

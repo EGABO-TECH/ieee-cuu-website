@@ -20,68 +20,69 @@ import {
   HelpCircle,
   ExternalLink
 } from "lucide-react";
-import { IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
+import { IEEE_DAY_REGISTRATION_DEADLINE_ISO, IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
 import { Countdown } from "@/components/ui/Countdown";
+import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "@/components/DeadlineRegistration";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
   title: "IEEE Day 2026 | CUU Student Branch Launch | Cavendish University Uganda",
   description:
-    "Join us on 6 October 2026 at Siyani Campus for the official launch of the IEEE Student Branch at Cavendish University Uganda. Live countdown, program schedule, and free registration.",
+    "Join us on 6 October 2026, 12:00 PM to 6:00 PM EAT, at Siyani Campus for the official launch of the IEEE Student Branch at Cavendish University Uganda. Live countdown, program schedule, and free registration.",
 };
 
 const SCHEDULE = [
   {
-    time: "09:00 AM to 10:00 AM",
+    time: "12:00 PM to 12:30 PM",
     title: "Arrival, Check-in & Welcome Refreshments",
     speaker: "Branch Organizing Committee",
-    desc: "Registration badge pick-up, welcome packet distribution, and informal peer networking over morning coffee.",
+    desc: "Registration badge pick-up, welcome packet distribution, and informal peer networking over refreshments.",
     icon: Coffee,
   },
   {
-    time: "10:00 AM to 10:30 AM",
+    time: "12:30 PM to 12:50 PM",
     title: "Opening Ceremony & Welcome Remarks",
     speaker: "Faculty Advisor & Dean of Science & Tech",
     desc: "Introductory remarks from Cavendish University leadership welcoming students, guests, and IEEE representatives.",
     icon: Award,
   },
   {
-    time: "10:30 AM to 11:15 AM",
+    time: "12:50 PM to 01:30 PM",
     title: "Keynote: Advancing Technology for Humanity in Africa",
     speaker: "Guest Speaker · IEEE Uganda Section",
     desc: "A vision for engineering, computing, and professional growth across Africa through IEEE societies and initiatives.",
     icon: Lightbulb,
   },
   {
-    time: "11:15 AM to 12:15 PM",
+    time: "01:30 PM to 02:15 PM",
     title: "Official Charter Presentation & Branch Inauguration",
     speaker: "Mulondo Andrew (Branch Chair) & Executive Committee",
     desc: "Unveiling the official IEEE Cavendish University Uganda charter, swearing-in of branch officers, and cake cutting ceremony.",
     icon: Sparkles,
   },
   {
-    time: "12:15 PM to 01:30 PM",
-    title: "Networking Lunch & Official Group Photography",
+    time: "02:15 PM to 03:00 PM",
+    title: "Networking Break & Official Group Photography",
     speaker: "All Attendees & VIP Guests",
-    desc: "Commemorative group photos in the auditorium followed by an open networking lunch with faculty and student peers.",
+    desc: "Commemorative group photos followed by time to connect with faculty, guests, and fellow students.",
     icon: Users,
   },
   {
-    time: "01:30 PM to 02:30 PM",
+    time: "03:00 PM to 04:00 PM",
     title: "Tech Demos: Cloud, AI & Open-Source Opportunities",
     speaker: "AWS Student Builders & Black Python Devs",
     desc: "Interactive presentations by campus ambassadors showcasing real projects, free cloud credits, and global mentorship programs.",
     icon: Rocket,
   },
   {
-    time: "02:30 PM to 03:15 PM",
+    time: "04:00 PM to 04:45 PM",
     title: "Road to IEEEXtreme 20.0: Global Hackathon Briefing",
     speaker: "Mulo Ausi & Niwasiima Ashelycole (Technical Leads)",
     desc: "Everything you need to know about forming a 2 to 3 person team for the 24-hour virtual competitive programming challenge.",
     icon: Settings,
   },
   {
-    time: "03:15 PM to 04:00 PM",
+    time: "04:45 PM to 06:00 PM",
     title: "Student Membership Induction, Raffles & Wrap-Up",
     speaker: "Membership Team",
     desc: "Assisted student registration, raffle prize giveaways, and closing remarks by Branch Chair.",
@@ -147,17 +148,23 @@ export default function IEEEDayPage() {
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
           <div className="flex flex-wrap items-center justify-end gap-4">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
-                Registrations Open
-              </span>
-              <a
+              <DeadlineRegistrationStatus
+                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
+                openLabel="Registrations Open"
+                closedLabel="Registration closed"
+                openClassName="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400"
+                closedClassName="inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-3 py-1 text-[11px] font-semibold text-slate-300"
+              />
+              <DeadlineRegistrationAction
+                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
                 href={IEEE_DAY_REGISTRATION_URL}
+                closedLabel="Registration closed"
                 className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#1A9090]"
+                closedClassName="hidden sm:inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-4 py-1.5 text-xs font-semibold text-slate-300"
               >
                 RSVP Now
                 <ArrowUpRight size={13} />
-              </a>
+              </DeadlineRegistrationAction>
             </div>
           </div>
         </div>
@@ -165,12 +172,7 @@ export default function IEEEDayPage() {
         {/* ── HERO BANNER ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-              <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-              Flagship branch launch &amp; celebration
-            </span>
-
-            <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               IEEE Day 2026<br />
               <span className="text-[#1A9090] italic">CUU Student Branch</span> Launch
             </h1>
@@ -189,7 +191,7 @@ export default function IEEEDayPage() {
               </div>
               <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
                 <Clock size={17} className="text-[#0D6E6E]" />
-                <span>09:00 AM to 04:00 PM EAT</span>
+                <span>12:00 PM to 06:00 PM EAT</span>
               </div>
               <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
                 <MapPin size={17} className="text-[#0D6E6E]" />
@@ -198,8 +200,8 @@ export default function IEEEDayPage() {
             </div>
 
             {/* Live Countdown Box */}
-            <div className="mt-10 mx-auto max-w-md rounded-2xl border border-white/10 bg-gradient-to-b from-[#E0DDD5]/90 to-[#0B0F19]/90 p-6 shadow-2xl backdrop-blur-xl">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-slate-200">
+            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(135deg,#103746_0%,#0D5961_52%,#102532_100%)] p-6 shadow-[0_24px_60px_rgba(4,28,39,0.28)]">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/85">
                 Official Countdown to Event Kickoff
               </p>
               <div className="flex justify-center">
@@ -207,13 +209,15 @@ export default function IEEEDayPage() {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <a
+                <DeadlineRegistrationAction
+                  deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
                   href={IEEE_DAY_REGISTRATION_URL}
+                  closedLabel="Registration closed"
                   className="group inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition hover:bg-[#1A9090] hover:-translate-y-0.5"
                 >
                   <span>Register Free Seat</span>
                   <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </DeadlineRegistrationAction>
                 <a
                   href="/images/IEEE-Flyer.png"
                   download="IEEE-Day-2026-CUU-Flyer.png"
@@ -363,13 +367,13 @@ export default function IEEEDayPage() {
           <div className="rounded-3xl border border-white/[0.08] bg-[#0c0e17] p-8 sm:p-12 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-5">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-300">
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#62c9c0]">
                   Event Location
                 </span>
-                <h2 className="font-serif text-3xl font-bold text-ink">
-                  Cavendish University Uganda · Siyani Campus
+                <h2 className="font-serif text-3xl font-bold text-white">
+                  Cavendish University Uganda <span className="text-[#62c9c0]">· Siyani Campus</span>
                 </h2>
-                <p className="text-sm leading-relaxed text-muted">
+                <p className="text-sm leading-relaxed text-slate-300">
                   The inaugural ceremony will take place at the Siyani Campus Main Auditorium, located along Ggaba Road in Kampala. Free security-controlled parking and campus Wi-Fi will be available for all registered participants.
                 </p>
 
@@ -380,7 +384,7 @@ export default function IEEEDayPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock size={17} className="text-[#1A9090] shrink-0" />
-                    <span>Doors open at 08:30 AM · Registration starts 09:00 AM</span>
+                    <span>Doors open at 11:30 AM · Registration starts 12:00 PM</span>
                   </div>
                 </div>
 
@@ -451,13 +455,15 @@ export default function IEEEDayPage() {
               Seats inside the Siyani Auditorium are allocated on a first-registered basis. Don&apos;t miss being in the inaugural room.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <a
+              <DeadlineRegistrationAction
+                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
                 href={IEEE_DAY_REGISTRATION_URL}
+                closedLabel="Registration closed"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-black shadow-xl transition hover:bg-neutral-200 hover:scale-105"
               >
                 Register Free Now
                 <ArrowUpRight size={16} />
-              </a>
+              </DeadlineRegistrationAction>
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"

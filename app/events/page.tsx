@@ -16,8 +16,9 @@ import {
   Layers,
   ArrowRight
 } from "lucide-react";
-import { IEEE_DAY_TARGET_ISO, IEEEXTREME_DEADLINE_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
+import { IEEE_DAY_REGISTRATION_DEADLINE_ISO, IEEE_DAY_TARGET_ISO, IEEEXTREME_DEADLINE_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
 import { Countdown } from "@/components/ui/Countdown";
+import { DeadlineRegistrationStatus } from "@/components/DeadlineRegistration";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
@@ -66,12 +67,7 @@ export default function EventsPage() {
 
         {/* ── HERO BANNER ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-            <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-            Branch calendar &amp; flagship gatherings
-          </span>
-
-          <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 className="font-serif text-4xl font-bold leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Branch Events & Hackathons
           </h1>
 
@@ -97,9 +93,13 @@ export default function EventsPage() {
             <div className="group flex flex-col justify-between rounded-3xl border border-ieee/10 bg-white overflow-hidden transition-all duration-300 hover:border-[#1A9090]/50 hover:shadow-2xl">
               <div className="p-8 sm:p-10">
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="inline-block rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
-                    Upcoming · Launch
-                  </span>
+                  <DeadlineRegistrationStatus
+                    deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
+                    openLabel="Upcoming · Launch"
+                    closedLabel="Registration closed"
+                    openClassName="inline-block rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700"
+                    closedClassName="inline-block rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600"
+                  />
                   <span className="text-xs text-muted">6th October 2026</span>
                 </div>
 
@@ -119,14 +119,18 @@ export default function EventsPage() {
                     <p className="mt-2 text-sm text-muted leading-relaxed">
                       Official inaugural celebration of the IEEE CUU Student Branch. Keynotes, workshops, cake cutting, and community onboarding.
                     </p>
-                    <div className="mt-4 flex flex-col gap-1 text-xs text-[#E2E8F0]">
+                    <div className="mt-4 flex flex-col gap-1 text-xs leading-5 text-slate-600">
                       <div className="flex items-center gap-2">
-                        <MapPin size={14} className="text-[#E8F5F5]" />
+                        <MapPin size={14} className="shrink-0 text-[#0D6E6E]" />
                         <span>Siyani Campus, Kampala</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Users size={14} className="text-[#E8F5F5]" />
+                        <Users size={14} className="shrink-0 text-[#0D6E6E]" />
                         <span>Free entry for all CUU students</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock size={14} className="shrink-0 text-[#0D6E6E]" />
+                        <span>12:00 PM to 06:00 PM EAT</span>
                       </div>
                     </div>
                   </div>
@@ -150,7 +154,7 @@ export default function EventsPage() {
                   View Event Page
                   <ArrowUpRight size={14} />
                 </a>
-                <span className="text-[11px] text-muted">Opens in new window ↗</span>
+                <span className="text-[11px] text-slate-400">Opens in new window ↗</span>
               </div>
             </div>
 
@@ -158,9 +162,13 @@ export default function EventsPage() {
             <div className="group flex flex-col justify-between rounded-3xl border border-ieee/10 bg-white overflow-hidden transition-all duration-300 hover:border-[#1A9090]/50 hover:shadow-2xl">
               <div className="p-8 sm:p-10">
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="inline-block rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700">
-                    Live Registration
-                  </span>
+                  <DeadlineRegistrationStatus
+                    deadlineISO={IEEEXTREME_DEADLINE_ISO}
+                    openLabel="Live Registration"
+                    closedLabel="Registration ended"
+                    openClassName="inline-block rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-700"
+                    closedClassName="inline-block rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600"
+                  />
                   <span className="text-xs text-muted">17th October 2026</span>
                 </div>
 
@@ -180,13 +188,13 @@ export default function EventsPage() {
                     <p className="mt-2 text-sm text-muted leading-relaxed">
                       A global 24-hour virtual programming challenge for teams of 2 to 3 IEEE Student Members solving algorithms under real-time pressure.
                     </p>
-                    <div className="mt-4 flex flex-col gap-1 text-xs text-[#E2E8F0]">
+                    <div className="mt-4 flex flex-col gap-1 text-xs leading-5 text-slate-600">
                       <div className="flex items-center gap-2">
-                        <Clock size={14} className="text-[#1A9090]" />
+                        <Clock size={14} className="shrink-0 text-[#0D6E6E]" />
                         <span>Deadline: 17 Oct 2026 · 11:59 PM GMT</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Trophy size={14} className="text-[#1A9090]" />
+                        <Trophy size={14} className="shrink-0 text-[#0D6E6E]" />
                         <span>Global and Regional Leaderboards</span>
                       </div>
                     </div>
@@ -211,7 +219,7 @@ export default function EventsPage() {
                   View Event Page
                   <ArrowUpRight size={14} />
                 </a>
-                <span className="text-[11px] text-muted">Opens in new window ↗</span>
+                <span className="text-[11px] text-slate-400">Opens in new window ↗</span>
               </div>
             </div>
           </div>

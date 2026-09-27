@@ -147,7 +147,7 @@ export function SiteHeader() {
                             <span className="text-sm font-semibold text-white">IEEE Day 2026</span>
                             <span className="shrink-0 text-xs text-slate-400">6 Oct</span>
                           </span>
-                          <span className="mt-1 block text-xs leading-5 text-slate-300">Student Branch launch · Siyani Campus</span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-300">Student Branch launch · 12–6 PM EAT</span>
                         </a>
 
                         <div className="mx-4 border-t border-white/10" />

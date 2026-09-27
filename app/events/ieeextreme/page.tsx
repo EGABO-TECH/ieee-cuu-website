@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { IEEEXTREME_DEADLINE_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
 import { Countdown } from "@/components/ui/Countdown";
+import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "@/components/DeadlineRegistration";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
@@ -96,19 +97,25 @@ export default function IEEExtremePage() {
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
           <div className="flex flex-wrap items-center justify-end gap-4">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-cuu-steel/30 bg-cuu-steel/10 px-3 py-1 text-[11px] font-semibold text-cuu-steel">
-                <span className="h-1.5 w-1.5 rounded-full bg-cuu-steel animate-ping" />
-                Team Registration Live
-              </span>
-              <a
+              <DeadlineRegistrationStatus
+                deadlineISO={IEEEXTREME_DEADLINE_ISO}
+                openLabel="Team Registration Live"
+                closedLabel="Registration ended"
+                openClassName="inline-flex items-center gap-1.5 rounded-full border border-cuu-steel/30 bg-cuu-steel/10 px-3 py-1 text-[11px] font-semibold text-cuu-steel"
+                closedClassName="inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-3 py-1 text-[11px] font-semibold text-slate-500"
+              />
+              <DeadlineRegistrationAction
+                deadlineISO={IEEEXTREME_DEADLINE_ISO}
                 href="https://xtreme.vtools.ieee.org"
+                closedLabel="Registration ended"
+                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#1A9090]"
+                closedClassName="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-600"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#1A9090]"
               >
                 Register on vTools
                 <ArrowUpRight size={13} />
-              </a>
+              </DeadlineRegistrationAction>
             </div>
           </div>
         </div>
@@ -116,14 +123,7 @@ export default function IEEExtremePage() {
         {/* ── HERO BANNER ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#1A9090]/40 bg-[#0D6E6E]/20 px-4 py-1.5">
-              <Zap size={14} className="text-[#E8F5F5]" fill="currentColor" />
-              <span className="text-xs font-bold uppercase tracking-widest text-[#E8F5F5]">
-                Global 24-Hour Virtual Hackathon
-              </span>
-            </div>
-
-            <h1 className="mt-6 font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               IEEEXtreme 20.0<br />
               <span className="text-[#1A9090] italic">Global Programming</span> Challenge
             </h1>
@@ -147,8 +147,8 @@ export default function IEEExtremePage() {
             </div>
 
             {/* Live Countdown Box */}
-            <div className="mt-10 mx-auto max-w-md rounded-2xl border border-white/10 bg-gradient-to-b from-[#E0DDD5]/90 to-[#0B0F19]/90 p-6 shadow-2xl backdrop-blur-xl">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-slate-200">
+            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(135deg,#103746_0%,#0D5961_52%,#102532_100%)] p-6 shadow-[0_24px_60px_rgba(4,28,39,0.28)]">
+              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/85">
                 Time Remaining to Register Your Team
               </p>
               <div className="flex justify-center">
@@ -156,15 +156,17 @@ export default function IEEExtremePage() {
               </div>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <a
+                <DeadlineRegistrationAction
+                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
                   href="https://xtreme.vtools.ieee.org"
+                  closedLabel="Registration ended"
+                  className="group inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition hover:bg-[#1A9090] hover:-translate-y-0.5"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition hover:bg-[#1A9090] hover:-translate-y-0.5"
                 >
                   <span>Register Team on vTools</span>
                   <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </DeadlineRegistrationAction>
                 <a
                   href="https://ieeextreme.org"
                   target="_blank"
@@ -186,8 +188,8 @@ export default function IEEExtremePage() {
               const Icon = s.icon;
               return (
                 <div key={s.label} className="rounded-2xl border border-ieee/10 bg-white p-5 text-center backdrop-blur-sm">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-[#0D6E6E]/25 text-[#E8F5F5] mb-3">
-                    <Icon size={20} />
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                    <Icon size={20} strokeWidth={2.25} />
                   </div>
                   <div className="font-serif text-2xl font-bold text-ink">{s.value}</div>
                   <div className="text-xs text-muted mt-1">{s.label}</div>
@@ -346,18 +348,20 @@ export default function IEEExtremePage() {
               Ready to Represent Cavendish University?
             </h2>
             <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-muted">
-              Register your team on the official IEEE vTools portal before registration locks down.
+              Review the team eligibility, registration deadline, and contest details above.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <a
+              <DeadlineRegistrationAction
+                deadlineISO={IEEEXTREME_DEADLINE_ISO}
                 href="https://xtreme.vtools.ieee.org"
+                closedLabel="Registration ended"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-black shadow-xl transition hover:bg-neutral-200 hover:scale-105"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-black shadow-xl transition hover:bg-neutral-200 hover:scale-105"
               >
                 Register Team on vTools
                 <ArrowUpRight size={16} />
-              </a>
+              </DeadlineRegistrationAction>
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
