@@ -20,7 +20,6 @@ import {
 } from "lucide-react";
 import { IEEEXTREME_DEADLINE_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
@@ -81,8 +80,6 @@ const FAQS = [
 export default function IEEExtremePage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Top Glows */}
         <div

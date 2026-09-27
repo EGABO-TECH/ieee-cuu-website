@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CUUCSA } from "@/components/CUUCSA";
 
@@ -14,8 +13,6 @@ export const metadata: Metadata = {
 export default function CUUCSAPage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Glows */}
         <div

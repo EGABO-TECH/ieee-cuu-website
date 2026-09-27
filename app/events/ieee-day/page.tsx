@@ -23,7 +23,6 @@ import {
 } from "lucide-react";
 import { IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 
 export const metadata: Metadata = {
@@ -132,8 +131,6 @@ const FAQS = [
 export default function IEEEDayPage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Top Glows */}
         <div

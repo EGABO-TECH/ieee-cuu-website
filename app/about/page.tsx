@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Globe2, Cpu, BookOpenText, Users2, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { WhatIsIEEE } from "@/components/WhatIsIEEE";
 
@@ -44,8 +43,6 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Glows */}
         <div
@@ -133,25 +130,25 @@ export default function AboutPage() {
         {/* ── CALL TO ACTION STRIP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-8">
           <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-r from-[#0d1424] to-[#12141f] p-8 sm:p-12 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-              Ready to Explore Branch Opportunities?
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Get Involved with IEEE at Cavendish
             </h2>
-            <p className="mt-3 text-sm text-muted max-w-lg mx-auto">
-              Discover how to join the Cavendish University Uganda branch, participate in ambassador initiatives, or compete in global challenges.
+            <p className="mt-3 text-sm text-slate-300 max-w-lg mx-auto">
+              Join the student branch, apply to become an IEEE Student Ambassador, or compete in international events like IEEEXtreme.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/branch"
                 className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-xs sm:text-sm font-bold text-ink transition hover:bg-[#1A9090]"
               >
-                Learn About The Branch
+                Explore the Student Branch
                 <ArrowUpRight size={14} />
               </Link>
               <Link
                 href="/join"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
-                Membership Options
+                View Membership Options
               </Link>
             </div>
           </div>

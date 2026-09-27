@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Rocket, Sparkles, BookOpen, Users, Compass, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Journey } from "@/components/Journey";
 
@@ -37,8 +36,6 @@ const BRANCH_HIGHLIGHTS = [
 export default function BranchPage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Glows */}
         <div
@@ -116,11 +113,11 @@ export default function BranchPage() {
         {/* ── CALL TO ACTION STRIP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-8">
           <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-r from-[#0d1424] to-[#12141f] p-8 sm:p-12 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-ink">
-              Ready to Take the Next Step?
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+              Get Involved with the IEEE Student Branch
             </h2>
-            <p className="mt-3 text-sm text-muted max-w-lg mx-auto">
-              Meet our student leadership team, explore campus ambassador programs, or join our official WhatsApp group.
+            <p className="mt-3 text-sm text-slate-300 max-w-lg mx-auto">
+              Meet the student leaders, explore our campus ambassador programs, or join the official WhatsApp group for branch news and opportunities.
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
@@ -134,7 +131,7 @@ export default function BranchPage() {
                 href="/join"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
-                Become a Member
+                Explore Membership
               </Link>
             </div>
           </div>

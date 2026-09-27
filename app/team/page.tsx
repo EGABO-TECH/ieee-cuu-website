@@ -1,7 +1,6 @@
 ﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Users, ShieldCheck, HeartHandshake, ArrowUpRight } from "lucide-react";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Team } from "@/components/Team";
 import { WHATSAPP_INVITE_URL } from "@/lib/data";
@@ -33,8 +32,6 @@ const PILLARS_OF_LEADERSHIP = [
 export default function TeamPage() {
   return (
     <>
-      <SiteHeader />
-
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
         {/* Ambient Glows */}
         <div
