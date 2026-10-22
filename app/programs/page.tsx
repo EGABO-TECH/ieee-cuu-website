@@ -32,12 +32,11 @@ export default function ProgramsPage() {
           </p>
         </section>
 
-        {/* ── CORE COMPONENT EMBED (PROGRAMS) ── */}
-        <Programs />
-
-        {/* ── CORE COMPONENT EMBED (COMMUNITIES) ── */}
+        {/* ── IEEE TECHNICAL SOCIETIES & AFFINITY GROUPS ── */}
         <Communities />
 
+        {/* ── CAMPUS & COMMUNITY PARTNER PROGRAMS ── */}
+        <Programs />
       </main>
 
       <SiteFooter />

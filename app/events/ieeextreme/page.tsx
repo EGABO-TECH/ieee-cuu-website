@@ -7,30 +7,27 @@ import {
   Trophy,
   Code2,
   ArrowUpRight,
-  Zap,
   Download,
   CheckCircle2,
   Terminal,
-  Cpu,
-  ExternalLink,
   ShieldCheck,
   HelpCircle,
-  Laptop
+  Laptop,
+  ExternalLink,
 } from "lucide-react";
-import { IEEEXTREME_DEADLINE_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
-import { Countdown } from "@/components/ui/Countdown";
-import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "@/components/DeadlineRegistration";
+import { getEventBySlug } from "@/lib/events";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "IEEEXtreme 20.0 | Global 24-Hour Programming Challenge | IEEE CUU",
   description:
-    "Compete in IEEEXtreme 20.0 with the IEEE Cavendish University Uganda Student Branch. 24-hour virtual competitive programming challenge for teams of IEEE Student Members.",
+    "IEEEXtreme 20.0 with the IEEE CUU Student Branch. 24-hour virtual competitive programming challenge for teams of IEEE Student Members. Registration closed 17 October 2026.",
 };
 
 const STATS = [
   { icon: Clock, value: "24 Hours", label: "Continuous Coding Marathon" },
-  { icon: Users, value: "2 to 3 Members", label: "Per Competing Team" },
+  { icon: Users, value: "2–3 Members", label: "Per Competing Team" },
   { icon: Trophy, value: "60+ Countries", label: "Global Live Ranking" },
   { icon: Code2, value: "25+ Languages", label: "Python, C++, Java, Go, Rust" },
 ];
@@ -49,12 +46,12 @@ const PREP_STEPS = [
   {
     step: "03",
     title: "Register on IEEE vTools",
-    desc: "Submit your team name and member IEEE numbers via the official IEEE vTools registration portal by 17 October 2026.",
+    desc: "Submit your team name and member IEEE numbers via the official IEEE vTools registration portal.",
   },
   {
     step: "04",
-    title: "Join the CUU War Room",
-    desc: "Connect with our Technical Coordinators for proctor assignment, prep workshops, and access to the on-campus overnight coding hub.",
+    title: "Join the CUU Coordination Group",
+    desc: "Connect with our Technical Coordinators for proctor assignment, prep workshops, and on-campus overnight coding hub access.",
   },
 ];
 
@@ -73,138 +70,141 @@ const FAQS = [
   },
   {
     q: "Will there be a physical space to code at Cavendish University?",
-    a: "Yes! The Branch will host a 24-hour 'War Room' with dedicated high-speed internet, power backup, food, coffee, and mentorship support.",
+    a: "The Branch explored a 24-hour workspace for registered teams. Contact the Technical Coordinators via WhatsApp for the latest details.",
   },
 ];
 
+// Server component — status computed at render time, no client flash
 export default function IEEExtremePage() {
+  const event = getEventBySlug("ieeextreme-20");
+  const registrationClosed =
+    !event ||
+    event.status === "registration-closed" ||
+    event.status === "ended";
+
+  // TODO(owner): Replace with actual contest results once available
+  const hasResults = false;
+
   return (
     <>
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
-        {/* Ambient Top Glows */}
+        {/* Ambient glows */}
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[1000px] rounded-full opacity-[0.06]"
           style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 40%, transparent 75%)" }}
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-64 right-10 h-[500px] w-[500px] rounded-full opacity-[0.07]"
-          style={{ background: "radial-gradient(ellipse at center, #1A9090 0%, transparent 70%)" }}
-        />
 
-        {/* ── EVENT STATUS & REGISTRATION ── */}
+        {/* ── STATUS STRIP ── */}
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex flex-wrap items-center justify-end gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <DeadlineRegistrationStatus
-                deadlineISO={IEEEXTREME_DEADLINE_ISO}
-                openLabel="Team Registration Live"
-                closedLabel="Registration ended"
-                openClassName="inline-flex items-center gap-1.5 rounded-full border border-cuu-steel/30 bg-cuu-steel/10 px-3 py-1 text-[11px] font-semibold text-cuu-steel"
-                closedClassName="inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-3 py-1 text-[11px] font-semibold text-slate-500"
-              />
-              <DeadlineRegistrationAction
-                deadlineISO={IEEEXTREME_DEADLINE_ISO}
-                href="https://xtreme.vtools.ieee.org"
-                closedLabel="Registration ended"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#1A9090]"
-                closedClassName="hidden sm:inline-flex items-center rounded-full border border-slate-300 bg-slate-100 px-4 py-1.5 text-xs font-semibold text-slate-600"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Register on vTools
-                <ArrowUpRight size={13} />
-              </DeadlineRegistrationAction>
+              <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-700">
+                Registration closed
+              </span>
+              <span className="text-xs text-slate-500">
+                Deadline: 17 October 2026, 11:59 PM GMT
+              </span>
             </div>
+            <Link href="/events" className="text-xs text-[#0D6E6E] hover:text-[#1A9090] transition">
+              ← All events
+            </Link>
           </div>
         </div>
 
-        {/* ── HERO BANNER ── */}
+        {/* ── HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               IEEEXtreme 20.0<br />
-              <span className="text-[#1A9090] italic">Global Programming</span> Challenge
+              <span className="text-[#1A9090]">Global Programming</span> Challenge
             </h1>
 
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted">
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600">
               A 24-hour worldwide algorithmic battle for teams of IEEE Student Members.
-              Solve intense challenges, test your problem solving under real-time pressure,
+              Solve intense challenges, test your problem-solving under real-time pressure,
               and put Cavendish University Uganda on the global leaderboard.
             </p>
 
-            {/* Quick Meta Strip */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-700">
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
-                <Clock size={17} className="text-[#1A9090]" />
-                <span className="font-semibold">Registration Closes: 17 Oct 2026 · 11:59 PM GMT</span>
+              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
+                <Clock size={17} className="text-[#0D6E6E]" />
+                <span className="font-semibold">Registration closed: 17 Oct 2026</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
                 <Terminal size={17} className="text-[#0D6E6E]" />
-                <span>Format: 24h Algorithmic Hackathon</span>
+                <span>24-hour algorithmic contest</span>
               </div>
             </div>
 
-            {/* Live Countdown Box */}
-            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(135deg,#103746_0%,#0D5961_52%,#102532_100%)] p-6 shadow-[0_24px_60px_rgba(4,28,39,0.28)]">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/85">
-                Time Remaining to Register Your Team
+            {/* Info box — registration closed */}
+            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-amber-200 bg-amber-50 p-6 text-left">
+              <p className="text-sm font-semibold text-amber-800 mb-2">
+                Registration has closed
               </p>
-              <div className="flex justify-center">
-                <Countdown targetISO={IEEEXTREME_DEADLINE_ISO} showSeconds={false} />
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <DeadlineRegistrationAction
-                  deadlineISO={IEEEXTREME_DEADLINE_ISO}
-                  href="https://xtreme.vtools.ieee.org"
-                  closedLabel="Registration ended"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition hover:bg-[#1A9090] hover:-translate-y-0.5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span>Register Team on vTools</span>
-                  <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </DeadlineRegistrationAction>
+              <p className="text-xs text-amber-700 leading-relaxed">
+                The IEEEXtreme 20.0 registration deadline was 17 October 2026, 11:59 PM GMT.
+                {/* TODO(owner): Add contest date and CUU team results when available */}
+                Contest date and CUU team results will be added here once confirmed.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
                 <a
-                  href="https://ieeextreme.org"
+                  href={SITE.ieee.extreme}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
-                  <span>Official Website</span>
-                  <ExternalLink size={14} />
+                  Official IEEEXtreme site
+                  <ExternalLink size={12} />
                 </a>
+                <Link
+                  href="/join"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                >
+                  Join the branch for next year
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── STATS BAR ── */}
+        {/* ── RESULTS / RECAP ── */}
+        {hasResults ? null : (
+          <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-8">
+            <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-8 text-center">
+              <Trophy size={28} className="text-slate-300 mx-auto mb-3" />
+              <p className="text-sm text-slate-400 font-medium">CUU team results coming soon</p>
+              {/* TODO(owner): Add team names, scores, and global ranking once the contest runs */}
+              <p className="text-xs text-slate-300 mt-1">
+                Results will be posted here once the branch supplies team names, scores, and ranking.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {/* ── STATS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {STATS.map((s) => {
               const Icon = s.icon;
               return (
-                <div key={s.label} className="rounded-2xl border border-ieee/10 bg-white p-5 text-center backdrop-blur-sm">
+                <div key={s.label} className="rounded-2xl border border-slate-100 bg-white p-5 text-center">
                   <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
                     <Icon size={20} strokeWidth={2.25} />
                   </div>
-                  <div className="font-serif text-2xl font-bold text-ink">{s.value}</div>
-                  <div className="text-xs text-muted mt-1">{s.label}</div>
+                  <div className="font-serif text-2xl font-bold text-slate-900">{s.value}</div>
+                  <div className="text-xs text-slate-500 mt-1">{s.label}</div>
                 </div>
               );
             })}
           </div>
         </section>
 
-        {/* ── FLYER & COMPETITION OVERVIEW ── */}
+        {/* ── FLYER & OVERVIEW ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center rounded-3xl border border-ieee/10 bg-white overflow-hidden p-8 sm:p-12">
-            {/* Left: Flyer */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center rounded-3xl border border-slate-100 bg-white overflow-hidden p-8 sm:p-12">
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[340px] overflow-hidden rounded-2xl border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.7)] group">
+              <div className="relative w-full max-w-[340px] overflow-hidden rounded-2xl border border-slate-100 shadow-xl group">
                 <Image
                   src="/images/IEEEXtreme-Flyer.jpeg"
                   alt="Official IEEEXtreme 20.0 Flyer"
@@ -212,6 +212,7 @@ export default function IEEExtremePage() {
                   height={480}
                   className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   priority
+                  sizes="(max-width: 1024px) 90vw, 340px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
                   <a
@@ -220,83 +221,69 @@ export default function IEEExtremePage() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-black shadow-lg"
                   >
-                    View Flyer Fullscreen
+                    View fullscreen
                     <ExternalLink size={13} />
                   </a>
                 </div>
               </div>
-              <p className="mt-3 text-xs text-muted text-center">
-                Official IEEE Xtreme 20.0 Global Banner
-              </p>
             </div>
 
-            {/* Right: Challenge Format */}
             <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
-                  About The Hackathon
-                </span>
-                <h2 className="mt-2 font-serif text-3xl font-bold text-ink sm:text-4xl">
-                  Compete Against The Best Coders on the Planet
+                <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                  Compete Against the Best Coders on the Planet
                 </h2>
-                <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted">
-                  IEEEXtreme is a virtual competitive programming challenge where teams of student members compete over a 24-hour time span against thousands of peers worldwide. Problems range from beginner-friendly logic tasks to advanced dynamic programming, graph theory, cryptography, and artificial intelligence puzzles.
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
+                  IEEEXtreme is a virtual competitive programming challenge where teams of student members
+                  compete over 24 hours against thousands of peers worldwide. Problems range from
+                  beginner-friendly logic tasks to advanced dynamic programming, graph theory, and AI puzzles.
                 </p>
               </div>
 
               <div className="space-y-3 pt-2">
-                <div className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-                  <ShieldCheck size={20} className="text-[#E8F5F5] shrink-0 mt-0.5" />
+                <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
+                  <ShieldCheck size={20} className="text-[#0D6E6E] shrink-0 mt-0.5" />
                   <div>
                     <h4 className="font-semibold text-slate-900 text-sm">Official Branch Proctoring</h4>
-                    <p className="text-xs text-muted mt-1">Our faculty advisors and IEEE Young Professionals supervise and authenticate CUU team submissions in full compliance with global rules.</p>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Faculty advisors and IEEE members supervise and authenticate CUU team submissions in full compliance with global rules.
+                    </p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
                   <Laptop size={20} className="text-[#1A9090] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 text-sm">24-Hour Campus War Room</h4>
-                    <p className="text-xs text-muted mt-1">Don&apos;t worry about power outages or internet drops. Compete from the Cavendish University computer lab equipped with high-speed internet, power redundancy, and snacks.</p>
+                    <h4 className="font-semibold text-slate-900 text-sm">On-Campus Coordination</h4>
+                    <p className="text-xs text-slate-500 mt-1">
+                      The branch coordinated an overnight workspace for registered teams. Contact Technical Coordinators via WhatsApp for details.
+                    </p>
                   </div>
                 </div>
               </div>
 
               <div className="pt-2 flex flex-wrap gap-3">
                 <a
-                  href={WHATSAPP_INVITE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
-                >
-                  Join Hackathon WhatsApp Group
-                  <ArrowUpRight size={13} />
-                </a>
-                <a
                   href="/images/IEEEXtreme-Flyer.jpeg"
                   download="IEEEXtreme-20-Flyer.jpeg"
-                  className="inline-flex items-center gap-2 rounded-full border border-ieee/10 bg-white px-4 py-2.5 text-xs text-muted hover:text-white transition"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   <Download size={13} />
-                  Download Flyer
+                  Download flyer
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── 4-STEP ROADMAP ── */}
+        {/* ── REGISTRATION ROADMAP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-              <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-              Registration roadmap
-            </span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-ink sm:text-4xl">
-              How to Enter IEEEXtreme 20.0
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+              How to Enter IEEEXtreme
             </h2>
-            <p className="mt-3 text-sm text-muted">
-              Follow these simple steps before the registration deadline of 17 October 2026.
+            <p className="mt-3 text-sm text-slate-500">
+              These steps apply for future editions. Registration for IEEEXtreme 20.0 has closed.
             </p>
           </div>
 
@@ -304,69 +291,58 @@ export default function IEEExtremePage() {
             {PREP_STEPS.map((step) => (
               <div
                 key={step.step}
-                className="rounded-2xl border border-ieee/10 bg-white p-6 backdrop-blur-sm transition duration-300 hover:border-[#1A9090]/50 hover:-translate-y-1"
+                className="rounded-2xl border border-slate-100 bg-white p-6 transition duration-300 hover:border-[#1A9090]/40 hover:-translate-y-1"
               >
-                <div className="font-serif text-3xl font-bold text-[#1A9090]/80 mb-4">{step.step}</div>
-                <h3 className="font-bold text-ink text-base mb-2">{step.title}</h3>
-                <p className="text-xs sm:text-sm text-muted leading-relaxed">{step.desc}</p>
+                <div className="font-serif text-3xl font-bold text-[#1A9090]/60 mb-4">{step.step}</div>
+                <h3 className="font-bold text-slate-900 text-base mb-2">{step.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
-        {/* ── EVENT FAQS ── */}
+        {/* ── FAQS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-white/10 border border-white/15 px-3 py-1 text-[12px] font-medium text-white/70 backdrop-blur-sm">
-              <span className="h-1 w-1 rounded-full bg-white/50" aria-hidden="true" />
-              Contest inquiries
-            </span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
               Frequently Asked Questions
             </h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto divide-y divide-slate-100 border-y border-slate-100">
             {FAQS.map((faq, i) => (
-              <div key={i} className="rounded-2xl border border-ieee/10 bg-white/80 p-6">
-                <div className="flex items-start gap-3">
-                  <HelpCircle size={18} className="text-[#E8F5F5] shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-bold text-ink text-base">{faq.q}</h3>
-                    <p className="mt-2 text-sm text-muted leading-relaxed">{faq.a}</p>
-                  </div>
-                </div>
-              </div>
+              <details key={i} className="group py-5">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-left list-none">
+                  <span className="font-semibold text-slate-900">{faq.q}</span>
+                  <span className="shrink-0 text-[#1A9090] transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p className="mt-3 max-w-xl text-sm text-slate-500 leading-relaxed">{faq.a}</p>
+              </details>
             ))}
           </div>
         </section>
 
-        {/* ── FINAL CTA BANNER ── */}
+        {/* ── FINAL CTA ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-10">
-          <div className="relative overflow-hidden rounded-3xl border border-[#1A9090]/40 bg-gradient-to-r from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-10 sm:p-14 text-center shadow-2xl">
-            <h2 className="font-serif text-3xl font-bold text-ink sm:text-4xl">
-              Ready to Represent Cavendish University?
+          <div className="relative overflow-hidden rounded-3xl border border-[#1A9090]/30 bg-gradient-to-r from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-10 sm:p-14 text-center">
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+              Want to compete next year?
             </h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-muted">
-              Review the team eligibility, registration deadline, and contest details above.
+            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-slate-600">
+              Join the branch now so you&apos;re ready when IEEEXtreme 21.0 registration opens.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <DeadlineRegistrationAction
-                deadlineISO={IEEEXTREME_DEADLINE_ISO}
-                href="https://xtreme.vtools.ieee.org"
-                closedLabel="Registration ended"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-black shadow-xl transition hover:bg-neutral-200 hover:scale-105"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/join"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-8 py-3.5 text-sm font-bold text-white shadow-xl transition hover:bg-[#1A9090]"
               >
-                Register Team on vTools
+                Join the branch
                 <ArrowUpRight size={16} />
-              </DeadlineRegistrationAction>
+              </Link>
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
-                View All Events
+                View all events
               </Link>
             </div>
           </div>

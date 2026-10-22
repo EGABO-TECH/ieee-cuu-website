@@ -1,28 +1,30 @@
-﻿import Image from "next/image";
-import { ArrowUpRight, Globe, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Globe, MapPin, Phone, Mail, Linkedin, Twitter } from "lucide-react";
+import { SITE } from "@/config/site";
 
 const NAV_LINKS = {
   Explore: [
-    { href: "/#about", label: "What is IEEE" },
-    { href: "/#branch", label: "The Branch" },
-    { href: "/#membership", label: "Membership" },
-    { href: "/#team", label: "Team" },
-    { href: "/#faqs", label: "FAQs" },
+    { href: "/about", label: "What is IEEE" },
+    { href: "/branch", label: "The Branch" },
+    { href: "/join", label: "Membership" },
+    { href: "/team", label: "Team" },
+    { href: "/programs", label: "Programs" },
+    { href: "/join#faqs", label: "FAQs" },
   ],
   "Get Involved": [
-    { href: "/events/ieee-day", label: "IEEE Day 2026", external: true },
-    { href: "/events/ieeextreme", label: "IEEEXtreme 20.0", external: true },
-    { href: "/events", label: "All Events Hub", external: true },
-    { href: "/#programs", label: "Ambassador Programs" },
-    { href: "/#communities", label: "Specialized Societies" },
-    { href: "/#join", label: "Join WhatsApp Group" },
+    { href: "/events/ieee-day-2026", label: "IEEE Day 2026" },
+    { href: "/events/ieeextreme-20", label: "IEEEXtreme 20.0" },
+    { href: "/events", label: "All Events" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/join", label: "Join the Branch" },
+    { href: "/contact", label: "Contact Us" },
   ],
   "Official IEEE": [
-    { href: "https://www.ieee.org/", label: "IEEE.org", external: true },
-    { href: "https://students.ieee.org/", label: "IEEE Students", external: true },
-    { href: "https://ieeer8.org/", label: "Region 8", external: true },
-    { href: "https://ieeextreme.org/", label: "IEEEXtreme", external: true },
-    { href: "https://ieeexplore.ieee.org/", label: "IEEE Xplore", external: true },
+    { href: SITE.ieee.org, label: "IEEE.org", external: true },
+    { href: SITE.ieee.students, label: "IEEE Students", external: true },
+    { href: SITE.ieee.region8, label: "Region 8", external: true },
+    { href: SITE.ieee.extreme, label: "IEEEXtreme", external: true },
+    { href: SITE.ieee.xplore, label: "IEEE Xplore", external: true },
   ],
 };
 
@@ -32,6 +34,15 @@ const MAP_EMBED_URL =
 export function SiteFooter() {
   return (
     <footer className="relative overflow-hidden bg-[#061821] text-white">
+      {/* Non-endorsement disclaimer */}
+      <div className="border-b border-white/10 bg-white/5 px-4 py-3 sm:px-6 lg:px-10">
+        <p className="mx-auto max-w-[1280px] text-[11px] leading-5 text-white/60">
+          <strong className="font-semibold text-white/80">Partner disclaimer:</strong>{" "}
+          AWS Student Builders, Black Python Devs, and CUUCSA are campus and community partners.
+          Their inclusion on this site is not an IEEE endorsement of their products or services.
+        </p>
+      </div>
+
       <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10 lg:px-10 lg:py-12">
         <div className="grid gap-10 md:gap-8 lg:grid-cols-[1.2fr_1.2fr_1fr] lg:gap-12">
           <div className="pr-0 md:pr-4 lg:border-r lg:border-white/10 lg:pr-8">
@@ -47,17 +58,26 @@ export function SiteFooter() {
               </div>
             </div>
 
-            <h3 className="max-w-md text-[2rem] font-bold leading-[1.05] tracking-[-0.055em] text-white sm:text-[2.15rem]">
-              IEEE CUU Student Branch
+            <h3 className="max-w-md text-[1.6rem] font-bold leading-[1.1] tracking-[-0.04em] text-white sm:text-[1.8rem]">
+              IEEE Student Branch,<br />Cavendish University Uganda
             </h3>
 
-            <p className="mt-4 max-w-md text-[0.98rem] leading-7 text-white/70">
-              The official IEEE Student Branch at <span className="font-semibold text-white">Cavendish University Uganda</span> — a member of the IEEE Uganda Section and IEEE Region 8.
+            <p className="mt-4 max-w-md text-[0.95rem] leading-7 text-white/70">
+              Part of the{" "}
+              <a
+                href={SITE.ieee.region8}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-white"
+              >
+                IEEE Uganda Section and IEEE Region 8
+              </a>
+              .
             </p>
 
             <div className="mt-7 flex flex-col gap-3">
               <a
-                href="https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
+                href={SITE.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
@@ -69,7 +89,7 @@ export function SiteFooter() {
               </a>
 
               <a
-                href="http://www.cavendish.ac.ug/"
+                href={SITE.universityUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
@@ -81,7 +101,7 @@ export function SiteFooter() {
               </a>
 
               <a
-                href="tel:+256414531700"
+                href={`tel:${SITE.universityPhone}`}
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
@@ -89,6 +109,40 @@ export function SiteFooter() {
                 </span>
                 <span className="truncate">+256 41 4531700</span>
               </a>
+
+              {SITE.email ? (
+                <a
+                  href={`mailto:${SITE.email}`}
+                  className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                    <Mail size={13} />
+                  </span>
+                  <span className="truncate">{SITE.email}</span>
+                </a>
+              ) : null}
+
+              {/* Social links */}
+              <div className="mt-1 flex gap-2">
+                <a
+                  href={SITE.social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/10 hover:text-white"
+                >
+                  <Linkedin size={15} />
+                </a>
+                <a
+                  href={SITE.social.x}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X (Twitter)"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/70 transition hover:bg-white/10 hover:text-white"
+                >
+                  <Twitter size={15} />
+                </a>
+              </div>
             </div>
           </div>
 
@@ -113,8 +167,28 @@ export function SiteFooter() {
             </div>
 
             <p className="mt-3 text-sm leading-6 text-white/70 sm:mt-4">
-              Plot 1469 Ggaba Road, Kampala — look for the <span className="font-semibold text-white">IEEE CUU Student Branch pin</span> on the map above.
+              Plot 1469 Ggaba Road, Kampala —{" "}
+              <a
+                href={SITE.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-white"
+              >
+                Open in Maps
+              </a>
             </p>
+
+            {/* Stay in the loop */}
+            <div className="mt-6 rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="text-[12px] font-semibold text-white/80">Stay in the loop</p>
+              <p className="mt-1 text-[11px] text-white/50">
+                Follow us on social media or{" "}
+                <a href="/join" className="underline underline-offset-2 hover:text-white">
+                  join the branch
+                </a>{" "}
+                to get updates.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -130,7 +204,8 @@ export function SiteFooter() {
             <a href="/privacy" className="transition hover:text-white">Privacy</a>
             <a href="/terms" className="transition hover:text-white">Terms</a>
             <a href="/cookies" className="transition hover:text-white">Cookies</a>
-            <span className="text-white/70">Built by the Branch, for the Branch.</span>
+            <a href="/governance" className="transition hover:text-white">Governance</a>
+            <span className="text-white/40">Built by the Branch, for the Branch.</span>
           </div>
         </div>
       </div>

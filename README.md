@@ -1,272 +1,168 @@
-<p align="center">
-  <img src="public/images/ieee-logo.png" alt="IEEE Student Branch logo" width="420" />
-</p>
-
 # IEEE Student Branch — Cavendish University Uganda
 
-This project is the official website for the IEEE Student Branch at Cavendish University Uganda. It is designed to help students, visitors, and partners understand who the branch is, what it does, how to join, and how to take part in branch events such as IEEE Day and IEEEXtreme.
+Official website for the IEEE Student Branch at Cavendish University Uganda (CUU), part of the IEEE Uganda Section and IEEE Region 8.
 
-The site is built with Next.js, TypeScript, and Tailwind CSS. It has a modern, readable design, responsive mobile navigation, event countdowns, and real social/community links that can be updated from environment variables.
-
----
-
-## What this site does
-
-For a simple person, this website is the branch’s digital front door. It explains:
-
-- what IEEE is
-- what the branch does at Cavendish University Uganda
-- upcoming events and registration links
-- how to join or connect with the branch
-- who the student leaders are
-- official community and social channels
-
-For a developer, this project is a multi-page Next.js app with shared components, centralized content data, and environment-based configuration for links and registration URLs.
+Live site: [ieee-cuu-website.vercel.app](https://ieee-cuu-website.vercel.app/)
 
 ---
 
-## Project overview
+## 1. Tech Stack
 
-This app includes:
-
-- a landing page with a slideshow hero section and call-to-action buttons
-- a branch overview page
-- a CUUCSA page
-- an events page with IEEE Day and IEEEXtreme sections
-- a join page and contact/community pathway
-- a team page and programs overview
-- a footer and floating WhatsApp button for quick access
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router, React Server Components)
+- **Language**: [TypeScript](https://www.typescriptlang.org/) (Strict type checking)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom IEEE brand tokens
+- **Validation**: [Zod](https://zod.dev/) (Client & server schema validation)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data Architecture**: Content-driven (JSON files in `content/`), date-driven event state engine (Africa/Kampala UTC+3).
 
 ---
 
-## Tech stack
-
-- [Next.js 14](https://nextjs.org/)
-- [React 18](https://react.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Lucide React](https://lucide.dev/)
-
----
-
-## Quick start
+## 2. Local Setup & Commands
 
 ### Prerequisites
+- Node.js 18.17+ or 20+
+- npm 9+
 
-- Node.js 18 or later
-- npm
-
-### Install dependencies
-
+### Setup
 ```bash
+# Clone the repository
+git clone https://github.com/EGABO-TECH/ieee-cuu-website.git
+cd ieee-cuu-website
+
+# Install dependencies
 npm install
+
+# Copy environment variables
+cp .env.example .env.local
+
+# Start development server
+npm run dev
 ```
 
-### Start the app in development mode
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
+### Quality Checks
 ```bash
-npm run dev -- --hostname 0.0.0.0
-```
+# Verify TypeScript types
+npx tsc --noEmit
 
-Then open:
+# Run event date/status tests
+node scripts/test-event-status.mjs
 
-- http://localhost:3000
-
-### Create a production build
-
-```bash
+# Build production bundle
 npm run build
 ```
 
-### Start the production build locally
+---
 
-```bash
-npm run start -- --hostname 0.0.0.0
+## 3. Environment Variables
+
+Configure these in `.env.local` or on your Vercel project settings:
+
+| Variable | Description | Default / Example |
+|---|---|---|
+| `NEXT_PUBLIC_CANONICAL_URL` | Canonical site origin | `https://ieee-cuu-website.vercel.app` |
+| `NEXT_PUBLIC_BRANCH_EMAIL` | Official branch email | `ieee@cavendish.ac.ug` (or branch inbox) |
+| `NEXT_PUBLIC_IEEE_LINKEDIN_URL` | LinkedIn company page | `https://www.linkedin.com/company/ieee-cavendish-university-uganda` |
+| `NEXT_PUBLIC_IEEE_X_URL` | X (Twitter) profile | `https://x.com/IEEECavendish` |
+| `NEXT_PUBLIC_IEEE_TIKTOK_URL` | TikTok channel | `https://www.tiktok.com/@cavendishieee` |
+| `NEXT_PUBLIC_IEEE_WHATSAPP_URL` | Branch WhatsApp invite | `https://chat.whatsapp.com/...` |
+| `NEXT_PUBLIC_CUUCSA_WHATSAPP_URL` | CUUCSA WhatsApp invite | `https://chat.whatsapp.com/...` |
+| `ADMIN_SECRET` | Secret key for `/admin` export | `cuu-ieee-branch-admin-2026` |
+| `SUBMISSION_WEBHOOK_URL` | (Optional) Forward sign-ups to Google Sheet / Supabase | `https://...` |
+
+---
+
+## 4. Student Handover: How to Add Content (Under 10 Minutes)
+
+### 4.1 How to Add an Event
+Events are data-driven. The site computes whether the event is `upcoming`, `registration-open`, `registration-closed`, `live`, or `ended` automatically based on Africa/Kampala time (EAT, UTC+3).
+
+1. Create a new file in `content/events/<slug>.json` (e.g. `content/events/cloud-ai-workshop.json`):
+```json
+{
+  "slug": "cloud-ai-workshop",
+  "title": "AWS Cloud & AI Hands-on Workshop",
+  "summary": "Practical cloud fundamentals and generative AI lab session at Siyani Campus.",
+  "kind": "workshop",
+  "startsAt": "2026-11-14T14:00:00+03:00",
+  "endsAt": "2026-11-14T17:00:00+03:00",
+  "timezone": "Africa/Kampala",
+  "venue": {
+    "name": "Siyani Campus Computer Lab 2",
+    "address": "Plot 1469 Ggaba Road, Kampala"
+  },
+  "registration": {
+    "opensAt": "2026-11-01T09:00:00+03:00",
+    "closesAt": "2026-11-14T13:00:00+03:00",
+    "membersOnly": false
+  }
+}
 ```
+2. Import the JSON in `lib/events.ts` under `getAllEvents()`.
+3. The event will appear immediately on `/events` and `/events/cloud-ai-workshop`.
 
----
-
-## Environment variables
-
-This project uses a root [.env](.env) file for social and registration links. These values are read in [lib/data.ts](lib/data.ts) and then reused across the site.
-
-Example values in the current project:
-
-```env
-# IEEE social links
-NEXT_PUBLIC_IEEE_LINKEDIN_URL=https://www.linkedin.com/company/ieee-cavendish-university-student-branch/
-NEXT_PUBLIC_IEEE_X_URL=https://x.com/IEEECavendish
-NEXT_PUBLIC_IEEE_TIKTOK_URL=https://www.tiktok.com/@cavendishieee?_r=1&_t=ZS-9A3Zys0H1r2
-NEXT_PUBLIC_IEEE_WHATSAPP_URL=https://chat.whatsapp.com/D14xEzlcP9bF4JKXnAiMU8
-
-# Event and community links
-NEXT_PUBLIC_IEEE_EVENT_REGISTRATION_URL=https://forms.gle/oNnnQLsjNv4WWg1L9
-NEXT_PUBLIC_CUUCSA_LINKEDIN_URL=https://www.linkedin.com/company/cavendish-university-uganda-computing-students-association/
-NEXT_PUBLIC_CUUCSA_WHATSAPP_URL=https://chat.whatsapp.com/JRmTgNpDhRSLVOBPoIDj5W
+### 4.2 How to Add a News Story or Event Recap
+1. Create a file in `content/news/<slug>.json` (e.g. `content/news/ieeextreme-recap.json`):
+```json
+{
+  "slug": "ieeextreme-recap",
+  "title": "Cavendish University Teams Complete IEEEXtreme 20.0",
+  "date": "2026-10-25",
+  "author": "Branch Technical Committee",
+  "tags": ["Competition", "IEEEXtreme", "Coding"],
+  "summary": "CUU student teams tackled algorithmic challenges during the global 24-hour programming contest.",
+  "content": "Paragraph 1...\n\nParagraph 2..."
+}
 ```
+2. The article will automatically publish to `/news` and `/news/ieeextreme-recap`.
 
-Important:
-
-- Replace any placeholder or outdated link with the real one before publishing.
-- Do not hardcode social links inside components when they can be managed from the environment file.
-
----
-
-## Main project structure
-
-```text
-IEEE/
-├── app/
-│   ├── about/
-│   ├── branch/
-│   ├── cuucsa/
-│   ├── events/
-│   ├── join/
-│   ├── programs/
-│   ├── team/
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── SiteHeader.tsx
-│   ├── Hero.tsx
-│   ├── EventSpotlight.tsx
-│   ├── IEEExtreme.tsx
-│   ├── CUUCSA.tsx
-│   ├── SiteFooter.tsx
-│   ├── Partnerships.tsx
-│   ├── Resources.tsx
-│   ├── Faq.tsx
-│   ├── Team.tsx
-│   └── ui/
-│       └── Countdown.tsx
-├── lib/
-│   ├── data.ts
-│   └── useCountdown.ts
-├── public/
-│   ├── images/
-│   └── favicon.svg
-├── .env
-├── .gitignore
-├── next.config.mjs
-├── package.json
-├── postcss.config.mjs
-├── tailwind.config.ts
-├── tsconfig.json
-├── README.md
-└── next-env.d.ts
+### 4.3 How to Add or Update a Team Member
+1. Place the member's photo in `/public/images/team/<name>.jpg` (optional; if omitted, clean branded initials are used).
+2. Open `content/team.json` and append a record:
+```json
+{
+  "id": "new-coordinator",
+  "name": "Jane Doe",
+  "role": "Outreach Coordinator",
+  "group": "programs",
+  "bio": "Coordinates technical student community outreach and high school STEM programs.",
+  "photo": "/images/team/jane-doe.jpg",
+  "linkedin": "https://www.linkedin.com/in/janedoe",
+  "consent": true,
+  "order": 14
+}
 ```
+> **Privacy Rule:** Only publish team members who have given written or electronic consent (`consent: true`). Never use LinkedIn search URLs; only link to verified direct profile links.
+
+### 4.4 How to Add Event Photos to Gallery
+1. Add optimized images to `/public/images/gallery/<event-slug>/`.
+2. Open `app/gallery/page.tsx` and add an album to the `GALLERY` array. Ensure attendees have provided consent for public photography.
+
+### 4.5 How to Feature a Student Project
+1. Open `app/projects/page.tsx`.
+2. Add the student project entry to the `PROJECTS` array with title, team members, tech tags, GitHub repository URL, and demo URL.
 
 ---
 
-## Where content lives
+## 5. Branch Administration & Sign-up Exports
 
-### Social and event links
-
-All key external URLs are managed in [lib/data.ts](lib/data.ts). This includes:
-
-- IEEE WhatsApp link
-- event registration link
-- CUUCSA WhatsApp link
-- CUUCSA LinkedIn link
-- IEEE social media URLs
-
-### Page content and data
-
-The site uses reusable data objects for content such as:
-
-- events
-- FAQs
-- team members
-- student programs
-- program and societies information
-
-This makes it easier to update content without changing layout code everywhere.
+- **Sign-up Data Storage**: Sign-ups from the `/join` form and inquiries from `/contact` are validated using Zod, spam-protected with honeypot fields and IP rate-limiting, and stored in `content/submissions.json` (or forwarded to an external webhook).
+- **Admin Dashboard**: Visit `/admin` and enter the `ADMIN_SECRET` key to review sign-ups in real time.
+- **CSV Export Routes**:
+  - Sign-ups: `GET /api/admin/export?key=<ADMIN_SECRET>&type=joins`
+  - Inquiries: `GET /api/admin/export?key=<ADMIN_SECRET>&type=contacts`
+  The secretary can import these CSVs directly into Excel or Google Sheets.
 
 ---
 
-## How the site works
+## 6. Handover Checklist for Outgoing Executive Committee
 
-### Front-end flow
+When branch leaders graduate, transfer the following assets so the branch maintains continuity:
 
-1. The root layout in [app/layout.tsx](app/layout.tsx) wraps all pages.
-2. Each route under [app](app) renders specific sections.
-3. Shared components such as [components/SiteHeader.tsx](components/SiteHeader.tsx) and [components/SiteFooter.tsx](components/SiteFooter.tsx) are reused across pages.
-4. The homepage is assembled in [app/page.tsx](app/page.tsx).
-5. Event countdowns use the timer from [components/ui/Countdown.tsx](components/ui/Countdown.tsx).
-
-### Main page routes
-
-- Home: [app/page.tsx](app/page.tsx)
-- About: [app/about/page.tsx](app/about/page.tsx)
-- Branch: [app/branch/page.tsx](app/branch/page.tsx)
-- CUUCSA: [app/cuucsa/page.tsx](app/cuucsa/page.tsx)
-- Events: [app/events/page.tsx](app/events/page.tsx)
-- IEEE Day: [app/events/ieee-day/page.tsx](app/events/ieee-day/page.tsx)
-- IEEEXtreme: [app/events/ieeextreme/page.tsx](app/events/ieeextreme/page.tsx)
-- Join: [app/join/page.tsx](app/join/page.tsx)
-- Programs: [app/programs/page.tsx](app/programs/page.tsx)
-- Team: [app/team/page.tsx](app/team/page.tsx)
-
----
-
-## Useful notes for editing
-
-### Change the homepage CTA or hero text
-
-Edit [components/Hero.tsx](components/Hero.tsx).
-
-### Change the event flyer or upcoming event card
-
-Edit [components/EventSpotlight.tsx](components/EventSpotlight.tsx) and update the image in the public folder.
-
-### Change the list of social or registration URLs
-
-Edit [.env](.env) or [lib/data.ts](lib/data.ts).
-
-### Change team or branch content
-
-Edit the data exported in [lib/data.ts](lib/data.ts).
-
----
-
-## Simple explanation for non-technical users
-
-This website is a digital home for the IEEE Student Branch at Cavendish University Uganda. It helps people:
-
-- know what the branch stands for
-- see upcoming activities
-- register for events
-- connect with the branch on WhatsApp or social media
-- learn about student programs and leadership
-
-It is basically a modern online notice board, information center, and community hub for engineering students.
-
----
-
-## Deployment
-
-You can deploy this project on platforms such as Vercel, Netlify, or any Node.js hosting service.
-
-Recommended:
-
-```bash
-npm run build
-```
-
-Then deploy the project using a platform that supports Next.js applications.
-
----
-
-## Final note
-
-This project is structured to be easy to maintain. If you want to change site content or links, start in [lib/data.ts](lib/data.ts) and the root [.env](.env) file. If you want to change layout or section design, start in the relevant component under [components](components).
-
-If you are new to the project, begin with:
-
-1. [app/page.tsx](app/page.tsx)
-2. [components/Hero.tsx](components/Hero.tsx)
-3. [lib/data.ts](lib/data.ts)
-4. [.env](.env)
-
-That will give you the quickest understanding of how the site is assembled and where to edit information.
+- [ ] **Domain**: Request Cavendish IT to point `ieee.cavendish.ac.ug` to the Vercel project.
+- [ ] **GitHub Repository**: Maintain repository ownership under an official branch organization account (`EGABO-TECH` or branch-owned org), not an individual's personal GitHub account.
+- [ ] **Vercel Account**: Ensure the Vercel team/project is accessible to the branch email address (`ieee@cavendish.ac.ug`).
+- [ ] **Official Social Accounts**: Store 2FA recovery codes and passwords for LinkedIn, X (@IEEECavendish), and TikTok in a branch password vault shared by the Counselor and Chair.
+- [ ] **WhatsApp Community Ownership**: Ensure WhatsApp Community ownership is transferred to the incoming Chair and Secretary before graduating.
+- [ ] **Admin Secret Key**: Rotate `ADMIN_SECRET` annually upon election of each new executive committee.

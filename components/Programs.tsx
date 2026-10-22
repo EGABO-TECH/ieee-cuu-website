@@ -90,14 +90,19 @@ export function Programs() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
           <div>
-            <h2 className="max-w-xl font-serif text-3xl font-bold leading-tight text-ink sm:text-4xl">
-              Student programs and opportunities
+            <span className="rounded-full bg-slate-200/80 px-3 py-1 text-xs font-semibold text-slate-700">
+              Campus &amp; Community Partners
+            </span>
+            <h2 className="mt-3 max-w-xl font-serif text-3xl font-bold leading-tight text-ink sm:text-4xl">
+              Partner Programs &amp; Ambassadorships
             </h2>
           </div>
-          <div className="flex items-end">
+          <div className="flex flex-col justify-end">
             <p className="max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
-              Explore global initiatives represented at Cavendish University Uganda. Each program
-              includes its focus areas, benefits, and local campus contacts.
+              Initiatives represented at Cavendish University Uganda in collaboration with student leaders and external technical communities.
+            </p>
+            <p className="mt-2 text-xs text-slate-500 italic">
+              Non-endorsement disclaimer: AWS Student Builders and Black Python Devs are campus and community partners. Their inclusion is not an IEEE endorsement.
             </p>
           </div>
         </div>

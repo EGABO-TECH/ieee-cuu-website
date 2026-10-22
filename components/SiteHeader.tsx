@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
@@ -22,13 +22,14 @@ interface NavLink {
 
 const LINKS: NavLink[] = [
   { href: "/", id: "top", label: "Home" },
-  { href: "/about", id: "about", label: "About", isExternalTab: true },
-  { href: "/branch", id: "branch", label: "The Branch", isExternalTab: true },
+  { href: "/about", id: "about", label: "About" },
+  { href: "/branch", id: "branch", label: "The Branch" },
   { href: "/events", id: "events", label: "Events", isEvents: true },
-  { href: "/cuucsa", id: "cuucsa", label: "CUUCSA", isExternalTab: true },
-  { href: "/programs", id: "programs", label: "Programs", isExternalTab: true },
-  { href: "/team", id: "team", label: "Team", isExternalTab: true },
-  { href: "/join", id: "join", label: "Join us", isExternalTab: true },
+  { href: "/programs", id: "programs", label: "Programs" },
+  { href: "/cuucsa", id: "cuucsa", label: "CUUCSA" },
+  { href: "/team", id: "team", label: "Team" },
+  { href: "/contact", id: "contact", label: "Contact" },
+  { href: "/join", id: "join", label: "Join us" },
 ];
 
 export function SiteHeader() {
@@ -137,10 +138,9 @@ export function SiteHeader() {
                   {/* Events menu */}
                   {eventsDropdownOpen && (
                     <div className="absolute right-0 top-full z-[80] mt-2 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-white/15 bg-[#071722] py-1 shadow-[0_12px_32px_rgba(0,0,0,0.3)]">
-                        <a
-                          href="/events/ieee-day"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          href="/events/ieee-day-2026"
+                          onClick={() => setEventsDropdownOpen(false)}
                           className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
                         >
                           <span className="flex items-baseline justify-between gap-4">
@@ -148,14 +148,13 @@ export function SiteHeader() {
                             <span className="shrink-0 text-xs text-slate-400">6 Oct</span>
                           </span>
                           <span className="mt-1 block text-xs leading-5 text-slate-300">Student Branch launch · 12–6 PM EAT</span>
-                        </a>
+                        </Link>
 
                         <div className="mx-4 border-t border-white/10" />
 
-                        <a
-                          href="/events/ieeextreme"
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        <Link
+                          href="/events/ieeextreme-20"
+                          onClick={() => setEventsDropdownOpen(false)}
                           className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
                         >
                           <span className="flex items-baseline justify-between gap-4">
@@ -163,39 +162,20 @@ export function SiteHeader() {
                             <span className="shrink-0 text-xs text-slate-400">17 Oct</span>
                           </span>
                           <span className="mt-1 block text-xs leading-5 text-slate-300">24-hour global programming contest</span>
-                        </a>
+                        </Link>
 
                       <div className="mx-4 border-t border-white/10" />
 
-                      <a
+                      <Link
                         href="/events"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={() => setEventsDropdownOpen(false)}
                         className="block px-4 py-3 text-xs font-medium text-slate-300 transition-colors hover:bg-white/[0.05] hover:text-white"
                       >
                         All events
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>
-              );
-            }
-
-            if (l.isExternalTab) {
-              return (
-                <a
-                  key={l.id}
-                  href={l.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`inline-flex items-center gap-1 rounded-full text-xs transition-all duration-300 max-[1023px]:gap-0.5 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
-                    active
-                      ? "bg-[#FFFFFF] px-4 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"
-                      : "px-3.5 py-1.5 font-medium text-muted hover:text-[#FFFFFF] hover:bg-ieee/10"
-                  }`}
-                >
-                  <span>{l.label}</span>
-                </a>
               );
             }
 
@@ -306,62 +286,37 @@ export function SiteHeader() {
               if (l.isEvents) {
                 return (
                   <div key={l.id}>
-                    <a
+                    <Link
                       href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
                       onClick={() => setOpen(false)}
                       className={`block font-serif text-3xl italic transition-colors sm:text-4xl ${
                         isLinkActive(l) ? "text-white" : "text-white/65 hover:text-white"
                       }`}
                     >
                       {l.label}
-                    </a>
+                    </Link>
                     <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 pl-1 text-sm text-white/45">
-                      <a
-                        href="/events/ieee-day"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href="/events/ieee-day-2026"
                         onClick={() => setOpen(false)}
                         className="transition-colors hover:text-white"
                       >
                         IEEE Day 2026
-                      </a>
+                      </Link>
                       <span aria-hidden="true">·</span>
-                      <a
-                        href="/events/ieeextreme"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Link
+                        href="/events/ieeextreme-20"
                         onClick={() => setOpen(false)}
                         className="transition-colors hover:text-white"
                       >
                         IEEEXtreme 20.0
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 );
               }
 
               const active = isLinkActive(l);
-
-              if (l.isExternalTab) {
-                return (
-                  <a
-                    key={l.id}
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setOpen(false)}
-                    className={`block font-serif text-3xl italic transition-colors sm:text-4xl ${
-                      active
-                        ? "text-white"
-                        : "text-white/65 hover:text-white"
-                    }`}
-                  >
-                    {l.label}
-                  </a>
-                );
-              }
 
               return (
                 <Link
@@ -381,14 +336,13 @@ export function SiteHeader() {
           </nav>
 
           <div className="mt-auto border-t border-white/10 pt-6">
-            <a
-              href={WHATSAPP_INVITE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
               className="flex w-full items-center justify-center rounded-2xl bg-white px-6 py-4 text-base font-semibold text-[#09090f] transition hover:bg-white/90"
             >
-              Contact
-            </a>
+              Contact Branch
+            </Link>
 
             <div className="mt-6 flex items-center justify-center gap-4 text-white/70">
             <a

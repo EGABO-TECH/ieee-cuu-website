@@ -1,0 +1,47 @@
+{
+  "slug": "ieeextreme-20",
+  "title": "IEEEXtreme 20.0",
+  "summary": "A 24-hour global programming contest for teams of 2 to 3 IEEE Student Members. Solve algorithmic challenges and compete on the worldwide leaderboard.",
+  "kind": "competition",
+  "startsAt": "2026-10-25T00:00:00+03:00",
+  "endsAt": "2026-10-26T00:00:00+03:00",
+  "timezone": "Africa/Kampala",
+  "online": true,
+  "registration": {
+    "opensAt": "2026-09-01T00:00:00Z",
+    "closesAt": "2026-10-17T23:59:00Z",
+    "url": "https://xtreme.vtools.ieee.org",
+    "label": "Register Team on vTools",
+    "membersOnly": true
+  },
+  "flyer": "/images/IEEEXtreme-Flyer.jpeg",
+  "recap": {
+    "summary": "TODO(owner): Please supply the IEEEXtreme 20.0 contest date, CUU team results (team names, scores, rankings), and any recap notes.",
+    "attendance": null,
+    "photos": [],
+    "links": [
+      {
+        "label": "Official IEEEXtreme website",
+        "url": "https://ieeextreme.org"
+      }
+    ]
+  },
+  "faq": [
+    {
+      "q": "Who is eligible to participate in IEEEXtreme?",
+      "a": "Any undergraduate or graduate student at Cavendish University Uganda with an active IEEE Student Membership. Students from all faculties with coding interest are welcome."
+    },
+    {
+      "q": "What programming languages are allowed?",
+      "a": "The contest platform supports over 25 languages including C, C++, Java, Python, Go, Rust, JavaScript, Kotlin, C#, and Ruby."
+    },
+    {
+      "q": "What is a Proctor and how do I get one?",
+      "a": "Every team must be monitored by an official IEEE Member proctor. The IEEE CUU Student Branch arranges proctors and testing rooms for all registered CUU teams."
+    },
+    {
+      "q": "Will there be a physical space to code at Cavendish University?",
+      "a": "The Branch is exploring a 24-hour workspace for registered teams. Contact the Technical Coordinators via WhatsApp for the latest plans."
+    }
+  ]
+}

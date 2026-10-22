@@ -28,25 +28,30 @@ const PILLARS = [
   },
   {
     icon: Briefcase,
-    title: "Techpreneur & Industry Connect",
-    subtitle: "Career & Venture Building",
-    desc: "Direct recruitment pipelines, industry speaker sessions, portfolio teardowns, and tech founder venture incubation.",
+    title: "Career & Industry Connect",
+    subtitle: "Professional Development",
+    desc: "Industry speaker sessions, portfolio teardowns, and practical career development support (planned).",
     tag: "Industry Link",
   },
   {
     icon: Users2,
     title: "Guild & Student Representation",
     subtitle: "Advocacy & Community",
-    desc: "Unified computing student voice, peer study circles, women-in-tech initiatives, and Students' Guild alignment.",
+    desc: "Unified computing student voice, peer study circles, women-in-tech initiatives, and Students' Guild alignment. TODO(owner): confirm current CUUCSA executive leads.",
     tag: "Ecosystem",
   },
 ];
 
 const FAQS = [
   {
+    question: "How does CUUCSA relate to the IEEE Student Branch?",
+    answer:
+      "CUUCSA is the campus-level computing students' association representing all computing disciplines at Cavendish University Uganda. The IEEE Student Branch is the university's official charter of IEEE (Region 8 / Uganda Section). The two organizations collaborate as campus partners on workshops, IEEEXtreme preparation, and tech events.",
+  },
+  {
     question: "Who is CUUCSA?",
     answer:
-      "CUUCSA is the Cavendish University Uganda Computing Students’ Association, a student-led community for computing students across the university.",
+      "CUUCSA is the Cavendish University Uganda Computing Students' Association, a student-led community for computing students across the university.",
   },
   {
     question: "Where is it going?",

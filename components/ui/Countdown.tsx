@@ -1,24 +1,66 @@
-﻿"use client";
+"use client";
 
-import { useCountdown } from "@/lib/useCountdown";
+import { useEffect, useState } from "react";
+
+type TimeLeft = { days: number; hours: number; minutes: number; seconds: number };
+
+function msToTimeLeft(ms: number): TimeLeft {
+  const clamped = Math.max(0, ms);
+  return {
+    days: Math.floor(clamped / 86400000),
+    hours: Math.floor((clamped % 86400000) / 3600000),
+    minutes: Math.floor((clamped % 3600000) / 60000),
+    seconds: Math.floor((clamped % 60000) / 1000),
+  };
+}
 
 export function Countdown({
   targetISO,
+  /** ms remaining as computed on the server — prevents a flash of 00 */
+  initialMs,
   showSeconds = true,
+  /** If true, renders nothing once the target time has passed */
+  hideWhenExpired = false,
 }: {
   targetISO: string;
+  initialMs?: number;
   showSeconds?: boolean;
+  hideWhenExpired?: boolean;
 }) {
-  const { days, hours, minutes, seconds } = useCountdown(targetISO);
+  const [left, setLeft] = useState<TimeLeft>(() => {
+    const seed = initialMs !== undefined ? initialMs : Math.max(0, new Date(targetISO).getTime() - Date.now());
+    return msToTimeLeft(seed);
+  });
+  const [expired, setExpired] = useState(false);
+
+  useEffect(() => {
+    const target = new Date(targetISO).getTime();
+    const tick = () => {
+      const ms = target - Date.now();
+      if (ms <= 0) {
+        setLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setExpired(true);
+        clearInterval(id);
+        return;
+      }
+      setLeft(msToTimeLeft(ms));
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, [targetISO]);
+
+  if (hideWhenExpired && expired) return null;
+
   const cells = [
-    { value: days, label: "days" },
-    { value: hours, label: "hrs" },
-    { value: minutes, label: "min" },
-    ...(showSeconds ? [{ value: seconds, label: "sec" }] : []),
+    { value: left.days, label: "days" },
+    { value: left.hours, label: "hrs" },
+    { value: left.minutes, label: "min" },
+    ...(showSeconds ? [{ value: left.seconds, label: "sec" }] : []),
   ];
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-3" role="timer" aria-label="Time remaining">
       {cells.map((c) => (
         <div
           key={c.label}

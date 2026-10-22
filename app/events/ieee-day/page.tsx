@@ -1,329 +1,306 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Calendar, 
-  MapPin, 
-  Clock, 
-  Users, 
-  Lightbulb, 
-  Settings, 
-  Network, 
-  Rocket, 
-  ArrowUpRight, 
-  Download, 
-  CheckCircle2, 
-  Sparkles, 
-  Share2, 
+import {
+  Calendar,
+  MapPin,
+  Clock,
+  Users,
+  Lightbulb,
+  Settings,
+  Network,
+  Rocket,
+  ArrowUpRight,
+  Download,
+  CheckCircle2,
+  Sparkles,
   Award,
   Coffee,
   HelpCircle,
-  ExternalLink
+  ExternalLink,
+  ImageIcon,
 } from "lucide-react";
-import { IEEE_DAY_REGISTRATION_DEADLINE_ISO, IEEE_DAY_REGISTRATION_URL, IEEE_DAY_TARGET_ISO, WHATSAPP_INVITE_URL } from "@/lib/data";
+import { getEventBySlug, formatDateEAT, msUntil } from "@/lib/events";
 import { Countdown } from "@/components/ui/Countdown";
-import { DeadlineRegistrationAction, DeadlineRegistrationStatus } from "@/components/DeadlineRegistration";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SITE } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "IEEE Day 2026 | CUU Student Branch Launch | Cavendish University Uganda",
   description:
-    "Join us on 6 October 2026, 12:00 PM to 6:00 PM EAT, at Siyani Campus for the official launch of the IEEE Student Branch at Cavendish University Uganda. Live countdown, program schedule, and free registration.",
+    "The official launch of the IEEE Student Branch at Cavendish University Uganda, held on 6 October 2026 at Siyani Campus.",
 };
 
 const SCHEDULE = [
   {
-    time: "12:00 PM to 12:30 PM",
+    time: "12:00 PM – 12:30 PM",
     title: "Arrival, Check-in & Welcome Refreshments",
     speaker: "Branch Organizing Committee",
     desc: "Registration badge pick-up, welcome packet distribution, and informal peer networking over refreshments.",
     icon: Coffee,
   },
   {
-    time: "12:30 PM to 12:50 PM",
+    time: "12:30 PM – 12:50 PM",
     title: "Opening Ceremony & Welcome Remarks",
     speaker: "Faculty Advisor & Dean of Science & Tech",
     desc: "Introductory remarks from Cavendish University leadership welcoming students, guests, and IEEE representatives.",
     icon: Award,
   },
   {
-    time: "12:50 PM to 01:30 PM",
+    time: "12:50 PM – 1:30 PM",
     title: "Keynote: Advancing Technology for Humanity in Africa",
     speaker: "Guest Speaker · IEEE Uganda Section",
     desc: "A vision for engineering, computing, and professional growth across Africa through IEEE societies and initiatives.",
     icon: Lightbulb,
   },
   {
-    time: "01:30 PM to 02:15 PM",
+    time: "1:30 PM – 2:15 PM",
     title: "Official Charter Presentation & Branch Inauguration",
     speaker: "Mulondo Andrew (Branch Chair) & Executive Committee",
-    desc: "Unveiling the official IEEE Cavendish University Uganda charter, swearing-in of branch officers, and cake cutting ceremony.",
+    desc: "Unveiling the official IEEE CUU Student Branch charter, swearing-in of branch officers, and cake cutting ceremony.",
     icon: Sparkles,
   },
   {
-    time: "02:15 PM to 03:00 PM",
-    title: "Networking Break & Official Group Photography",
+    time: "2:15 PM – 3:00 PM",
+    title: "Networking Break & Group Photography",
     speaker: "All Attendees & VIP Guests",
     desc: "Commemorative group photos followed by time to connect with faculty, guests, and fellow students.",
     icon: Users,
   },
   {
-    time: "03:00 PM to 04:00 PM",
-    title: "Tech Demos: Cloud, AI & Open-Source Opportunities",
-    speaker: "AWS Student Builders & Black Python Devs",
-    desc: "Interactive presentations by campus ambassadors showcasing real projects, free cloud credits, and global mentorship programs.",
+    time: "3:00 PM – 4:00 PM",
+    title: "Tech Demos: Cloud, AI & Open-Source",
+    speaker: "AWS Student Builders & community partners",
+    desc: "Interactive presentations by campus ambassadors showcasing real projects, free cloud credits, and global programs.",
     icon: Rocket,
   },
   {
-    time: "04:00 PM to 04:45 PM",
+    time: "4:00 PM – 4:45 PM",
     title: "Road to IEEEXtreme 20.0: Global Hackathon Briefing",
-    speaker: "Mulo Ausi & Niwasiima Ashelycole (Technical Leads)",
-    desc: "Everything you need to know about forming a 2 to 3 person team for the 24-hour virtual competitive programming challenge.",
+    speaker: "Mulo Ausi & Niwasiima Ashelycole (Technical Coordinators)",
+    desc: "Everything you need to know about forming a 2–3 person team for the 24-hour virtual programming challenge.",
     icon: Settings,
   },
   {
-    time: "04:45 PM to 06:00 PM",
-    title: "Student Membership Induction, Raffles & Wrap-Up",
+    time: "4:45 PM – 6:00 PM",
+    title: "Membership Induction & Closing Remarks",
     speaker: "Membership Team",
-    desc: "Assisted student registration, raffle prize giveaways, and closing remarks by Branch Chair.",
+    desc: "Assisted student registration, closing remarks by the Branch Chair, and farewell.",
     icon: CheckCircle2,
-  },
-];
-
-const PERKS = [
-  {
-    title: "Global IEEE Credentials",
-    desc: "Be officially recognized as a founding student member of the IEEE CUU Student Branch.",
-  },
-  {
-    title: "High-Impact Workshops",
-    desc: "Experience practical tech talks and masterclasses spanning cloud, artificial intelligence, and open source.",
-  },
-  {
-    title: "Direct Professional Network",
-    desc: "Interact with senior engineers, IEEE Uganda Section executives, and industry mentors.",
-  },
-  {
-    title: "Hackathon Track Access",
-    desc: "Priority onboarding and proctor support for IEEEXtreme 20.0 and regional coding contests.",
   },
 ];
 
 const FAQS = [
   {
-    q: "Is IEEE Day free to attend?",
-    a: "Yes! Admission to IEEE Day 2026 is 100% free for all Cavendish University Uganda students, alumni, and faculty.",
+    q: "Was IEEE Day free to attend?",
+    a: "Yes. Admission was free for all Cavendish University Uganda students, alumni, and faculty.",
   },
   {
     q: "Do I have to be a Computer Science or Engineering student?",
-    a: "No. IEEE is an interdisciplinary global organization. Students from Business, Public Health, Law, and Social Sciences are warmly welcome.",
+    a: "No. IEEE is an interdisciplinary organisation. Students from Business, Public Health, Law, and Social Sciences are warmly welcome.",
   },
   {
-    q: "What should I bring with me?",
-    a: "Bring your Cavendish University Student ID for badge collection, a notebook or laptop for the technical sessions, and your enthusiasm!",
+    q: "Can I still join the IEEE Student Branch?",
+    a: "Absolutely. Visit the Join page to register your interest, then follow the steps to become an IEEE Student Member.",
   },
   {
-    q: "Can I register for an official IEEE Student Membership on the day?",
-    a: "Yes! Our registration desk will guide students step-by-step through subsidized student membership registration with instant perks.",
+    q: "When is the next branch event?",
+    a: "Check the Events page for planned upcoming activities. Follow us on social media for the latest announcements.",
   },
 ];
 
+// Server component — status computed at render time
 export default function IEEEDayPage() {
+  const event = getEventBySlug("ieee-day-2026");
+  const isEnded = !event || event.status === "ended";
+  const hasRecap =
+    event?.recap?.summary && !event.recap.summary.startsWith("TODO");
+
   return (
     <>
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
-        {/* Ambient Top Glows */}
+        {/* Ambient glows */}
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[1000px] rounded-full opacity-[0.14]"
           style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 45%, transparent 75%)" }}
         />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute top-48 right-0 h-[450px] w-[450px] rounded-full opacity-[0.08]"
-          style={{ background: "radial-gradient(ellipse at center, #1A9090 0%, transparent 70%)" }}
-        />
 
-        {/* ── EVENT STATUS & REGISTRATION ── */}
+        {/* ── STATUS BANNER ── */}
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex flex-wrap items-center justify-end gap-4">
-            <div className="flex items-center gap-3">
-              <DeadlineRegistrationStatus
-                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
-                openLabel="Registrations Open"
-                closedLabel="Registration closed"
-                openClassName="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold text-emerald-400"
-                closedClassName="inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-3 py-1 text-[11px] font-semibold text-slate-300"
-              />
-              <DeadlineRegistrationAction
-                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
-                href={IEEE_DAY_REGISTRATION_URL}
-                closedLabel="Registration closed"
-                className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-1.5 text-xs font-semibold text-white transition hover:bg-[#1A9090]"
-                closedClassName="hidden sm:inline-flex items-center rounded-full border border-slate-500/30 bg-slate-500/10 px-4 py-1.5 text-xs font-semibold text-slate-300"
-              >
-                RSVP Now
-                <ArrowUpRight size={13} />
-              </DeadlineRegistrationAction>
-            </div>
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+              {isEnded ? "Event ended" : "Upcoming"}
+            </span>
+            <Link
+              href="/events"
+              className="text-xs text-[#0D6E6E] hover:text-[#1A9090] transition"
+            >
+              ← All events
+            </Link>
           </div>
         </div>
 
-        {/* ── HERO BANNER ── */}
+        {/* ── HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
               IEEE Day 2026<br />
-              <span className="text-[#1A9090] italic">CUU Student Branch</span> Launch
+              <span className="text-[#1A9090]">CUU Student Branch</span> Launch
             </h1>
 
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-muted">
-              Together for a Brighter Future. Join us as Cavendish University Uganda officially inaugurates
-              its IEEE Student Branch. Experience inspiring tech keynotes, hands-on workshops, and celebrate
-              the founding cohort of future technology leaders.
+            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600">
+              The official inaugural celebration of the IEEE Student Branch at Cavendish University Uganda —
+              keynotes, workshops, branch charter presentation, and community onboarding.
             </p>
 
-            {/* Quick Meta Strip */}
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-700">
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
                 <Calendar size={17} className="text-[#0D6E6E]" />
-                <span className="font-semibold">6th October 2026</span>
+                <span className="font-semibold">6 October 2026</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
                 <Clock size={17} className="text-[#0D6E6E]" />
-                <span>12:00 PM to 06:00 PM EAT</span>
+                <span>12:00 PM – 6:00 PM EAT</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 backdrop-blur-md">
+              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
                 <MapPin size={17} className="text-[#0D6E6E]" />
                 <span>Siyani Campus, Kampala</span>
-              </div>
-            </div>
-
-            {/* Live Countdown Box */}
-            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(135deg,#103746_0%,#0D5961_52%,#102532_100%)] p-6 shadow-[0_24px_60px_rgba(4,28,39,0.28)]">
-              <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-white/85">
-                Official Countdown to Event Kickoff
-              </p>
-              <div className="flex justify-center">
-                <Countdown targetISO={IEEE_DAY_TARGET_ISO} />
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <DeadlineRegistrationAction
-                  deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
-                  href={IEEE_DAY_REGISTRATION_URL}
-                  closedLabel="Registration closed"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-sm font-bold text-ink shadow-lg shadow-[#0D6E6E]/30 transition hover:bg-[#1A9090] hover:-translate-y-0.5"
-                >
-                  <span>Register Free Seat</span>
-                  <ArrowUpRight size={16} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </DeadlineRegistrationAction>
-                <a
-                  href="/images/IEEE-Flyer.png"
-                  download="IEEE-Day-2026-CUU-Flyer.png"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
-                >
-                  <Download size={15} />
-                  <span>Download Flyer</span>
-                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── FLYER & HIGHLIGHTS SPLIT SECTION ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center rounded-3xl border border-ieee/10 bg-white overflow-hidden p-8 sm:p-12">
-            {/* Left: Flyer Showcase */}
+        {/* ── RECAP (if ended) ── */}
+        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-8">
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 sm:p-10">
+            <h2 className="font-serif text-2xl font-bold text-slate-900 mb-2">
+              {isEnded ? "Event recap" : "About this event"}
+            </h2>
+
+            {hasRecap ? (
+              <p className="text-base text-slate-600 leading-relaxed">{event?.recap?.summary}</p>
+            ) : (
+              <p className="text-sm text-slate-400 italic">
+                {/* TODO(owner): Photos and recap paragraph coming soon */}
+                A recap will be added once the branch team supplies photos, the attendance count, and a summary paragraph.
+              </p>
+            )}
+
+            {/* Photo gallery — empty state */}
+            <div className="mt-8">
+              <h3 className="text-sm font-semibold text-slate-700 mb-4">Photos</h3>
+              {event?.recap?.photos && event.recap.photos.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                  {event.recap.photos.map((photo, i) => (
+                    <div key={i} className="relative aspect-square rounded-xl overflow-hidden border border-slate-100">
+                      <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="200px" />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-12 text-center">
+                  <ImageIcon size={32} className="text-slate-300 mb-3" />
+                  <p className="text-sm text-slate-400">
+                    Photos from IEEE Day 2026 are coming soon.
+                  </p>
+                  <p className="text-xs text-slate-300 mt-1">
+                    {/* TODO(owner): Upload event photos to /public/images/events/ieee-day-2026/ */}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/join"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+              >
+                Join the branch
+                <ArrowUpRight size={14} />
+              </Link>
+              <a
+                href="/images/IEEE-Flyer.png"
+                download="IEEE-Day-2026-CUU-Flyer.png"
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                <Download size={14} />
+                Download flyer
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ── FLYER & HIGHLIGHTS ── */}
+        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center rounded-3xl border border-slate-100 bg-white overflow-hidden p-8 sm:p-12">
             <div className="lg:col-span-5 flex flex-col items-center justify-center">
-              <div className="relative w-full max-w-[340px] overflow-hidden rounded-2xl border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.7)] group">
+              <div className="relative w-full max-w-[320px] overflow-hidden rounded-2xl border border-slate-100 shadow-xl group">
                 <Image
                   src="/images/IEEE-Flyer.png"
-                  alt="Official IEEE Day 2026 Flyer"
+                  alt="Official IEEE Day 2026 flyer"
                   width={500}
                   height={700}
                   className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   priority
+                  sizes="(max-width: 1024px) 90vw, 320px"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-4">
                   <a
                     href="/images/IEEE-Flyer.png"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-black shadow-lg"
                   >
-                    View Full Resolution
+                    View full resolution
                     <ExternalLink size={13} />
                   </a>
                 </div>
               </div>
-              <p className="mt-3 text-xs text-muted text-center">
-                Scan QR code on flyer or use direct links above
-              </p>
             </div>
 
-            {/* Right: Key Highlights */}
             <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
-                  Event Experience
-                </span>
-                <h2 className="mt-2 font-serif text-3xl font-bold text-ink sm:text-4xl">
-                  What IEEE Day 2026 Unlocks For You
+                <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                  What IEEE Day 2026 Covered
                 </h2>
-                <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted">
+                <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
                   IEEE Day is celebrated annually by hundreds of thousands of engineers, researchers, and students
-                  in over 160 countries. This year marks a historic milestone as Cavendish University Uganda
-                  inaugurates its official Student Branch charter.
+                  in over 160 countries. This year marked a historic milestone as Cavendish University Uganda
+                  inaugurated its official Student Branch charter.
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                {PERKS.map((p) => (
-                  <div key={p.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                    <div className="flex items-center gap-2 font-semibold text-slate-900 text-base">
-                      <CheckCircle2 size={18} className="text-[#1A9090] shrink-0" />
-                      <h4>{p.title}</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { title: "Founding student member recognition", desc: "Be part of the first cohort of IEEE CUU Student Branch members." },
+                  { title: "Tech workshops", desc: "Practical sessions spanning cloud, AI, and open-source software." },
+                  { title: "Professional networking", desc: "Meet senior engineers, IEEE Uganda Section executives, and mentors." },
+                  { title: "IEEEXtreme briefing", desc: "Onboarding and proctor support for the 24-hour global programming contest." },
+                ].map((p) => (
+                  <div key={p.title} className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 size={16} className="text-[#1A9090] shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-slate-900 text-sm">{p.title}</p>
+                        <p className="mt-1 text-xs text-slate-500 leading-relaxed">{p.desc}</p>
+                      </div>
                     </div>
-                    <p className="mt-2 text-xs sm:text-sm text-muted leading-relaxed">
-                      {p.desc}
-                    </p>
                   </div>
                 ))}
-              </div>
-
-              {/* Callout Box */}
-              <div className="rounded-2xl border border-[#1A9090]/40 bg-[#0D6E6E]/20 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <h4 className="font-semibold text-slate-900 text-sm">Want to join the WhatsApp organizing group?</h4>
-                  <p className="text-xs text-slate-600 mt-1">Get real-time announcements, speaker reveal alerts, and transport coordination.</p>
-                </div>
-                <a
-                  href={WHATSAPP_INVITE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink-0 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-800 transition hover:bg-slate-50"
-                >
-                  Join Community
-                  <ArrowUpRight size={13} />
-                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── INTERACTIVE TIMELINE / SCHEDULE ── */}
+        {/* ── SCHEDULE (what happened) ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-[#dfeff0] px-3 py-1 text-[12px] font-medium text-[#2f5f68]">
-              <span className="h-1 w-1 rounded-full bg-[#2f5f68]/50" aria-hidden="true" />
-              Full day agenda
-            </span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-ink sm:text-4xl">
-              Program Schedule & Sessions
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+              Programme — what happened
             </h2>
-            <p className="mt-3 text-sm text-muted">
-              A packed, inspiring day featuring technical masterclasses, leadership talks, ceremonial launches, and networking.
+            <p className="mt-3 text-sm text-slate-500">
+              The full agenda as it ran on 6 October 2026.
             </p>
           </div>
 
@@ -333,26 +310,24 @@ export default function IEEEDayPage() {
               return (
                 <div
                   key={idx}
-                  className="group relative flex flex-col sm:flex-row items-start gap-5 rounded-2xl border border-ieee/10 bg-white p-6 backdrop-blur-sm transition duration-300 hover:border-[#1A9090]/50 hover:bg-white"
+                  className="group relative flex flex-col sm:flex-row items-start gap-5 rounded-2xl border border-slate-100 bg-white p-6 transition duration-300 hover:border-[#1A9090]/40"
                 >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-ieee/10 text-ieee group-hover:scale-105 group-hover:bg-[#1A9090]/30 transition-all">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-slate-100 bg-[#eaf2f4] text-[#0D5B8F]">
                     <Icon size={22} />
                   </div>
-
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                      <span className="text-xs font-bold uppercase tracking-wider text-slate-600">
                         {item.time}
                       </span>
-                      <span className="rounded-full border border-ieee/10 bg-white px-2.5 py-0.5 text-[11px] text-muted">
+                      <span className="rounded-full border border-slate-100 bg-slate-50 px-2.5 py-0.5 text-[11px] text-slate-500">
                         {item.speaker}
                       </span>
                     </div>
-
-                    <h3 className="mt-2 text-lg font-bold text-ink group-hover:text-ieee transition-colors">
+                    <h3 className="mt-2 text-lg font-bold text-slate-900 group-hover:text-[#0D6E6E] transition-colors">
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
+                    <p className="mt-2 text-sm leading-relaxed text-slate-500">
                       {item.desc}
                     </p>
                   </div>
@@ -362,47 +337,36 @@ export default function IEEEDayPage() {
           </div>
         </section>
 
-        {/* ── VENUE & CAMPUS MAP ── */}
+        {/* ── VENUE ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
-          <div className="rounded-3xl border border-white/[0.08] bg-[#0c0e17] p-8 sm:p-12 overflow-hidden">
+          <div className="rounded-3xl border border-white/10 bg-[#0c0e17] p-8 sm:p-12 overflow-hidden">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-5">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#62c9c0]">
-                  Event Location
-                </span>
                 <h2 className="font-serif text-3xl font-bold text-white">
-                  Cavendish University Uganda <span className="text-[#62c9c0]">· Siyani Campus</span>
+                  Cavendish University Uganda{" "}
+                  <span className="text-[#62c9c0]">· Siyani Campus</span>
                 </h2>
-                <p className="text-sm leading-relaxed text-slate-300">
-                  The inaugural ceremony will take place at the Siyani Campus Main Auditorium, located along Ggaba Road in Kampala. Free security-controlled parking and campus Wi-Fi will be available for all registered participants.
-                </p>
-
                 <div className="space-y-3 text-sm text-slate-300">
                   <div className="flex items-center gap-3">
-                    <MapPin size={17} className="text-[#E8F5F5] shrink-0" />
-                    <span>Plot 1469 Ggaba Road, Nsambya / Kansanga, Kampala</span>
+                    <MapPin size={17} className="text-white/60 shrink-0" />
+                    <span>Plot 1469 Ggaba Road, Kampala, Uganda</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Clock size={17} className="text-[#1A9090] shrink-0" />
-                    <span>Doors open at 11:30 AM · Registration starts 12:00 PM</span>
+                    <span>12:00 PM – 6:00 PM EAT</span>
                   </div>
                 </div>
-
-                <div className="pt-2">
-                  <a
-                    href="https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-semibold text-slate-800 transition hover:bg-slate-50"
-                  >
-                    Open in Google Maps
-                    <ArrowUpRight size={14} />
-                  </a>
-                </div>
+                <a
+                  href={SITE.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2.5 text-xs font-semibold text-slate-800 transition hover:bg-slate-50"
+                >
+                  Open in Google Maps
+                  <ArrowUpRight size={14} />
+                </a>
               </div>
-
-              {/* Map embed */}
-              <div className="lg:col-span-7 h-[320px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <div className="lg:col-span-7 h-[320px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                 <iframe
                   title="Cavendish University Uganda Map"
                   src="https://www.google.com/maps?q=Plot+1469+Ggaba+Road+Kampala+Uganda+Cavendish+University&output=embed"
@@ -411,64 +375,55 @@ export default function IEEEDayPage() {
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
-                  className="w-full h-full grayscale-[20%]"
+                  className="w-full h-full"
                 />
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── EVENT FAQS ── */}
+        {/* ── FAQS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="inline-flex items-center gap-1.5 rounded-md bg-white border border-slate-100 px-3 py-1 text-[12px] font-medium text-slate-600">
-              <span className="h-1 w-1 rounded-full bg-slate-400" aria-hidden="true" />
-              Got questions?
-            </span>
-            <h2 className="mt-4 font-serif text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
               Frequently Asked Questions
             </h2>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto divide-y divide-slate-100 border-y border-slate-100">
             {FAQS.map((faq, i) => (
-              <div key={i} className="rounded-2xl border border-ieee/10 bg-white/80 p-6">
-                <div className="flex items-start gap-3">
-                  <HelpCircle size={18} className="text-[#E8F5F5] shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-bold text-ink text-base">{faq.q}</h3>
-                    <p className="mt-2 text-sm text-muted leading-relaxed">{faq.a}</p>
-                  </div>
-                </div>
-              </div>
+              <details key={i} className="group py-5">
+                <summary className="flex cursor-pointer items-center justify-between gap-4 text-left list-none">
+                  <span className="font-semibold text-slate-900">{faq.q}</span>
+                  <span className="shrink-0 text-[#1A9090] transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p className="mt-3 max-w-xl text-sm text-slate-500 leading-relaxed">{faq.a}</p>
+              </details>
             ))}
           </div>
         </section>
 
-        {/* ── FINAL CTA BANNER ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-10">
-          <div className="relative overflow-hidden rounded-3xl border border-[#1A9090]/40 bg-gradient-to-r from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-10 sm:p-14 text-center shadow-2xl">
-            <h2 className="font-serif text-3xl font-bold text-ink sm:text-4xl">
-              Reserve Your Place at the Launch
+        {/* ── CTA ── */}
+        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-8">
+          <div className="relative overflow-hidden rounded-3xl border border-[#1A9090]/30 bg-gradient-to-r from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-10 sm:p-14 text-center">
+            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+              Missed IEEE Day? Join the branch now.
             </h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-muted">
-              Seats inside the Siyani Auditorium are allocated on a first-registered basis. Don&apos;t miss being in the inaugural room.
+            <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-slate-600">
+              The branch is open year-round. Register your interest on the join page and become part of the community.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <DeadlineRegistrationAction
-                deadlineISO={IEEE_DAY_REGISTRATION_DEADLINE_ISO}
-                href={IEEE_DAY_REGISTRATION_URL}
-                closedLabel="Registration closed"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-bold text-black shadow-xl transition hover:bg-neutral-200 hover:scale-105"
+              <Link
+                href="/join"
+                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-8 py-3.5 text-sm font-bold text-white shadow-xl transition hover:bg-[#1A9090]"
               >
-                Register Free Now
+                Join the branch
                 <ArrowUpRight size={16} />
-              </DeadlineRegistrationAction>
+              </Link>
               <Link
                 href="/events"
                 className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
-                Explore Other Events
+                See all events
               </Link>
             </div>
           </div>

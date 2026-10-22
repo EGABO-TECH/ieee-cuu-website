@@ -2,23 +2,30 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 
-function useDeadlineOpen(deadlineISO: string) {
-  const [isOpen, setIsOpen] = useState<boolean | null>(null);
+/**
+ * Hook that returns true if we are before the deadline, false after, null
+ * only during the very first render (SSR).  When `serverIsOpen` is provided
+ * (computed by the server) we use it as the initial value and avoid the flash.
+ */
+function useDeadlineOpen(deadlineISO: string, serverIsOpen?: boolean) {
+  const [isOpen, setIsOpen] = useState<boolean | null>(
+    serverIsOpen !== undefined ? serverIsOpen : null
+  );
 
   useEffect(() => {
     const deadline = new Date(deadlineISO).getTime();
-    let intervalId: number | undefined;
+    let intervalId: ReturnType<typeof setInterval> | undefined;
 
     const update = () => {
       const open = Date.now() < deadline;
       setIsOpen(open);
-      if (!open && intervalId !== undefined) window.clearInterval(intervalId);
+      if (!open && intervalId !== undefined) clearInterval(intervalId);
     };
 
     update();
-    intervalId = window.setInterval(update, 1000);
+    intervalId = setInterval(update, 1000);
     return () => {
-      if (intervalId !== undefined) window.clearInterval(intervalId);
+      if (intervalId !== undefined) clearInterval(intervalId);
     };
   }, [deadlineISO]);
 
@@ -34,6 +41,8 @@ export function DeadlineRegistrationAction({
   closedClassName,
   target,
   rel,
+  /** Pre-computed on the server to avoid "Checking registration..." flash */
+  serverIsOpen,
 }: {
   deadlineISO: string;
   href: string;
@@ -43,8 +52,9 @@ export function DeadlineRegistrationAction({
   closedClassName?: string;
   target?: string;
   rel?: string;
+  serverIsOpen?: boolean;
 }) {
-  const isOpen = useDeadlineOpen(deadlineISO);
+  const isOpen = useDeadlineOpen(deadlineISO, serverIsOpen);
 
   if (isOpen === false) {
     return (
@@ -54,11 +64,13 @@ export function DeadlineRegistrationAction({
     );
   }
 
+  // During SSR (isOpen === null) render the closed state as fallback
+  // only when serverIsOpen is explicitly false; otherwise render the link.
   if (isOpen === null) {
     return (
-      <span role="status" aria-busy="true" className={closedClassName ?? `${className} cursor-wait opacity-70`}>
-        Checking registration...
-      </span>
+      <a href={href} target={target} rel={rel} className={className}>
+        {children}
+      </a>
     );
   }
 
@@ -75,18 +87,25 @@ export function DeadlineRegistrationStatus({
   closedLabel,
   openClassName,
   closedClassName,
+  /** Pre-computed on the server to avoid "Checking registration..." flash */
+  serverIsOpen,
 }: {
   deadlineISO: string;
   openLabel: string;
   closedLabel: string;
   openClassName: string;
   closedClassName: string;
+  serverIsOpen?: boolean;
 }) {
-  const isOpen = useDeadlineOpen(deadlineISO);
+  const isOpen = useDeadlineOpen(deadlineISO, serverIsOpen);
 
   return (
-    <span role="status" aria-live="polite" className={isOpen ? openClassName : closedClassName}>
-      {isOpen === null ? "Checking registration..." : isOpen ? openLabel : closedLabel}
+    <span
+      role="status"
+      aria-live="polite"
+      className={isOpen === false ? closedClassName : openClassName}
+    >
+      {isOpen === false ? closedLabel : openLabel}
     </span>
   );
 }
