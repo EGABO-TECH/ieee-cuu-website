@@ -35,19 +35,31 @@ export function Countdown({
 
   useEffect(() => {
     const target = new Date(targetISO).getTime();
+    let id: ReturnType<typeof setInterval> | undefined;
+
     const tick = () => {
       const ms = target - Date.now();
       if (ms <= 0) {
         setLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         setExpired(true);
-        clearInterval(id);
+        if (id !== undefined) {
+          clearInterval(id);
+        }
         return;
       }
       setLeft(msToTimeLeft(ms));
     };
+
     tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
+    if (target > Date.now()) {
+      id = setInterval(tick, 1000);
+    }
+
+    return () => {
+      if (id !== undefined) {
+        clearInterval(id);
+      }
+    };
   }, [targetISO]);
 
   if (hideWhenExpired && expired) return null;
