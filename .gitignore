@@ -9,3 +9,4 @@ out
 
 # form submissions contain personal data
 content/submissions.json
+!.env.example
