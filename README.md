@@ -46,8 +46,8 @@ Visit [http://localhost:3000](http://localhost:3000) in your browser.
 # Verify TypeScript types
 npx tsc --noEmit
 
-# Run event date/status tests
-node scripts/test-event-status.mjs
+# Run event date/status unit tests
+npm test
 
 # Build production bundle
 npm run build
@@ -139,7 +139,17 @@ Events are data-driven. The site computes whether the event is `upcoming`, `regi
 1. Add optimized images to `/public/images/gallery/<event-slug>/`.
 2. Open `app/gallery/page.tsx` and add an album to the `GALLERY` array. Ensure attendees have provided consent for public photography.
 
-### 4.5 How to Feature a Student Project
+### 4.5 Launch day and other date-driven updates
+Countdowns, status labels, the announcement bar and the home page all follow the dates in the content files, so most updates are a one-file edit:
+
+- **When the launch time and room are announced**, edit `content/events/branch-launch-2026.json`: set `"timeTbc": false`, set `startsAt` / `endsAt` (ISO with `+03:00`), and add `"detail": "<building and room>"` inside `venue`. The countdown, calendar file (`/events/branch-launch-2026/calendar.ics`) and "Launch day" banner update from that.
+- **After the launch**, fill `recap` in the same file (`summary`, `attendance`, `photos` with consent, `links`). The page switches to a recap automatically.
+- **Open calls** (volunteers, applications) live in `content/calls.json`. Pages switch to "closed" after `closes`.
+- **CUUCSA page** content lives in `content/cuucsa.ts`.
+
+Date-driven pages re-render every 5 minutes on Vercel, so changes in status appear without a redeploy.
+
+### 4.6 How to Feature a Student Project
 1. Open `app/projects/page.tsx`.
 2. Add the student project entry to the `PROJECTS` array with title, team members, tech tags, GitHub repository URL, and demo URL.
 
