@@ -4,6 +4,9 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
 import { getNewsBySlug, getAllNews } from "@/lib/news";
 import { pageMetadata } from "@/lib/metadata";
+import { SITE } from "@/config/site";
+
+const SITE_HOST = SITE.canonicalUrl.replace(/^https?:\/\//, "");
 
 interface Props {
   params: { slug: string };
@@ -77,9 +80,21 @@ export default function NewsArticlePage({ params }: Props) {
             </p>
 
             <div className="space-y-4 text-base leading-relaxed text-slate-600">
-              {post.content.split("\n\n").map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              {post.content.split("\n\n").map((para, i) => {
+                // A trailing site path (e.g. "... page: /volunteer") becomes a link.
+                const m = para.match(/^([\s\S]*?)\s(\/[a-z0-9/-]+)$/);
+                return m ? (
+                  <p key={i}>
+                    {m[1]}{" "}
+                    <Link href={m[2]} className="text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]">
+                      {SITE_HOST}
+                      {m[2]}
+                    </Link>
+                  </p>
+                ) : (
+                  <p key={i}>{para}</p>
+                );
+              })}
             </div>
           </div>
 

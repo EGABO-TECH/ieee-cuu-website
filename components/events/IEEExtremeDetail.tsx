@@ -21,7 +21,7 @@ import { SITE } from "@/config/site";
 const STATS = [
   { icon: Clock, value: "24 Hours", label: "Continuous Coding Marathon" },
   { icon: Users, value: "2–3 Members", label: "Per Competing Team" },
-  { icon: Trophy, value: "60+ Countries", label: "Global Live Ranking" },
+  { icon: Trophy, value: "Worldwide", label: "Global Live Ranking" },
   { icon: Code2, value: "25+ Languages", label: "Python, C++, Java, Go, Rust" },
 ];
 

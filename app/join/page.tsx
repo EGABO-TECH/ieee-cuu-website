@@ -53,7 +53,7 @@ const MEMBERSHIP_VS_OPEN = [
     open: true,
   },
   {
-    activity: "Access IEEE Xplore digital library",
+    activity: "IEEE Xplore member benefits",
     members: true,
     open: false,
   },
@@ -81,7 +81,7 @@ const MEMBERSHIP_FAQS = [
   },
   {
     q: "Can I attend Branch events without an official membership?",
-    a: "Yes. Many campus workshops and general sessions are open to all CUU students. IEEE membership is required for voting rights, IEEE Xplore access, and competitions like IEEEXtreme.",
+    a: "Yes. Many campus workshops and general sessions are open to all CUU students. IEEE membership is required for voting rights, IEEE Xplore member benefits, and competitions like IEEEXtreme.",
   },
   {
     q: "How do I pay for my membership in Uganda?",
@@ -112,7 +112,7 @@ export default function JoinPage() {
           </h1>
 
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-600">
-            Access IEEE Xplore, global competitions, leadership opportunities, and a worldwide
+            IEEE Xplore research tools, global competitions, leadership opportunities, and a worldwide
             network of engineers and technologists.
           </p>
 
@@ -194,7 +194,7 @@ export default function JoinPage() {
                 For students enrolled in an undergraduate programme related to IEEE fields of interest.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                {["IEEE Xplore digital library access", "Compete in IEEEXtreme", "Branch voting rights", "Global student community"].map((p) => (
+                {["IEEE Xplore member benefits", "Compete in IEEEXtreme", "Branch voting rights", "Global student community"].map((p) => (
                   <li key={p} className="flex items-start gap-2">
                     <CheckCircle2 size={14} className="text-[#0D6E6E] mt-0.5 shrink-0" />
                     {p}

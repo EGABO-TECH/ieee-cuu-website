@@ -7,6 +7,7 @@ import { callStatus } from "@/lib/status";
 import { journey } from "@/lib/data";
 import { cuucsaIndependence } from "@/content/cuucsa";
 import teamData from "@/content/team.json";
+import { getAllNews } from "@/lib/news";
 
 const LAUNCH_SLUG = "branch-launch-2026";
 
@@ -123,7 +124,7 @@ export function WaysIn() {
 }
 
 const BENEFITS = [
-  { icon: BookOpen, title: "IEEE Xplore", body: "IEEE Student Members can use the IEEE Xplore digital library for research.", href: "/resources" },
+  { icon: BookOpen, title: "IEEE Xplore", body: "Search IEEE's research library. Full-text access depends on your institution or IEEE membership options.", href: "/resources" },
   { icon: Trophy, title: "Competitions", body: "Take part in IEEEXtreme and other IEEE student contests.", href: "/events/ieeextreme-20" },
   { icon: Users2, title: "Societies", body: "Explore IEEE technical societies such as the Computer Society and Women in Engineering.", href: "/programs" },
   { icon: Award, title: "Leadership", body: "Volunteer, take on branch roles and help run events.", href: "/team" },
@@ -263,3 +264,36 @@ export function CuucsaTieIn() {
   );
 }
 
+
+export function LatestNews() {
+  const posts = getAllNews().slice(0, 3);
+  if (posts.length === 0) return null;
+
+  return (
+    <section aria-labelledby="news-title" className="bg-white py-16 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+          <h2 id="news-title" className="font-serif text-3xl font-bold text-ink sm:text-4xl">
+            Latest from the branch
+          </h2>
+          <Link href="/news" className="text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+            All news →
+          </Link>
+        </div>
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+          {posts.map((p) => (
+            <li key={p.slug}>
+              <Link href={`/news/${p.slug}`} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-[#fafaf8] p-5 transition hover:border-[#1A9090]/50">
+                <time dateTime={p.date} className="text-xs text-muted">
+                  {new Date(p.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+                </time>
+                <h3 className="mt-2 font-semibold text-ink group-hover:text-[#0D6E6E]">{p.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.summary}</p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

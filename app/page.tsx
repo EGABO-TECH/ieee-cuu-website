@@ -6,6 +6,7 @@ import { Faq } from "@/components/Faq";
 import { Resources } from "@/components/Resources";
 import {
   CuucsaTieIn,
+  LatestNews,
   LaunchBlock,
   LeadershipStrip,
   Recognition,
@@ -31,6 +32,7 @@ export default function Home() {
       <WhatYouGet />
       <StudentJourney />
       <Recognition />
+      <LatestNews />
       <VideoSpotlight />
       <LeadershipStrip />
       <CuucsaTieIn />

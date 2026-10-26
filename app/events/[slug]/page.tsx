@@ -247,12 +247,39 @@ export default function EventDetailPage({ params }: Props) {
           {/* Recap */}
           {event.status === "ended" && (
             <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8">
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Event Recap</h2>
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Event recap</h2>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {event.recap?.summary && !event.recap.summary.startsWith("TODO")
                   ? event.recap.summary
-                  : "Photos and detailed attendance recap for this event are currently being compiled."}
+                  : "A recap with photos is on its way."}
               </p>
+              {typeof event.recap?.attendance === "number" && (
+                <p className="mt-4 text-sm font-semibold text-slate-800">{event.recap.attendance} people attended.</p>
+              )}
+              {event.recap?.photos && event.recap.photos.length > 0 && (
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {event.recap.photos.map((photo) => (
+                    <figure key={photo.src}>
+                      <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-100">
+                        <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(max-width: 640px) 50vw, 280px" />
+                      </div>
+                      {photo.caption && <figcaption className="mt-1.5 text-xs text-slate-500">{photo.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {event.recap?.links && event.recap.links.length > 0 && (
+                <ul className="mt-6 flex flex-wrap gap-3">
+                  {event.recap.links.map((l) => (
+                    <li key={l.url}>
+                      <a href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+                        {l.label}
+                        <ExternalLink size={13} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
 
