@@ -39,7 +39,7 @@ export const SITE = {
   social: {
     linkedin:
       process.env.NEXT_PUBLIC_IEEE_LINKEDIN_URL ??
-      "https://www.linkedin.com/company/ieee-cavendish-university-uganda",
+      "https://www.linkedin.com/company/ieee-cavendish-university-student-branch",
     x: process.env.NEXT_PUBLIC_IEEE_X_URL ?? "https://x.com/IEEECavendish",
     tiktok:
       process.env.NEXT_PUBLIC_IEEE_TIKTOK_URL ?? "https://www.tiktok.com/@cavendishieee",
@@ -66,7 +66,7 @@ export const SITE = {
   /** CUUCSA */
   cuucsa: {
     linkedinUrl:
-      process.env.NEXT_PUBLIC_CUUCSA_LINKEDIN_URL ?? "https://www.linkedin.com",
+      process.env.NEXT_PUBLIC_CUUCSA_LINKEDIN_URL ?? "https://www.linkedin.com/company/cavendish-university-uganda-computing-students-association",
   },
 
   /** Official IEEE links */

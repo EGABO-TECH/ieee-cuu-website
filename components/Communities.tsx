@@ -198,8 +198,8 @@ export function Communities() {
             <aside className="flex flex-col justify-center border-t border-ink/10 bg-[#f2f7f6] p-6 sm:p-8 lg:col-span-5 lg:border-l lg:border-t-0 lg:p-10">
               <div className="mb-6 flex items-center justify-center gap-4 sm:gap-6">
                 <div className="text-center">
-                  <div className="font-serif text-3xl font-black text-ink">40+</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-600">Societies</div>
+                  <div className="font-serif text-3xl font-black text-ink">39</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-600">IEEE Societies</div>
                 </div>
                 <div className="h-8 w-px bg-ink/15" />
                 <div className="text-center">
@@ -208,8 +208,8 @@ export function Communities() {
                 </div>
                 <div className="h-8 w-px bg-ink/15" />
                 <div className="text-center">
-                  <div className="font-serif text-3xl font-black text-ink">100%</div>
-                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-600">Open to All</div>
+                  <div className="font-serif text-3xl font-black text-ink">All</div>
+                  <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-600">Faculties welcome</div>
                 </div>
               </div>
 

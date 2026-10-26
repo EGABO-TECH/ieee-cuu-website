@@ -3,7 +3,6 @@ import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Users, ShieldCheck, HeartHandshake, ArrowUpRight } from "lucide-react";
 import { Team } from "@/components/Team";
-import { WHATSAPP_INVITE_URL } from "@/lib/data";
 
 export const metadata: Metadata = pageMetadata({
   title: "Team",
@@ -89,15 +88,13 @@ export default function TeamPage() {
                 <h4 className="font-semibold text-slate-900 text-sm">Want to volunteer for the Branch?</h4>
                 <p className="text-xs text-slate-600 mt-0.5">We welcome students from all faculties to join our event and technical committees.</p>
               </div>
-              <a
-                href={WHATSAPP_INVITE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-xs font-bold text-ink transition hover:bg-[#1A9090]"
+              <Link
+                href="/volunteer"
+                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A9090]"
               >
-                Volunteer on WhatsApp
-                <ArrowUpRight size={14} />
-              </a>
+                Volunteer with the branch
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </Link>
             </div>
           </div>
         </section>

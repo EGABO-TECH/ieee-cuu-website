@@ -63,13 +63,13 @@ Configure these in `.env.local` or on your Vercel project settings:
 |---|---|---|
 | `NEXT_PUBLIC_CANONICAL_URL` | Canonical site origin | `https://ieee-cuu-website.vercel.app` |
 | `NEXT_PUBLIC_BRANCH_EMAIL` | Official branch email | `ieee@cavendish.ac.ug` (or branch inbox) |
-| `NEXT_PUBLIC_IEEE_LINKEDIN_URL` | LinkedIn company page | `https://www.linkedin.com/company/ieee-cavendish-university-uganda` |
+| `NEXT_PUBLIC_IEEE_LINKEDIN_URL` | LinkedIn company page | `https://www.linkedin.com/company/ieee-cavendish-university-student-branch` |
 | `NEXT_PUBLIC_IEEE_X_URL` | X (Twitter) profile | `https://x.com/IEEECavendish` |
 | `NEXT_PUBLIC_IEEE_TIKTOK_URL` | TikTok channel | `https://www.tiktok.com/@cavendishieee` |
 | `NEXT_PUBLIC_IEEE_WHATSAPP_URL` | Branch WhatsApp invite | `https://chat.whatsapp.com/...` |
 | `NEXT_PUBLIC_CUUCSA_WHATSAPP_URL` | CUUCSA WhatsApp invite | `https://chat.whatsapp.com/...` |
-| `ADMIN_SECRET` | Secret key for `/admin` export | `cuu-ieee-branch-admin-2026` |
-| `SUBMISSION_WEBHOOK_URL` | (Optional) Forward sign-ups to Google Sheet / Supabase | `https://...` |
+| `ADMIN_SECRET` | **Required** for the `/admin` export. Use a long random value; the export is locked when unset. | (no default) |
+| `SUBMISSION_WEBHOOK_URL` | **Required on Vercel.** Where Join and Contact submissions are stored (e.g. a Google Apps Script bound to a Sheet). Vercel's filesystem is read-only, so without this the forms show an error instead of losing data. | `https://script.google.com/...` |
 
 ---
 

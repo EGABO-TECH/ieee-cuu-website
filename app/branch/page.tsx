@@ -12,21 +12,32 @@ export const metadata: Metadata = pageMetadata({
   path: "/branch",
 });
 
+// Add exact dates only when confirmed by the branch.
+const TIMELINE: { label: string; date?: string }[] = [
+  { label: "Petition to form the branch" },
+  { label: "Branch approved by IEEE" },
+  { label: "Branch Counselor appointed" },
+  { label: "Recognised on IEEE Day and received the certificate of approval", date: "6 October 2026" },
+  { label: "Advisor joined the branch" },
+  { label: "Call for 15 student volunteers closes", date: "27 October 2026" },
+  { label: "Official Branch Launch", date: "4 November 2026" },
+];
+
 const BRANCH_HIGHLIGHTS = [
   {
     icon: Compass,
     title: "Guided Student Roadmap",
-    desc: "From your very first orientation session to leading international tech tracks, we chart a clear progression for your technical and professional growth.",
+    desc: "From your first orientation session to volunteering and leading activities, the branch helps you plan your technical and professional growth.",
   },
   {
     icon: Rocket,
     title: "Practical Engineering Labs",
-    desc: "Move past dry slides with weekly code laboratories, cloud workshops, and collaborative open-source sprints led by experienced peers.",
+    desc: "Hands-on coding sessions, cloud workshops and open-source sprints led by peers. Dates are announced on the Events page.",
   },
   {
     icon: BookOpen,
     title: "IEEE Xplore & Research Access",
-    desc: "Full institutional guidance on conducting literature reviews, academic citations, and submitting papers to regional IEEE conferences.",
+    desc: "Guidance on searching IEEE Xplore, reviewing literature and citing sources, plus pointers to IEEE student conferences.",
   },
   {
     icon: Users,
@@ -74,6 +85,22 @@ export default function BranchPage() {
 
         {/* ── CORE COMPONENT EMBED (JOURNEY) ── */}
         <Journey />
+
+        {/* ── TIMELINE ── */}
+        <section aria-labelledby="timeline-title" className="relative mx-auto max-w-3xl px-4 sm:px-10 py-16">
+          <h2 id="timeline-title" className="font-serif text-3xl font-bold text-slate-900">
+            How the branch got here
+          </h2>
+          <ol className="mt-8 border-l-2 border-[#9dbdc1] pl-6">
+            {TIMELINE.map((t) => (
+              <li key={t.label} className="relative pb-6 last:pb-0">
+                <span aria-hidden="true" className="absolute -left-[33px] top-1.5 h-3 w-3 rounded-full border-2 border-[#0D6E6E] bg-white" />
+                {t.date && <p className="text-xs font-semibold uppercase tracking-wider text-[#0D6E6E]">{t.date}</p>}
+                <p className="text-sm font-medium text-slate-800">{t.label}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
         {/* ── BRANCH HIGHLIGHTS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">

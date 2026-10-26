@@ -8,7 +8,7 @@ import { Countdown } from "./ui/Countdown";
 /** Home-page card for the volunteer call. The page hides it once the call closes. */
 export function EventSpotlight() {
   return (
-    <section id="event" className="relative overflow-hidden bg-bg py-28 sm:py-36">
+    <section id="event" className="relative overflow-hidden bg-bg py-10 sm:py-14">
       <div className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
         <div className="grid grid-cols-1 items-stretch overflow-hidden rounded-3xl border border-ink/[0.08] lg:grid-cols-2 bg-white">
 

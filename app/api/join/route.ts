@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
     }
 
-    const record = await saveJoinSubmission({
+    const { record, persisted } = await saveJoinSubmission({
       fullName: validData.fullName,
       email: validData.email,
       studentId: validData.studentId || undefined,
@@ -43,6 +43,13 @@ export async function POST(req: NextRequest) {
       contactPreferences: validData.contactPreferences,
       source: "website_join_form",
     });
+
+    if (!persisted) {
+      return NextResponse.json(
+        { error: "We couldn't save your registration right now. Please try again later, or contact the branch on social media." },
+        { status: 503 }
+      );
+    }
 
     return NextResponse.json({ success: true, id: record.id }, { status: 201 });
   } catch (error) {

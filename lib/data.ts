@@ -41,8 +41,9 @@ export const programs = [
     tag: "Cloud & AI",
     accent: "cyan",
     title: "AWS Student Builders",
-    body: "A paid, part-time campus leadership program where Student Builders promote the AWS Builder Center, host workshops and activations, and inspire peers to explore cloud, AI and data technologies. Builders receive AWS credits, 12 months of AWS Skill Builder Premium access, and hands-on training while driving real community impact on campus.",
-    href: "https://aws.amazon.com/education/student-builders/",
+    // TODO(owner): confirm compensation and perks against AWS's official programme page before restoring them.
+    body: "An AWS campus programme in which Student Builders promote the AWS Builder Center, host workshops and activations, and help peers explore cloud, AI and data technologies.",
+    href: "https://builder.aws.com/",
     image: "/images/AWS_Student_Builders.png",
     ambassadors: [
       {
@@ -51,7 +52,7 @@ export const programs = [
         image: "/images/ambassadors/Niwasiima_Ashelycole.png",
       },
     ],
-    perks: ["AWS Credits", "Skill Builder Premium", "Paid Role", "AWS Network"],
+    perks: ["Cloud Workshops", "AWS Builder Center", "Hands-on Training", "AWS Network"],
   },
   {
     tag: "Python & Open Source",
@@ -306,7 +307,7 @@ export const team: TeamMember[] = [
   },
   {
     name: "Dr. John Bosco Ssemakula",
-    role: "Branch Councillor",
+    role: "Branch Counselor",
     department: "Branch Governance",
     description: "Provides guidance to the executive team and supports continuity in Branch governance.",
     linkedin: "#",
@@ -449,11 +450,11 @@ export const resources = [
   { label: "Student Branches", href: "https://students.ieee.org/student-branches/" },
 ];
 
-export const IEEE_LINKEDIN_URL = process.env.NEXT_PUBLIC_IEEE_LINKEDIN_URL ?? "https://www.linkedin.com/company/ieee-cavendish-university-uganda";
+export const IEEE_LINKEDIN_URL = process.env.NEXT_PUBLIC_IEEE_LINKEDIN_URL ?? "https://www.linkedin.com/company/ieee-cavendish-university-student-branch";
 export const IEEE_X_URL = process.env.NEXT_PUBLIC_IEEE_X_URL ?? "https://x.com";
 export const IEEE_TIKTOK_URL = process.env.NEXT_PUBLIC_IEEE_TIKTOK_URL ?? "https://www.tiktok.com";
 export const WHATSAPP_INVITE_URL = process.env.NEXT_PUBLIC_IEEE_WHATSAPP_URL ?? "https://chat.whatsapp.com/REPLACE-WITH-IEEE-CUU-INVITE-LINK";
-export const CUUCSA_LINKEDIN_URL = process.env.NEXT_PUBLIC_CUUCSA_LINKEDIN_URL ?? "https://www.linkedin.com";
+export const CUUCSA_LINKEDIN_URL = process.env.NEXT_PUBLIC_CUUCSA_LINKEDIN_URL ?? "https://www.linkedin.com/company/cavendish-university-uganda-computing-students-association";
 export const CUUCSA_WHATSAPP_URL = process.env.NEXT_PUBLIC_CUUCSA_WHATSAPP_URL ?? "https://chat.whatsapp.com/REPLACE-WITH-CUUCSA-INVITE-LINK";
 export const IEEE_DAY_REGISTRATION_URL = process.env.NEXT_PUBLIC_IEEE_EVENT_REGISTRATION_URL ?? "#";
 

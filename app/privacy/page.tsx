@@ -22,16 +22,27 @@ const sections = [
     id: "information-we-handle",
     title: "Information we handle",
     paragraphs: [
-      "This site does not provide a user account or a first-party contact or registration form. The Branch does not intentionally collect form submissions through the site. If you contact or register with us through a linked service, that service and the Branch may receive the details you choose to share there.",
+      "This site has no user accounts. It has two forms operated by the Branch: the Join form and the Contact form, described in the next section. Other sign-ups, such as the volunteer application, use Google Forms; when you use a linked service, that service and the Branch receive the details you choose to share there.",
       "When a web page is requested, the hosting and delivery infrastructure may process technical information such as your IP address, the requested page, date and time, browser and device information, and security events. This processing is needed to deliver and protect the site; the hosting provider's systems determine what operational logs are kept and for how long.",
       "The Google Maps panel in the site footer is embedded content. Loading a page that contains it makes a request to Google, which can receive technical request information even if you do not interact with the map.",
+    ],
+  },
+  {
+    id: "forms-on-this-site",
+    title: "Forms on this site",
+    paragraphs: [
+      "Join form: your full name, email address, programme of study, year of study, areas of interest and contact preferences, and optionally your student ID. We use these to contact you about branch membership and activities you said you are interested in.",
+      "Contact form: your name, email address, a topic and your message. We use these only to reply to you.",
+      "Submissions are stored in a storage service the Branch configures for the website, such as a Google Sheet. Only members of the branch executive committee who need them, such as the Secretary, can view or export them.",
+      "Join submissions are kept while you remain interested in branch activities and are reviewed at each executive handover. Contact messages are kept for up to 12 months after we reply. You can ask us to delete your submission at any time using the contact details in the last section.",
+      "Both forms include a hidden anti-spam field and a limit on how often they can be submitted.",
     ],
   },
   {
     id: "why-information-is-used",
     title: "Why information is used",
     paragraphs: [
-      "Technical request information is used by the site infrastructure to deliver pages, diagnose failures, and detect abuse or security incidents. Information you choose to provide when contacting the Branch is used to respond to that request or coordinate the activity you asked about.",
+      "Technical request information is used by the site infrastructure to deliver pages, diagnose failures, and detect abuse or security incidents. Information you submit through a form or provide when contacting the Branch is used for the purposes stated for that form, to respond to your request, or to coordinate the activity you asked about.",
       "Where applicable law requires a lawful basis, the basis depends on the activity and may include the Branch's legitimate interest in operating a secure informational website, your consent, or steps you ask us to take before participating in an activity.",
     ],
   },
@@ -39,7 +50,7 @@ const sections = [
     id: "sharing-and-transfers",
     title: "Sharing and international services",
     paragraphs: [
-      "The Branch does not sell personal information. Technical information may be processed by providers that host or secure the site. Google receives a request when its embedded map loads. When you follow a link to IEEE, Google Forms, WhatsApp, or a social platform, information is handled under that provider's own terms and privacy notice.",
+      "The Branch does not sell personal information. Technical information may be processed by providers that host or secure the site, and form submissions are processed by the storage service described above. Google receives a request when its embedded map loads. When you follow a link to IEEE, Google Forms, WhatsApp, or a social platform, information is handled under that provider's own terms and privacy notice.",
       "These providers may process information in countries outside Uganda. Their safeguards, retention periods, and practices are governed by their own policies; review those policies before submitting information or using their services.",
     ],
   },
@@ -47,7 +58,7 @@ const sections = [
     id: "retention-and-security",
     title: "Retention and security",
     paragraphs: [
-      "The website itself has no account database or first-party submission store. Hosting logs are retained according to the infrastructure provider's operational and security settings. If you contact the Branch directly, information is kept only as needed to respond, coordinate the related activity, and meet applicable obligations.",
+      "Form submissions are retained as described in the forms section. Hosting logs are retained according to the infrastructure provider's operational and security settings. If you contact the Branch directly, information is kept only as needed to respond, coordinate the related activity, and meet applicable obligations.",
       "Reasonable measures are used to maintain the site, but internet transmission and storage cannot be guaranteed completely secure. Please do not send sensitive personal information through public community channels.",
     ],
   },
@@ -82,7 +93,7 @@ export default function PrivacyPolicyPage() {
       <PolicyPage
         title="Privacy Policy"
         summary="A clear account of information involved when you visit the IEEE CUU Student Branch website, contact the Branch, or continue to a service operated by someone else."
-        effectiveDate="September 27, 2026"
+        effectiveDate="October 26, 2026"
         sections={sections}
       />
     </>

@@ -2,14 +2,26 @@
   {
     "id": "dr-john-bosco-ssemakula",
     "name": "Dr. John Bosco Ssemakula",
-    "role": "Student Branch Counselor",
-    "group": "leadership",
-    "bio": "Provides academic guidance to the executive team and supports continuity in Branch governance.",
+    "role": "Branch Counselor",
+    "group": "governance",
+    "bio": "The faculty member who advises the branch on behalf of IEEE and the university, and supports continuity in branch governance.",
     "photo": "",
     "linkedin": "",
     "email": "",
     "consent": true,
     "order": 0
+  },
+  {
+    "id": "tabingwa-evans-maganda",
+    "name": "Mr. Tabingwa Evans Maganda",
+    "role": "Advisor",
+    "group": "governance",
+    "bio": "Advises the branch executive.",
+    "photo": "",
+    "linkedin": "",
+    "email": "",
+    "consent": true,
+    "order": 0.5
   },
   {
     "id": "mulondo-andrew",
