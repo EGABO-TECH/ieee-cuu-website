@@ -26,8 +26,8 @@ export const SITE = {
   universityPhone: "+256414531700",
 
   /**
-   * Branch email — TODO(owner): supply the official branch email address.
-   * Replace the empty string below once confirmed.
+   * Branch email, set with NEXT_PUBLIC_BRANCH_EMAIL.
+   * TODO(owner): set it in Vercel once the official address exists.
    */
   email: process.env.NEXT_PUBLIC_BRANCH_EMAIL ?? "",
 
@@ -48,15 +48,13 @@ export const SITE = {
   /** WhatsApp invite links — rotate here when links expire */
   whatsapp: {
     /**
-     * IEEE CUU branch WhatsApp group.
-     * TODO(owner): paste the current invite link from the repo / branch secretary.
+     * IEEE CUU branch WhatsApp group, set with NEXT_PUBLIC_IEEE_WHATSAPP_URL.
      */
     ieee:
       process.env.NEXT_PUBLIC_IEEE_WHATSAPP_URL ??
       "https://chat.whatsapp.com/REPLACE-WITH-IEEE-CUU-INVITE-LINK",
     /**
-     * CUUCSA WhatsApp community.
-     * TODO(owner): paste the current CUUCSA invite link.
+     * CUUCSA WhatsApp community, set with NEXT_PUBLIC_CUUCSA_WHATSAPP_URL.
      */
     cuucsa:
       process.env.NEXT_PUBLIC_CUUCSA_WHATSAPP_URL ??
@@ -81,7 +79,7 @@ export const SITE = {
     branches: "https://students.ieee.org/student-branches/",
   },
 
-  /** IEEE Day 2026 registration link — TODO(owner): supply actual URL */
+  /** IEEE Day 2026 registration link. The event has passed; kept for reference. */
   ieeeDayRegistrationUrl:
     process.env.NEXT_PUBLIC_IEEE_EVENT_REGISTRATION_URL ?? "#",
 } as const;
