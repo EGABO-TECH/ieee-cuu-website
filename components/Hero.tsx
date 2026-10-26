@@ -165,10 +165,10 @@ export function Hero() {
               </a>
               <a
                 id="hero-events-btn"
-                href="/events"
+                href="/events/branch-launch-2026"
                 className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-white/15"
               >
-                See what&apos;s on
+                Launch details
               </a>
             </div>
 

@@ -6,3 +6,6 @@ out
 
 # unit test build output
 .test-dist/
+
+# form submissions contain personal data
+content/submissions.json

@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { ImageIcon } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 
-export const metadata: Metadata = {
-  title: "Gallery | IEEE Student Branch Cavendish University Uganda",
-  description: "Photos from IEEE CUU Student Branch events, workshops, and community activities.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Gallery",
+  description:
+    "Photos from IEEE CUU Student Branch events, workshops, and community activities.",
+  path: "/gallery",
+});
 
 // TODO(owner): Add photos to /public/images/gallery/ and populate the GALLERY array below.
 // Each album maps to an event. Photos should have attendee consent before being published.
@@ -87,7 +89,6 @@ export default function GalleryPage() {
           )}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

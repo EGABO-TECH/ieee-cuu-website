@@ -28,7 +28,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid submission" }, { status: 400 });
     }
 
-    const record = await saveContactSubmission(validData);
+    const { record, persisted } = await saveContactSubmission(validData);
+    if (!persisted) {
+      return NextResponse.json(
+        { error: "We couldn't send your message right now. Please try again later, or reach the branch on LinkedIn or X." },
+        { status: 503 }
+      );
+    }
 
     return NextResponse.json({ success: true, id: record.id }, { status: 201 });
   } catch (error) {

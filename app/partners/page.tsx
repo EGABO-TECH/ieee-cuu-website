@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { Handshake, ArrowRight, ShieldCheck, Mail } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Partners & Sponsors | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Partners and sponsors",
   description:
     "Learn about our institutional, academic, and community partners, and how external organizations can collaborate with the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/partners",
+});
 
 const PARTNERS = [
   {
@@ -166,7 +167,6 @@ export default function PartnersPage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

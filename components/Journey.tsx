@@ -13,7 +13,7 @@ const PILLARS = [
   {
     icon: Users2,
     title: "Safety, Community & Growth",
-    body: "A supportive, inclusive student environment with peer mentorship, technical talks, and leadership roles tailored for your peace of mind.",
+    body: "A supportive, inclusive student community with peer learning, technical talks and volunteer roles.",
     hasLink: false,
   },
   {
@@ -27,7 +27,7 @@ const PILLARS = [
   {
     icon: GraduationCap,
     title: "Academic & Career Success",
-    body: "Direct access to international IEEE certifications, research opportunities, and professional networks leading to higher grades and careers.",
+    body: "IEEE Xplore for research, IEEE student competitions, and a professional network you can build on after graduation.",
     hasLink: false,
   },
 ];

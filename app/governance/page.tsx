@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { FileText, Download, ShieldCheck, Clock, ExternalLink } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Governance & Transparency | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Governance and transparency",
   description:
     "Official governance framework, branch constitution, code of conduct, and reporting standards for the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/governance",
+});
 
 interface GovernanceDoc {
   id: string;
   title: string;
-  category: "Constitutional" | "Ethics & Conduct" | "Reporting";
+  category: "Recognition" | "Constitutional" | "Ethics & Conduct" | "Reporting";
   description: string;
   fileUrl?: string; // undefined if not yet uploaded
   updatedAt?: string;
@@ -21,6 +22,16 @@ interface GovernanceDoc {
 
 // TODO(owner): Provide PDFs for the branch constitution, launch minutes and annual plan.
 const GOVERNANCE_DOCS: GovernanceDoc[] = [
+  {
+    id: "certificate-of-approval",
+    title: "IEEE certificate of approval",
+    category: "Recognition",
+    description:
+      "Received on IEEE Day, 6 October 2026, at the American Center, Kabalagala, recognising the branch as one of Uganda's student branches being reborn.",
+    fileUrl: undefined, // TODO(owner): add the certificate scan to /public/documents/governance/
+    updatedAt: "6 October 2026",
+    status: "Published",
+  },
   {
     id: "constitution",
     title: "Student Branch Constitution & Bylaws",
@@ -93,9 +104,14 @@ export default function GovernancePage() {
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <FileText size={24} className="text-[#0D6E6E] mb-3" />
-              <h3 className="font-semibold text-slate-900">Faculty Advisory</h3>
+              <h3 className="font-semibold text-slate-900">Counselor and Advisor</h3>
               <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                Academic and institutional guidance is overseen by Student Branch Counselor Dr. John Bosco Ssemakula.
+                <strong className="font-semibold text-slate-800">Dr. John Bosco Ssemakula</strong>, Branch Counselor, is the
+                faculty member who advises the branch on behalf of IEEE and the university.
+              </p>
+              <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <strong className="font-semibold text-slate-800">Mr. Tabingwa Evans Maganda</strong>, Advisor, advises the
+                branch executive.
               </p>
             </div>
           </div>
@@ -160,7 +176,6 @@ export default function GovernancePage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

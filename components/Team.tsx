@@ -16,6 +16,7 @@ type Member = {
 };
 
 const GROUP_LABELS: Record<string, string> = {
+  governance: "Governance and advisory",
   leadership: "Leadership",
   administration: "Administration",
   finance: "Finance",
@@ -107,7 +108,7 @@ export function Team() {
     return acc;
   }, {});
 
-  const groupOrder = ["leadership", "administration", "finance", "technical", "programs", "outreach"];
+  const groupOrder = ["governance", "leadership", "administration", "finance", "technical", "programs", "outreach"];
 
   return (
     <section id="team" className="border-t border-slate-100 bg-[#f5f5f1] py-16 sm:py-20">
@@ -130,8 +131,8 @@ export function Team() {
         })}
 
         <p className="text-xs text-slate-400">
-          {/* TODO(owner): Supply headshots for all team members and LinkedIn profile URLs where consent is given. */}
-          Photos for most team members are pending. LinkedIn links will appear once real profile URLs are supplied.
+          {/* TODO(owner): Supply headshots and LinkedIn profile URLs where consent is given (content/team.json). */}
+          Photos and LinkedIn profiles are added as team members supply them.
         </p>
       </div>
     </section>

@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CheckCircle2, HelpCircle, ArrowUpRight, ExternalLink } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { JoinBanner } from "@/components/JoinBanner";
 import { JoinForm } from "@/components/JoinForm";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Join Us & Membership | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Join the branch",
   description:
     "Become a member of the IEEE Student Branch at Cavendish University Uganda. Learn about IEEE Student Membership, the join process, and what you can do with or without a membership.",
-};
+  path: "/join",
+});
 
 const STEPS = [
   {
@@ -52,7 +53,7 @@ const MEMBERSHIP_VS_OPEN = [
     open: true,
   },
   {
-    activity: "Access IEEE Xplore digital library",
+    activity: "IEEE Xplore member benefits",
     members: true,
     open: false,
   },
@@ -80,7 +81,7 @@ const MEMBERSHIP_FAQS = [
   },
   {
     q: "Can I attend Branch events without an official membership?",
-    a: "Yes. Many campus workshops and general sessions are open to all CUU students. IEEE membership is required for voting rights, IEEE Xplore access, and competitions like IEEEXtreme.",
+    a: "Yes. Many campus workshops and general sessions are open to all CUU students. IEEE membership is required for voting rights, IEEE Xplore member benefits, and competitions like IEEEXtreme.",
   },
   {
     q: "How do I pay for my membership in Uganda?",
@@ -111,7 +112,7 @@ export default function JoinPage() {
           </h1>
 
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-600">
-            Access IEEE Xplore, global competitions, leadership opportunities, and a worldwide
+            IEEE Xplore research tools, global competitions, leadership opportunities, and a worldwide
             network of engineers and technologists.
           </p>
 
@@ -139,6 +140,37 @@ export default function JoinPage() {
           </p>
         </section>
 
+        {/* ── THREE STEPS ── */}
+        <section aria-labelledby="join-steps" className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-6">
+          <h2 id="join-steps" className="sr-only">Three steps to join</h2>
+          <ol className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            {[
+              { title: "Register your interest", body: "Fill in the short form below so the branch can reach you.", href: "#register", cta: "Go to the form", external: false },
+              { title: "Join the WhatsApp community", body: "Get event updates and meet other students.", href: SITE.whatsapp.ieee, cta: "Open WhatsApp", external: true },
+              { title: "Become an IEEE Student Member", body: "Sign up at students.ieee.org and select Cavendish University Uganda as your branch.", href: SITE.ieee.membership, cta: "IEEE Students", external: true },
+            ].map((step, i) => (
+              <li key={step.title} className="flex flex-col rounded-2xl border border-slate-200 bg-white p-6">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0D6E6E] text-sm font-bold text-white" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h3 className="mt-4 font-semibold text-slate-900">
+                  <span className="sr-only">Step {i + 1}: </span>
+                  {step.title}
+                </h3>
+                <p className="mt-1.5 flex-1 text-sm leading-relaxed text-slate-600">{step.body}</p>
+                <a
+                  href={step.href}
+                  {...(step.external && { target: "_blank", rel: "noopener noreferrer" })}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]"
+                >
+                  {step.cta}
+                  {step.external ? <ExternalLink size={13} aria-hidden="true" /> : <ArrowUpRight size={13} aria-hidden="true" />}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </section>
+
         {/* ── REGISTRATION FORM SECTION ── */}
         <section id="register" className="relative mx-auto max-w-4xl px-6 sm:px-10 lg:px-12 py-8">
           <JoinForm />
@@ -162,7 +194,7 @@ export default function JoinPage() {
                 For students enrolled in an undergraduate programme related to IEEE fields of interest.
               </p>
               <ul className="mt-4 space-y-2 text-sm text-slate-700">
-                {["IEEE Xplore digital library access", "Compete in IEEEXtreme", "Branch voting rights", "Global student community"].map((p) => (
+                {["IEEE Xplore member benefits", "Compete in IEEEXtreme", "Branch voting rights", "Global student community"].map((p) => (
                   <li key={p} className="flex items-start gap-2">
                     <CheckCircle2 size={14} className="text-[#0D6E6E] mt-0.5 shrink-0" />
                     {p}
@@ -250,13 +282,17 @@ export default function JoinPage() {
               <tbody className="divide-y divide-slate-50">
                 {MEMBERSHIP_VS_OPEN.map((row) => (
                   <tr key={row.activity}>
-                    <td className="px-5 py-3 text-slate-700">{row.activity}</td>
-                    <td className="px-5 py-3 text-center">
-                      {row.members ? <CheckCircle2 size={16} className="text-[#0D6E6E] mx-auto" /> : <span className="text-slate-300">—</span>}
-                    </td>
-                    <td className="px-5 py-3 text-center">
-                      {row.open ? <CheckCircle2 size={16} className="text-[#0D6E6E] mx-auto" /> : <span className="text-slate-300">—</span>}
-                    </td>
+                    <th scope="row" className="px-5 py-3 text-left font-normal text-slate-700">{row.activity}</th>
+                    {[row.members, row.open].map((yes, i) => (
+                      <td key={i} className="px-5 py-3 text-center">
+                        {yes ? (
+                          <CheckCircle2 size={16} aria-hidden="true" className="text-[#0D6E6E] mx-auto" />
+                        ) : (
+                          <span aria-hidden="true" className="text-slate-300">—</span>
+                        )}
+                        <span className="sr-only">{yes ? "Yes" : "No"}</span>
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -311,7 +347,6 @@ export default function JoinPage() {
         <JoinBanner />
       </main>
 
-      <SiteFooter />
     </>
   );
 }

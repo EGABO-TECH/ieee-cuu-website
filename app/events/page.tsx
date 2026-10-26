@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,13 +13,15 @@ import {
 } from "lucide-react";
 import { getAllEvents, partitionEvents, formatDateEAT, msUntil, type EventItem } from "@/lib/events";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteFooter } from "@/components/SiteFooter";
+import { calls } from "@/lib/calls";
+import { callStatus } from "@/lib/status";
 
-export const metadata: Metadata = {
-  title: "Events | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Events",
   description:
     "Explore upcoming and past events, hackathons, and celebrations hosted by the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/events",
+});
 
 // Re-render every 5 minutes so events move from Upcoming to Past on time.
 export const revalidate = 300;
@@ -27,6 +30,12 @@ export const revalidate = 300;
 export default function EventsPage() {
   const events = getAllEvents();
   const { upcoming, past } = partitionEvents(events);
+  const openCalls = calls.filter((c) => callStatus(c) !== "closed");
+  const tabs = [
+    { id: "upcoming", label: "Upcoming", count: upcoming.length },
+    { id: "open-calls", label: "Open calls", count: openCalls.length },
+    { id: "past", label: "Past", count: past.length },
+  ].filter((t) => t.count > 0);
 
   return (
     <>
@@ -49,9 +58,25 @@ export default function EventsPage() {
           </p>
         </section>
 
+        <nav aria-label="Event sections" className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
+          <ul className="flex flex-wrap justify-center gap-2">
+            {tabs.map((t) => (
+              <li key={t.id}>
+                <a
+                  href={`#${t.id}`}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#0D6E6E] hover:text-[#0D6E6E]"
+                >
+                  {t.label}
+                  <span className="rounded-full bg-slate-100 px-2 text-xs">{t.count}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
         {/* ── UPCOMING EVENTS ── */}
         {upcoming.length > 0 && (
-          <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-10">
+          <section id="upcoming" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
               Upcoming
             </h2>
@@ -63,9 +88,48 @@ export default function EventsPage() {
           </section>
         )}
 
+        {/* ── OPEN CALLS ── */}
+        {openCalls.length > 0 && (
+          <section id="open-calls" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">Open calls</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {openCalls.map((c) => (
+                <div key={c.slug} className="flex flex-col justify-between rounded-3xl border border-ieee/10 bg-white p-8 sm:p-10">
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-4">
+                      <span className="inline-block rounded-full border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-green-700">
+                        {callStatus(c) === "closing-soon" ? "Closing soon" : "Open"}
+                      </span>
+                      <span className="text-xs text-slate-500">Closes {formatDateEAT(c.closes)}</span>
+                    </div>
+                    <h3 className="font-serif text-2xl font-bold text-slate-900">{c.title}</h3>
+                    <p className="mt-2 text-sm text-slate-600 leading-relaxed">{c.summary}</p>
+                    {c.audience && (
+                      <p className="mt-4 flex items-center gap-2 text-xs text-slate-600">
+                        <Users size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                        {c.audience}
+                      </p>
+                    )}
+                    <div className="mt-6">
+                      <Countdown targetISO={c.closes} initialMs={msUntil(c.closes)} showSeconds={false} hideWhenExpired />
+                    </div>
+                  </div>
+                  <Link
+                    href={c.href}
+                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                  >
+                    Details and apply
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
         {/* ── PAST EVENTS ── */}
         {past.length > 0 && (
-          <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-10 pb-24">
+          <section id="past" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 pb-24">
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
               Past Events
             </h2>
@@ -120,9 +184,9 @@ export default function EventsPage() {
               ))}
             </ul>
             <p className="mt-6 text-xs text-slate-400">
-              Stay updated by joining the{" "}
+              Stay updated by{" "}
               <a href="/join" className="text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]">
-                branch WhatsApp group
+                registering your interest on the Join page
               </a>
               .
             </p>
@@ -130,7 +194,6 @@ export default function EventsPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }
@@ -197,8 +260,14 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
 
         {event.venue && (
           <div className="mt-4 flex items-center gap-2 text-xs text-slate-600">
-            <MapPin size={13} className="shrink-0 text-[#0D6E6E]" />
+            <MapPin size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
             <span>{event.venue.name}</span>
+          </div>
+        )}
+        {event.audience && (
+          <div className="mt-2 flex items-center gap-2 text-xs text-slate-600">
+            <Users size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+            <span>{event.audience}</span>
           </div>
         )}
 
@@ -243,6 +312,14 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
           {past ? "View recap" : "View details"}
           <ArrowUpRight size={14} />
         </Link>
+        {!past && (
+          <a
+            href={`/events/${event.slug}/calendar.ics`}
+            className="text-xs font-semibold text-[#0D6E6E] hover:text-[#1A9090] transition"
+          >
+            Add to calendar
+          </a>
+        )}
         {event.status === "registration-open" && event.registration?.url && (
           <a
             href={event.registration.url}

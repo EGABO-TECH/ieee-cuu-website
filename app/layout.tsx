@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Sora, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 import "./globals.css";
 
@@ -41,14 +42,6 @@ export const metadata: Metadata = {
     siteName: SITE.shortName,
     locale: "en_UG",
     type: "website",
-    images: [
-      {
-        url: "/images/og-card.png",
-        width: 1200,
-        height: 630,
-        alt: "IEEE Student Branch at Cavendish University Uganda",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,7 +49,6 @@ export const metadata: Metadata = {
     description: SITE.description,
     site: "@IEEECavendish",
     creator: "@IEEECavendish",
-    images: ["/images/og-card.png"],
   },
 };
 
@@ -96,8 +88,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="bg-bg bg-grain text-ink">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0D6E6E] focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         <SiteHeader />
-        {children}
+        <div id="main-content" tabIndex={-1} className="outline-none">
+          {children}
+        </div>
+        <SiteFooter />
       </body>
     </html>
   );

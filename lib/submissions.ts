@@ -67,22 +67,53 @@ function loadData() {
   }
 }
 
-function saveData() {
+/** Returns true only if the file write succeeded. */
+function saveData(): boolean {
   try {
     const dir = path.dirname(DATA_FILE);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
     fs.writeFileSync(DATA_FILE, JSON.stringify(memoryStore, null, 2), "utf-8");
+    return true;
   } catch (err) {
     console.warn("Could not persist to content/submissions.json (operating in-memory):", err);
+    return false;
   }
 }
+
+/**
+ * Forward a record to SUBMISSION_WEBHOOK_URL (e.g. a Google Apps Script
+ * bound to a Sheet). Returns true only on a 2xx response.
+ */
+async function forwardToWebhook(type: "join" | "contact", record: JoinRecord | ContactRecord): Promise<boolean> {
+  if (!process.env.SUBMISSION_WEBHOOK_URL) return false;
+  try {
+    const res = await fetch(process.env.SUBMISSION_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type, record }),
+    });
+    if (!res.ok) console.error(`Webhook rejected ${type} record: HTTP ${res.status}`);
+    return res.ok;
+  } catch (e) {
+    console.error(`Failed to forward ${type} record to external webhook:`, e);
+    return false;
+  }
+}
+
+/**
+ * persisted is false when neither the file nor the webhook stored the record.
+ * On Vercel the filesystem is read-only, so the webhook is the only durable store.
+ */
+export type SaveResult<T> = { record: T; persisted: boolean };
 
 // Initial load
 loadData();
 
-export async function saveJoinSubmission(data: Omit<JoinRecord, "id" | "createdAt" | "consentAt">): Promise<JoinRecord> {
+export async function saveJoinSubmission(
+  data: Omit<JoinRecord, "id" | "createdAt" | "consentAt">
+): Promise<SaveResult<JoinRecord>> {
   loadData();
   const now = new Date().toISOString();
   const record: JoinRecord = {
@@ -93,25 +124,17 @@ export async function saveJoinSubmission(data: Omit<JoinRecord, "id" | "createdA
   };
 
   memoryStore.joins.push(record);
-  saveData();
+  const savedToFile = saveData();
 
   // If Supabase or Google Sheet webhook is configured via env vars, post here:
-  if (process.env.SUBMISSION_WEBHOOK_URL) {
-    try {
-      await fetch(process.env.SUBMISSION_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "join", record }),
-      });
-    } catch (e) {
-      console.error("Failed to forward join record to external webhook:", e);
-    }
-  }
+  const forwarded = await forwardToWebhook("join", record);
 
-  return record;
+  return { record, persisted: savedToFile || forwarded };
 }
 
-export async function saveContactSubmission(data: Omit<ContactRecord, "id" | "createdAt">): Promise<ContactRecord> {
+export async function saveContactSubmission(
+  data: Omit<ContactRecord, "id" | "createdAt">
+): Promise<SaveResult<ContactRecord>> {
   loadData();
   const record: ContactRecord = {
     ...data,
@@ -120,21 +143,11 @@ export async function saveContactSubmission(data: Omit<ContactRecord, "id" | "cr
   };
 
   memoryStore.contacts.push(record);
-  saveData();
+  const savedToFile = saveData();
 
-  if (process.env.SUBMISSION_WEBHOOK_URL) {
-    try {
-      await fetch(process.env.SUBMISSION_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "contact", record }),
-      });
-    } catch (e) {
-      console.error("Failed to forward contact record to external webhook:", e);
-    }
-  }
+  const forwarded = await forwardToWebhook("contact", record);
 
-  return record;
+  return { record, persisted: savedToFile || forwarded };
 }
 
 export function getAllJoins(): JoinRecord[] {

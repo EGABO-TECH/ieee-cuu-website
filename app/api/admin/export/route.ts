@@ -4,7 +4,12 @@ import { getAllJoins, getAllContacts } from "@/lib/submissions";
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const secret = searchParams.get("key") || req.headers.get("authorization")?.replace("Bearer ", "");
-  const expectedSecret = process.env.ADMIN_SECRET || "cuu-ieee-branch-admin-2026";
+  const expectedSecret = process.env.ADMIN_SECRET;
+
+  // No built-in fallback: without ADMIN_SECRET the export stays locked.
+  if (!expectedSecret) {
+    return NextResponse.json({ error: "Export is not configured" }, { status: 503 });
+  }
 
   if (!secret || secret !== expectedSecret) {
     return NextResponse.json({ error: "Unauthorized access" }, { status: 401 });

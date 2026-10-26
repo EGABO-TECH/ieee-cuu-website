@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { FolderGit2, PlusCircle, Github, Globe, CheckCircle2, ArrowRight } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Projects Showcase | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Projects",
   description:
     "Showcase of student-built engineering, software, and hardware projects from Cavendish University Uganda. Submit your project to get featured.",
-};
+  path: "/projects",
+});
 
 // Seed with zero fake projects.
 // TODO(owner): Populate this list when CUU students submit verified projects.
@@ -165,7 +166,6 @@ export default function ProjectsPage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

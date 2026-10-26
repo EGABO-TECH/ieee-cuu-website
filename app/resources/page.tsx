@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { ExternalLink, BookOpen, Code, GraduationCap, Award, Cpu, Users } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Resources | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Resources",
   description:
     "Curated technical and academic resources for Cavendish University students: IEEE Xplore, IEEEXtreme preparation, IEEE societies, scholarships, and member benefits.",
-};
+  path: "/resources",
+});
 
 interface ResourceLink {
   title: string;
@@ -197,7 +198,6 @@ export default function ResourcesPage() {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

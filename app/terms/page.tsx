@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/metadata";
 import { PolicyPage } from "@/components/PolicyPage";
 
-export const metadata: Metadata = {
-  title: "Terms and Conditions | IEEE CUU Student Branch",
+export const metadata: Metadata = pageMetadata({
+  title: "Terms and Conditions",
   description:
     "Terms for using the IEEE Student Branch at Cavendish University Uganda website and its links to external services.",
-};
+  path: "/terms",
+});
 
 const sections = [
   {
@@ -90,7 +91,6 @@ export default function TermsPage() {
         effectiveDate="September 27, 2026"
         sections={sections}
       />
-      <SiteFooter />
     </>
   );
 }

@@ -15,10 +15,12 @@ import {
 } from "lucide-react";
 import { getEventBySlug, getAllEvents, formatDateEAT, formatDateTimeEAT, msUntil } from "@/lib/events";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
-import IEEEDayPage from "../ieee-day/page";
-import IEEExtremePage from "../ieeextreme/page";
+import { IEEEDayRecap } from "@/components/events/IEEEDayRecap";
+import { IEEExtremeDetail } from "@/components/events/IEEExtremeDetail";
+import { pageMetadata } from "@/lib/metadata";
+import { calls } from "@/lib/calls";
+import { callStatus } from "@/lib/status";
 
 // Re-render every 5 minutes so status labels follow the clock.
 export const revalidate = 300;
@@ -36,58 +38,65 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const events = getAllEvents();
-  const slugs = events.map((e) => ({ slug: e.slug }));
-  // Add common aliases
-  return [
-    ...slugs,
-    { slug: "ieee-day" },
-    { slug: "ieeextreme" },
-  ];
+  return getAllEvents().map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let slug = params.slug;
-  if (slug === "ieee-day") slug = "ieee-day-2026";
-  if (slug === "ieeextreme") slug = "ieeextreme-20";
+  const event = getEventBySlug(params.slug);
+  if (!event) return { title: "Event not found" };
 
-  const event = getEventBySlug(slug);
-  if (!event) return { title: "Event Not Found" };
-
-  return {
-    title: `${event.title} | IEEE Student Branch Cavendish University Uganda`,
+  return pageMetadata({
+    title: event.title,
     description: event.summary,
-    openGraph: {
-      title: event.title,
-      description: event.summary,
-      images: [{ url: event.flyer ?? "/images/og-card.png" }],
-    },
-  };
+    path: `/events/${event.slug}`,
+    image: event.flyer,
+    imageAlt: event.flyer ? `${event.title} flyer` : undefined,
+  });
 }
 
 export default function EventDetailPage({ params }: Props) {
   const { slug } = params;
 
   // Render the bespoke rich layouts for the flagship launch and IEEEXtreme
-  if (slug === "ieee-day-2026" || slug === "ieee-day") {
-    return <IEEEDayPage />;
-  }
-
-  if (slug === "ieeextreme-20" || slug === "ieeextreme") {
-    return <IEEExtremePage />;
-  }
+  if (slug === "ieee-day-2026") return <IEEEDayRecap />;
+  if (slug === "ieeextreme-20") return <IEEExtremeDetail />;
 
   const event = getEventBySlug(slug);
   if (!event) {
     notFound();
   }
 
-  const msLeft = event.registration?.closesAt ? msUntil(event.registration.closesAt) : 0;
+  const isPast = event.status === "ended";
+  const openCall = calls.find((c) => c.forEvent === event.slug && callStatus(c) !== "closed");
+
+  // schema.org Event. A date-only startDate is valid while the time is unannounced.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: event.title,
+    description: event.summary,
+    startDate: event.timeTbc ? event.startsAt.slice(0, 10) : event.startsAt,
+    ...(!event.timeTbc && { endDate: event.endsAt }),
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: event.online
+      ? "https://schema.org/OnlineEventAttendanceMode"
+      : "https://schema.org/OfflineEventAttendanceMode",
+    location: event.online
+      ? { "@type": "VirtualLocation", url: `${SITE.canonicalUrl}/events/${event.slug}` }
+      : {
+          "@type": "Place",
+          name: event.venue?.name,
+          address: { "@type": "PostalAddress", streetAddress: event.venue?.address, addressCountry: "UG" },
+        },
+    organizer: { "@type": "Organization", name: SITE.name, url: SITE.canonicalUrl },
+    url: `${SITE.canonicalUrl}/events/${event.slug}`,
+  };
 
   return (
     <>
       <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
-        <div className="mx-auto max-w-5xl px-6 sm:px-10 lg:px-12 py-12">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <div className="mx-auto max-w-5xl px-4 sm:px-10 lg:px-12 py-12">
           <Link
             href="/events"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0D6E6E] mb-8"
@@ -132,8 +141,10 @@ export default function EventDetailPage({ params }: Props) {
                 <div>
                   <p className="text-xs text-slate-400">Location</p>
                   <p className="text-sm font-semibold text-slate-800">{event.venue.name}</p>
-                  {event.timeTbc && event.status !== "ended" && (
-                    <p className="text-xs text-slate-500 mt-0.5">Exact location to be announced</p>
+                  {event.venue.detail ? (
+                    <p className="text-xs text-slate-500 mt-0.5">{event.venue.detail}</p>
+                  ) : (
+                    !isPast && <p className="text-xs text-slate-500 mt-0.5">Exact location to be announced</p>
                   )}
                 </div>
               </div>
@@ -150,6 +161,51 @@ export default function EventDetailPage({ params }: Props) {
               </div>
             </div>
           </div>
+
+          {/* Countdown and actions */}
+          {!isPast && (
+            <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-[#9dbdc1] bg-white p-6 sm:flex-row sm:items-end sm:justify-between">
+              {event.status === "live" ? (
+                <p className="text-lg font-semibold text-[#0D6E6E]">Happening today</p>
+              ) : (
+                <div>
+                  <p className="mb-3 text-sm font-semibold text-[#234a52]">
+                    {event.timeTbc ? `Counting down to ${formatDateEAT(event.startsAt)}` : "Starts in"}
+                  </p>
+                  <Countdown targetISO={event.startsAt} initialMs={msUntil(event.startsAt)} showSeconds={false} hideWhenExpired />
+                </div>
+              )}
+              <div className="flex flex-wrap gap-3">
+                {event.registration?.url && (
+                  <a
+                    href={event.registration.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                  >
+                    {event.registration.label ?? "RSVP"}
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </a>
+                )}
+                {openCall && (
+                  <Link
+                    href={openCall.href}
+                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                  >
+                    Volunteer at this event
+                    <ArrowUpRight size={14} aria-hidden="true" />
+                  </Link>
+                )}
+                <a
+                  href={`/events/${event.slug}/calendar.ics`}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                >
+                  <Calendar size={14} aria-hidden="true" />
+                  Add to calendar
+                </a>
+              </div>
+            </div>
+          )}
 
           {/* Agenda */}
           {event.agenda && event.agenda.length > 0 && (
@@ -191,12 +247,39 @@ export default function EventDetailPage({ params }: Props) {
           {/* Recap */}
           {event.status === "ended" && (
             <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8">
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Event Recap</h2>
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Event recap</h2>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {event.recap?.summary && !event.recap.summary.startsWith("TODO")
                   ? event.recap.summary
-                  : "Photos and detailed attendance recap for this event are currently being compiled."}
+                  : "A recap with photos is on its way."}
               </p>
+              {typeof event.recap?.attendance === "number" && (
+                <p className="mt-4 text-sm font-semibold text-slate-800">{event.recap.attendance} people attended.</p>
+              )}
+              {event.recap?.photos && event.recap.photos.length > 0 && (
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {event.recap.photos.map((photo) => (
+                    <figure key={photo.src}>
+                      <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-100">
+                        <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(max-width: 640px) 50vw, 280px" />
+                      </div>
+                      {photo.caption && <figcaption className="mt-1.5 text-xs text-slate-500">{photo.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+              )}
+              {event.recap?.links && event.recap.links.length > 0 && (
+                <ul className="mt-6 flex flex-wrap gap-3">
+                  {event.recap.links.map((l) => (
+                    <li key={l.url}>
+                      <a href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+                        {l.label}
+                        <ExternalLink size={13} aria-hidden="true" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
 
@@ -219,7 +302,6 @@ export default function EventDetailPage({ params }: Props) {
           )}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { MapPin, Globe, Phone, Mail, MessageCircle } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
+import Link from "next/link";
 import { SITE } from "@/config/site";
+import { ContactForm } from "@/components/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Contact | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact",
   description:
     "Get in touch with the IEEE Student Branch at Cavendish University Uganda. Find our address, social links, and send us a message.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -19,7 +22,7 @@ export default function ContactPage() {
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
             Reach out with questions about the branch, membership, events, or partnerships.
-            We are a student-run organisation — please allow a few days for a response.
+            We aim to reply within three working days.
           </p>
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -82,10 +85,8 @@ export default function ContactPage() {
                 ) : (
                   <div className="flex items-start gap-3 text-sm text-slate-500">
                     <Mail size={16} className="shrink-0 mt-0.5" />
-                    <p>
-                      Branch email coming soon.{" "}
-                      {/* TODO(owner): supply the official branch email address */}
-                    </p>
+                    {/* TODO(owner): set NEXT_PUBLIC_BRANCH_EMAIL once the branch email exists */}
+                    <p>Branch email coming soon. Use the form on this page in the meantime.</p>
                   </div>
                 )}
 
@@ -137,8 +138,22 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Map */}
-            <div>
+            {/* Form + map */}
+            <div className="space-y-5">
+              <ContactForm />
+
+              <div className="rounded-2xl border border-slate-100 bg-white p-7">
+                <h2 className="font-serif text-xl font-bold text-slate-900">Sponsors and partners</h2>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                  Partners can reach Cavendish University Uganda students across every faculty through workshops,
+                  talks, competitions and the Official Branch Launch. Choose &ldquo;Sponsorship or partnership&rdquo;
+                  as the topic above and the branch executive will reply.
+                </p>
+                <Link href="/partners" className="mt-3 inline-block text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+                  See current partners →
+                </Link>
+              </div>
+
               <div className="overflow-hidden rounded-2xl border border-slate-100 shadow">
                 <iframe
                   title="Cavendish University Uganda location"
@@ -157,7 +172,6 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

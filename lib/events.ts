@@ -58,6 +58,8 @@ export type EventRegistration = {
 
 export type EventVenue = {
   name: string;
+  /** Room or building on campus, once announced. */
+  detail?: string;
   address?: string;
   mapUrl?: string;
 };
