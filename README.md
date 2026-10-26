@@ -32,7 +32,7 @@
 
 ---
 
-## 📖 Overview
+##  Overview
 
 The **IEEE Student Branch at Cavendish University Uganda (CUU)** is the premier student-led technical and professional society at Cavendish University Uganda, based at the **Siyani Campus** (Plot 1469 Ggaba Road, Kampala). As an affiliated unit of the **IEEE Uganda Section** and **IEEE Region 8**, the branch bridges the gap between academic theory, technological innovation, and engineering leadership across East Africa.
 
@@ -40,17 +40,17 @@ This repository powers the official, production-grade web portal deployed at [ie
 
 ### Key Pillars & Core Capabilities
 
-- ⏱️ **Zero Stale State & Deterministic Event Engine**: All events and recruitment calls follow an automated time-state machine calculated in the **Africa/Kampala (EAT, UTC+3)** timezone. The site never displays expired countdowns or broken registration buttons. Statuses dynamically shift from `upcoming` &rarr; `registration-open` &rarr; `registration-closed` &rarr; `live` &rarr; `ended` (with recap blocks) on the server.
-- 🤝 **Dual Student Society Integration**: Unifies the IEEE Student Branch and **CUUCSA** (Cavendish University Uganda Computing Students' Association) under a shared digital roof while preserving brand governance and independence.
-- 📱 **Designed for Ugandan Mobile Networks**: Engineered mobile-first with minimal JavaScript, responsive typography, zero Cumulative Layout Shift (CLS), and high performance on 3G/4G connections.
-- 🔒 **Privacy-First & Strict Brand Integrity**: Adheres strictly to IEEE brand guidelines. Profiles, photos, and links are only rendered if verifiable written or electronic consent (`consent: true`) is recorded.
-- 📁 **Zero-Database Content Architecture**: The entire website runs on decoupled, version-controlled JSON files in `content/`. Incoming executive committees can update events, news, team members, and calls in minutes without touching a single component or database query.
-- 🛡️ **Built-in Spam Protection & Fail-Safe Ingestion**: Form submissions (Join and Contact) feature anti-bot honeypot fields, IP-based rate limiting, dual-layer Zod validation, local JSON fallback storage, and serverless webhook pipelines (e.g., Google Apps Script to Google Sheets).
-- 📊 **Protected Executive Administration**: Integrated `/admin` dashboard protected by `ADMIN_SECRET` authentication, enabling one-click CSV data exports for branch leadership.
+-  **Zero Stale State & Deterministic Event Engine**: All events and recruitment calls follow an automated time-state machine calculated in the **Africa/Kampala (EAT, UTC+3)** timezone. The site never displays expired countdowns or broken registration buttons. Statuses dynamically shift from `upcoming` &rarr; `registration-open` &rarr; `registration-closed` &rarr; `live` &rarr; `ended` (with recap blocks) on the server.
+-  **Dual Student Society Integration**: Unifies the IEEE Student Branch and **CUUCSA** (Cavendish University Uganda Computing Students' Association) under a shared digital roof while preserving brand governance and independence.
+-  **Designed for Ugandan Mobile Networks**: Engineered mobile-first with minimal JavaScript, responsive typography, zero Cumulative Layout Shift (CLS), and high performance on 3G/4G connections.
+-  **Privacy-First & Strict Brand Integrity**: Adheres strictly to IEEE brand guidelines. Profiles, photos, and links are only rendered if verifiable written or electronic consent (`consent: true`) is recorded.
+-  **Zero-Database Content Architecture**: The entire website runs on decoupled, version-controlled JSON files in `content/`. Incoming executive committees can update events, news, team members, and calls in minutes without touching a single component or database query.
+-  **Built-in Spam Protection & Fail-Safe Ingestion**: Form submissions (Join and Contact) feature anti-bot honeypot fields, IP-based rate limiting, dual-layer Zod validation, local JSON fallback storage, and serverless webhook pipelines (e.g., Google Apps Script to Google Sheets).
+-  **Protected Executive Administration**: Integrated `/admin` dashboard protected by `ADMIN_SECRET` authentication, enabling one-click CSV data exports for branch leadership.
 
 ---
 
-## 🛠 Tech Stack & Architecture
+##  Tech Stack & Architecture
 
 The application is built on modern, resilient web technologies selected for speed, strict type safety, zero database maintenance overhead, and long-term sustainability:
 
@@ -76,7 +76,7 @@ The application is built on modern, resilient web technologies selected for spee
 
 ---
 
-## 🔄 System Architecture & Workflows
+##  System Architecture & Workflows
 
 ### 1. Overall System Data Flow
 
@@ -88,27 +88,27 @@ flowchart TD
     classDef storage fill:#004080,stroke:#38B2AC,stroke-width:2px,color:#ffffff
     classDef admin fill:#1E293B,stroke:#F59E0B,stroke-width:2px,color:#ffffff
 
-    subgraph ClientLayer [" 🌐 User & Public Client Layer "]
+    subgraph ClientLayer ["  User & Public Client Layer "]
         Visitor["Visitor / CUU Student"]:::client
         Forms["Join & Contact Forms"]:::client
         Secretary["Branch Leadership"]:::admin
     end
 
-    subgraph NextServer [" ⚡ Next.js App Router (RSC & API Routes) "]
+    subgraph NextServer ["  Next.js App Router (RSC & API Routes) "]
         Router["Page Router & RSC Engine"]:::nextjs
         StateEngine["Event State Engine (lib/status.ts)<br>Africa/Kampala (EAT, UTC+3)"]:::nextjs
         FormHandler["API Route: /api/submissions<br>Honeypot + Zod Validation"]:::nextjs
         AdminRoute["API Route: /api/admin/export<br>Key Authenticated (/admin)"]:::nextjs
     end
 
-    subgraph ContentEngine [" 📁 Git Content Store "]
+    subgraph ContentEngine ["  Git Content Store "]
         EventsJSON["content/events/*.json"]:::content
         TeamJSON["content/team.json"]:::content
         NewsJSON["content/news/*.json"]:::content
         CallsJSON["content/calls.json"]:::content
     end
 
-    subgraph StorageLayer [" 💾 Storage & External Webhook "]
+    subgraph StorageLayer ["  Storage & External Webhook "]
         LocalStore["Local Disk: content/submissions.json<br>(Dev Mode)"]:::storage
         GoogleWebhook["SUBMISSION_WEBHOOK_URL<br>(Google Apps Script / Sheets)"]:::storage
     end
@@ -175,11 +175,11 @@ stateDiagram-v2
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Contributor as 🎓 Student Executive
-    participant Repo as 📂 Git Repository
-    participant Validation as 🛡️ TypeScript & Tests
-    participant Vercel as 🚀 Vercel Edge CDN
-    actor Student as 📱 CUU Student
+    actor Contributor as  Student Executive
+    participant Repo as  Git Repository
+    participant Validation as  TypeScript & Tests
+    participant Vercel as  Vercel Edge CDN
+    actor Student as  CUU Student
 
     Contributor->>Repo: Create content/events/workshop.json
     Contributor->>Repo: Set startsAt, endsAt (UTC+3) & venue details
@@ -192,7 +192,7 @@ sequenceDiagram
 
 ---
 
-## 💻 Installation Mode & Local Setup
+##  Installation Mode & Local Setup
 
 Follow this comprehensive, step-by-step setup guide to run the project on your local machine.
 
@@ -252,7 +252,7 @@ Open `.env.local` in your editor and configure the parameters:
 | `ADMIN_SECRET` | Server | **Yes** | High-entropy secret key protecting `/admin` and CSV exports | Generate via `python -c "import secrets; print(secrets.token_urlsafe(32))"` |
 | `SUBMISSION_WEBHOOK_URL` | Server | **Production** | Webhook URL (e.g. Google Apps Script) to store Join and Contact submissions when deployed on read-only serverless hosts | `https://script.google.com/macros/s/.../exec` |
 
-> 🔒 **Security Notice:** Never commit `.env` or `.env.local` to Git. Keep `ADMIN_SECRET` confidential and rotate it each year when a new executive committee takes office.
+>  **Security Notice:** Never commit `.env` or `.env.local` to Git. Keep `ADMIN_SECRET` confidential and rotate it each year when a new executive committee takes office.
 
 ---
 
@@ -299,7 +299,7 @@ npm run build
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ```text
 ieee-cuu-website/
@@ -352,9 +352,9 @@ ieee-cuu-website/
 
 ---
 
-## 📝 Student Handover Guide
+##  Student Handover Guide
 
-> 💡 **Designed for Graduating Committees:** Future student leaders can manage and update the website in minutes by modifying JSON files directly—no code changes required!
+>  **Designed for Graduating Committees:** Future student leaders can manage and update the website in minutes by modifying JSON files directly—no code changes required!
 
 ### 1. Adding a New Event (Under 3 Minutes)
 
@@ -420,7 +420,7 @@ ieee-cuu-website/
   "order": 15
 }
 ```
-> ⚠️ **Consent Rule:** Only publish team members who have granted verified written or electronic consent (`consent: true`). Never use LinkedIn search queries; always provide direct profile URLs or leave the field blank.
+>  **Consent Rule:** Only publish team members who have granted verified written or electronic consent (`consent: true`). Never use LinkedIn search queries; always provide direct profile URLs or leave the field blank.
 
 ---
 
@@ -431,7 +431,7 @@ ieee-cuu-website/
 
 ---
 
-## 🔐 Branch Administration & Data Exports
+##  Branch Administration & Data Exports
 
 The branch website features a dedicated administrative module at `/admin`:
 
@@ -443,7 +443,7 @@ The branch website features a dedicated administrative module at `/admin`:
 
 ---
 
-## 📋 Handover Checklist for Outgoing Committees
+##  Handover Checklist for Outgoing Committees
 
 When the executive committee concludes its term, ensure the following assets and credentials are formally transferred to the incoming leaders:
 
@@ -456,7 +456,7 @@ When the executive committee concludes its term, ensure the following assets and
 
 ---
 
-## 📜 Governance, Disclaimers & Ethics
+##  Governance, Disclaimers & Ethics
 
 - **IEEE Brand Compliance**: This site adheres to IEEE Master Brand guidelines. The IEEE logo, name lockup, and diamond symbol are registered trademarks of the Institute of Electrical and Electronics Engineers, Inc.
 - **Partner Disclaimer**: AWS Student Builders, Black Python Devs, and CUUCSA are valued campus and community partners. Their mention on this platform does not constitute an official IEEE endorsement of their commercial products or services.
@@ -464,7 +464,7 @@ When the executive committee concludes its term, ensure the following assets and
 
 ---
 
-## 🤝 Contributing & Community
+##  Contributing & Community
 
 We welcome contributions from Cavendish University Uganda students, faculty, alumni, and IEEE colleagues worldwide!
 
