@@ -94,7 +94,7 @@ export default function EventDetailPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <div className="mx-auto max-w-5xl px-4 sm:px-10 lg:px-12 py-12">
           <Link

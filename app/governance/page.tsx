@@ -73,7 +73,7 @@ const GOVERNANCE_DOCS: GovernanceDoc[] = [
 export default function GovernancePage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="max-w-3xl">
             <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">

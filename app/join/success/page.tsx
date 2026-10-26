@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMetadata({
 export default function JoinSuccessPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
         <div className="mx-auto max-w-3xl px-6 sm:px-10 lg:px-12 py-16 text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mb-6">
             <CheckCircle2 size={36} />

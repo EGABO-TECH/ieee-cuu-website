@@ -61,7 +61,7 @@ export default function VolunteerPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-32 sm:pt-36">
         {/* ── HERO ── */}
         <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 lg:py-14">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">

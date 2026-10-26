@@ -32,7 +32,7 @@ const PILLARS_OF_LEADERSHIP = [
 export default function TeamPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
         {/* Ambient Glows */}
         <div
           aria-hidden

@@ -23,7 +23,7 @@ export function IEEEDayRecap() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-32 sm:pt-36">
         <div className="mx-auto max-w-4xl px-4 sm:px-10 pt-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <span className="inline-flex items-center rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600">

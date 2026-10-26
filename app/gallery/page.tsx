@@ -31,7 +31,7 @@ const GALLERY: {
 export default function GalleryPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-24 sm:pt-28">
+      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">Gallery</h1>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
