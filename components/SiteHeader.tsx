@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { AnnouncementBar } from "./AnnouncementBar";
 import {
   IEEE_LINKEDIN_URL,
   IEEE_TIKTOK_URL,
@@ -27,8 +28,7 @@ const LINKS: NavLink[] = [
   { href: "/events", id: "events", label: "Events", isEvents: true },
   { href: "/programs", id: "programs", label: "Programs" },
   { href: "/cuucsa", id: "cuucsa", label: "CUUCSA" },
-  { href: "/team", id: "team", label: "Team" },
-  { href: "/contact", id: "contact", label: "Contact" },
+  { href: "/volunteer", id: "volunteer", label: "Volunteer" },
   { href: "/join", id: "join", label: "Join us" },
 ];
 
@@ -78,7 +78,8 @@ export function SiteHeader() {
 
   return (
     <>
-    <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 pt-4 sm:px-8 sm:pt-6">
+    <header className="fixed top-0 left-0 right-0 z-50 w-full px-4 pt-3 sm:px-8 sm:pt-4">
+      {!open && <AnnouncementBar />}
       <div className="relative z-50 mx-auto flex max-w-7xl items-center justify-between">
         {/* Left: IEEE CUU Logo */}
         <Link
@@ -139,6 +140,20 @@ export function SiteHeader() {
                   {eventsDropdownOpen && (
                     <div className="absolute right-0 top-full z-[80] mt-2 w-72 max-w-[calc(100vw-2rem)] overflow-hidden rounded-lg border border-white/15 bg-[#071722] py-1 shadow-[0_12px_32px_rgba(0,0,0,0.3)]">
                         <Link
+                          href="/events/branch-launch-2026"
+                          onClick={() => setEventsDropdownOpen(false)}
+                          className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
+                        >
+                          <span className="flex items-baseline justify-between gap-4">
+                            <span className="text-sm font-semibold text-white">Official Branch Launch</span>
+                            <span className="shrink-0 text-xs text-slate-400">4 Nov</span>
+                          </span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-300">Cavendish University Uganda · time to be announced</span>
+                        </Link>
+
+                        <div className="mx-4 border-t border-white/10" />
+
+                        <Link
                           href="/events/ieee-day-2026"
                           onClick={() => setEventsDropdownOpen(false)}
                           className="block px-4 py-3 transition-colors hover:bg-white/[0.05]"
@@ -147,7 +162,7 @@ export function SiteHeader() {
                             <span className="text-sm font-semibold text-white">IEEE Day 2026</span>
                             <span className="shrink-0 text-xs text-slate-400">6 Oct</span>
                           </span>
-                          <span className="mt-1 block text-xs leading-5 text-slate-300">Student Branch launch · 12–6 PM EAT</span>
+                          <span className="mt-1 block text-xs leading-5 text-slate-300">Recap · American Center, Kabalagala</span>
                         </Link>
 
                         <div className="mx-4 border-t border-white/10" />
@@ -296,6 +311,14 @@ export function SiteHeader() {
                       {l.label}
                     </Link>
                     <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 pl-1 text-sm text-white/45">
+                      <Link
+                        href="/events/branch-launch-2026"
+                        onClick={() => setOpen(false)}
+                        className="transition-colors hover:text-white"
+                      >
+                        Branch Launch
+                      </Link>
+                      <span aria-hidden="true">·</span>
                       <Link
                         href="/events/ieee-day-2026"
                         onClick={() => setOpen(false)}

@@ -21,12 +21,12 @@ const STEPS = [
   {
     step: "02",
     title: "Select Student Membership",
-    desc: 'Choose "Student Member" or "Graduate Student Member" during checkout. Select Cavendish University Uganda as your student branch. TODO(owner): confirm the exact branch name as it appears on the IEEE form.',
+    desc: 'Choose "Student Member" or "Graduate Student Member" during checkout. Select Cavendish University Uganda as your student branch.',
   },
   {
     step: "03",
     title: "Pay the Current Dues",
-    desc: 'Check current rates on students.ieee.org/membership — fees are set by IEEE and may change. TODO(owner): confirm how Ugandan students can pay (including whether mobile money or local transfers are available).',
+    desc: "Check students.ieee.org/membership for the current fee. Fees are set by IEEE and may change.",
   },
   {
     step: "04",
@@ -76,7 +76,7 @@ const MEMBERSHIP_VS_OPEN = [
 const MEMBERSHIP_FAQS = [
   {
     q: "How much does IEEE Student Membership cost?",
-    a: `Current rates are published on the official IEEE Students membership page. Check students.ieee.org/membership for up-to-date pricing. TODO(owner): the branch will confirm the exact USD and UGX cost, and any regional discount scheme available to Ugandan students.`,
+    a: `Current rates are published on the official IEEE Students membership page. Check students.ieee.org/membership for up-to-date pricing.`,
   },
   {
     q: "Can I attend Branch events without an official membership?",

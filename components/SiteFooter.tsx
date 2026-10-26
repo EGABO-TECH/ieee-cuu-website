@@ -12,9 +12,8 @@ const NAV_LINKS = {
     { href: "/join#faqs", label: "FAQs" },
   ],
   "Get Involved": [
-    { href: "/events/ieee-day-2026", label: "IEEE Day 2026" },
-    { href: "/events/ieeextreme-20", label: "IEEEXtreme 20.0" },
-    { href: "/events", label: "All Events" },
+    { href: "/events", label: "Events" },
+    { href: "/volunteer", label: "Volunteer" },
     { href: "/gallery", label: "Gallery" },
     { href: "/join", label: "Join the Branch" },
     { href: "/contact", label: "Contact Us" },

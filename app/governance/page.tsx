@@ -16,10 +16,10 @@ interface GovernanceDoc {
   description: string;
   fileUrl?: string; // undefined if not yet uploaded
   updatedAt?: string;
-  status: "Published" | "Pending Branch Adoption";
+  status: "Published" | "Pending Branch Adoption" | "Upcoming";
 }
 
-// TODO(owner): Provide PDFs for the branch constitution, code of conduct, and inaugural meeting minutes.
+// TODO(owner): Provide PDFs for the branch constitution, launch minutes and annual plan.
 const GOVERNANCE_DOCS: GovernanceDoc[] = [
   {
     id: "constitution",
@@ -41,13 +41,12 @@ const GOVERNANCE_DOCS: GovernanceDoc[] = [
     status: "Published",
   },
   {
-    id: "inaugural-report",
-    title: "Inaugural IEEE Day 2026 Minutes & Summary",
+    id: "launch-minutes",
+    title: "Launch minutes",
     category: "Reporting",
-    description:
-      "Formal record of the branch launch ceremony held on 6 October 2026 at Siyani Campus main auditorium.",
-    fileUrl: undefined, // TODO(owner): upload inaugural summary PDF
-    status: "Pending Branch Adoption",
+    description: "To be published after the 4 November launch.",
+    fileUrl: undefined,
+    status: "Upcoming",
   },
   {
     id: "annual-plan",

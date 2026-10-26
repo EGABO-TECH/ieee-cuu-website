@@ -37,7 +37,7 @@ const PILLARS = [
     icon: Users2,
     title: "Guild & Student Representation",
     subtitle: "Advocacy & Community",
-    desc: "Unified computing student voice, peer study circles, women-in-tech initiatives, and Students' Guild alignment. TODO(owner): confirm current CUUCSA executive leads.",
+    desc: "Unified computing student voice, peer study circles, women-in-tech initiatives, and Students' Guild alignment.",
     tag: "Ecosystem",
   },
 ];
