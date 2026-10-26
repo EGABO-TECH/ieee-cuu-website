@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/about",
     "/branch",
     "/join",
+    "/volunteer",
     "/events",
     "/gallery",
     "/news",

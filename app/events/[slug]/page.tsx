@@ -20,6 +20,17 @@ import { SITE } from "@/config/site";
 import IEEEDayPage from "../ieee-day/page";
 import IEEExtremePage from "../ieeextreme/page";
 
+// Re-render every 5 minutes so status labels follow the clock.
+export const revalidate = 300;
+
+const STATUS_LABEL: Record<string, string> = {
+  upcoming: "Upcoming",
+  "registration-open": "Registration open",
+  "registration-closed": "Registration closed",
+  live: "Happening today",
+  ended: "Past event",
+};
+
 interface Props {
   params: { slug: string };
 }
@@ -46,6 +57,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${event.title} | IEEE Student Branch Cavendish University Uganda`,
     description: event.summary,
+    openGraph: {
+      title: event.title,
+      description: event.summary,
+      images: [{ url: event.flyer ?? "/images/og-card.png" }],
+    },
   };
 }
 
@@ -84,7 +100,7 @@ export default function EventDetailPage({ params }: Props) {
               {event.kind}
             </span>
             <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-              Status: {event.status}
+              {STATUS_LABEL[event.status] ?? event.status}
             </span>
           </div>
 
@@ -101,7 +117,12 @@ export default function EventDetailPage({ params }: Props) {
               <Calendar size={18} className="text-[#0D6E6E] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs text-slate-400">Date &amp; Time</p>
-                <p className="text-sm font-semibold text-slate-800">{formatDateTimeEAT(event.startsAt)}</p>
+                <p className="text-sm font-semibold text-slate-800">
+                  {event.timeTbc ? formatDateEAT(event.startsAt) : formatDateTimeEAT(event.startsAt)}
+                </p>
+                {event.timeTbc && event.status !== "ended" && (
+                  <p className="text-xs text-slate-500 mt-0.5">Time to be announced</p>
+                )}
               </div>
             </div>
 
@@ -111,6 +132,9 @@ export default function EventDetailPage({ params }: Props) {
                 <div>
                   <p className="text-xs text-slate-400">Location</p>
                   <p className="text-sm font-semibold text-slate-800">{event.venue.name}</p>
+                  {event.timeTbc && event.status !== "ended" && (
+                    <p className="text-xs text-slate-500 mt-0.5">Exact location to be announced</p>
+                  )}
                 </div>
               </div>
             )}
@@ -118,9 +142,10 @@ export default function EventDetailPage({ params }: Props) {
             <div className="flex items-start gap-3">
               <Users size={18} className="text-[#0D6E6E] shrink-0 mt-0.5" />
               <div>
-                <p className="text-xs text-slate-400">Eligibility</p>
+                <p className="text-xs text-slate-400">Who can attend</p>
                 <p className="text-sm font-semibold text-slate-800">
-                  {event.registration?.membersOnly ? "IEEE Student Members" : "Open to all CUU students"}
+                  {event.audience ??
+                    (event.registration?.membersOnly ? "IEEE Student Members" : "Open to all CUU students")}
                 </p>
               </div>
             </div>
@@ -145,6 +170,24 @@ export default function EventDetailPage({ params }: Props) {
             </div>
           )}
 
+          {/* Programme not yet published */}
+          {(!event.agenda || event.agenda.length === 0) && event.status !== "ended" && (
+            <div className="mt-12 rounded-2xl border border-dashed border-slate-300 bg-white p-6">
+              <h2 className="font-serif text-2xl font-bold text-slate-900">Programme</h2>
+              <p className="mt-2 text-sm text-slate-600">
+                Programme to be announced. Follow the branch on{" "}
+                <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0D6E6E] underline underline-offset-2">
+                  LinkedIn
+                </a>{" "}
+                or{" "}
+                <a href={SITE.social.x} target="_blank" rel="noopener noreferrer" className="text-[#0D6E6E] underline underline-offset-2">
+                  X
+                </a>{" "}
+                for updates.
+              </p>
+            </div>
+          )}
+
           {/* Recap */}
           {event.status === "ended" && (
             <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8">
@@ -154,6 +197,24 @@ export default function EventDetailPage({ params }: Props) {
                   ? event.recap.summary
                   : "Photos and detailed attendance recap for this event are currently being compiled."}
               </p>
+            </div>
+          )}
+
+          {/* FAQ */}
+          {event.faq && event.faq.length > 0 && (
+            <div className="mt-12">
+              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Questions</h2>
+              <div className="divide-y divide-slate-200 border-y border-slate-200">
+                {event.faq.map((f) => (
+                  <details key={f.q} className="group py-4">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+                      {f.q}
+                      <span aria-hidden="true" className="text-xl leading-none text-[#1A9090] transition-transform group-open:rotate-45">+</span>
+                    </summary>
+                    <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{f.a}</p>
+                  </details>
+                ))}
+              </div>
             </div>
           )}
         </div>

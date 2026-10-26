@@ -20,6 +20,9 @@ export const metadata: Metadata = {
     "Explore upcoming and past events, hackathons, and celebrations hosted by the IEEE Student Branch at Cavendish University Uganda.",
 };
 
+// Re-render every 5 minutes so events move from Upcoming to Past on time.
+export const revalidate = 300;
+
 // Server component — no client flash
 export default function EventsPage() {
   const events = getAllEvents();

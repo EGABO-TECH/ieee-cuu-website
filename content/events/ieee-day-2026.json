@@ -1,89 +1,22 @@
 {
   "slug": "ieee-day-2026",
-  "title": "IEEE Day 2026: Branch Launch",
-  "summary": "The inaugural celebration of the IEEE Student Branch at Cavendish University Uganda — keynotes, workshops, cake cutting, and community onboarding.",
+  "title": "IEEE Day 2026 at the American Center",
+  "summary": "Uganda's student branches celebrated IEEE Day together. CUU received its certificate of approval.",
   "kind": "flagship",
-  "startsAt": "2026-10-06T12:00:00+03:00",
+  "startsAt": "2026-10-06T09:00:00+03:00",
   "endsAt": "2026-10-06T18:00:00+03:00",
+  "timeTbc": true,
   "timezone": "Africa/Kampala",
   "venue": {
-    "name": "Siyani Campus Main Auditorium",
-    "address": "Plot 1469 Ggaba Road, Kampala, Uganda",
-    "mapUrl": "https://www.google.com/maps/search/Plot+1469+Ggaba+Road+Kampala+Cavendish+University+Uganda"
+    "name": "American Center, Kabalagala",
+    "address": "Kabalagala, Kampala, Uganda"
   },
+  "audience": "IEEE student branches from across Uganda",
   "online": false,
-  "registration": {
-    "opensAt": "2026-09-01T00:00:00+03:00",
-    "closesAt": "2026-10-05T12:00:00+03:00",
-    "label": "Free for all CUU students",
-    "membersOnly": false
-  },
-  "flyer": "/images/IEEE-Flyer.png",
-  "agenda": [
-    {
-      "start": "12:00",
-      "end": "12:30",
-      "title": "Arrival and Registration",
-      "description": "Sign-in and welcome orientation for attendees."
-    },
-    {
-      "start": "12:30",
-      "end": "13:00",
-      "title": "Opening Remarks",
-      "host": "Mulondo Andrew (Chair)",
-      "description": "Welcome address from the Branch Chair and university representatives."
-    },
-    {
-      "start": "13:00",
-      "end": "14:00",
-      "title": "Keynote: What IEEE Means for You",
-      "host": "Dr. John Bosco Ssemakula (Counselor)",
-      "description": "An introduction to IEEE, its global reach, and the opportunities available to student members."
-    },
-    {
-      "start": "14:00",
-      "end": "15:00",
-      "title": "Campus Ambassador Programs Showcase",
-      "host": "Egabo Aaron & Niwasiima Ashelycole",
-      "description": "Overview of AWS Student Builders, Black Python Devs, and IEEE CS SYP programs active at CUU."
-    },
-    {
-      "start": "15:00",
-      "end": "15:30",
-      "title": "Networking Break",
-      "description": "Refreshments and informal networking among students and branch leadership."
-    },
-    {
-      "start": "15:30",
-      "end": "16:30",
-      "title": "IEEEXtreme 20.0 Briefing",
-      "host": "Technical Coordinators",
-      "description": "Registration guidance, team formation, and preparation tips for IEEEXtreme 20.0."
-    },
-    {
-      "start": "16:30",
-      "end": "17:30",
-      "title": "Branch Launch Ceremony",
-      "description": "Official launch of the IEEE Student Branch, Cavendish University Uganda. Cake cutting and photo opportunity."
-    },
-    {
-      "start": "17:30",
-      "end": "18:00",
-      "title": "Closing Remarks & Next Steps",
-      "host": "Executive Committee",
-      "description": "Summary of branch activities, WhatsApp group onboarding, and farewell."
-    }
-  ],
   "recap": {
-    "summary": "TODO(owner): Please supply a brief recap paragraph (2–4 sentences) describing how IEEE Day 2026 went, key highlights, and any outcomes.",
+    "summary": "On 6 October 2026, IEEE student branches from across Uganda celebrated IEEE Day together at the American Center in Kabalagala, Kampala. Universities present included Makerere, Kyambogo, ISBAT, UCU, Ernest Cook, MUBS, KIU and Cavendish. Cavendish University Uganda was recognised as one of the branches being reborn and received an official certificate of approval. The day was given to engagement, sharing perspectives and networking between branches.",
     "attendance": null,
     "photos": [],
     "links": []
-  },
-  "faq": [
-    {
-      "q": "Who can attend Branch events?",
-      "a": "All CUU students are welcome at open events like IEEE Day. IEEE membership is required for competitions like IEEEXtreme and for IEEE Xplore access."
-    }
-  ]
+  }
 }

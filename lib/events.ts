@@ -6,6 +6,7 @@
  * ─────────────────────────────────────────────────────────────────
  */
 
+import branchLaunchData from "@/content/events/branch-launch-2026.json";
 import ieeeDayData from "@/content/events/ieee-day-2026.json";
 import ieeextremeData from "@/content/events/ieeextreme-20.json";
 
@@ -68,7 +69,10 @@ export type EventItem = {
   kind: "flagship" | "workshop" | "competition" | "talk" | "social";
   startsAt: string;
   endsAt: string;
+  /** True until the start time is announced; hide times while set. */
+  timeTbc?: boolean;
   timezone: "Africa/Kampala";
+  audience?: string;
   venue?: EventVenue;
   online?: boolean;
   registration?: EventRegistration;
@@ -113,6 +117,7 @@ export function computeStatus(
 export function getAllEvents(): EventItem[] {
   const now = new Date();
   const raw = [
+    branchLaunchData as Omit<EventItem, "status">,
     ieeeDayData as Omit<EventItem, "status">,
     ieeextremeData as Omit<EventItem, "status">,
   ];

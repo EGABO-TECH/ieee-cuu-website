@@ -1,0 +1,34 @@
+{
+  "slug": "branch-launch-2026",
+  "title": "Official Branch Launch",
+  "summary": "The official launch of the IEEE Student Branch at Cavendish University Uganda.",
+  "kind": "flagship",
+  "startsAt": "2026-11-04T00:00:00+03:00",
+  "endsAt": "2026-11-04T23:59:00+03:00",
+  "timeTbc": true,
+  "timezone": "Africa/Kampala",
+  "venue": {
+    "name": "Cavendish University Uganda",
+    "address": "Plot 1469 Ggaba Road, Kampala, Uganda"
+  },
+  "audience": "Open to all CUU students",
+  "online": false,
+  "faq": [
+    {
+      "q": "Who can attend?",
+      "a": "The launch is open to all Cavendish University Uganda students, from any faculty and any year."
+    },
+    {
+      "q": "Do I need to be an IEEE member to attend?",
+      "a": "No. You do not need IEEE membership to attend the launch."
+    },
+    {
+      "q": "How do I join the branch afterwards?",
+      "a": "Register your interest on the Join page. It walks you through joining the branch community and becoming an IEEE Student Member when you are ready."
+    },
+    {
+      "q": "Who do I contact with questions?",
+      "a": "Use the Contact page to reach the branch executive."
+    }
+  ]
+}
