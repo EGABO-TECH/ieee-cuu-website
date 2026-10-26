@@ -1,21 +1,9 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, MapPin, ArrowUpRight, ImageIcon } from "lucide-react";
 import { getEventBySlug } from "@/lib/events";
-import { SiteFooter } from "@/components/SiteFooter";
 
-const DESCRIPTION =
-  "On 6 October 2026, Cavendish University Uganda joined student branches from across Uganda at the American Center, Kabalagala, and received its official IEEE certificate of approval.";
 
-export const metadata: Metadata = {
-  title: "IEEE Day 2026 at the American Center, Kabalagala",
-  description: DESCRIPTION,
-  openGraph: {
-    title: "IEEE Day 2026 at the American Center, Kabalagala",
-    description: DESCRIPTION,
-  },
-};
 
 const FAQS = [
   {
@@ -28,7 +16,7 @@ const FAQS = [
   },
 ];
 
-export default function IEEEDayPage() {
+export function IEEEDayRecap() {
   const event = getEventBySlug("ieee-day-2026");
   const recap = event?.recap?.summary;
   const photos = event?.recap?.photos ?? [];
@@ -123,7 +111,6 @@ export default function IEEEDayPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

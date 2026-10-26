@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/metadata";
 import { CUUCSA } from "@/components/CUUCSA";
 
-export const metadata: Metadata = {
-  title: "CUUCSA | Cavendish University Uganda Computing Students Association",
+export const metadata: Metadata = pageMetadata({
+  title: "CUUCSA: Computing Students' Association",
   description:
     "Discover CUUCSA, the computing society at Cavendish University Uganda, focused on code, collaboration, and practical growth.",
-};
+  path: "/cuucsa",
+});
 
 export default function CUUCSAPage() {
   return (
@@ -37,7 +38,6 @@ export default function CUUCSAPage() {
 
       </main>
 
-      <SiteFooter />
     </>
   );
 }

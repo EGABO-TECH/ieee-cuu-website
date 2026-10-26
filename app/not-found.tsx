@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft, Home, Calendar, Users, HelpCircle } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 
 export default function NotFound() {
   return (
@@ -64,7 +63,6 @@ export default function NotFound() {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

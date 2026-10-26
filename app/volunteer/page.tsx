@@ -3,10 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Download, Calendar, MapPin, Users, CheckCircle2 } from "lucide-react";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteFooter } from "@/components/SiteFooter";
 import { VOLUNTEER_CALL as CALL } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
 import { msUntil } from "@/lib/events";
+import { pageMetadata } from "@/lib/metadata";
 
 // Re-render every 5 minutes so the page flips to "closed" after the deadline.
 export const revalidate = 300;
@@ -15,21 +15,13 @@ const TITLE = "Call for 15 student volunteers";
 const DESCRIPTION =
   "Help run the Official Branch Launch of the IEEE Student Branch at Cavendish University Uganda on 4 November 2026. Open to every CUU student. Applications close 27 October 2026.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: TITLE,
   description: DESCRIPTION,
-  openGraph: {
-    title: `${TITLE} | IEEE CUU Student Branch`,
-    description: DESCRIPTION,
-    images: [{ url: CALL.flyer ?? "/images/og-card.png", alt: "Call for volunteers flyer" }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${TITLE} | IEEE CUU Student Branch`,
-    description: DESCRIPTION,
-    images: [CALL.flyer ?? "/images/og-card.png"],
-  },
-};
+  path: "/volunteer",
+  image: CALL.flyer,
+  imageAlt: "Call for volunteers flyer",
+});
 
 const ROLES = [
   { title: "Registration and ushering", desc: "Welcome guests, manage sign-in and guide people to their seats." },
@@ -232,7 +224,6 @@ export default function VolunteerPage() {
           </div>
         </section>
       </main>
-      <SiteFooter />
     </>
   );
 }

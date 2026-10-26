@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Calendar, User, Tag } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { getNewsBySlug, getAllNews } from "@/lib/news";
+import { pageMetadata } from "@/lib/metadata";
 
 interface Props {
   params: { slug: string };
@@ -18,12 +18,13 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getNewsBySlug(params.slug);
-  if (!post) return { title: "Article Not Found" };
+  if (!post) return { title: "Article not found" };
 
-  return {
-    title: `${post.title} | IEEE Student Branch CUU News`,
+  return pageMetadata({
+    title: post.title,
     description: post.summary,
-  };
+    path: `/news/${post.slug}`,
+  });
 }
 
 export default function NewsArticlePage({ params }: Props) {
@@ -101,7 +102,6 @@ export default function NewsArticlePage({ params }: Props) {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

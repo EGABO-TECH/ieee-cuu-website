@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/metadata";
 import { PolicyPage } from "@/components/PolicyPage";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | IEEE CUU Student Branch",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Policy",
   description:
     "How the IEEE Student Branch at Cavendish University Uganda handles information on its website and through linked services.",
-};
+  path: "/privacy",
+});
 
 const sections = [
   {
@@ -84,7 +85,6 @@ export default function PrivacyPolicyPage() {
         effectiveDate="September 27, 2026"
         sections={sections}
       />
-      <SiteFooter />
     </>
   );
 }

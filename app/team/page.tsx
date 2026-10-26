@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Users, ShieldCheck, HeartHandshake, ArrowUpRight } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { Team } from "@/components/Team";
 import { WHATSAPP_INVITE_URL } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Branch Leadership Team | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Team",
   description:
     "Meet the executive committee, technical coordinators, and outreach mobilizers leading the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/team",
+});
 
 const PILLARS_OF_LEADERSHIP = [
   {
@@ -102,7 +103,6 @@ export default function TeamPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

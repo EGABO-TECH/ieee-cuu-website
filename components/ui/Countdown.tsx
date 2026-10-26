@@ -32,6 +32,15 @@ export function Countdown({
     return msToTimeLeft(seed);
   });
   const [expired, setExpired] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReducedMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     const target = new Date(targetISO).getTime();
@@ -52,7 +61,8 @@ export function Countdown({
 
     tick();
     if (target > Date.now()) {
-      id = setInterval(tick, 1000);
+      // With reduced motion, seconds are hidden, so a minute tick is enough.
+      id = setInterval(tick, reducedMotion ? 60_000 : 1000);
     }
 
     return () => {
@@ -60,7 +70,7 @@ export function Countdown({
         clearInterval(id);
       }
     };
-  }, [targetISO]);
+  }, [targetISO, reducedMotion]);
 
   if (hideWhenExpired && expired) return null;
 
@@ -68,11 +78,20 @@ export function Countdown({
     { value: left.days, label: "days" },
     { value: left.hours, label: "hrs" },
     { value: left.minutes, label: "min" },
-    ...(showSeconds ? [{ value: left.seconds, label: "sec" }] : []),
+    ...(showSeconds && !reducedMotion ? [{ value: left.seconds, label: "sec" }] : []),
   ];
 
+  const deadline = new Date(targetISO).toLocaleString("en-GB", {
+    timeZone: "Africa/Kampala",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
-    <div className="flex gap-3" role="timer" aria-label="Time remaining">
+    <div className="flex gap-3" role="timer" aria-label={`Countdown to ${deadline} EAT`}>
       {cells.map((c) => (
         <div
           key={c.label}

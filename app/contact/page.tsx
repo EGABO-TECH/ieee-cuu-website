@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { MapPin, Globe, Phone, Mail, MessageCircle } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Contact | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact",
   description:
     "Get in touch with the IEEE Student Branch at Cavendish University Uganda. Find our address, social links, and send us a message.",
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (
@@ -157,7 +158,6 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

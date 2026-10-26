@@ -15,10 +15,10 @@ import {
 } from "lucide-react";
 import { getEventBySlug, getAllEvents, formatDateEAT, formatDateTimeEAT, msUntil } from "@/lib/events";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
-import IEEEDayPage from "../ieee-day/page";
-import IEEExtremePage from "../ieeextreme/page";
+import { IEEEDayRecap } from "@/components/events/IEEEDayRecap";
+import { IEEExtremeDetail } from "@/components/events/IEEExtremeDetail";
+import { pageMetadata } from "@/lib/metadata";
 
 // Re-render every 5 minutes so status labels follow the clock.
 export const revalidate = 300;
@@ -36,46 +36,28 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const events = getAllEvents();
-  const slugs = events.map((e) => ({ slug: e.slug }));
-  // Add common aliases
-  return [
-    ...slugs,
-    { slug: "ieee-day" },
-    { slug: "ieeextreme" },
-  ];
+  return getAllEvents().map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  let slug = params.slug;
-  if (slug === "ieee-day") slug = "ieee-day-2026";
-  if (slug === "ieeextreme") slug = "ieeextreme-20";
+  const event = getEventBySlug(params.slug);
+  if (!event) return { title: "Event not found" };
 
-  const event = getEventBySlug(slug);
-  if (!event) return { title: "Event Not Found" };
-
-  return {
-    title: `${event.title} | IEEE Student Branch Cavendish University Uganda`,
+  return pageMetadata({
+    title: event.title,
     description: event.summary,
-    openGraph: {
-      title: event.title,
-      description: event.summary,
-      images: [{ url: event.flyer ?? "/images/og-card.png" }],
-    },
-  };
+    path: `/events/${event.slug}`,
+    image: event.flyer,
+    imageAlt: event.flyer ? `${event.title} flyer` : undefined,
+  });
 }
 
 export default function EventDetailPage({ params }: Props) {
   const { slug } = params;
 
   // Render the bespoke rich layouts for the flagship launch and IEEEXtreme
-  if (slug === "ieee-day-2026" || slug === "ieee-day") {
-    return <IEEEDayPage />;
-  }
-
-  if (slug === "ieeextreme-20" || slug === "ieeextreme") {
-    return <IEEExtremePage />;
-  }
+  if (slug === "ieee-day-2026") return <IEEEDayRecap />;
+  if (slug === "ieeextreme-20") return <IEEExtremeDetail />;
 
   const event = getEventBySlug(slug);
   if (!event) {
@@ -219,7 +201,6 @@ export default function EventDetailPage({ params }: Props) {
           )}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

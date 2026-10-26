@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/metadata";
 import { Programs } from "@/components/Programs";
 import { Communities } from "@/components/Communities";
 
-export const metadata: Metadata = {
-  title: "Programs & Societies | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Programs and societies",
   description:
     "Explore campus ambassador programs and specialized technical societies at Cavendish University Uganda.",
-};
+  path: "/programs",
+});
 
 export default function ProgramsPage() {
   return (
@@ -39,7 +40,6 @@ export default function ProgramsPage() {
         <Programs />
       </main>
 
-      <SiteFooter />
     </>
   );
 }

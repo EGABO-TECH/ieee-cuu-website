@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import { FileText, Download, ShieldCheck, Clock, ExternalLink } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Governance & Transparency | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Governance and transparency",
   description:
     "Official governance framework, branch constitution, code of conduct, and reporting standards for the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/governance",
+});
 
 interface GovernanceDoc {
   id: string;
@@ -160,7 +161,6 @@ export default function GovernancePage() {
           </section>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

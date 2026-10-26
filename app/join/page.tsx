@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CheckCircle2, HelpCircle, ArrowUpRight, ExternalLink } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { JoinBanner } from "@/components/JoinBanner";
 import { JoinForm } from "@/components/JoinForm";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Join Us & Membership | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Join the branch",
   description:
     "Become a member of the IEEE Student Branch at Cavendish University Uganda. Learn about IEEE Student Membership, the join process, and what you can do with or without a membership.",
-};
+  path: "/join",
+});
 
 const STEPS = [
   {
@@ -311,7 +312,6 @@ export default function JoinPage() {
         <JoinBanner />
       </main>
 
-      <SiteFooter />
     </>
   );
 }

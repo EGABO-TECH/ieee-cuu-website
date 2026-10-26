@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Lock, Download, RefreshCw, Key, ShieldCheck, AlertCircle } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 
 interface JoinRecord {
   id: string;
@@ -202,7 +201,6 @@ export default function AdminPage() {
           )}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

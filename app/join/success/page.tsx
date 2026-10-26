@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { CheckCircle2, ExternalLink, ArrowRight, ArrowUpRight, MessageCircle } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "Registration Received | IEEE Student Branch Cavendish University Uganda",
-  description: "Next steps for joining the IEEE Student Branch community at Cavendish University Uganda.",
-};
+export const metadata: Metadata = pageMetadata({
+  title: "Registration received",
+  description:
+    "Next steps for joining the IEEE Student Branch community at Cavendish University Uganda.",
+  path: "/join/success",
+});
 
 export default function JoinSuccessPage() {
   return (
@@ -98,7 +100,6 @@ export default function JoinSuccessPage() {
           </div>
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

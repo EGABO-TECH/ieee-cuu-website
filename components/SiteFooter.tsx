@@ -4,19 +4,18 @@ import { SITE } from "@/config/site";
 
 const NAV_LINKS = {
   Explore: [
-    { href: "/about", label: "What is IEEE" },
+    { href: "/about", label: "About IEEE" },
     { href: "/branch", label: "The Branch" },
-    { href: "/join", label: "Membership" },
     { href: "/team", label: "Team" },
     { href: "/programs", label: "Programs" },
-    { href: "/join#faqs", label: "FAQs" },
+    { href: "/cuucsa", label: "CUUCSA" },
   ],
   "Get Involved": [
     { href: "/events", label: "Events" },
     { href: "/volunteer", label: "Volunteer" },
-    { href: "/gallery", label: "Gallery" },
     { href: "/join", label: "Join the Branch" },
-    { href: "/contact", label: "Contact Us" },
+    { href: "/gallery", label: "Gallery" },
+    { href: "/contact", label: "Contact" },
   ],
   "Official IEEE": [
     { href: SITE.ieee.org, label: "IEEE.org", external: true },

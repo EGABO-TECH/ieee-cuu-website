@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import { Rocket, Sparkles, BookOpen, Users, Compass, ArrowUpRight, CheckCircle2 } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { Journey } from "@/components/Journey";
 
-export const metadata: Metadata = {
-  title: "The Branch | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "The Branch",
   description:
     "Explore the IEEE Student Branch at Cavendish University Uganda, our 6-step student journey, core pillars, and orientation guide.",
-};
+  path: "/branch",
+});
 
 const BRANCH_HIGHLIGHTS = [
   {
@@ -135,7 +136,6 @@ export default function BranchPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

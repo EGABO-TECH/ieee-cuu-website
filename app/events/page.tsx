@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -12,13 +13,13 @@ import {
 } from "lucide-react";
 import { getAllEvents, partitionEvents, formatDateEAT, msUntil, type EventItem } from "@/lib/events";
 import { Countdown } from "@/components/ui/Countdown";
-import { SiteFooter } from "@/components/SiteFooter";
 
-export const metadata: Metadata = {
-  title: "Events | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "Events",
   description:
     "Explore upcoming and past events, hackathons, and celebrations hosted by the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/events",
+});
 
 // Re-render every 5 minutes so events move from Upcoming to Past on time.
 export const revalidate = 300;
@@ -130,7 +131,6 @@ export default function EventsPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

@@ -116,11 +116,18 @@ export function SiteHeader() {
                   className="relative"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
+                  onFocus={handleMouseEnter}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setEventsDropdownOpen(false);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setEventsDropdownOpen(false);
+                  }}
                 >
-                  <a
+                  <Link
                     href="/events"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    aria-haspopup="true"
+                    aria-expanded={eventsDropdownOpen}
                     className={`inline-flex items-center gap-1.5 rounded-full text-xs transition-all duration-300 max-[1023px]:gap-1 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
                       active || eventsDropdownOpen
                         ? "bg-[#FFFFFF] px-3.5 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"
@@ -134,7 +141,7 @@ export function SiteHeader() {
                         eventsDropdownOpen ? "rotate-180" : ""
                       }`}
                     />
-                  </a>
+                  </Link>
 
                   {/* Events menu */}
                   {eventsDropdownOpen && (
@@ -194,10 +201,24 @@ export function SiteHeader() {
               );
             }
 
+            if (l.id === "join") {
+              return (
+                <Link
+                  key={l.id}
+                  href={l.href}
+                  aria-current={active ? "page" : undefined}
+                  className="ml-1 rounded-full bg-[#1A9090] px-4 py-1.5 text-xs font-semibold text-white shadow-md transition hover:bg-[#22a5a5] max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px]"
+                >
+                  {l.label}
+                </Link>
+              );
+            }
+
             return (
               <Link
                 key={l.id}
                 href={l.href}
+                aria-current={active ? "page" : undefined}
                 className={`rounded-full text-xs transition-all duration-300 max-[1023px]:px-2.5 max-[1023px]:py-1 max-[1023px]:text-[10px] ${
                   active
                     ? "bg-[#FFFFFF] px-4 py-1.5 font-semibold text-[#0D6E6E] shadow-md scale-100"

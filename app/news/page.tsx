@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Calendar, Tag, ArrowRight, User } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { getAllNews } from "@/lib/news";
 
-export const metadata: Metadata = {
-  title: "News & Stories | IEEE Student Branch Cavendish University Uganda",
+export const metadata: Metadata = pageMetadata({
+  title: "News",
   description:
     "Latest updates, announcements, event recaps, and stories from the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/news",
+});
 
 export default function NewsPage() {
   const posts = getAllNews();
@@ -79,7 +80,6 @@ export default function NewsPage() {
           )}
         </div>
       </main>
-      <SiteFooter />
     </>
   );
 }

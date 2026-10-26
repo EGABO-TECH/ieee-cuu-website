@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { SiteFooter } from "@/components/SiteFooter";
+import { pageMetadata } from "@/lib/metadata";
 import { PolicyPage } from "@/components/PolicyPage";
 
-export const metadata: Metadata = {
-  title: "Cookie Policy | IEEE CUU Student Branch",
+export const metadata: Metadata = pageMetadata({
+  title: "Cookie Policy",
   description:
     "Cookie and similar technology information for the IEEE Student Branch at Cavendish University Uganda website.",
-};
+  path: "/cookies",
+});
 
 const sections = [
   {
@@ -66,7 +67,6 @@ export default function CookiePolicyPage() {
         effectiveDate="September 27, 2026"
         sections={sections}
       />
-      <SiteFooter />
     </>
   );
 }

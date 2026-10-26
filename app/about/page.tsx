@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Globe2, Cpu, BookOpenText, Users2, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
-import { SiteFooter } from "@/components/SiteFooter";
 import { WhatIsIEEE } from "@/components/WhatIsIEEE";
 
-export const metadata: Metadata = {
-  title: "About IEEE | Cavendish University Uganda Student Branch",
+export const metadata: Metadata = pageMetadata({
+  title: "About IEEE",
   description:
     "Learn about IEEE, the world's largest technical professional organization, and the IEEE Student Branch at Cavendish University Uganda.",
-};
+  path: "/about",
+});
 
 const ABOUT_SLIDES = [
   "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?auto=format&fit=crop&w=1600&q=80",
@@ -156,7 +157,6 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }

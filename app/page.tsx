@@ -4,7 +4,6 @@ import { VideoSpotlight } from "@/components/VideoSpotlight";
 import { Partnerships } from "@/components/Partnerships";
 import { Faq } from "@/components/Faq";
 import { Resources } from "@/components/Resources";
-import { SiteFooter } from "@/components/SiteFooter";
 import { VOLUNTEER_CALL } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
 
@@ -24,7 +23,6 @@ export default function Home() {
         <Resources />
         <Partnerships />
       </main>
-      <SiteFooter />
     </>
   );
 }

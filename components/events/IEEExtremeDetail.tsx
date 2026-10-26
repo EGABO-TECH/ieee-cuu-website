@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,14 +15,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { getEventBySlug } from "@/lib/events";
-import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
 
-export const metadata: Metadata = {
-  title: "IEEEXtreme 20.0 | Global 24-Hour Programming Challenge | IEEE CUU",
-  description:
-    "IEEEXtreme 20.0 with the IEEE CUU Student Branch. 24-hour virtual competitive programming challenge for teams of IEEE Student Members. Registration closed 17 October 2026.",
-};
 
 const STATS = [
   { icon: Clock, value: "24 Hours", label: "Continuous Coding Marathon" },
@@ -75,7 +68,7 @@ const FAQS = [
 ];
 
 // Server component — status computed at render time, no client flash
-export default function IEEExtremePage() {
+export function IEEExtremeDetail() {
   const event = getEventBySlug("ieeextreme-20");
   const registrationClosed =
     !event ||
@@ -349,7 +342,6 @@ export default function IEEExtremePage() {
         </section>
       </main>
 
-      <SiteFooter />
     </>
   );
 }
