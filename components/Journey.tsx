@@ -40,7 +40,7 @@ export function Journey() {
         aria-hidden
         className="pointer-events-none absolute -top-40 right-1/4 h-[500px] w-[700px] rounded-full opacity-[0.08]"
         style={{
-          background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 70%)",
         }}
       />
 
@@ -49,12 +49,12 @@ export function Journey() {
         <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Left Column: WHAT WE DO + Title + Subtitle */}
           <div className="lg:col-span-5 lg:sticky lg:top-36">
-            <span className="inline-block text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A9090]">
+            <span className="inline-block text-[11px] font-bold tracking-[0.25em] uppercase text-[#007DAF]">
               WHAT WE DO
             </span>
 
-            <h2 className="mt-4 font-serif text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.12]">
-              Our Core <em className="not-italic italic text-[#1A9090]">Pillars.</em>
+            <h2 className="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-6xl leading-[1.12]">
+              Our Core <em className="not-italic text-[#007DAF]">Pillars.</em>
             </h2>
 
             <p className="mt-5 max-w-md text-base leading-relaxed text-muted sm:text-lg">
@@ -71,16 +71,16 @@ export function Journey() {
                 return (
                   <div
                     key={p.title}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-ieee/10 bg-white p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#1A9090]/60 hover:shadow-[0_8px_32px_rgba(13,110,110,0.15)]"
+                    className="group relative flex flex-col justify-between rounded-2xl border border-ieee/10 bg-white p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0, 98, 155,0.15)]"
                   >
                     <div>
                       {/* Squircle Icon Container */}
-                      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[#1A9090]/30 bg-ieee/10 text-ieee transition duration-300 group-hover:scale-105">
+                      <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-[#007DAF]/30 bg-ieee/10 text-ieee transition duration-300 group-hover:scale-105">
                         <Icon size={22} strokeWidth={2} />
                       </div>
 
                       {/* Card Title */}
-                      <h3 className="font-serif text-xl font-bold tracking-tight text-ink group-hover:text-ieee transition-colors">
+                      <h3 className="font-display text-xl font-bold tracking-tight text-ink group-hover:text-ieee transition-colors">
                         {p.title}
                       </h3>
 
@@ -114,10 +114,10 @@ export function Journey() {
         <div className="mt-24 border-t border-ieee/10 pt-16">
           <div className="mb-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
             <div>
-              <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A9090]">
+              <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#007DAF]">
                 YOUR PATHWAY
               </span>
-              <h3 className="mt-2 font-serif text-2xl font-bold text-ink sm:text-3xl">
+              <h3 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">
                 The Student Branch Journey
               </h3>
             </div>
@@ -130,10 +130,10 @@ export function Journey() {
             {journey.map((s) => (
               <div
                 key={s.step}
-                className="group rounded-xl border border-ieee/10 bg-white p-5 backdrop-blur-sm transition-all duration-300 hover:border-[#1A9090]/50 hover:bg-white hover:-translate-y-0.5"
+                className="group rounded-xl border border-ieee/10 bg-white p-5 backdrop-blur-sm transition-all duration-300 hover:border-[#007DAF]/50 hover:bg-white hover:-translate-y-0.5"
               >
-                <div className="font-mono text-xs font-bold text-[#1A9090]">{s.step}</div>
-                <div className="mt-1.5 font-serif text-base font-bold text-ink group-hover:text-ieee transition-colors">{s.title}</div>
+                <div className="font-mono text-xs font-bold text-[#007DAF]">{s.step}</div>
+                <div className="mt-1.5 font-display text-base font-bold text-ink group-hover:text-ieee transition-colors">{s.title}</div>
                 <p className="mt-2 text-xs leading-relaxed text-muted">{s.body}</p>
               </div>
             ))}

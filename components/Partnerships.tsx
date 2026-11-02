@@ -18,10 +18,10 @@ export function Partnerships() {
     <section className="bg-white py-8 sm:py-10">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="mb-8 max-w-2xl sm:mb-10">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#1a9090]">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#007DAF]">
             Partnerships
           </p>
-          <h2 className="font-display text-3xl font-bold text-[#0f172a] sm:text-4xl">
+          <h2 className="font-display text-3xl font-bold text-[#002855] sm:text-4xl">
             Working with global and campus partners
           </h2>
         </div>
@@ -33,8 +33,8 @@ export function Partnerships() {
               className="group flex min-h-[100px] items-center justify-center rounded-xl p-2 transition duration-300 ease-out sm:min-h-[120px]"
             >
               <div className="flex w-full flex-col items-center justify-center gap-3 text-center">
-                <div className="relative flex h-16 w-full max-w-[150px] items-center justify-center overflow-hidden rounded-xl bg-transparent p-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_30px_rgba(26,144,144,0.10)] sm:h-20">
-                  <div className="absolute inset-3 rounded-full bg-[#dfeff0]/80 opacity-0 blur-xl transition duration-300 group-hover:opacity-100" />
+                <div className="relative flex h-16 w-full max-w-[150px] items-center justify-center overflow-hidden rounded-xl bg-transparent p-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_30px_rgba(0, 125, 175,0.10)] sm:h-20">
+                  <div className="absolute inset-3 rounded-full bg-[#CADCEA]/80 opacity-0 blur-xl transition duration-300 group-hover:opacity-100" />
                   {partner.src ? (
                     <Image
                       src={partner.src}
@@ -44,7 +44,7 @@ export function Partnerships() {
                       className="relative z-10 h-12 w-auto max-w-[120px] object-contain opacity-80 transition duration-300 group-hover:opacity-100 group-hover:scale-[1.04] sm:h-14 sm:max-w-[140px]"
                     />
                   ) : (
-                    <div className="relative z-10 flex h-14 w-24 items-center justify-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#204d57] transition duration-300 group-hover:text-[#143c45]">
+                    <div className="relative z-10 flex h-14 w-24 items-center justify-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D4D76] transition duration-300 group-hover:text-[#002855]">
                       {partner.name.slice(0, 2)}
                     </div>
                   )}

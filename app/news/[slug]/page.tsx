@@ -38,24 +38,24 @@ export default function NewsArticlePage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-4xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <Link
             href="/news"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0D6E6E] mb-8"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#00629B] mb-8"
           >
             <ArrowLeft size={14} /> Back to all stories
           </Link>
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {post.tags.map((t) => (
-              <span key={t} className="rounded-full bg-slate-200/70 px-3 py-1 text-xs font-semibold text-slate-700">
+              <span key={t} className=" bg-slate-200/70 px-3 py-1 text-xs font-semibold text-slate-700">
                 {t}
               </span>
             ))}
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-ink">
             {post.title}
           </h1>
 
@@ -86,7 +86,7 @@ export default function NewsArticlePage({ params }: Props) {
                 return m ? (
                   <p key={i}>
                     {m[1]}{" "}
-                    <Link href={m[2]} className="text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]">
+                    <Link href={m[2]} className="text-[#00629B] underline underline-offset-2 hover:text-[#007DAF]">
                       {SITE_HOST}
                       {m[2]}
                     </Link>
@@ -100,7 +100,7 @@ export default function NewsArticlePage({ params }: Props) {
 
           {/* Join branch CTA at end of story */}
           <div className="mt-14 rounded-3xl border border-slate-200 bg-white p-8 sm:p-10 text-center">
-            <h3 className="font-serif text-2xl font-bold text-slate-900">
+            <h3 className="font-display text-2xl font-bold text-ink">
               Get involved with the Branch
             </h3>
             <p className="mt-2 text-sm text-slate-600 max-w-md mx-auto">
@@ -109,7 +109,7 @@ export default function NewsArticlePage({ params }: Props) {
             <div className="mt-6">
               <Link
                 href="/join"
-                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
               >
                 Join the IEEE Branch
               </Link>

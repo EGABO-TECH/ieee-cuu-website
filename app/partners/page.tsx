@@ -72,10 +72,10 @@ const PARTNERS = [
 export default function PartnersPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">
+          <div className="page-banner max-w-3xl">
+            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
               Partners &amp; Collaborators
             </h1>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
@@ -111,12 +111,12 @@ export default function PartnersPage() {
                         className="max-h-12 w-auto object-contain"
                       />
                     </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600">
+                    <span className=" bg-slate-100 px-3 py-1 text-[11px] font-semibold text-slate-600">
                       {partner.category}
                     </span>
                   </div>
 
-                  <h2 className="font-serif text-xl font-bold text-slate-900">{partner.name}</h2>
+                  <h2 className="font-display text-xl font-bold text-ink">{partner.name}</h2>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed">{partner.description}</p>
                 </div>
 
@@ -125,7 +125,7 @@ export default function PartnersPage() {
                     href={partner.url}
                     target={partner.url.startsWith("http") ? "_blank" : undefined}
                     rel={partner.url.startsWith("http") ? "noopener noreferrer" : undefined}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0D6E6E] hover:underline"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00629B] hover:underline"
                   >
                     Learn more <ArrowRight size={13} />
                   </a>
@@ -135,13 +135,13 @@ export default function PartnersPage() {
           </div>
 
           {/* Partner with us CTA */}
-          <section className="mt-16 rounded-3xl bg-[#061821] p-8 sm:p-12 text-white">
+          <section className="mt-16 sheet-grid rounded-3xl bg-[#002855] p-8 sm:p-12 text-white">
             <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#dfeff0] mb-4">
+              <span className="inline-flex items-center gap-1.5 bg-white/10 px-3 py-1 text-xs font-semibold text-[#CADCEA] mb-4">
                 <Handshake size={14} />
                 Collaborate with us
               </span>
-              <h2 className="font-serif text-3xl font-bold sm:text-4xl text-white">
+              <h2 className="font-display text-3xl font-bold sm:text-4xl text-white">
                 Partner with the Student Branch
               </h2>
               <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed">
@@ -151,14 +151,14 @@ export default function PartnersPage() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/contact?topic=Partnership"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                  className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
                 >
                   <Mail size={16} />
                   Get in touch
                 </Link>
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   About the branch
                 </Link>

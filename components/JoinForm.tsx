@@ -133,7 +133,7 @@ export function JoinForm() {
   return (
     <div className="rounded-3xl border border-slate-200 bg-white p-6 sm:p-10 shadow-sm">
       <div className="max-w-xl">
-        <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900">
+        <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink">
           Branch Membership Interest Form
         </h2>
         <p className="mt-2 text-sm text-slate-600 leading-relaxed">
@@ -168,7 +168,7 @@ export function JoinForm() {
 
         {/* Full Name */}
         <div>
-          <label htmlFor="fullName" className="block text-sm font-semibold text-slate-900">
+          <label htmlFor="fullName" className="block text-sm font-semibold text-ink">
             Full name <span className="text-red-500">*</span>
           </label>
           <input
@@ -179,8 +179,8 @@ export function JoinForm() {
             onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
             aria-describedby={errors.fullName ? "fullName-error" : undefined}
             className={`mt-2 block w-full rounded-xl border ${
-              errors.fullName ? "border-red-500 focus:ring-red-400" : "border-slate-200 focus:border-[#0D6E6E] focus:ring-[#0D6E6E]"
-            } px-4 py-3 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-1`}
+              errors.fullName ? "border-red-500 focus:ring-red-400" : "border-slate-200 focus:border-[#00629B] focus:ring-[#00629B]"
+            } px-4 py-3 text-sm text-ink shadow-sm focus:outline-none focus:ring-1`}
             placeholder="e.g. Joanita Nakato"
           />
           {errors.fullName && (
@@ -192,7 +192,7 @@ export function JoinForm() {
 
         {/* University Email */}
         <div>
-          <label htmlFor="email" className="block text-sm font-semibold text-slate-900">
+          <label htmlFor="email" className="block text-sm font-semibold text-ink">
             University or personal email <span className="text-red-500">*</span>
           </label>
           <input
@@ -203,8 +203,8 @@ export function JoinForm() {
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             aria-describedby={errors.email ? "email-error" : undefined}
             className={`mt-2 block w-full rounded-xl border ${
-              errors.email ? "border-red-500 focus:ring-red-400" : "border-slate-200 focus:border-[#0D6E6E] focus:ring-[#0D6E6E]"
-            } px-4 py-3 text-sm text-slate-900 shadow-sm focus:outline-none focus:ring-1`}
+              errors.email ? "border-red-500 focus:ring-red-400" : "border-slate-200 focus:border-[#00629B] focus:ring-[#00629B]"
+            } px-4 py-3 text-sm text-ink shadow-sm focus:outline-none focus:ring-1`}
             placeholder="e.g. jnakato@cavendish.ac.ug"
           />
           {errors.email && (
@@ -216,7 +216,7 @@ export function JoinForm() {
 
         {/* Student ID (Optional) */}
         <div>
-          <label htmlFor="studentId" className="block text-sm font-semibold text-slate-900">
+          <label htmlFor="studentId" className="block text-sm font-semibold text-ink">
             Cavendish Student ID <span className="text-slate-400 font-normal">(Optional)</span>
           </label>
           <input
@@ -224,7 +224,7 @@ export function JoinForm() {
             type="text"
             value={formData.studentId}
             onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
-            className="mt-2 block w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-[#0D6E6E] focus:outline-none focus:ring-1 focus:ring-[#0D6E6E]"
+            className="mt-2 block w-full rounded-xl border border-slate-200 px-4 py-3 text-sm text-ink shadow-sm focus:border-[#00629B] focus:outline-none focus:ring-1 focus:ring-[#00629B]"
             placeholder="e.g. 23/BIT/042"
           />
         </div>
@@ -232,7 +232,7 @@ export function JoinForm() {
         {/* Program of Study & Year of Study */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="program" className="block text-sm font-semibold text-slate-900">
+            <label htmlFor="program" className="block text-sm font-semibold text-ink">
               Program of study <span className="text-red-500">*</span>
             </label>
             <input
@@ -244,7 +244,7 @@ export function JoinForm() {
               aria-describedby={errors.program ? "program-error" : undefined}
               className={`mt-2 block w-full rounded-xl border ${
                 errors.program ? "border-red-500" : "border-slate-200"
-              } px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-[#0D6E6E] focus:outline-none focus:ring-1 focus:ring-[#0D6E6E]`}
+              } px-4 py-3 text-sm text-ink shadow-sm focus:border-[#00629B] focus:outline-none focus:ring-1 focus:ring-[#00629B]`}
               placeholder="e.g. BSc Computer Science"
             />
             {errors.program && (
@@ -255,7 +255,7 @@ export function JoinForm() {
           </div>
 
           <div>
-            <label htmlFor="yearOfStudy" className="block text-sm font-semibold text-slate-900">
+            <label htmlFor="yearOfStudy" className="block text-sm font-semibold text-ink">
               Year of study <span className="text-red-500">*</span>
             </label>
             <select
@@ -266,7 +266,7 @@ export function JoinForm() {
               aria-describedby={errors.yearOfStudy ? "yearOfStudy-error" : undefined}
               className={`mt-2 block w-full rounded-xl border ${
                 errors.yearOfStudy ? "border-red-500" : "border-slate-200"
-              } bg-white px-4 py-3 text-sm text-slate-900 shadow-sm focus:border-[#0D6E6E] focus:outline-none focus:ring-1 focus:ring-[#0D6E6E]`}
+              } bg-white px-4 py-3 text-sm text-ink shadow-sm focus:border-[#00629B] focus:outline-none focus:ring-1 focus:ring-[#00629B]`}
             >
               <option value="">Select year...</option>
               {YEAR_OPTIONS.map((y) => (
@@ -285,7 +285,7 @@ export function JoinForm() {
 
         {/* Areas of Interest (Multi-select) */}
         <div>
-          <label className="block text-sm font-semibold text-slate-900 mb-1">
+          <label className="block text-sm font-semibold text-ink mb-1">
             Areas of interest <span className="text-red-500">*</span>
           </label>
           <p className="text-xs text-slate-500 mb-3">Select all that apply to you:</p>
@@ -299,13 +299,13 @@ export function JoinForm() {
                   onClick={() => toggleInterest(item)}
                   className={`flex items-start gap-2.5 rounded-xl border p-3 text-left text-xs sm:text-sm transition ${
                     selected
-                      ? "border-[#0D6E6E] bg-[#0D6E6E]/5 text-slate-900 font-medium"
+                      ? "border-[#00629B] bg-[#00629B]/5 text-ink font-medium"
                       : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
                   }`}
                 >
                   <span
                     className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border mt-0.5 ${
-                      selected ? "border-[#0D6E6E] bg-[#0D6E6E] text-white" : "border-slate-300 bg-white"
+                      selected ? "border-[#00629B] bg-[#00629B] text-white" : "border-slate-300 bg-white"
                     }`}
                   >
                     {selected && <Check size={11} strokeWidth={3} />}
@@ -322,7 +322,7 @@ export function JoinForm() {
 
         {/* Contact Preferences */}
         <div>
-          <label className="block text-sm font-semibold text-slate-900 mb-1">
+          <label className="block text-sm font-semibold text-ink mb-1">
             I want to be contacted about:
           </label>
           <div className="space-y-2 mt-2">
@@ -334,7 +334,7 @@ export function JoinForm() {
                     type="checkbox"
                     checked={checked}
                     onChange={() => togglePreference(pref)}
-                    className="h-4 w-4 rounded border-slate-300 text-[#0D6E6E] focus:ring-[#0D6E6E]"
+                    className="h-4 w-4 rounded border-slate-300 text-[#00629B] focus:ring-[#00629B]"
                   />
                   <span>{pref}</span>
                 </label>
@@ -352,12 +352,12 @@ export function JoinForm() {
               required
               checked={formData.consent}
               onChange={(e) => setFormData({ ...formData, consent: e.target.checked })}
-              className="mt-1 h-4 w-4 rounded border-slate-300 text-[#0D6E6E] focus:ring-[#0D6E6E]"
+              className="mt-1 h-4 w-4 rounded border-slate-300 text-[#00629B] focus:ring-[#00629B]"
             />
             <span className="text-xs text-slate-600 leading-relaxed">
               I consent to having IEEE Student Branch Cavendish University Uganda store my contact details
               to communicate branch news, workshops, and membership updates, in accordance with the{" "}
-              <Link href="/privacy" className="text-[#0D6E6E] underline underline-offset-2">
+              <Link href="/privacy" className="text-[#00629B] underline underline-offset-2">
                 Privacy Policy
               </Link>
               .
@@ -373,7 +373,7 @@ export function JoinForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-full bg-[#0D6E6E] px-8 py-3.5 text-sm font-bold text-white transition hover:bg-[#1A9090] disabled:opacity-60"
+            className="inline-flex w-full sm:w-auto items-center justify-center gap-2 bg-[#00629B] px-8 py-3.5 text-sm font-bold text-white transition hover:bg-[#002855] disabled:opacity-60"
           >
             {submitting ? (
               <>

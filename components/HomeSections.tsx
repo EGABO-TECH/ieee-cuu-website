@@ -20,21 +20,21 @@ export function LaunchBlock() {
   return (
     <section aria-labelledby="launch-title" className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="grid grid-cols-1 gap-8 rounded-3xl bg-[#0B1E2E] p-8 text-white sm:p-12 lg:grid-cols-2 lg:items-center">
+        <div className="grid grid-cols-1 gap-8 sheet-grid rounded-3xl bg-[#002855] p-8 text-white sm:p-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-300/90">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFC72C]/90">
               {live ? "Happening today" : "Next flagship event"}
             </p>
-            <h2 id="launch-title" className="mt-3 font-serif text-3xl font-bold leading-tight sm:text-4xl">
+            <h2 id="launch-title" className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
               {launch.title}
             </h2>
             <ul className="mt-6 space-y-2 text-sm text-white/85">
               <li className="flex items-center gap-3">
-                <Calendar size={16} aria-hidden="true" className="shrink-0 text-cyan-300" />
+                <Calendar size={16} aria-hidden="true" className="shrink-0 text-[#FFC72C]" />
                 Wednesday 4 November 2026
               </li>
               <li className="flex items-center gap-3">
-                <MapPin size={16} aria-hidden="true" className="shrink-0 text-cyan-300" />
+                <MapPin size={16} aria-hidden="true" className="shrink-0 text-[#FFC72C]" />
                 {launch.venue?.name}
                 {launch.venue?.detail && `, ${launch.venue.detail}`}
               </li>
@@ -43,14 +43,14 @@ export function LaunchBlock() {
           </div>
           <div className="lg:justify-self-end">
             {!live && (
-              <div className="[&_b]:text-slate-900">
+              <div className="[&_b]:text-ink">
                 <Countdown targetISO={launch.startsAt} initialMs={msUntil(launch.startsAt)} showSeconds={false} hideWhenExpired />
               </div>
             )}
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href={`/events/${LAUNCH_SLUG}`}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#0B1E2E] transition hover:bg-[#dfeff0]"
+                className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-bold text-[#002855] transition hover:bg-[#CADCEA]"
               >
                 {live ? "Live details" : "Launch details"}
                 <ArrowUpRight size={15} aria-hidden="true" />
@@ -58,7 +58,7 @@ export function LaunchBlock() {
               {!launch.timeTbc && (
                 <a
                   href={`/events/${LAUNCH_SLUG}/calendar.ics`}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                  className="inline-flex items-center gap-2 border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
                 >
                   Add to calendar
                 </a>
@@ -102,16 +102,16 @@ export function WaysIn() {
   return (
     <section aria-labelledby="ways-title" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="ways-title" className="mb-8 font-serif text-3xl font-bold text-ink sm:text-4xl">
+        <h2 id="ways-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
           Three ways in
         </h2>
         <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">
           {ways.map(({ icon: Icon, ...w }) => (
-            <li key={w.title} className="flex flex-col rounded-2xl border border-ink/10 bg-[#fafaf8] p-6">
-              <Icon size={22} aria-hidden="true" className="text-[#0D6E6E]" />
+            <li key={w.title} className="flex flex-col rounded-2xl border border-ink/10 bg-[#F5F8FB] p-6">
+              <Icon size={22} aria-hidden="true" className="text-[#00629B]" />
               <h3 className="mt-4 text-xl font-semibold text-ink">{w.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{w.body}</p>
-              <Link href={w.href} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+              <Link href={w.href} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
                 {w.cta}
                 <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
@@ -135,15 +135,15 @@ export function WhatYouGet() {
   return (
     <section aria-labelledby="benefits-title" className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="benefits-title" className="mb-8 font-serif text-3xl font-bold text-ink sm:text-4xl">
+        <h2 id="benefits-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
           What you get
         </h2>
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {BENEFITS.map(({ icon: Icon, ...b }) => (
             <li key={b.title}>
-              <Link href={b.href} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-5 transition hover:border-[#1A9090]/50">
-                <Icon size={20} aria-hidden="true" className="text-[#0D6E6E]" />
-                <h3 className="mt-3 font-semibold text-ink group-hover:text-[#0D6E6E]">{b.title}</h3>
+              <Link href={b.href} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-5 transition hover:border-[#007DAF]/50">
+                <Icon size={20} aria-hidden="true" className="text-[#00629B]" />
+                <h3 className="mt-3 font-semibold text-ink group-hover:text-[#00629B]">{b.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">{b.body}</p>
               </Link>
             </li>
@@ -158,13 +158,13 @@ export function StudentJourney() {
   return (
     <section aria-labelledby="journey-title" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="journey-title" className="mb-8 font-serif text-3xl font-bold text-ink sm:text-4xl">
+        <h2 id="journey-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
           Your journey with the branch
         </h2>
         <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {journey.map((j) => (
-            <li key={j.step} className="flex gap-4 rounded-2xl border border-ink/10 bg-[#fafaf8] p-5">
-              <span className="font-display text-2xl font-bold text-[#1A9090]" aria-hidden="true">
+            <li key={j.step} className="flex gap-4 rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5">
+              <span className="font-display text-2xl font-bold text-[#007DAF]" aria-hidden="true">
                 {j.step}
               </span>
               <div>
@@ -183,13 +183,13 @@ export function Recognition() {
   return (
     <section aria-labelledby="recognition-title" className="bg-bg py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="flex flex-col gap-6 rounded-3xl border border-[#9dbdc1] bg-white p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
+        <div className="flex flex-col gap-6 rounded-3xl border border-[#CADCEA] bg-white p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
           <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 rounded-full bg-[#dfeff0] px-3 py-1 text-xs font-semibold text-[#234a52]">
+            <p className="inline-flex items-center gap-2 bg-[#CADCEA] px-3 py-1 text-xs font-semibold text-[#2D4D76]">
               <Award size={14} aria-hidden="true" />
               Recognised on IEEE Day 2026
             </p>
-            <h2 id="recognition-title" className="mt-4 font-serif text-2xl font-bold text-ink sm:text-3xl">
+            <h2 id="recognition-title" className="mt-4 font-display text-2xl font-bold text-ink sm:text-3xl">
               Certificate of approval, 6 October 2026
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
@@ -200,7 +200,7 @@ export function Recognition() {
           </div>
           <Link
             href="/events/ieee-day-2026"
-            className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+            className="inline-flex shrink-0 items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
           >
             Read the recap
             <ArrowUpRight size={15} aria-hidden="true" />
@@ -224,18 +224,18 @@ export function LeadershipStrip() {
     <section aria-labelledby="leaders-title" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <h2 id="leaders-title" className="font-serif text-3xl font-bold text-ink sm:text-4xl">
+          <h2 id="leaders-title" className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Branch leadership
           </h2>
-          <Link href="/team" className="text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+          <Link href="/team" className="text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
             Meet the full team →
           </Link>
         </div>
         <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           {leaders.map((m) => (
-            <li key={m.id} className="rounded-2xl border border-ink/10 bg-[#fafaf8] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0D6E6E]">{m.role}</p>
-              <p className="mt-1 font-serif text-lg font-bold text-ink">{m.name}</p>
+            <li key={m.id} className="rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5">
+              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#00629B]">{m.role}</p>
+              <p className="mt-1 font-display text-lg font-bold text-ink">{m.name}</p>
             </li>
           ))}
         </ul>
@@ -255,7 +255,7 @@ export function CuucsaTieIn() {
             </h2>
             <p className="mt-1 text-sm leading-relaxed text-muted">{cuucsaIndependence}</p>
           </div>
-          <Link href="/cuucsa" className="shrink-0 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+          <Link href="/cuucsa" className="shrink-0 text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
             About CUUCSA →
           </Link>
         </div>
@@ -273,21 +273,21 @@ export function LatestNews() {
     <section aria-labelledby="news-title" className="bg-white py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <h2 id="news-title" className="font-serif text-3xl font-bold text-ink sm:text-4xl">
+          <h2 id="news-title" className="font-display text-3xl font-bold text-ink sm:text-4xl">
             Latest from the branch
           </h2>
-          <Link href="/news" className="text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+          <Link href="/news" className="text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
             All news →
           </Link>
         </div>
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {posts.map((p) => (
             <li key={p.slug}>
-              <Link href={`/news/${p.slug}`} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-[#fafaf8] p-5 transition hover:border-[#1A9090]/50">
+              <Link href={`/news/${p.slug}`} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5 transition hover:border-[#007DAF]/50">
                 <time dateTime={p.date} className="text-xs text-muted">
                   {new Date(p.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
                 </time>
-                <h3 className="mt-2 font-semibold text-ink group-hover:text-[#0D6E6E]">{p.title}</h3>
+                <h3 className="mt-2 font-semibold text-ink group-hover:text-[#00629B]">{p.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.summary}</p>
               </Link>
             </li>

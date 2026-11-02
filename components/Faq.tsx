@@ -25,7 +25,7 @@ export function Faq() {
                   <span className="font-display text-base font-semibold text-ink">{f.q}</span>
                   <Plus
                     size={18}
-                    className={`shrink-0 text-[#1A9090] transition-transform ${open ? "rotate-45" : ""}`}
+                    className={`shrink-0 text-[#007DAF] transition-transform ${open ? "rotate-45" : ""}`}
                   />
                 </button>
                 {open && <p className="mt-3 max-w-xl text-sm text-muted">{f.a}</p>}

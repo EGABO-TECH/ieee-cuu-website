@@ -35,7 +35,7 @@ function ConnectButtons({ light = false }: { light?: boolean }) {
         target="_blank"
         rel="noopener noreferrer"
         className={`inline-flex items-center gap-2 rounded-md px-4 py-3 text-sm font-semibold transition ${
-          light ? "bg-white text-[#123f45] hover:bg-[#e8f5f5]" : "bg-[#0D6E6E] text-white hover:bg-[#1A9090]"
+          light ? "bg-white text-[#002855] hover:bg-[#E6EFF6]" : "bg-[#00629B] text-white hover:bg-[#002855]"
         }`}
       >
         <MessageCircle size={17} aria-hidden="true" />
@@ -63,8 +63,8 @@ function ConnectButtons({ light = false }: { light?: boolean }) {
 function SectionTitle({ id, children, kicker }: { id: string; children: React.ReactNode; kicker?: string }) {
   return (
     <div className="mb-7 border-b border-ink/10 pb-5">
-      {kicker && <p className="text-xs font-semibold uppercase tracking-wider text-[#0D6E6E]">{kicker}</p>}
-      <h2 id={id} className="mt-1 font-serif text-2xl font-bold text-ink sm:text-3xl">
+      {kicker && <p className="text-xs font-semibold uppercase tracking-wider text-[#00629B]">{kicker}</p>}
+      <h2 id={id} className="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">
         {children}
       </h2>
     </div>
@@ -88,10 +88,10 @@ export function CUUCSA() {
             />
           </div>
           <div>
-            <h1 className="font-serif text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
+            <h1 className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
               Cavendish University Uganda Computing Students&apos; Association
             </h1>
-            <p className="mt-3 text-sm font-bold tracking-[0.2em] text-[#0D6E6E]">{cuucsaMotto}</p>
+            <p className="mt-3 text-sm font-bold tracking-[0.2em] text-[#00629B]">{cuucsaMotto}</p>
             <div className="mt-6">
               <ConnectButtons />
             </div>
@@ -101,7 +101,7 @@ export function CUUCSA() {
 
       {/* 2. Independence statement */}
       <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 pb-6">
-        <p className="rounded-xl border-l-4 border-[#0D6E6E] bg-white p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
+        <p className="rounded-xl border-l-4 border-[#00629B] bg-white p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
           {cuucsaIndependence}
         </p>
       </section>
@@ -111,19 +111,19 @@ export function CUUCSA() {
         <h2 id="cuucsa-vision" className="sr-only">Vision and mission</h2>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
           <div className="rounded-xl border border-ink/10 bg-white p-6">
-            <h3 className="font-serif text-xl font-bold text-ink">Vision</h3>
+            <h3 className="font-display text-xl font-bold text-ink">Vision</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{cuucsaVision}</p>
           </div>
           <div className="rounded-xl border border-ink/10 bg-white p-6">
-            <h3 className="font-serif text-xl font-bold text-ink">Mission</h3>
+            <h3 className="font-display text-xl font-bold text-ink">Mission</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{cuucsaMission}</p>
           </div>
         </div>
-        <ol aria-label="Student journey" className="mt-6 flex flex-wrap items-center gap-x-1 gap-y-2 text-sm font-semibold text-[#123f45]">
+        <ol aria-label="Student journey" className="mt-6 flex flex-wrap items-center gap-x-1 gap-y-2 text-sm font-semibold text-[#002855]">
           {cuucsaJourney.map((step, i) => (
             <li key={step} className="flex items-center gap-1">
-              <span className="rounded-full bg-[#dfeff0] px-3 py-1">{step}</span>
-              {i < cuucsaJourney.length - 1 && <ChevronRight size={14} aria-hidden="true" className="text-[#0D6E6E]" />}
+              <span className=" bg-[#CADCEA] px-3 py-1">{step}</span>
+              {i < cuucsaJourney.length - 1 && <ChevronRight size={14} aria-hidden="true" className="text-[#00629B]" />}
             </li>
           ))}
         </ol>
@@ -135,7 +135,7 @@ export function CUUCSA() {
           <SectionTitle id="cuucsa-pillars">Six pillars</SectionTitle>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {cuucsaPillars.map((p) => (
-              <li key={p.title} className="rounded-md border border-ink/10 bg-[#fafaf8] p-5">
+              <li key={p.title} className="rounded-md border border-ink/10 bg-[#F5F8FB] p-5">
                 <h3 className="text-base font-semibold text-ink">{p.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{p.outcome}</p>
               </li>
@@ -153,16 +153,16 @@ export function CUUCSA() {
               <li key={p.name} className="rounded-md border border-ink/10 bg-white p-5">
                 <h3 className="text-base font-semibold text-ink">CUUCSA {p.name}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{p.purpose}</p>
-                <p className="mt-3 text-xs font-medium text-[#0D6E6E]">Led by {p.lead}</p>
+                <p className="mt-3 text-xs font-medium text-[#00629B]">Led by {p.lead}</p>
               </li>
             ))}
           </ul>
 
-          <h3 className="mt-10 font-serif text-xl font-bold text-ink">Flagship events</h3>
+          <h3 className="mt-10 font-display text-xl font-bold text-ink">Flagship events</h3>
           <p className="mt-1 text-sm text-muted">Dates will be announced.</p>
           <ul className="mt-4 flex flex-wrap gap-2">
             {cuucsaFlagshipEvents.map((e) => (
-              <li key={e} className="rounded-full border border-[#9dbdc1] bg-[#edf7f8] px-3.5 py-1.5 text-xs font-medium text-[#244b52]">
+              <li key={e} className=" border border-[#CADCEA] bg-[#E6EFF6] px-3.5 py-1.5 text-xs font-medium text-[#2D4D76]">
                 {e}
               </li>
             ))}
@@ -176,15 +176,15 @@ export function CUUCSA() {
           <SectionTitle id="cuucsa-team">Core team</SectionTitle>
           <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
             {cuucsaCore.map((m) => (
-              <li key={m.office} className="flex items-start gap-3 rounded-md border border-ink/10 bg-[#fafaf8] p-4">
+              <li key={m.office} className="flex items-start gap-3 rounded-md border border-ink/10 bg-[#F5F8FB] p-4">
                 <span
                   aria-hidden="true"
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#e8f0ee] font-serif text-sm font-semibold text-[#0D6E6E]"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#E6EFF6] font-display text-sm font-semibold text-[#00629B]"
                 >
                   {initials(m.name)}
                 </span>
                 <div className="min-w-0">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#0D6E6E]">{m.office}</p>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#00629B]">{m.office}</p>
                   <p className="mt-0.5 font-semibold leading-snug text-ink">{m.name}</p>
                   <p className="text-xs text-muted">
                     {m.programme}
@@ -233,7 +233,7 @@ export function CUUCSA() {
       <section aria-labelledby="cuucsa-faq-title" className="bg-white py-12 sm:py-16">
         <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-10 lg:grid-cols-12 lg:gap-12 lg:px-12">
           <div className="lg:col-span-4">
-            <h2 id="cuucsa-faq-title" className="font-serif text-2xl font-bold text-ink sm:text-3xl">
+            <h2 id="cuucsa-faq-title" className="font-display text-2xl font-bold text-ink sm:text-3xl">
               Frequently asked questions
             </h2>
           </div>
@@ -242,7 +242,7 @@ export function CUUCSA() {
               <details key={faq.question} className="group border-t border-ink/15 py-4" open={index === 0}>
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   {faq.question}
-                  <ChevronDown size={16} className="shrink-0 text-[#0D6E6E] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown size={16} className="shrink-0 text-[#00629B] transition-transform group-open:rotate-180" aria-hidden="true" />
                 </summary>
                 <p className="mt-3 max-w-2xl pr-8 text-sm leading-relaxed text-muted">{faq.answer}</p>
               </details>
@@ -252,10 +252,10 @@ export function CUUCSA() {
         </div>
       </section>
 
-      <section aria-labelledby="cuucsa-connect-title" className="bg-[#123f45] py-10 text-white sm:py-12">
+      <section aria-labelledby="cuucsa-connect-title" className="sheet-grid bg-[#002855] py-10 text-white sm:py-12">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-10 md:flex-row md:items-center md:justify-between lg:px-12">
           <div className="max-w-xl">
-            <h2 id="cuucsa-connect-title" className="font-serif text-2xl font-bold sm:text-3xl">
+            <h2 id="cuucsa-connect-title" className="font-display text-2xl font-bold sm:text-3xl">
               Connect with CUUCSA
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-white/75">

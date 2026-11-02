@@ -6,7 +6,7 @@ import Link from "next/link";
 const TOPICS = ["Membership", "Events", "Volunteering", "Sponsorship or partnership", "Media", "Other"];
 
 const inputClass =
-  "mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-slate-900 focus:border-[#0D6E6E] focus:outline-none focus:ring-2 focus:ring-[#0D6E6E]/20";
+  "mt-1.5 w-full rounded-lg border border-slate-300 bg-white px-3.5 py-2.5 text-sm text-ink focus:border-[#00629B] focus:outline-none focus:ring-2 focus:ring-[#00629B]/20";
 
 export function ContactForm() {
   const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
@@ -40,8 +40,8 @@ export function ContactForm() {
 
   if (state === "sent") {
     return (
-      <div role="status" className="rounded-2xl border border-[#9dbdc1] bg-white p-7">
-        <h2 className="font-serif text-xl font-bold text-slate-900">Message sent</h2>
+      <div role="status" className="rounded-2xl border border-[#CADCEA] bg-white p-7">
+        <h2 className="font-display text-xl font-bold text-ink">Message sent</h2>
         <p className="mt-2 text-sm text-slate-600">Thank you. We aim to reply within three working days.</p>
       </div>
     );
@@ -49,7 +49,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-slate-100 bg-white p-7" noValidate>
-      <h2 className="font-serif text-xl font-bold text-slate-900">Send a message</h2>
+      <h2 className="font-display text-xl font-bold text-ink">Send a message</h2>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <label className="block text-sm font-medium text-slate-700">
@@ -89,7 +89,7 @@ export function ContactForm() {
 
       <p className="text-xs leading-relaxed text-slate-500">
         We use your name and email only to reply to you, and keep messages for up to 12 months after we reply. See the{" "}
-        <Link href="/privacy" className="text-[#0D6E6E] underline underline-offset-2">
+        <Link href="/privacy" className="text-[#00629B] underline underline-offset-2">
           Privacy Policy
         </Link>
         .
@@ -104,7 +104,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={state === "sending"}
-        className="inline-flex items-center rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090] disabled:opacity-60"
+        className="inline-flex items-center bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855] disabled:opacity-60"
       >
         {state === "sending" ? "Sending…" : "Send message"}
       </button>

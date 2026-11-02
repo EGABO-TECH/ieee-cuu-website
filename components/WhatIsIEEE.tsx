@@ -14,7 +14,7 @@ export function WhatIsIEEE() {
         className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.08]"
         style={{
           background:
-            "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 70%)",
+            "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 70%)",
         }}
       />
 
@@ -24,21 +24,21 @@ export function WhatIsIEEE() {
           {/* Left: Large Serif Headline */}
           <div className="flex flex-col justify-center">
             {/* Kicker */}
-            <span className="mb-6 inline-block text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A9090]">
+            <span className="mb-6 inline-block text-[11px] font-bold tracking-[0.25em] uppercase text-[#007DAF]">
               What Is IEEE
             </span>
 
-            {/* Headline: bold serif with steel blue italic phrase */}
-            <h2 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
+            {/* Headline: bold serif with steel blue phrase */}
+            <h2 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-[3.4rem]">
               Built on the belief that{" "}
-              <em className="not-italic font-bold italic text-[#1A9090]">
+              <em className="not-italic font-bold text-[#007DAF]">
                 technical excellence
               </em>{" "}
               is your greatest asset.
             </h2>
 
             {/* Decorative rule */}
-            <div className="mt-7 h-[3px] w-14 rounded-full bg-[#1A9090]" />
+            <div className="mt-7 h-[3px] w-14 rounded-full bg-[#007DAF]" />
           </div>
 
           {/* Right: Body Paragraphs */}
@@ -65,7 +65,7 @@ export function WhatIsIEEE() {
               href="/branch"
               target="_blank"
               rel="noopener noreferrer"
-              className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full border border-ieee/20 bg-surface2 px-5 py-2.5 text-sm font-semibold text-ink backdrop-blur-sm transition hover:border-ieee/50 hover:bg-ieee hover:text-ieee"
+              className="group mt-2 inline-flex w-fit items-center gap-2 border border-ieee/20 bg-surface2 px-5 py-2.5 text-sm font-semibold text-ink backdrop-blur-sm transition hover:border-ieee/50 hover:bg-ieee hover:text-ieee"
             >
               Explore the Branch
               <ArrowUpRight
@@ -82,10 +82,10 @@ export function WhatIsIEEE() {
         {/* ── Four Pillars Grid ── */}
         <div className="mt-16">
           <div className="mb-10 flex flex-col gap-1">
-            <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#1A9090]">
+            <span className="text-[11px] font-bold tracking-[0.25em] uppercase text-[#007DAF]">
               Why It Matters
             </span>
-            <h3 className="font-serif text-2xl font-bold text-ink sm:text-3xl">
+            <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
               Four dimensions of growth
             </h3>
           </div>
@@ -96,15 +96,15 @@ export function WhatIsIEEE() {
               return (
                 <div
                   key={p.title}
-                  className="group relative flex flex-col rounded-2xl border border-ieee/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#1A9090]/60 hover:shadow-[0_8px_32px_rgba(13,110,110,0.15)]"
+                  className="group relative flex flex-col rounded-2xl border border-ieee/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0, 98, 155,0.15)]"
                 >
                   {/* Icon */}
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[#1A9090]/30 bg-ieee/10 text-ieee transition-transform duration-300 group-hover:scale-105">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[#007DAF]/30 bg-ieee/10 text-ieee transition-transform duration-300 group-hover:scale-105">
                     <Icon size={20} strokeWidth={2} />
                   </div>
 
                   {/* Title */}
-                  <h4 className="mb-3 font-serif text-base font-bold leading-snug text-ink group-hover:text-ieee transition-colors">
+                  <h4 className="mb-3 font-display text-base font-bold leading-snug text-ink group-hover:text-ieee transition-colors">
                     {p.title}
                   </h4>
 

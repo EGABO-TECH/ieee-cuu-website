@@ -77,10 +77,10 @@ export default function AdminPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="max-w-3xl">
-            <h1 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900">
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-ink">
               Branch Administration Portal
             </h1>
             <p className="mt-2 text-sm sm:text-base text-slate-600">
@@ -90,11 +90,11 @@ export default function AdminPage() {
 
           {!authenticated ? (
             <div className="mt-10 max-w-md rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0D6E6E]/10 text-[#0D6E6E] mb-5">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#00629B]/10 text-[#00629B] mb-5">
                 <Lock size={24} />
               </div>
 
-              <h2 className="font-serif text-xl font-bold text-slate-900">Admin Authentication</h2>
+              <h2 className="font-display text-xl font-bold text-ink">Admin Authentication</h2>
               <p className="mt-1 text-xs text-slate-500">
                 Enter your branch admin access key to unlock member records.
               </p>
@@ -117,7 +117,7 @@ export default function AdminPage() {
                     required
                     value={accessKey}
                     onChange={(e) => setAccessKey(e.target.value)}
-                    className="mt-1.5 block w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-900 shadow-sm focus:border-[#0D6E6E] focus:outline-none focus:ring-1 focus:ring-[#0D6E6E]"
+                    className="mt-1.5 block w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-ink shadow-sm focus:border-[#00629B] focus:outline-none focus:ring-1 focus:ring-[#00629B]"
                     placeholder="Enter branch access key"
                   />
                 </div>
@@ -125,7 +125,7 @@ export default function AdminPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#0D6E6E] px-5 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A9090] disabled:opacity-60"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#00629B] px-5 py-2.5 text-xs font-bold text-white transition hover:bg-[#002855] disabled:opacity-60"
                 >
                   {loading ? "Verifying..." : "Unlock Admin Dashboard"}
                 </button>
@@ -143,13 +143,13 @@ export default function AdminPage() {
                 <div className="flex flex-wrap gap-3">
                   <button
                     onClick={() => handleDownload("joins")}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-[#0D6E6E] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                    className="inline-flex items-center gap-1.5 bg-[#00629B] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#002855]"
                   >
                     <Download size={13} /> Export Sign-ups CSV
                   </button>
                   <button
                     onClick={() => handleDownload("contacts")}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                    className="inline-flex items-center gap-1.5 border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                   >
                     <Download size={13} /> Export Inquiries CSV
                   </button>
@@ -180,7 +180,7 @@ export default function AdminPage() {
                       ) : (
                         records.map((r) => (
                           <tr key={r.id} className="hover:bg-slate-50/50">
-                            <td className="px-4 py-3 font-semibold text-slate-900">{r.fullName}</td>
+                            <td className="px-4 py-3 font-semibold text-ink">{r.fullName}</td>
                             <td className="px-4 py-3">{r.email}</td>
                             <td className="px-4 py-3 text-slate-500">{r.studentId || "—"}</td>
                             <td className="px-4 py-3">{r.program} ({r.yearOfStudy})</td>

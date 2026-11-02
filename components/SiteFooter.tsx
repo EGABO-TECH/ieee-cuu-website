@@ -31,7 +31,7 @@ const MAP_EMBED_URL =
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden bg-[#061821] text-white">
+    <footer className="sheet-grid relative overflow-hidden bg-[#002855] text-white [&_:focus-visible]:outline-white">
       {/* Non-endorsement disclaimer */}
       <div className="border-b border-white/10 bg-white/5 px-4 py-3 sm:px-6 lg:px-10">
         <p className="mx-auto max-w-[1280px] text-[11px] leading-5 text-white/60">
@@ -80,7 +80,7 @@ export function SiteFooter() {
                 rel="noopener noreferrer"
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#CADCEA]">
                   <MapPin size={13} />
                 </span>
                 <span className="truncate">Plot 1469 Ggaba Road, Kampala, Uganda</span>
@@ -92,7 +92,7 @@ export function SiteFooter() {
                 rel="noopener noreferrer"
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#CADCEA]">
                   <Globe size={13} />
                 </span>
                 <span className="truncate">www.cavendish.ac.ug</span>
@@ -102,7 +102,7 @@ export function SiteFooter() {
                 href={`tel:${SITE.universityPhone}`}
                 className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
               >
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#CADCEA]">
                   <Phone size={13} />
                 </span>
                 <span className="truncate">+256 41 4531700</span>
@@ -113,7 +113,7 @@ export function SiteFooter() {
                   href={`mailto:${SITE.email}`}
                   className="inline-flex w-fit max-w-full items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white/90 transition duration-200 hover:bg-white/10"
                 >
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#dfeff0]">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-[#CADCEA]">
                     <Mail size={13} />
                   </span>
                   <span className="truncate">{SITE.email}</span>
@@ -151,8 +151,8 @@ export function SiteFooter() {
           </div>
 
           <div className="lg:pl-4 lg:pt-0.5">
-            <div className="overflow-hidden rounded-[1.15rem] border border-white/10 bg-[#dfe7e8] shadow-[0_18px_34px_rgba(0,0,0,0.18)]">
-              <div className="relative h-[200px] w-full overflow-hidden bg-[#ebf0f2] sm:h-[220px] lg:h-[230px]">
+            <div className="overflow-hidden rounded-sm border border-white/10 bg-[#E6EFF6] shadow-[0_18px_34px_rgba(0,0,0,0.18)]">
+              <div className="relative h-[200px] w-full overflow-hidden bg-[#E6EFF6] sm:h-[220px] lg:h-[230px]">
                 <iframe
                   title="Cavendish University Uganda location"
                   src={MAP_EMBED_URL}
@@ -220,7 +220,7 @@ function FooterCol({
 }) {
   return (
     <div className="min-w-0 md:pr-2 lg:pr-3">
-      <h5 className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-[#dfeff0] md:mb-4 md:text-[10px]">{title}</h5>
+      <h5 className="mb-3 text-[9px] font-semibold uppercase tracking-[0.22em] text-[#CADCEA] md:mb-4 md:text-[10px]">{title}</h5>
       <ul className="space-y-2 md:space-y-2.5">
         {links.map((l) => (
           <li key={l.label}>

@@ -15,8 +15,8 @@ export function BranchDirectory() {
     <section className="bg-bg py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
         <div className="mb-10 max-w-2xl">
-          <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-[#0d5b8f]">Branch navigation</p>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-4xl">Explore the branch</h2>
+          <p className="text-[11px] font-bold uppercase tracking-[0.26em] text-[#00629B]">Branch navigation</p>
+          <h2 className="mt-4 font-display text-3xl font-semibold tracking-[-0.04em] text-ink sm:text-4xl">Explore the branch</h2>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -24,19 +24,19 @@ export function BranchDirectory() {
             <a
               key={page.href}
               href={page.href}
-              className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(15,23,42,0.04)]"
+              className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(0, 40, 85,0.04)]"
             >
               <div>
                 <div className="mb-5 flex items-center justify-between gap-3">
                   <span className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-600">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600">
+                  <span className=" border border-slate-200 bg-slate-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-600">
                     {page.tag}
                   </span>
                 </div>
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-slate-900">{page.title}</h3>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#0d5b8f]">{page.subtitle}</p>
+                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-ink">{page.title}</h3>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-[#00629B]">{page.subtitle}</p>
                 <p className="mt-4 text-sm leading-6 text-slate-600">{page.desc}</p>
               </div>
               <div className="mt-6 flex items-center justify-between border-t border-slate-200 pt-4">

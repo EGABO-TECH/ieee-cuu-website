@@ -2,39 +2,111 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
-import { ArrowRight, Globe, GraduationCap, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
 
 const HERO_SLIDES = [
   {
     image: "/images/hero/robotics-lab.jpg",
-    alt: "IEEE Student Branch Robotics and Embedded Systems Lab",
+    position: "object-center",
     title: "Robotics & Hardware Lab",
     subtitle: "Hands-on engineering, microcontrollers & automation prototypes",
   },
   {
     image: "/images/hero/hackathon.jpg",
-    alt: "IEEE Student Branch Hackathon and Collaborative Coding Arena",
+    position: "object-center",
     title: "Hackathon & Code Arena",
     subtitle: "Algorithmic competitions, IEEEXtreme preparation & software builds",
   },
   {
     image: "/images/hero/conference.jpg",
-    alt: "IEEE Region 8 Student and Young Professionals Conference",
+    position: "object-center",
     title: "Region 8 Leadership",
     subtitle: "Global technical symposiums, research summits & community leadership",
   },
   {
     image: "/images/The_Branch_Hero.png",
-    alt: "Cavendish University Uganda IEEE Student Branch Community",
+    position: "object-[65%_50%]",
     title: "CUU Branch Community",
     subtitle: "Connecting multidisciplinary students with global IEEE opportunities",
   },
 ];
 
+const TITLE_BLOCK = [
+  { label: "Branch", value: "IEEE Student Branch", sub: "Cavendish University Uganda" },
+  { label: "Region", value: "Region 8", sub: "Europe, Middle East & Africa" },
+  { label: "Section", value: "IEEE Uganda Section", sub: "Kampala, Uganda" },
+];
+
+// One period of the signal; must match the `signal` keyframe in tailwind.config.ts.
+const SIGNAL_PERIOD = 40;
+
+function sineWave(x0: number, x1: number, cy: number, amplitude: number) {
+  const points: string[] = [];
+  for (let x = x0; x <= x1; x += 2) {
+    const y = cy - amplitude * Math.sin(((x - x0) / SIGNAL_PERIOD) * 2 * Math.PI);
+    points.push(`${x} ${y.toFixed(2)}`);
+  }
+  return `M${points.join(" L")}`;
+}
+
+const INPUT_WAVE = sineWave(60, 200 + SIGNAL_PERIOD, 56, 7);
+const OUTPUT_WAVE = sineWave(372, 640 + SIGNAL_PERIOD, 70, 44);
+
+const controlClass =
+  "flex min-h-11 w-11 items-center justify-center border-l border-white/40 text-white transition-colors hover:bg-white/15";
+
+/** "Engineering ideas into impact", drawn as what it is: a non-inverting amplifier. */
+function AmplifierDiagram({ running }: { running: boolean }) {
+  const signalClass = running ? "animate-signal" : undefined;
+
+  return (
+    <svg
+      viewBox="0 0 640 140"
+      role="img"
+      aria-label="Amplifier diagram: a small input signal labelled ideas becomes a large output signal labelled impact."
+      className="mt-10 w-full max-w-xl"
+      fill="none"
+    >
+      <defs>
+        <clipPath id="hero-input-clip">
+          <rect x="60" y="30" width="140" height="52" />
+        </clipPath>
+        <clipPath id="hero-output-clip">
+          <rect x="372" y="0" width="268" height="140" />
+        </clipPath>
+      </defs>
+
+      <text x="0" y="62" fill="#FFFFFF" fontSize="16" fontWeight="600" letterSpacing="1.5">
+        IDEAS
+      </text>
+      <text x="640" y="18" textAnchor="end" fill="#FFC72C" fontSize="16" fontWeight="600" letterSpacing="1.5">
+        IMPACT
+      </text>
+
+      <g stroke="#FFFFFF" strokeWidth="2" strokeLinejoin="round">
+        {/* Op-amp */}
+        <path d="M250 28 L250 112 L332 70 Z" />
+        <path d="M258 56 H270 M264 50 V62 M258 84 H270" />
+        {/* Input, output and feedback wiring through a resistor */}
+        <path d="M200 56 H250 M332 70 H372 M352 70 V126 H316 l-4 -7 l-8 14 l-8 -14 l-8 14 l-8 -14 l-8 14 l-4 -7 H226 V84 H250" />
+      </g>
+      <circle cx="352" cy="70" r="3.5" fill="#FFFFFF" />
+
+      <g clipPath="url(#hero-input-clip)">
+        <path d={INPUT_WAVE} stroke="#FFFFFF" strokeWidth="2" className={signalClass} />
+      </g>
+      <g clipPath="url(#hero-output-clip)">
+        <path d={OUTPUT_WAVE} stroke="#FFC72C" strokeWidth="3" className={signalClass} />
+      </g>
+    </svg>
+  );
+}
+
 export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isHoveringControls, setIsHoveringControls] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const nextSlide = useCallback(() => {
     setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
@@ -44,237 +116,155 @@ export function Hero() {
     setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
   }, []);
 
+  // Don't auto-rotate for visitors who prefer reduced motion.
   useEffect(() => {
-    if (!isPlaying || isHoveringControls) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) setIsPlaying(false);
+  }, []);
 
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 6000);
-
+  useEffect(() => {
+    if (!isPlaying || isPaused) return;
+    const timer = setInterval(nextSlide, 6000);
     return () => clearInterval(timer);
-  }, [isPlaying, isHoveringControls, nextSlide]);
+  }, [isPlaying, isPaused, nextSlide]);
+
+  const slide = HERO_SLIDES[currentSlide];
 
   return (
     <section
       id="top"
-      className="relative isolate min-h-[720px] overflow-hidden px-4 pb-20 pt-28 sm:px-8 lg:min-h-[820px] lg:px-12 lg:pb-24 lg:pt-32"
+      aria-labelledby="hero-title"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setIsPaused(false);
+      }}
+      className="sheet-grid overflow-hidden bg-[#00629B] text-white [&_:focus-visible]:outline-white"
     >
-      {/* ── BACKGROUND SLIDESHOW WITH KEN BURNS & CROSSFADE ── */}
-      <div className="absolute inset-0 z-0 bg-[#040e17]" aria-hidden="true">
-        {HERO_SLIDES.map((slide, idx) => {
-          const isActive = idx === currentSlide;
-          return (
-            <div
-              key={slide.image}
-              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                isActive ? "opacity-100" : "pointer-events-none opacity-0"
-              }`}
-            >
-              <div
-                className={`relative h-full w-full transform-gpu transition-transform duration-[7000ms] ease-out ${
-                  isActive ? "scale-105" : "scale-100"
-                }`}
-              >
-                <Image
-                  src={slide.image}
-                  alt={slide.alt}
-                  fill
-                  priority={idx === 0}
-                  sizes="100vw"
-                  className="object-cover object-center"
-                />
-              </div>
-            </div>
-          );
-        })}
+      <div className="mx-auto max-w-7xl px-4 pb-10 pt-32 sm:px-8 sm:pt-36 lg:px-12 lg:pb-12">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+          IEEE Student Branch · Cavendish University Uganda
+        </p>
 
-        {/* ── MOTION GRAPHIC & TECH CIRCUIT OVERLAY ── */}
-        <div className="pointer-events-none absolute inset-0 z-10 opacity-30 mix-blend-screen">
-          <svg
-            className="h-full w-full stroke-cyan-400/30"
-            xmlns="http://www.w3.org/2000/svg"
-            width="100%"
-            height="100%"
-            fill="none"
-          >
-            <defs>
-              <pattern
-                id="hero-tech-grid"
-                width="64"
-                height="64"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 64 0 L 0 0 0 64"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="0.75"
-                  strokeDasharray="4 6"
-                />
-                <circle cx="0" cy="0" r="1.5" fill="rgba(56,189,248,0.4)" />
-                <circle cx="64" cy="64" r="1" fill="rgba(56,189,248,0.2)" />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#hero-tech-grid)" />
-          </svg>
-        </div>
+        <h1
+          id="hero-title"
+          className="mt-5 text-balance font-display text-[clamp(2.4rem,6.2vw,5.25rem)] font-extrabold leading-[1.02] tracking-tight"
+        >
+          Engineering ideas into real-world <span className="text-[#FFC72C]">impact.</span>
+        </h1>
 
-        {/* Dynamic ambient glowing light orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-96 w-96 rounded-full bg-[#0d5b8f]/40 blur-[120px] animate-pulse duration-1000" />
-        <div className="pointer-events-none absolute right-10 top-1/3 h-80 w-80 rounded-full bg-cyan-500/20 blur-[130px]" />
-
-        {/* ── CINEMATIC CONTRAST GRADIENT OVERLAYS (UI/UX READABILITY) ── */}
-        {/* Horizontal scrim: dark on the left for maximum card and text legibility */}
-        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-r from-[#030c16]/95 via-[#030c16]/85 via-50% to-[#030c16]/45 lg:via-[#030c16]/80 lg:to-[#030c16]/30" />
-        {/* Vertical scrim: top and bottom vignettes for seamless layout blending */}
-        <div className="pointer-events-none absolute inset-0 z-20 bg-gradient-to-b from-[#030c16]/80 via-transparent via-30% to-[#030c16]/95" />
-      </div>
-
-      {/* ── HERO CONTENT ── */}
-      <div className="relative z-30 mx-auto max-w-[1440px]">
-        <div className="flex min-h-[580px] items-center pb-4 pt-6 lg:min-h-[660px]">
-          <div className="max-w-[740px] rounded-[2rem] border border-white/15 bg-slate-950/40 p-6 shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:p-8 lg:p-10 xl:p-12">
-            
-            {/* Super-title */}
-            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-cyan-300/90 sm:text-xs">
-              IEEE Student Branch · Cavendish University Uganda
+        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-6">
+            <p className="max-w-xl text-base leading-relaxed sm:text-lg">
+              We bring together students, mentors, and technical communities to learn, build, and lead through hands-on
+              engineering, collaboration, and IEEE opportunities.
             </p>
 
-            {/* Main Headline */}
-            <h1 className="mt-5 max-w-[680px] font-serif text-[clamp(2.9rem,6.8vw,8rem)] leading-[0.85] tracking-[-0.07em] text-white">
-              <span className="block">Engineering</span>
-              <span className="block text-[#e2f1fc]">ideas</span>
-              <span className="block text-[#e2f1fc]">into real-</span>
-              <span className="block text-[#e2f1fc]">world impact.</span>
-            </h1>
-
-            {/* Subtitle */}
-            <p className="mt-6 max-w-[610px] text-base leading-7 text-slate-200/90 sm:text-[1.18rem] sm:leading-8">
-              We bring together students, mentors, and technical communities to learn, build, and lead through hands-on engineering, collaboration, and IEEE opportunities.
-            </p>
-
-            {/* Primary Action Buttons */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
                 id="hero-join-btn"
                 href="/join"
-                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#0d5b8f] to-[#0284c7] px-6 py-3.5 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(13,91,143,0.4)] transition duration-200 hover:-translate-y-0.5 hover:from-[#0a446f] hover:to-[#0369a1] hover:shadow-[0_6px_25px_rgba(2,132,199,0.5)]"
+                className="inline-flex min-h-11 items-center gap-2 bg-[#FFC72C] px-6 py-3 text-sm font-bold text-[#002855] shadow-[4px_4px_0_#002855] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_#002855]"
               >
                 Join the branch
-                <ArrowRight size={16} />
-              </a>
-              <a
+                <ArrowRight size={15} aria-hidden="true" />
+              </Link>
+              <Link
                 id="hero-events-btn"
                 href="/events/branch-launch-2026"
-                className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-white/15"
+                className="inline-flex min-h-11 items-center gap-2 border border-white px-6 py-3 text-sm font-semibold text-white transition hover:bg-white hover:text-[#00629B]"
               >
                 Launch details
-              </a>
+              </Link>
             </div>
 
-            {/* ── ELEVATED AFFILIATION BADGES: REGION 8 & STUDENT BRANCH ── */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              {/* Region 8 Badge */}
-              <div
-                title="IEEE Region 8 (Europe, Middle East & Africa)"
-                className="group relative inline-flex items-center gap-2.5 rounded-full border border-sky-400/35 bg-sky-950/50 px-3.5 py-1.5 text-xs font-semibold text-sky-100 shadow-[0_4px_16px_rgba(2,132,199,0.2)] backdrop-blur-md transition-all duration-300 hover:border-sky-300/70 hover:bg-sky-900/60 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-400"></span>
-                </span>
-                <Globe className="h-3.5 w-3.5 text-sky-300 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-                <span className="uppercase tracking-[0.12em]">Region 8</span>
-                <span className="h-3 w-px bg-sky-400/30" />
-                <span className="text-[10px] font-medium tracking-normal text-sky-200/80">EMEA</span>
-              </div>
-
-              {/* Student Branch Badge */}
-              <div
-                title="Official IEEE Student Branch at Cavendish University Uganda"
-                className="group relative inline-flex items-center gap-2.5 rounded-full border border-cyan-400/35 bg-cyan-950/50 px-3.5 py-1.5 text-xs font-semibold text-cyan-100 shadow-[0_4px_16px_rgba(6,182,212,0.2)] backdrop-blur-md transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-900/60 hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-400"></span>
-                </span>
-                <GraduationCap className="h-3.5 w-3.5 text-cyan-300 transition-transform duration-300 group-hover:scale-110" />
-                <span className="uppercase tracking-[0.12em]">Student Branch</span>
-                <span className="h-3 w-px bg-cyan-400/30" />
-                <span className="text-[10px] font-medium tracking-normal text-cyan-200/80">CUU Charter</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        {/* ── INTERACTIVE SLIDESHOW CONTROLS & CAPTION (BOTTOM BAR) ── */}
-        <div
-          onMouseEnter={() => setIsHoveringControls(true)}
-          onMouseLeave={() => setIsHoveringControls(false)}
-          className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between"
-        >
-          {/* Active Slide Info Pill */}
-          <div className="flex items-center gap-3">
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-slate-950/60 px-4 py-2 text-xs text-white/90 shadow-lg backdrop-blur-md">
-              <span className="inline-block h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-              <span className="font-semibold text-white">
-                {HERO_SLIDES[currentSlide].title}
-              </span>
-              <span className="hidden text-white/50 sm:inline">·</span>
-              <span className="hidden text-[11px] text-slate-300 md:inline">
-                {HERO_SLIDES[currentSlide].subtitle}
-              </span>
-            </div>
+            <AmplifierDiagram running={isPlaying && !isPaused} />
           </div>
 
-          {/* Navigation Controls: Slide Indicators, Play/Pause, Next/Prev */}
-          <div className="flex items-center gap-2">
-            {/* Slide Indicators */}
-            <div className="flex items-center gap-1.5 rounded-full border border-white/15 bg-slate-950/60 px-3 py-2 shadow-lg backdrop-blur-md">
-              {HERO_SLIDES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    idx === currentSlide
-                      ? "w-6 bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"
-                      : "w-2 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
+          {/* Current sheet's figure, printed as a cyanotype */}
+          <figure className="lg:col-span-6">
+            <div className="relative aspect-[3/2] border border-white">
+              {HERO_SLIDES.map((s, idx) => (
+                <div
+                  key={s.image}
+                  className={`absolute inset-0 bg-[#00629B] transition-opacity duration-700 ease-in-out ${idx === currentSlide ? "opacity-100" : "opacity-0"}`}
+                >
+                  <Image
+                    src={s.image}
+                    alt=""
+                    fill
+                    priority={idx === 0}
+                    sizes="(min-width: 1024px) 40vw, 100vw"
+                    className={`object-cover mix-blend-luminosity contrast-125 ${s.position}`}
+                  />
+                </div>
               ))}
             </div>
-
-            {/* Play / Pause Button */}
-            <button
-              onClick={() => setIsPlaying(!isPlaying)}
-              aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-slate-950/60 text-white/80 shadow-lg backdrop-blur-md transition-colors hover:border-white/30 hover:bg-slate-900 hover:text-white"
-            >
-              {isPlaying ? <Pause size={14} /> : <Play size={14} className="ml-0.5" />}
-            </button>
-
-            {/* Prev Slide Button */}
-            <button
-              onClick={prevSlide}
-              aria-label="Previous slide"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-slate-950/60 text-white/80 shadow-lg backdrop-blur-md transition-colors hover:border-white/30 hover:bg-slate-900 hover:text-white"
-            >
-              <ChevronLeft size={16} />
-            </button>
-
-            {/* Next Slide Button */}
-            <button
-              onClick={nextSlide}
-              aria-label="Next slide"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-slate-950/60 text-white/80 shadow-lg backdrop-blur-md transition-colors hover:border-white/30 hover:bg-slate-900 hover:text-white"
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
+            <figcaption className="mt-3 min-h-10 text-sm" aria-live={isPlaying ? "off" : "polite"}>
+              <span className="font-semibold">
+                Fig. {currentSlide + 1}. {slide.title}
+              </span>
+              <span className="block text-[#CADCEA] sm:inline"> {slide.subtitle}</span>
+            </figcaption>
+          </figure>
         </div>
 
+        {/* Drawing title block, with the sheet (slide) controls in its last cell */}
+        <div className="mt-10 grid border border-white sm:grid-cols-3 lg:grid-cols-[1fr_1fr_1fr_auto]">
+          <dl className="contents">
+            {TITLE_BLOCK.map((item) => (
+              <div key={item.label} className="border-b border-white/40 px-4 py-3 sm:border-b-0 sm:border-r">
+                <dt className="text-xs font-semibold uppercase tracking-[0.16em] text-[#CADCEA]">{item.label}</dt>
+                <dd className="mt-1 font-display text-sm font-bold">{item.value}</dd>
+                <dd className="text-xs text-[#CADCEA]">{item.sub}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div
+            role="group"
+            aria-roledescription="carousel"
+            aria-label="Branch highlights"
+            className="flex items-stretch justify-end border-white/40 min-[400px]:justify-between sm:col-span-3 sm:border-t lg:col-span-1 lg:border-t-0"
+          >
+            <span className="sr-only" aria-live={isPlaying ? "off" : "polite"}>
+              Slide {currentSlide + 1} of {HERO_SLIDES.length}: {slide.title}
+            </span>
+            <span className="hidden items-center whitespace-nowrap px-3 min-[400px]:flex text-xs font-semibold uppercase tracking-[0.16em] text-[#CADCEA]">
+              Sheet
+            </span>
+            <div className="flex">
+              {HERO_SLIDES.map((s, idx) => (
+                <button
+                  key={s.image}
+                  type="button"
+                  onClick={() => setCurrentSlide(idx)}
+                  aria-label={`Go to slide ${idx + 1}: ${s.title}`}
+                  aria-current={idx === currentSlide ? "true" : undefined}
+                  className={`min-h-11 w-9 border-l border-white/40 text-sm font-bold transition-colors ${
+                    idx === currentSlide ? "bg-[#FFC72C] text-[#002855]" : "text-white hover:bg-white/15"
+                  }`}
+                >
+                  {idx + 1}
+                </button>
+              ))}
+              <button
+                type="button"
+                onClick={() => setIsPlaying((p) => !p)}
+                aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+                className={controlClass}
+              >
+                {isPlaying ? <Pause size={15} aria-hidden="true" /> : <Play size={15} aria-hidden="true" />}
+              </button>
+              <button type="button" onClick={prevSlide} aria-label="Previous slide" className={controlClass}>
+                <ChevronLeft size={17} aria-hidden="true" />
+              </button>
+              <button type="button" onClick={nextSlide} aria-label="Next slide" className={controlClass}>
+                <ChevronRight size={17} aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -10,34 +10,34 @@ const ACCENT = {
     stage: "bg-[#f3eee4]",
     edge: "border-t-[#d88900]",
     label: "text-[#8a570b]",
-    logoBg: "bg-[#111827]",
+    logoBg: "bg-[#002855]",
     logoBorder: "border-[#d88900]/25",
     avatarBg: "bg-[#f3eee4]",
     avatarText: "text-[#8a570b]",
-    cta: "bg-[#182433] text-white hover:bg-[#26394c]",
+    cta: "bg-[#002855] text-white hover:bg-[#2D4D76]",
     check: "text-[#a96c00]",
   },
   violet: {
     stage: "bg-[#f1eef6]",
-    edge: "border-t-[#7654a5]",
-    label: "text-[#5f437f]",
-    logoBg: "bg-[#111318]",
-    logoBorder: "border-[#7654a5]/20",
+    edge: "border-t-[#772583]",
+    label: "text-[#772583]",
+    logoBg: "bg-[#002855]",
+    logoBorder: "border-[#772583]/20",
     avatarBg: "bg-[#f1eef6]",
-    avatarText: "text-[#5f437f]",
-    cta: "bg-[#493967] text-white hover:bg-[#382b50]",
-    check: "text-[#6b4d91]",
+    avatarText: "text-[#772583]",
+    cta: "bg-[#772583] text-white hover:bg-[#772583]",
+    check: "text-[#772583]",
   },
   ember: {
-    stage: "bg-[#eaf2f0]",
-    edge: "border-t-[#0d6e6e]",
-    label: "text-[#0d6e6e]",
+    stage: "bg-[#E6EFF6]",
+    edge: "border-t-[#00629B]",
+    label: "text-[#00629B]",
     logoBg: "bg-white",
-    logoBorder: "border-[#0d6e6e]/15",
-    avatarBg: "bg-[#eaf2f0]",
-    avatarText: "text-[#0d6e6e]",
-    cta: "bg-[#0d6e6e] text-white hover:bg-[#095757]",
-    check: "text-[#0d6e6e]",
+    logoBorder: "border-[#00629B]/15",
+    avatarBg: "bg-[#E6EFF6]",
+    avatarText: "text-[#00629B]",
+    cta: "bg-[#00629B] text-white hover:bg-[#002855]",
+    check: "text-[#00629B]",
   },
 } as const;
 
@@ -76,7 +76,7 @@ function AmbassadorAvatar({
           onError={() => setImgError(true)}
         />
       ) : (
-        <div className={`flex h-full items-center justify-center font-serif text-xl font-semibold ${accent.avatarText}`}>
+        <div className={`flex h-full items-center justify-center font-display text-xl font-semibold ${accent.avatarText}`}>
           {initials(name)}
         </div>
       )}
@@ -90,10 +90,10 @@ export function Programs() {
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         <div className="mb-10 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-12">
           <div>
-            <span className="rounded-full bg-slate-200/80 px-3 py-1 text-xs font-semibold text-slate-700">
+            <span className=" bg-slate-200/80 px-3 py-1 text-xs font-semibold text-slate-700">
               Campus &amp; Community Partners
             </span>
-            <h2 className="mt-3 max-w-xl font-serif text-3xl font-bold leading-tight text-ink sm:text-4xl">
+            <h2 className="mt-3 max-w-xl font-display text-3xl font-bold leading-tight text-ink sm:text-4xl">
               Partner Programs &amp; Ambassadorships
             </h2>
           </div>
@@ -101,7 +101,7 @@ export function Programs() {
             <p className="max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
               Initiatives represented at Cavendish University Uganda in collaboration with student leaders and external technical communities.
             </p>
-            <p className="mt-2 text-xs text-slate-500 italic">
+            <p className="mt-2 text-xs text-slate-500">
               Non-endorsement disclaimer: AWS Student Builders and Black Python Devs are campus and community partners. Their inclusion is not an IEEE endorsement.
             </p>
           </div>
@@ -121,7 +121,7 @@ export function Programs() {
                     <p className={`text-[10px] font-semibold uppercase tracking-[0.12em] ${s.label}`}>
                       {p.tag}
                     </p>
-                    <h3 className="mt-3 max-w-[15rem] font-serif text-xl font-bold leading-tight text-ink sm:text-2xl">
+                    <h3 className="mt-3 max-w-[15rem] font-display text-xl font-bold leading-tight text-ink sm:text-2xl">
                       {p.title}
                     </h3>
                   </div>

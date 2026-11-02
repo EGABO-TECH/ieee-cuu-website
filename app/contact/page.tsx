@@ -15,24 +15,26 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">
-            Contact us
-          </h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            Reach out with questions about the branch, membership, events, or partnerships.
-            We aim to reply within three working days.
-          </p>
+          <div className="page-banner">
+            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
+              Contact us
+            </h1>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+              Reach out with questions about the branch, membership, events, or partnerships.
+              We aim to reply within three working days.
+            </p>
+          </div>
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Contact details */}
             <div className="space-y-5">
               <div className="rounded-2xl border border-slate-100 bg-white p-7 space-y-4">
-                <h2 className="font-serif text-xl font-bold text-slate-900">Branch details</h2>
+                <h2 className="font-display text-xl font-bold text-ink">Branch details</h2>
 
                 <div className="flex items-start gap-3 text-sm text-slate-700">
-                  <MapPin size={16} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                  <MapPin size={16} className="text-[#00629B] shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">Address</p>
                     <p className="text-slate-500 mt-0.5">{SITE.address}</p>
@@ -40,7 +42,7 @@ export default function ContactPage() {
                       href={SITE.mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]"
+                      className="text-xs text-[#00629B] underline underline-offset-2 hover:text-[#007DAF]"
                     >
                       Open in Google Maps
                     </a>
@@ -48,14 +50,14 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3 text-sm text-slate-700">
-                  <Globe size={16} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                  <Globe size={16} className="text-[#00629B] shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">University website</p>
                     <a
                       href={SITE.universityUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-slate-500 underline underline-offset-2 hover:text-slate-900"
+                      className="text-slate-500 underline underline-offset-2 hover:text-ink"
                     >
                       {SITE.universityUrl}
                     </a>
@@ -63,10 +65,10 @@ export default function ContactPage() {
                 </div>
 
                 <div className="flex items-start gap-3 text-sm text-slate-700">
-                  <Phone size={16} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                  <Phone size={16} className="text-[#00629B] shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">University switchboard</p>
-                    <a href={`tel:${SITE.universityPhone}`} className="text-slate-500 hover:text-slate-900">
+                    <a href={`tel:${SITE.universityPhone}`} className="text-slate-500 hover:text-ink">
                       {SITE.universityPhone}
                     </a>
                   </div>
@@ -74,10 +76,10 @@ export default function ContactPage() {
 
                 {SITE.email ? (
                   <div className="flex items-start gap-3 text-sm text-slate-700">
-                    <Mail size={16} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                    <Mail size={16} className="text-[#00629B] shrink-0 mt-0.5" />
                     <div>
                       <p className="font-semibold">Branch email</p>
-                      <a href={`mailto:${SITE.email}`} className="text-slate-500 underline underline-offset-2 hover:text-slate-900">
+                      <a href={`mailto:${SITE.email}`} className="text-slate-500 underline underline-offset-2 hover:text-ink">
                         {SITE.email}
                       </a>
                     </div>
@@ -91,14 +93,14 @@ export default function ContactPage() {
                 )}
 
                 <div className="flex items-start gap-3 text-sm text-slate-700">
-                  <MessageCircle size={16} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                  <MessageCircle size={16} className="text-[#00629B] shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold">WhatsApp community</p>
                     <a
                       href={SITE.whatsapp.ieee}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]"
+                      className="text-xs text-[#00629B] underline underline-offset-2 hover:text-[#007DAF]"
                     >
                       Join the branch WhatsApp group
                     </a>
@@ -108,7 +110,7 @@ export default function ContactPage() {
 
               {/* Social links */}
               <div className="rounded-2xl border border-slate-100 bg-white p-7">
-                <h2 className="font-serif text-xl font-bold text-slate-900 mb-4">Follow us</h2>
+                <h2 className="font-display text-xl font-bold text-ink mb-4">Follow us</h2>
                 <div className="space-y-3 text-sm">
                   <a
                     href={SITE.social.linkedin}
@@ -143,13 +145,13 @@ export default function ContactPage() {
               <ContactForm />
 
               <div className="rounded-2xl border border-slate-100 bg-white p-7">
-                <h2 className="font-serif text-xl font-bold text-slate-900">Sponsors and partners</h2>
+                <h2 className="font-display text-xl font-bold text-ink">Sponsors and partners</h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   Partners can reach Cavendish University Uganda students across every faculty through workshops,
                   talks, competitions and the Official Branch Launch. Choose &ldquo;Sponsorship or partnership&rdquo;
                   as the topic above and the branch executive will reply.
                 </p>
-                <Link href="/partners" className="mt-3 inline-block text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+                <Link href="/partners" className="mt-3 inline-block text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
                   See current partners →
                 </Link>
               </div>

@@ -23,30 +23,30 @@ export function IEEEDayRecap() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-32 sm:pt-36">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-32 sm:pt-36">
         <div className="mx-auto max-w-4xl px-4 sm:px-10 pt-4">
           <div className="flex flex-wrap items-center justify-between gap-4">
-            <span className="inline-flex items-center rounded-full border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600">
+            <span className="inline-flex items-center border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600">
               Recap
             </span>
-            <Link href="/events" className="text-xs text-[#0D6E6E] transition hover:text-[#1A9090]">
+            <Link href="/events" className="text-xs text-[#00629B] transition hover:text-[#007DAF]">
               ← All events
             </Link>
           </div>
         </div>
 
         <section className="mx-auto max-w-4xl px-4 sm:px-10 py-10">
-          <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl">
             IEEE Day 2026 at the American Center, Kabalagala
           </h1>
 
           <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-700">
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-              <Calendar size={16} className="text-[#0D6E6E]" aria-hidden="true" />
+              <Calendar size={16} className="text-[#00629B]" aria-hidden="true" />
               Tuesday 6 October 2026
             </span>
             <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-              <MapPin size={16} className="text-[#0D6E6E]" aria-hidden="true" />
+              <MapPin size={16} className="text-[#00629B]" aria-hidden="true" />
               American Center, Kabalagala, Kampala
             </span>
           </div>
@@ -56,7 +56,7 @@ export function IEEEDayRecap() {
           )}
 
           <div className="mt-10">
-            <h2 className="font-serif text-2xl font-bold text-slate-900">Photos</h2>
+            <h2 className="font-display text-2xl font-bold text-ink">Photos</h2>
             {photos.length > 0 ? (
               <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {photos.map((photo) => (
@@ -81,14 +81,14 @@ export function IEEEDayRecap() {
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
               href="/events/branch-launch-2026"
-              className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+              className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
             >
               Next: Official Branch Launch, 4 November
               <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
             <Link
               href="/join"
-              className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+              className="inline-flex items-center gap-2 border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
             >
               Join the branch
             </Link>
@@ -96,13 +96,13 @@ export function IEEEDayRecap() {
         </section>
 
         <section className="mx-auto max-w-4xl px-4 sm:px-10 pb-24 pt-6">
-          <h2 className="font-serif text-2xl font-bold text-slate-900">Questions</h2>
+          <h2 className="font-display text-2xl font-bold text-ink">Questions</h2>
           <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
             {FAQS.map((faq) => (
               <details key={faq.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-slate-900">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-ink">
                   {faq.q}
-                  <span aria-hidden="true" className="shrink-0 text-xl leading-none text-[#1A9090] transition-transform group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="shrink-0 text-xl leading-none text-[#007DAF] transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">{faq.a}</p>
               </details>

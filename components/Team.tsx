@@ -37,8 +37,8 @@ function PhotoPlaceholder({ name }: { name: string }) {
     .toUpperCase();
 
   return (
-    <div className="flex h-full w-full items-center justify-center bg-[#e8f0ee]">
-      <span className="font-serif text-2xl font-semibold text-[#0D6E6E]">{initials}</span>
+    <div className="flex h-full w-full items-center justify-center bg-[#E6EFF6]">
+      <span className="font-display text-2xl font-semibold text-[#00629B]">{initials}</span>
     </div>
   );
 }
@@ -53,7 +53,7 @@ function MemberCard({ member }: { member: Member }) {
   return (
     <article className="flex h-full flex-col rounded-2xl border border-slate-100 bg-white overflow-hidden">
       {/* Photo */}
-      <div className="relative h-40 w-full bg-[#e8f0ee]">
+      <div className="relative h-40 w-full bg-[#E6EFF6]">
         {hasPhoto ? (
           <Image
             src={member.photo!}
@@ -68,10 +68,10 @@ function MemberCard({ member }: { member: Member }) {
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-[#0D6E6E]">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-[#00629B]">
           {GROUP_LABELS[member.group] ?? member.group}
         </p>
-        <h3 className="mt-1.5 font-serif text-lg font-bold leading-snug text-slate-900">
+        <h3 className="mt-1.5 font-display text-lg font-bold leading-snug text-ink">
           {member.name}
         </h3>
         <p className="mt-0.5 text-sm font-medium text-slate-600">{member.role}</p>
@@ -111,14 +111,14 @@ export function Team() {
   const groupOrder = ["governance", "leadership", "administration", "finance", "technical", "programs", "outreach"];
 
   return (
-    <section id="team" className="border-t border-slate-100 bg-[#f5f5f1] py-16 sm:py-20">
+    <section id="team" className="border-t border-slate-100 bg-[#F5F8FB] py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 space-y-14">
         {groupOrder.map((group) => {
           const groupMembers = grouped[group];
           if (!groupMembers?.length) return null;
           return (
             <div key={group}>
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">
+              <h2 className="font-display text-2xl font-bold text-ink mb-6">
                 {GROUP_LABELS[group]}
               </h2>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">

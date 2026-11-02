@@ -17,12 +17,12 @@ export function PolicyPage({
   sections: PolicySection[];
 }) {
   return (
-    <main className="min-h-screen bg-[#f5f5f1] px-4 pb-20 pt-28 text-slate-900 sm:px-8 sm:pt-36">
+    <main className="min-h-screen bg-[#F5F8FB] px-4 pb-20 pt-28 text-ink sm:px-8 sm:pt-36">
       <header className="mx-auto max-w-5xl border-b border-slate-300 pb-9 sm:pb-12">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#0d5b8f]">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#00629B]">
           IEEE CUU Student Branch / Policies
         </p>
-        <h1 className="mt-5 font-serif text-4xl font-bold leading-tight text-ink sm:text-5xl">
+        <h1 className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
           {title}
         </h1>
         <p className="mt-5 max-w-3xl text-base leading-7 text-muted sm:text-lg">
@@ -43,7 +43,7 @@ export function PolicyPage({
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className="text-sm leading-6 text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-[#0d5b8f]"
+                  className="text-sm leading-6 text-slate-700 underline decoration-slate-300 underline-offset-4 transition hover:text-[#00629B]"
                 >
                   {section.title}
                 </a>
@@ -59,10 +59,10 @@ export function PolicyPage({
               id={section.id}
               className="scroll-mt-28 border-b border-slate-200 py-7 first:pt-0 last:border-b-0"
             >
-              <p className="text-xs font-semibold tabular-nums text-[#0d5b8f]">
+              <p className="text-xs font-semibold tabular-nums text-[#00629B]">
                 {String(index + 1).padStart(2, "0")}
               </p>
-              <h2 className="mt-2 font-serif text-2xl font-semibold leading-tight text-ink">
+              <h2 className="mt-2 font-display text-2xl font-semibold leading-tight text-ink">
                 {section.title}
               </h2>
               <div className="mt-4 space-y-4 text-[0.97rem] leading-7 text-slate-700">
@@ -70,7 +70,7 @@ export function PolicyPage({
                   <p key={paragraph}>{paragraph}</p>
                 ))}
                 {section.bullets && (
-                  <ul className="list-disc space-y-2 pl-5 marker:text-[#0d5b8f]">
+                  <ul className="list-disc space-y-2 pl-5 marker:text-[#00629B]">
                     {section.bullets.map((bullet) => (
                       <li key={bullet}>{bullet}</li>
                     ))}

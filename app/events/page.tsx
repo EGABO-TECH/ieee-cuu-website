@@ -39,17 +39,17 @@ export default function EventsPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         {/* Ambient Glows */}
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 50%, transparent 75%)" }}
+          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 75%)" }}
         />
 
         {/* ── HERO ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-serif text-4xl font-bold leading-[1.15] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
+          <h1 className="font-display text-4xl font-bold leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Branch Events
           </h1>
           <p className="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-600">
@@ -64,10 +64,10 @@ export default function EventsPage() {
               <li key={t.id}>
                 <a
                   href={`#${t.id}`}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#0D6E6E] hover:text-[#0D6E6E]"
+                  className="inline-flex items-center gap-2 border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#00629B] hover:text-[#00629B]"
                 >
                   {t.label}
-                  <span className="rounded-full bg-slate-100 px-2 text-xs">{t.count}</span>
+                  <span className=" bg-slate-100 px-2 text-xs">{t.count}</span>
                 </a>
               </li>
             ))}
@@ -77,7 +77,7 @@ export default function EventsPage() {
         {/* ── UPCOMING EVENTS ── */}
         {upcoming.length > 0 && (
           <section id="upcoming" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink mb-8">
               Upcoming
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -91,22 +91,22 @@ export default function EventsPage() {
         {/* ── OPEN CALLS ── */}
         {openCalls.length > 0 && (
           <section id="open-calls" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">Open calls</h2>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink mb-8">Open calls</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {openCalls.map((c) => (
                 <div key={c.slug} className="flex flex-col justify-between rounded-3xl border border-ieee/10 bg-white p-8 sm:p-10">
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-4">
-                      <span className="inline-block rounded-full border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-green-700">
+                      <span className="inline-block border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-green-700">
                         {callStatus(c) === "closing-soon" ? "Closing soon" : "Open"}
                       </span>
                       <span className="text-xs text-slate-500">Closes {formatDateEAT(c.closes)}</span>
                     </div>
-                    <h3 className="font-serif text-2xl font-bold text-slate-900">{c.title}</h3>
+                    <h3 className="font-display text-2xl font-bold text-ink">{c.title}</h3>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">{c.summary}</p>
                     {c.audience && (
                       <p className="mt-4 flex items-center gap-2 text-xs text-slate-600">
-                        <Users size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                        <Users size={13} className="shrink-0 text-[#00629B]" aria-hidden="true" />
                         {c.audience}
                       </p>
                     )}
@@ -116,7 +116,7 @@ export default function EventsPage() {
                   </div>
                   <Link
                     href={c.href}
-                    className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                    className="mt-8 inline-flex w-fit items-center gap-2 bg-[#00629B] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#002855]"
                   >
                     Details and apply
                     <ArrowUpRight size={14} aria-hidden="true" />
@@ -130,7 +130,7 @@ export default function EventsPage() {
         {/* ── PAST EVENTS ── */}
         {past.length > 0 && (
           <section id="past" className="relative scroll-mt-32 mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 pb-24">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink mb-8">
               Past Events
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -144,7 +144,7 @@ export default function EventsPage() {
         {/* ── UPCOMING WORKSHOPS (planned, not confirmed) ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-10 pb-24">
           <div className="rounded-2xl border border-slate-200 bg-white p-8 sm:p-10">
-            <h2 className="font-serif text-2xl font-bold text-slate-900 mb-2">
+            <h2 className="font-display text-2xl font-bold text-ink mb-2">
               Planned activities
             </h2>
             <p className="text-sm text-slate-500 mb-6">
@@ -172,11 +172,11 @@ export default function EventsPage() {
                 },
               ].map((w) => (
                 <li key={w.title} className="flex flex-col sm:flex-row sm:items-center gap-2 border-b border-slate-100 pb-4 last:border-0 last:pb-0">
-                  <span className="shrink-0 rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
+                  <span className="shrink-0 bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">
                     {w.category}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-slate-900 text-sm">{w.title}</p>
+                    <p className="font-semibold text-ink text-sm">{w.title}</p>
                     <p className="text-xs text-slate-500">{w.lead}</p>
                   </div>
                   <span className="shrink-0 text-xs text-slate-400">{w.date}</span>
@@ -185,7 +185,7 @@ export default function EventsPage() {
             </ul>
             <p className="mt-6 text-xs text-slate-400">
               Stay updated by{" "}
-              <a href="/join" className="text-[#0D6E6E] underline underline-offset-2 hover:text-[#1A9090]">
+              <a href="/join" className="text-[#00629B] underline underline-offset-2 hover:text-[#007DAF]">
                 registering your interest on the Join page
               </a>
               .
@@ -223,7 +223,7 @@ function StatusBadge({ status }: { status: EventItem["status"] }) {
   };
   const { label, className } = map[status];
   return (
-    <span className={`inline-block rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${className}`}>
+    <span className={`inline-block border px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${className}`}>
       {label}
     </span>
   );
@@ -234,7 +234,7 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
   const msLeft = event.registration?.closesAt ? msUntil(event.registration.closesAt) : 0;
 
   return (
-    <div className={`group flex flex-col justify-between rounded-3xl border bg-white overflow-hidden transition-all duration-300 hover:shadow-2xl ${past ? "border-slate-200" : "border-ieee/10 hover:border-[#1A9090]/50"}`}>
+    <div className={`group flex flex-col justify-between rounded-3xl border bg-white overflow-hidden transition-all duration-300 hover:shadow-2xl ${past ? "border-slate-200" : "border-ieee/10 hover:border-[#007DAF]/50"}`}>
       <div className="p-8 sm:p-10">
         <div className="flex items-center justify-between gap-2 mb-4">
           <StatusBadge status={event.status} />
@@ -253,20 +253,20 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
           </div>
         )}
 
-        <h3 className="font-serif text-2xl font-bold text-slate-900 group-hover:text-[#0D6E6E] transition-colors">
+        <h3 className="font-display text-2xl font-bold text-ink group-hover:text-[#00629B] transition-colors">
           {event.title}
         </h3>
         <p className="mt-2 text-sm text-slate-600 leading-relaxed">{event.summary}</p>
 
         {event.venue && (
           <div className="mt-4 flex items-center gap-2 text-xs text-slate-600">
-            <MapPin size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+            <MapPin size={13} className="shrink-0 text-[#00629B]" aria-hidden="true" />
             <span>{event.venue.name}</span>
           </div>
         )}
         {event.audience && (
           <div className="mt-2 flex items-center gap-2 text-xs text-slate-600">
-            <Users size={13} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+            <Users size={13} className="shrink-0 text-[#00629B]" aria-hidden="true" />
             <span>{event.audience}</span>
           </div>
         )}
@@ -303,10 +303,10 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
       <div className="border-t border-slate-100 bg-slate-50 p-6 flex items-center justify-between">
         <Link
           href={href}
-          className={`inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold transition ${
+          className={`inline-flex items-center gap-2 px-6 py-2.5 text-xs font-bold transition ${
             past
               ? "bg-slate-200 text-slate-700 hover:bg-slate-300"
-              : "bg-[#0D6E6E] text-white hover:bg-[#1A9090]"
+              : "bg-[#00629B] text-white hover:bg-[#002855]"
           }`}
         >
           {past ? "View recap" : "View details"}
@@ -315,7 +315,7 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
         {!past && (
           <a
             href={`/events/${event.slug}/calendar.ics`}
-            className="text-xs font-semibold text-[#0D6E6E] hover:text-[#1A9090] transition"
+            className="text-xs font-semibold text-[#00629B] hover:text-[#007DAF] transition"
           >
             Add to calendar
           </a>
@@ -325,7 +325,7 @@ function EventCard({ event, past }: { event: EventItem; past?: boolean }) {
             href={event.registration.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold text-[#0D6E6E] hover:text-[#1A9090] transition"
+            className="text-xs font-semibold text-[#00629B] hover:text-[#007DAF] transition"
           >
             {event.registration.label ?? "Register"} ↗
           </a>

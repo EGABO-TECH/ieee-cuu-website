@@ -32,19 +32,19 @@ const PILLARS_OF_LEADERSHIP = [
 export default function TeamPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         {/* Ambient Glows */}
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 40%, transparent 75%)" }}
+          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 40%, transparent 75%)" }}
         />
 
         {/* ── PAGE HERO ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
+          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Passionate Students Driving<br />
-            <span className="text-[#1A9090] italic">Innovation on Campus</span>
+            <span className="text-[#007DAF]">Innovation on Campus</span>
           </h1>
 
           <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted">
@@ -63,7 +63,7 @@ export default function TeamPage() {
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
                 Branch Governance
               </span>
-              <h2 className="mt-3 font-serif text-3xl font-bold text-ink">
+              <h2 className="mt-3 font-display text-3xl font-bold text-ink">
                 How Our Leadership Operates
               </h2>
             </div>
@@ -72,8 +72,8 @@ export default function TeamPage() {
               {PILLARS_OF_LEADERSHIP.map((p) => {
                 const Icon = p.icon;
                 return (
-                  <div key={p.title} className="rounded-md border border-ink/10 bg-[#f7f9f8] p-6">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-[#0D6E6E] text-white">
+                  <div key={p.title} className="rounded-md border border-ink/10 bg-[#F5F8FB] p-6">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-[#00629B] text-white">
                       <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
                     </div>
                     <h4 className="font-bold text-ink text-base mb-2">{p.title}</h4>
@@ -85,12 +85,12 @@ export default function TeamPage() {
 
             <div className="mt-10 border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <h4 className="font-semibold text-slate-900 text-sm">Want to volunteer for the Branch?</h4>
+                <h4 className="font-semibold text-ink text-sm">Want to volunteer for the Branch?</h4>
                 <p className="text-xs text-slate-600 mt-0.5">We welcome students from all faculties to join our event and technical committees.</p>
               </div>
               <Link
                 href="/volunteer"
-                className="shrink-0 inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                className="shrink-0 inline-flex items-center gap-2 bg-[#00629B] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#002855]"
               >
                 Volunteer with the branch
                 <ArrowUpRight size={14} aria-hidden="true" />

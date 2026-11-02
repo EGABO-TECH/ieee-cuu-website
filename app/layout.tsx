@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, IBM_Plex_Sans, Playfair_Display } from "next/font/google";
+import { Sora, IBM_Plex_Sans } from "next/font/google";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE } from "@/config/site";
@@ -16,14 +16,6 @@ const plex = IBM_Plex_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-plex",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
   display: "swap",
 });
 
@@ -80,7 +72,7 @@ const jsonLdOrg = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-UG" className={`${sora.variable} ${plex.variable} ${playfair.variable}`}>
+    <html lang="en-UG" className={`${sora.variable} ${plex.variable}`}>
       <head>
         <script
           type="application/ld+json"
@@ -90,7 +82,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-bg bg-grain text-ink">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#0D6E6E] focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-[#00629B] focus:shadow-lg"
         >
           Skip to content
         </a>

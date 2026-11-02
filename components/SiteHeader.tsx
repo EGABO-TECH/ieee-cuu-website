@@ -114,16 +114,16 @@ export function SiteHeader() {
 
   const linkClass = (active: boolean) =>
     `relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-      active ? "text-white after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#5fd0c6]" : "text-white/75 hover:text-white"
+      active ? "text-white after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#FFC72C]" : "text-white/75 hover:text-white"
     }`;
   const eventsActive = isActive(pathname, "/events");
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 [&_:focus-visible]:outline-[#5fd0c6]">
+      <header className="fixed inset-x-0 top-0 z-50 [&_:focus-visible]:outline-[#FFC72C]">
         {!menuOpen && <AnnouncementBar />}
 
-        <div className="border-b border-white/10 bg-[#0B1E2E]/95 backdrop-blur-md">
+        <div className="border-b border-white/10 bg-[#002855]/95 backdrop-blur-md">
           <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-8 lg:px-12">
             {/* Brand */}
             <Link href="/" className="flex min-w-0 items-center gap-3 rounded-md" aria-label="IEEE CUU Student Branch, home">
@@ -176,7 +176,7 @@ export function SiteHeader() {
                             aria-current={pathname === e.href ? "page" : undefined}
                             className="block px-4 py-3 transition-colors hover:bg-slate-50 focus-visible:bg-slate-50"
                           >
-                            <span className="block text-sm font-semibold text-slate-900">{e.label}</span>
+                            <span className="block text-sm font-semibold text-ink">{e.label}</span>
                             <span className="mt-0.5 block text-xs text-slate-500">{e.meta}</span>
                           </Link>
                         </li>
@@ -184,7 +184,7 @@ export function SiteHeader() {
                     </ul>
                     <Link
                       href="/events"
-                      className="block border-t border-slate-100 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#0D6E6E] hover:bg-slate-100"
+                      className="block border-t border-slate-100 bg-slate-50 px-4 py-3 text-sm font-semibold text-[#00629B] hover:bg-slate-100"
                     >
                       All events →
                     </Link>
@@ -203,7 +203,7 @@ export function SiteHeader() {
               <Link
                 href="/join"
                 aria-current={isActive(pathname, "/join") ? "page" : undefined}
-                className="inline-flex rounded-full bg-[#1A9090] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#22a5a5] sm:px-5"
+                className="inline-flex bg-[#FFC72C] px-4 py-2 text-sm font-bold text-[#002855] transition hover:bg-white sm:px-5"
               >
                 Join<span className="hidden sm:inline">&nbsp;the branch</span>
               </Link>
@@ -224,7 +224,7 @@ export function SiteHeader() {
           {menuOpen && (
             <div
               id="mobile-menu"
-              className="mobile-menu-panel max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/10 bg-[#0B1E2E] lg:hidden"
+              className="mobile-menu-panel max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/10 bg-[#002855] lg:hidden"
             >
               <nav aria-label="Mobile" className="mx-auto max-w-7xl px-4 py-4 sm:px-8">
                 <ul className="divide-y divide-white/10">
@@ -233,14 +233,14 @@ export function SiteHeader() {
                       <Link
                         href={l.href}
                         aria-current={(l.href === "/" ? pathname === "/" : isActive(pathname, l.href)) ? "page" : undefined}
-                        className="block py-3 text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#5fd0c6]"
+                        className="block py-3 text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#FFC72C]"
                       >
                         {l.label}
                       </Link>
                     </li>
                   ))}
                   <li className="py-3">
-                    <Link href="/events" className="block text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#5fd0c6]" aria-current={pathname === "/events" ? "page" : undefined}>
+                    <Link href="/events" className="block text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#FFC72C]" aria-current={pathname === "/events" ? "page" : undefined}>
                       Events
                     </Link>
                     <ul className="mt-2 space-y-1 border-l border-white/15 pl-4">
@@ -259,7 +259,7 @@ export function SiteHeader() {
                       <Link
                         href={l.href}
                         aria-current={isActive(pathname, l.href) ? "page" : undefined}
-                        className="block py-3 text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#5fd0c6]"
+                        className="block py-3 text-base font-medium text-white/85 hover:text-white aria-[current=page]:text-[#FFC72C]"
                       >
                         {l.label}
                       </Link>
@@ -269,7 +269,7 @@ export function SiteHeader() {
 
                 <Link
                   href="/join"
-                  className="mt-4 flex w-full items-center justify-center rounded-full bg-[#1A9090] px-6 py-3 text-base font-semibold text-white hover:bg-[#22a5a5]"
+                  className="mt-4 flex w-full items-center justify-center bg-[#FFC72C] px-6 py-3 text-base font-bold text-[#002855] hover:bg-white"
                 >
                   Join the branch
                 </Link>

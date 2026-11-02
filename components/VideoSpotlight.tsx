@@ -60,13 +60,13 @@ export function VideoSpotlight() {
   };
 
   return (
-    <section className="bg-[#f5f5f1] py-8 sm:py-12">
+    <section className="bg-[#F5F8FB] py-8 sm:py-12">
       <div className="mx-auto max-w-5xl px-6">
-        <div className="relative mx-auto max-w-[960px] overflow-hidden rounded-[1.5rem] border border-[#d4e7ea] bg-[#0f172a] shadow-[0_20px_45px_rgba(15,23,42,0.16)]">
+        <div className="relative mx-auto max-w-[960px] overflow-hidden rounded-sm border border-[#CADCEA] bg-[#002855] shadow-[0_20px_45px_rgba(0, 40, 85,0.16)]">
           <div className="relative aspect-video w-full overflow-hidden bg-[radial-gradient(circle_at_15%_10%,rgba(255,255,255,0.18),transparent_18%),linear-gradient(120deg,#1f2f3c_0%,#0f172a_48%,#1a2731_100%)]">
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.05),transparent_40%,rgba(255,255,255,0.04))]" />
             <div className="absolute left-10 top-10 h-16 w-16 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute bottom-10 right-10 h-24 w-24 rounded-full bg-[#1a9090]/20 blur-3xl" />
+            <div className="absolute bottom-10 right-10 h-24 w-24 rounded-full bg-[#007DAF]/20 blur-3xl" />
 
             <video
               ref={videoRef}
@@ -99,7 +99,7 @@ export function VideoSpotlight() {
             </button>
 
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 sm:p-6">
-              <div className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/80 backdrop-blur-sm sm:text-[11px]">
+              <div className=" border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/80 backdrop-blur-sm sm:text-[11px]">
                 IEEE Day
               </div>
 

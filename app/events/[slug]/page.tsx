@@ -94,26 +94,26 @@ export default function EventDetailPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <div className="mx-auto max-w-5xl px-4 sm:px-10 lg:px-12 py-12">
           <Link
             href="/events"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#0D6E6E] mb-8"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#00629B] mb-8"
           >
             <ArrowLeft size={14} /> Back to all events
           </Link>
 
           <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="rounded-full bg-slate-200/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-700">
+            <span className=" bg-slate-200/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-700">
               {event.kind}
             </span>
-            <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
+            <span className=" border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
               {STATUS_LABEL[event.status] ?? event.status}
             </span>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink leading-tight">
             {event.title}
           </h1>
 
@@ -123,7 +123,7 @@ export default function EventDetailPage({ params }: Props) {
 
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-start gap-3">
-              <Calendar size={18} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+              <Calendar size={18} className="text-[#00629B] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs text-slate-400">Date &amp; Time</p>
                 <p className="text-sm font-semibold text-slate-800">
@@ -137,7 +137,7 @@ export default function EventDetailPage({ params }: Props) {
 
             {event.venue && (
               <div className="flex items-start gap-3">
-                <MapPin size={18} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                <MapPin size={18} className="text-[#00629B] shrink-0 mt-0.5" />
                 <div>
                   <p className="text-xs text-slate-400">Location</p>
                   <p className="text-sm font-semibold text-slate-800">{event.venue.name}</p>
@@ -151,7 +151,7 @@ export default function EventDetailPage({ params }: Props) {
             )}
 
             <div className="flex items-start gap-3">
-              <Users size={18} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+              <Users size={18} className="text-[#00629B] shrink-0 mt-0.5" />
               <div>
                 <p className="text-xs text-slate-400">Who can attend</p>
                 <p className="text-sm font-semibold text-slate-800">
@@ -164,12 +164,12 @@ export default function EventDetailPage({ params }: Props) {
 
           {/* Countdown and actions */}
           {!isPast && (
-            <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-[#9dbdc1] bg-white p-6 sm:flex-row sm:items-end sm:justify-between">
+            <div className="mt-8 flex flex-col gap-6 rounded-2xl border border-[#CADCEA] bg-white p-6 sm:flex-row sm:items-end sm:justify-between">
               {event.status === "live" ? (
-                <p className="text-lg font-semibold text-[#0D6E6E]">Happening today</p>
+                <p className="text-lg font-semibold text-[#00629B]">Happening today</p>
               ) : (
                 <div>
-                  <p className="mb-3 text-sm font-semibold text-[#234a52]">
+                  <p className="mb-3 text-sm font-semibold text-[#2D4D76]">
                     {event.timeTbc ? `Counting down to ${formatDateEAT(event.startsAt)}` : "Starts in"}
                   </p>
                   <Countdown targetISO={event.startsAt} initialMs={msUntil(event.startsAt)} showSeconds={false} hideWhenExpired />
@@ -181,7 +181,7 @@ export default function EventDetailPage({ params }: Props) {
                     href={event.registration.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                    className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
                   >
                     {event.registration.label ?? "RSVP"}
                     <ArrowUpRight size={14} aria-hidden="true" />
@@ -190,7 +190,7 @@ export default function EventDetailPage({ params }: Props) {
                 {openCall && (
                   <Link
                     href={openCall.href}
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                    className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
                   >
                     Volunteer at this event
                     <ArrowUpRight size={14} aria-hidden="true" />
@@ -198,7 +198,7 @@ export default function EventDetailPage({ params }: Props) {
                 )}
                 <a
                   href={`/events/${event.slug}/calendar.ics`}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
                 >
                   <Calendar size={14} aria-hidden="true" />
                   Add to calendar
@@ -210,13 +210,13 @@ export default function EventDetailPage({ params }: Props) {
           {/* Agenda */}
           {event.agenda && event.agenda.length > 0 && (
             <div className="mt-12">
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-6">Event Schedule</h2>
+              <h2 className="font-display text-2xl font-bold text-ink mb-6">Event Schedule</h2>
               <div className="divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white overflow-hidden">
                 {event.agenda.map((item, i) => (
                   <div key={i} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
-                      <p className="text-xs font-semibold text-[#0D6E6E]">{item.start} – {item.end}</p>
-                      <h3 className="font-semibold text-slate-900 text-sm mt-0.5">{item.title}</h3>
+                      <p className="text-xs font-semibold text-[#00629B]">{item.start} – {item.end}</p>
+                      <h3 className="font-semibold text-ink text-sm mt-0.5">{item.title}</h3>
                       {item.description && <p className="text-xs text-slate-500 mt-1">{item.description}</p>}
                     </div>
                     {item.host && <p className="text-xs text-slate-400 shrink-0">{item.host}</p>}
@@ -229,14 +229,14 @@ export default function EventDetailPage({ params }: Props) {
           {/* Programme not yet published */}
           {(!event.agenda || event.agenda.length === 0) && event.status !== "ended" && (
             <div className="mt-12 rounded-2xl border border-dashed border-slate-300 bg-white p-6">
-              <h2 className="font-serif text-2xl font-bold text-slate-900">Programme</h2>
+              <h2 className="font-display text-2xl font-bold text-ink">Programme</h2>
               <p className="mt-2 text-sm text-slate-600">
                 Programme to be announced. Follow the branch on{" "}
-                <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0D6E6E] underline underline-offset-2">
+                <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#00629B] underline underline-offset-2">
                   LinkedIn
                 </a>{" "}
                 or{" "}
-                <a href={SITE.social.x} target="_blank" rel="noopener noreferrer" className="text-[#0D6E6E] underline underline-offset-2">
+                <a href={SITE.social.x} target="_blank" rel="noopener noreferrer" className="text-[#00629B] underline underline-offset-2">
                   X
                 </a>{" "}
                 for updates.
@@ -247,7 +247,7 @@ export default function EventDetailPage({ params }: Props) {
           {/* Recap */}
           {event.status === "ended" && (
             <div className="mt-12 rounded-3xl border border-slate-200 bg-white p-8">
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Event recap</h2>
+              <h2 className="font-display text-2xl font-bold text-ink mb-4">Event recap</h2>
               <p className="text-sm text-slate-600 leading-relaxed">
                 {event.recap?.summary && !event.recap.summary.startsWith("TODO")
                   ? event.recap.summary
@@ -272,7 +272,7 @@ export default function EventDetailPage({ params }: Props) {
                 <ul className="mt-6 flex flex-wrap gap-3">
                   {event.recap.links.map((l) => (
                     <li key={l.url}>
-                      <a href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0D6E6E] hover:text-[#1A9090]">
+                      <a href={l.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
                         {l.label}
                         <ExternalLink size={13} aria-hidden="true" />
                       </a>
@@ -286,13 +286,13 @@ export default function EventDetailPage({ params }: Props) {
           {/* FAQ */}
           {event.faq && event.faq.length > 0 && (
             <div className="mt-12">
-              <h2 className="font-serif text-2xl font-bold text-slate-900 mb-4">Questions</h2>
+              <h2 className="font-display text-2xl font-bold text-ink mb-4">Questions</h2>
               <div className="divide-y divide-slate-200 border-y border-slate-200">
                 {event.faq.map((f) => (
                   <details key={f.q} className="group py-4">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
                       {f.q}
-                      <span aria-hidden="true" className="text-xl leading-none text-[#1A9090] transition-transform group-open:rotate-45">+</span>
+                      <span aria-hidden="true" className="text-xl leading-none text-[#007DAF] transition-transform group-open:rotate-45">+</span>
                     </summary>
                     <p className="mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">{f.a}</p>
                   </details>

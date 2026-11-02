@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMetadata({
 
 export default function CUUCSAPage() {
   return (
-    <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+    <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
       <CUUCSA />
     </main>
   );

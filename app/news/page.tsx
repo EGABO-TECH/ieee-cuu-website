@@ -16,10 +16,10 @@ export default function NewsPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">
+          <div className="page-banner max-w-3xl">
+            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
               News &amp; Stories
             </h1>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
@@ -41,13 +41,13 @@ export default function NewsPage() {
                   <div>
                     <div className="flex flex-wrap items-center gap-2 mb-3">
                       {post.tags.slice(0, 2).map((t) => (
-                        <span key={t} className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600">
+                        <span key={t} className=" bg-slate-100 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600">
                           {t}
                         </span>
                       ))}
                     </div>
 
-                    <h2 className="font-serif text-xl font-bold text-slate-900 group-hover:text-[#0D6E6E] transition">
+                    <h2 className="font-display text-xl font-bold text-ink group-hover:text-[#00629B] transition">
                       <Link href={`/news/${post.slug}`}>
                         {post.title}
                       </Link>
@@ -69,7 +69,7 @@ export default function NewsPage() {
                     </span>
                     <Link
                       href={`/news/${post.slug}`}
-                      className="inline-flex items-center gap-1 font-bold text-[#0D6E6E] hover:underline"
+                      className="inline-flex items-center gap-1 font-bold text-[#00629B] hover:underline"
                     >
                       Read story <ArrowRight size={13} />
                     </Link>

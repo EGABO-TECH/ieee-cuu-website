@@ -31,18 +31,20 @@ const GALLERY: {
 export default function GalleryPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">Gallery</h1>
-          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-            Photos from branch events, workshops, and community activities.
-            All photos are published with the consent of the people pictured.
-          </p>
+          <div className="page-banner">
+            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">Gallery</h1>
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+              Photos from branch events, workshops, and community activities.
+              All photos are published with the consent of the people pictured.
+            </p>
+          </div>
 
           {GALLERY.length === 0 ? (
             <div className="mt-16 flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-white py-24 px-6 text-center">
               <ImageIcon size={48} className="text-slate-200 mb-5" />
-              <h2 className="font-serif text-2xl font-bold text-slate-700">Photos coming soon</h2>
+              <h2 className="font-display text-2xl font-bold text-slate-700">Photos coming soon</h2>
               <p className="mt-3 max-w-md text-sm text-slate-400">
                 Photos from IEEE Day 2026 and other branch activities will be published here once
                 the branch team supplies them with attendee consent.
@@ -54,7 +56,7 @@ export default function GalleryPage() {
               {GALLERY.map((album) => (
                 <section key={album.slug}>
                   <div className="mb-6">
-                    <h2 className="font-serif text-2xl font-bold text-slate-900">{album.event}</h2>
+                    <h2 className="font-display text-2xl font-bold text-ink">{album.event}</h2>
                     <p className="text-sm text-slate-500 mt-1">{album.date}</p>
                   </div>
                   {album.photos.length === 0 ? (

@@ -51,7 +51,7 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink">
         {/* ── PAGE HERO ── */}
         <section className="relative isolate overflow-hidden">
           <div className="hero-slideshow absolute inset-0" aria-hidden="true">
@@ -60,7 +60,7 @@ export default function AboutPage() {
                 key={slide}
                 className="hero-slide"
                 style={{
-                  backgroundImage: `linear-gradient(90deg, rgba(5,16,25,0.88), rgba(5,16,25,0.54) 52%, rgba(5,16,25,0.22)), url(${slide})`,
+                  backgroundImage: `linear-gradient(90deg, rgba(0, 40, 85,0.88), rgba(0, 40, 85,0.54) 52%, rgba(0, 40, 85,0.22)), url(${slide})`,
                   animationDelay: `${index * 5.5}s`,
                 }}
               />
@@ -69,9 +69,9 @@ export default function AboutPage() {
 
           <div className="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-center px-6 pb-12 pt-32 sm:px-10 sm:pb-16 sm:pt-36 lg:px-12 lg:pt-40">
             <div className="max-w-4xl">
-              <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+              <h1 className="font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
                 Advancing Technology
-                <span className="block text-[#72d5cc] italic">for Humanity</span>
+                <span className="block text-[#FFC72C]">for Humanity</span>
                 at CUU
               </h1>
 
@@ -84,7 +84,7 @@ export default function AboutPage() {
             <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-7 lg:grid-cols-4 lg:gap-6">
               {STATS.map((s) => (
                 <div key={s.label} className="border-l border-white/25 pl-4 sm:pl-5">
-                  <div className="font-serif text-2xl font-bold text-white sm:text-3xl">{s.value}</div>
+                  <div className="font-display text-2xl font-bold text-white sm:text-3xl">{s.value}</div>
                   <div className="mt-1 text-xs font-semibold text-white/90">{s.label}</div>
                   <div className="mt-0.5 text-[11px] text-white/65">{s.sub}</div>
                 </div>
@@ -102,7 +102,7 @@ export default function AboutPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
               Our Foundation
             </span>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
               Principles Guiding Our Branch
             </h2>
             <p className="mt-3 text-sm text-muted">
@@ -116,9 +116,9 @@ export default function AboutPage() {
               return (
                 <div
                   key={v.title}
-                  className="rounded-2xl border border-ieee/10 bg-white/80 p-6 transition duration-300 hover:border-[#1A9090]/40 hover:-translate-y-1"
+                  className="rounded-2xl border border-ieee/10 bg-white/80 p-6 transition duration-300 hover:border-[#007DAF]/40 hover:-translate-y-1"
                 >
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg border border-[#00629B]/10 bg-[#E6EFF6] text-[#00629B]">
                     <Icon size={20} strokeWidth={2.25} />
                   </div>
                   <h3 className="font-bold text-ink text-base mb-2">{v.title}</h3>
@@ -131,8 +131,8 @@ export default function AboutPage() {
 
         {/* ── CALL TO ACTION STRIP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-8">
-          <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-r from-[#0d1424] to-[#12141f] p-8 sm:p-12 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+          <div className="rounded-3xl border border-white/[0.08] sheet-grid bg-[#002855] p-8 sm:p-12 text-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
               Get Involved with IEEE at Cavendish
             </h2>
             <p className="mt-3 text-sm text-slate-300 max-w-lg mx-auto">
@@ -141,14 +141,14 @@ export default function AboutPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/branch"
-                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-xs sm:text-sm font-bold text-ink transition hover:bg-[#1A9090]"
+                className="inline-flex items-center gap-2 bg-[#FFC72C] px-7 py-3 text-xs sm:text-sm font-bold text-[#002855] transition hover:bg-white"
               >
                 Explore the Student Branch
                 <ArrowUpRight size={14} />
               </Link>
               <Link
                 href="/join"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-2 border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
                 View Membership Options
               </Link>

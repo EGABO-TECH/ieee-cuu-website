@@ -73,10 +73,10 @@ const GOVERNANCE_DOCS: GovernanceDoc[] = [
 export default function GovernancePage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="max-w-3xl">
-            <h1 className="font-serif text-4xl font-bold text-slate-900 sm:text-5xl">
+          <div className="page-banner max-w-3xl">
+            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
               Governance &amp; Transparency
             </h1>
             <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
@@ -89,22 +89,22 @@ export default function GovernancePage() {
           {/* Pillars Box */}
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <ShieldCheck size={24} className="text-[#0D6E6E] mb-3" />
-              <h3 className="font-semibold text-slate-900">IEEE MGA Compliance</h3>
+              <ShieldCheck size={24} className="text-[#00629B] mb-3" />
+              <h3 className="font-semibold text-ink">IEEE MGA Compliance</h3>
               <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Operating under the IEEE Uganda Section and Region 8 oversight, ensuring all branch activities follow global IEEE standards.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <Clock size={24} className="text-[#0D6E6E] mb-3" />
-              <h3 className="font-semibold text-slate-900">Democratic Elections</h3>
+              <Clock size={24} className="text-[#00629B] mb-3" />
+              <h3 className="font-semibold text-ink">Democratic Elections</h3>
               <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 Branch executive committee positions are elected annually by verified IEEE Student Members enrolled at CUU.
               </p>
             </div>
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <FileText size={24} className="text-[#0D6E6E] mb-3" />
-              <h3 className="font-semibold text-slate-900">Counselor and Advisor</h3>
+              <FileText size={24} className="text-[#00629B] mb-3" />
+              <h3 className="font-semibold text-ink">Counselor and Advisor</h3>
               <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
                 <strong className="font-semibold text-slate-800">Dr. John Bosco Ssemakula</strong>, Branch Counselor, is the
                 faculty member who advises the branch on behalf of IEEE and the university.
@@ -118,7 +118,7 @@ export default function GovernancePage() {
 
           {/* Documents Section */}
           <section className="mt-14">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-slate-900 mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-ink mb-6">
               Official Branch Documents
             </h2>
 
@@ -130,16 +130,16 @@ export default function GovernancePage() {
                 >
                   <div className="max-w-2xl">
                     <div className="flex items-center gap-2 mb-1.5">
-                      <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-600 uppercase tracking-wider">
+                      <span className=" bg-slate-100 px-2.5 py-0.5 text-[10px] font-bold text-slate-600 uppercase tracking-wider">
                         {doc.category}
                       </span>
                       {doc.status === "Pending Branch Adoption" && (
-                        <span className="rounded-full bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700">
+                        <span className=" bg-amber-50 border border-amber-200/80 px-2.5 py-0.5 text-[10px] font-semibold text-amber-700">
                           Draft in Review
                         </span>
                       )}
                     </div>
-                    <h3 className="font-serif text-lg font-bold text-slate-900">{doc.title}</h3>
+                    <h3 className="font-display text-lg font-bold text-ink">{doc.title}</h3>
                     <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       {doc.description}
                     </p>
@@ -151,7 +151,7 @@ export default function GovernancePage() {
                         href={doc.fileUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                        className="inline-flex items-center gap-2 bg-[#00629B] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#002855]"
                       >
                         {doc.fileUrl.startsWith("http") ? (
                           <>
@@ -164,7 +164,7 @@ export default function GovernancePage() {
                         )}
                       </a>
                     ) : (
-                      <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 font-medium bg-slate-50 border border-slate-100 rounded-full px-3 py-1.5">
+                      <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 font-medium bg-slate-50 border border-slate-100 px-3 py-1.5">
                         PDF coming soon
                       </span>
                     )}

@@ -13,7 +13,7 @@
     <div className="mb-12 max-w-2xl">
       <p
         className={`mb-3 text-sm font-semibold uppercase tracking-[0.18em] ${
-          light ? "text-[#2f5f68]" : "text-[#1A9090]"
+          light ? "text-[#2D4D76]" : "text-[#007DAF]"
         }`}
       >
         {kicker}

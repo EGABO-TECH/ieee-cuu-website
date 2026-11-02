@@ -14,13 +14,13 @@ export const metadata: Metadata = pageMetadata({
 export default function JoinSuccessPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         <div className="mx-auto max-w-3xl px-6 sm:px-10 lg:px-12 py-16 text-center">
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 mb-6">
             <CheckCircle2 size={36} />
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink">
             Registration Received!
           </h1>
           <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl mx-auto">
@@ -30,12 +30,12 @@ export default function JoinSuccessPage() {
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
             {/* Step 1: Official IEEE Membership */}
-            <div className="rounded-3xl border-2 border-[#0D6E6E] bg-white p-7 flex flex-col justify-between shadow-sm">
+            <div className="rounded-3xl border-2 border-[#00629B] bg-white p-7 flex flex-col justify-between shadow-sm">
               <div>
-                <span className="inline-block rounded-full bg-[#0D6E6E]/10 px-3 py-1 text-xs font-bold text-[#0D6E6E] mb-3">
+                <span className="inline-block bg-[#00629B]/10 px-3 py-1 text-xs font-bold text-[#00629B] mb-3">
                   Step 1 (Official)
                 </span>
-                <h2 className="font-serif text-xl font-bold text-slate-900">
+                <h2 className="font-display text-xl font-bold text-ink">
                   Official IEEE Student Membership
                 </h2>
                 <p className="mt-3 text-sm text-slate-600 leading-relaxed">
@@ -48,7 +48,7 @@ export default function JoinSuccessPage() {
                   href={SITE.ieee.membership}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0D6E6E] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#1A9090]"
+                  className="inline-flex w-full items-center justify-center gap-2 bg-[#00629B] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
                 >
                   Apply on students.ieee.org
                   <ExternalLink size={14} />
@@ -59,10 +59,10 @@ export default function JoinSuccessPage() {
             {/* Step 2: Branch WhatsApp Community */}
             <div className="rounded-3xl border border-slate-200 bg-white p-7 flex flex-col justify-between shadow-sm">
               <div>
-                <span className="inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800 mb-3">
+                <span className="inline-block bg-emerald-100 px-3 py-1 text-xs font-bold text-emerald-800 mb-3">
                   Step 2 (Community)
                 </span>
-                <h2 className="font-serif text-xl font-bold text-slate-900">
+                <h2 className="font-display text-xl font-bold text-ink">
                   Join Branch WhatsApp Group
                 </h2>
                 <p className="mt-3 text-sm text-slate-600 leading-relaxed">
@@ -75,7 +75,7 @@ export default function JoinSuccessPage() {
                   href={SITE.whatsapp.ieee}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                  className="inline-flex w-full items-center justify-center gap-2 border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
                 >
                   <MessageCircle size={15} className="text-emerald-600" />
                   Join WhatsApp Group
@@ -93,7 +93,7 @@ export default function JoinSuccessPage() {
           <div className="mt-10">
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-slate-900"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-ink"
             >
               Return to Homepage <ArrowRight size={14} />
             </Link>

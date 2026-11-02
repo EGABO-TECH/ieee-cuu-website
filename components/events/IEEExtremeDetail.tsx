@@ -80,26 +80,26 @@ export function IEEExtremeDetail() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-28 sm:pt-32">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
         {/* Ambient glows */}
         <div
           aria-hidden
           className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[1000px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #0D6E6E 0%, #1A9090 40%, transparent 75%)" }}
+          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 40%, transparent 75%)" }}
         />
 
         {/* ── STATUS STRIP ── */}
         <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center rounded-full border border-amber-400/30 bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-700">
+              <span className="inline-flex items-center border border-amber-400/30 bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-700">
                 Registration closed
               </span>
               <span className="text-xs text-slate-500">
                 Deadline: 17 October 2026, 11:59 PM GMT
               </span>
             </div>
-            <Link href="/events" className="text-xs text-[#0D6E6E] hover:text-[#1A9090] transition">
+            <Link href="/events" className="text-xs text-[#00629B] hover:text-[#007DAF] transition">
               ← All events
             </Link>
           </div>
@@ -108,9 +108,9 @@ export function IEEExtremeDetail() {
         {/* ── HERO ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-serif text-4xl font-bold leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
               IEEEXtreme 20.0<br />
-              <span className="text-[#1A9090]">Global Programming</span> Challenge
+              <span className="text-[#007DAF]">Global Programming</span> Challenge
             </h1>
 
             <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600">
@@ -121,11 +121,11 @@ export function IEEExtremeDetail() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-700">
               <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-                <Clock size={17} className="text-[#0D6E6E]" />
+                <Clock size={17} className="text-[#00629B]" />
                 <span className="font-semibold">Registration closed: 17 Oct 2026</span>
               </div>
               <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-                <Terminal size={17} className="text-[#0D6E6E]" />
+                <Terminal size={17} className="text-[#00629B]" />
                 <span>24-hour algorithmic contest</span>
               </div>
             </div>
@@ -145,14 +145,14 @@ export function IEEExtremeDetail() {
                   href={SITE.ieee.extreme}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 border border-amber-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   Official IEEEXtreme site
                   <ExternalLink size={12} />
                 </a>
                 <Link
                   href="/join"
-                  className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#1A9090]"
+                  className="inline-flex items-center gap-2 bg-[#00629B] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#002855]"
                 >
                   Join the branch for next year
                 </Link>
@@ -182,10 +182,10 @@ export function IEEExtremeDetail() {
               const Icon = s.icon;
               return (
                 <div key={s.label} className="rounded-2xl border border-slate-100 bg-white p-5 text-center">
-                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                  <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg border border-[#00629B]/10 bg-[#E6EFF6] text-[#00629B]">
                     <Icon size={20} strokeWidth={2.25} />
                   </div>
-                  <div className="font-serif text-2xl font-bold text-slate-900">{s.value}</div>
+                  <div className="font-display text-2xl font-bold text-ink">{s.value}</div>
                   <div className="text-xs text-slate-500 mt-1">{s.label}</div>
                 </div>
               );
@@ -212,7 +212,7 @@ export function IEEExtremeDetail() {
                     href="/images/IEEEXtreme-Flyer.jpeg"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-xs font-bold text-black shadow-lg"
+                    className="inline-flex items-center gap-2 bg-white px-4 py-2 text-xs font-bold text-black shadow-lg"
                   >
                     View fullscreen
                     <ExternalLink size={13} />
@@ -223,7 +223,7 @@ export function IEEExtremeDetail() {
 
             <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
               <div>
-                <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
                   Compete Against the Best Coders on the Planet
                 </h2>
                 <p className="mt-3 text-sm sm:text-base leading-relaxed text-slate-600">
@@ -235,9 +235,9 @@ export function IEEExtremeDetail() {
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                  <ShieldCheck size={20} className="text-[#0D6E6E] shrink-0 mt-0.5" />
+                  <ShieldCheck size={20} className="text-[#00629B] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 text-sm">Official Branch Proctoring</h4>
+                    <h4 className="font-semibold text-ink text-sm">Official Branch Proctoring</h4>
                     <p className="text-xs text-slate-500 mt-1">
                       Faculty advisors and IEEE members supervise and authenticate CUU team submissions in full compliance with global rules.
                     </p>
@@ -245,9 +245,9 @@ export function IEEExtremeDetail() {
                 </div>
 
                 <div className="flex items-start gap-3 rounded-xl border border-slate-100 bg-slate-50 p-4">
-                  <Laptop size={20} className="text-[#1A9090] shrink-0 mt-0.5" />
+                  <Laptop size={20} className="text-[#007DAF] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-slate-900 text-sm">On-Campus Coordination</h4>
+                    <h4 className="font-semibold text-ink text-sm">On-Campus Coordination</h4>
                     <p className="text-xs text-slate-500 mt-1">
                       The branch coordinated an overnight workspace for registered teams. Contact Technical Coordinators via WhatsApp for details.
                     </p>
@@ -259,7 +259,7 @@ export function IEEExtremeDetail() {
                 <a
                   href="/images/IEEEXtreme-Flyer.jpeg"
                   download="IEEEXtreme-20-Flyer.jpeg"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 border border-slate-200 bg-white px-4 py-2.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
                 >
                   <Download size={13} />
                   Download flyer
@@ -272,7 +272,7 @@ export function IEEExtremeDetail() {
         {/* ── REGISTRATION ROADMAP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
               How to Enter IEEEXtreme
             </h2>
             <p className="mt-3 text-sm text-slate-500">
@@ -284,10 +284,10 @@ export function IEEExtremeDetail() {
             {PREP_STEPS.map((step) => (
               <div
                 key={step.step}
-                className="rounded-2xl border border-slate-100 bg-white p-6 transition duration-300 hover:border-[#1A9090]/40 hover:-translate-y-1"
+                className="rounded-2xl border border-slate-100 bg-white p-6 transition duration-300 hover:border-[#007DAF]/40 hover:-translate-y-1"
               >
-                <div className="font-serif text-3xl font-bold text-[#1A9090]/60 mb-4">{step.step}</div>
-                <h3 className="font-bold text-slate-900 text-base mb-2">{step.title}</h3>
+                <div className="font-display text-3xl font-bold text-[#007DAF]/60 mb-4">{step.step}</div>
+                <h3 className="font-bold text-ink text-base mb-2">{step.title}</h3>
                 <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">{step.desc}</p>
               </div>
             ))}
@@ -297,7 +297,7 @@ export function IEEExtremeDetail() {
         {/* ── FAQS ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
               Frequently Asked Questions
             </h2>
           </div>
@@ -305,8 +305,8 @@ export function IEEExtremeDetail() {
             {FAQS.map((faq, i) => (
               <details key={i} className="group py-5">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-left list-none">
-                  <span className="font-semibold text-slate-900">{faq.q}</span>
-                  <span className="shrink-0 text-[#1A9090] transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                  <span className="font-semibold text-ink">{faq.q}</span>
+                  <span className="shrink-0 text-[#007DAF] transition-transform group-open:rotate-45 text-xl leading-none">+</span>
                 </summary>
                 <p className="mt-3 max-w-xl text-sm text-slate-500 leading-relaxed">{faq.a}</p>
               </details>
@@ -316,8 +316,8 @@ export function IEEExtremeDetail() {
 
         {/* ── FINAL CTA ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-10">
-          <div className="relative overflow-hidden rounded-3xl border border-[#1A9090]/30 bg-gradient-to-r from-[#E0DDD5] via-[#E8F0F0] to-[#F7F4EF] p-10 sm:p-14 text-center">
-            <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+          <div className="relative overflow-hidden rounded-3xl border border-[#007DAF]/30 bg-gradient-to-r from-[#CADCEA] via-[#E6EFF6] to-[#F5F8FB] p-10 sm:p-14 text-center">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
               Want to compete next year?
             </h2>
             <p className="mt-3 max-w-xl mx-auto text-sm sm:text-base text-slate-600">
@@ -326,14 +326,14 @@ export function IEEExtremeDetail() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/join"
-                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-8 py-3.5 text-sm font-bold text-white shadow-xl transition hover:bg-[#1A9090]"
+                className="inline-flex items-center gap-2 bg-[#00629B] px-8 py-3.5 text-sm font-bold text-white shadow-xl transition hover:bg-[#002855]"
               >
                 Join the branch
                 <ArrowUpRight size={16} />
               </Link>
               <Link
                 href="/events"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-2 border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
                 View all events
               </Link>

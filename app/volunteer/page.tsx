@@ -61,13 +61,13 @@ export default function VolunteerPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900 pt-32 sm:pt-36">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-32 sm:pt-36">
         {/* ── HERO ── */}
         <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 lg:py-14">
           <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#0D6E6E]">Call for volunteers</p>
-              <h1 className="mt-3 font-serif text-4xl font-bold leading-[1.12] text-slate-900 sm:text-5xl">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#00629B]">Call for volunteers</p>
+              <h1 className="mt-3 font-display text-4xl font-bold leading-[1.12] text-ink sm:text-5xl">
                 {isOpen ? "We're looking for 15 student volunteers" : "Applications closed. Thank you."}
               </h1>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -78,15 +78,15 @@ export default function VolunteerPage() {
 
               <ul className="mt-6 space-y-2 text-sm text-slate-700">
                 <li className="flex items-center gap-3">
-                  <Calendar size={16} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                  <Calendar size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
                   Launch on Wednesday 4 November 2026
                 </li>
                 <li className="flex items-center gap-3">
-                  <MapPin size={16} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                  <MapPin size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
                   Cavendish University Uganda
                 </li>
                 <li className="flex items-center gap-3">
-                  <Users size={16} className="shrink-0 text-[#0D6E6E]" aria-hidden="true" />
+                  <Users size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
                   15 volunteer spots
                 </li>
               </ul>
@@ -97,7 +97,7 @@ export default function VolunteerPage() {
                     href={CALL.formUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#1A9090]"
+                    className="inline-flex items-center gap-2 bg-[#00629B] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#002855]"
                   >
                     Apply on Google Forms
                     <ArrowUpRight size={15} aria-hidden="true" />
@@ -105,7 +105,7 @@ export default function VolunteerPage() {
                 ) : (
                   <Link
                     href="/join"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#1A9090]"
+                    className="inline-flex items-center gap-2 bg-[#00629B] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#002855]"
                   >
                     Join the volunteer interest list
                     <ArrowUpRight size={15} aria-hidden="true" />
@@ -115,7 +115,7 @@ export default function VolunteerPage() {
                   <a
                     href={CALL.flyer}
                     download="IEEE-CUU-Call-for-Volunteers.png"
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                    className="inline-flex items-center gap-2 border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
                   >
                     <Download size={15} aria-hidden="true" />
                     Download the flyer
@@ -125,8 +125,8 @@ export default function VolunteerPage() {
 
               {/* Deadline strip */}
               {isOpen && (
-                <div className="mt-8 rounded-2xl border border-[#9dbdc1] bg-white p-5">
-                  <p className="mb-3 text-sm font-semibold text-[#234a52]">{DEADLINE_LABEL}</p>
+                <div className="mt-8 rounded-2xl border border-[#CADCEA] bg-white p-5">
+                  <p className="mb-3 text-sm font-semibold text-[#2D4D76]">{DEADLINE_LABEL}</p>
                   <Countdown targetISO={CALL.closes} initialMs={msUntil(CALL.closes)} showSeconds={false} />
                 </div>
               )}
@@ -152,11 +152,11 @@ export default function VolunteerPage() {
 
         {/* ── ROLES ── */}
         <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
-          <h2 className="font-serif text-3xl font-bold text-slate-900">What volunteers do</h2>
+          <h2 className="font-display text-3xl font-bold text-ink">What volunteers do</h2>
           <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {ROLES.map((r) => (
               <li key={r.title} className="rounded-2xl border border-slate-200 bg-white p-5">
-                <p className="font-semibold text-slate-900">{r.title}</p>
+                <p className="font-semibold text-ink">{r.title}</p>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">{r.desc}</p>
               </li>
             ))}
@@ -167,11 +167,11 @@ export default function VolunteerPage() {
         <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-              <h2 className="font-serif text-2xl font-bold text-slate-900">What you get</h2>
+              <h2 className="font-display text-2xl font-bold text-ink">What you get</h2>
               <ul className="mt-4 space-y-3">
                 {BENEFITS.map((b) => (
                   <li key={b} className="flex items-start gap-3 text-sm text-slate-700">
-                    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[#1A9090]" aria-hidden="true" />
+                    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[#007DAF]" aria-hidden="true" />
                     {b}
                   </li>
                 ))}
@@ -179,15 +179,15 @@ export default function VolunteerPage() {
             </div>
 
             <div className="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8">
-              <h2 className="font-serif text-2xl font-bold text-slate-900">How selection works</h2>
+              <h2 className="font-display text-2xl font-bold text-ink">How selection works</h2>
               <ol className="mt-4 space-y-4">
                 {STEPS.map((s, i) => (
                   <li key={s.title} className="flex items-start gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#dfeff0] text-xs font-bold text-[#234a52]">
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#CADCEA] text-xs font-bold text-[#2D4D76]">
                       {i + 1}
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-slate-900">{s.title}</p>
+                      <p className="text-sm font-semibold text-ink">{s.title}</p>
                       <p className="text-sm text-slate-600">{s.desc}</p>
                     </div>
                   </li>
@@ -199,20 +199,20 @@ export default function VolunteerPage() {
 
         {/* ── FAQ ── */}
         <section className="mx-auto max-w-3xl px-4 sm:px-10 py-10 pb-24">
-          <h2 className="font-serif text-3xl font-bold text-slate-900">Questions</h2>
+          <h2 className="font-display text-3xl font-bold text-ink">Questions</h2>
           <div className="mt-6 divide-y divide-slate-200 border-y border-slate-200">
             {FAQS.map((f) => (
               <details key={f.q} className="group py-5">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-slate-900">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink">
                   {f.q}
-                  <span aria-hidden="true" className="text-xl leading-none text-[#1A9090] transition-transform group-open:rotate-45">+</span>
+                  <span aria-hidden="true" className="text-xl leading-none text-[#007DAF] transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-slate-600">
                   {f.a}
                   {f.q === "What if I miss the deadline?" && (
                     <>
                       {" "}
-                      <Link href="/join" className="text-[#0D6E6E] underline underline-offset-2">
+                      <Link href="/join" className="text-[#00629B] underline underline-offset-2">
                         Go to the Join page
                       </Link>
                       .

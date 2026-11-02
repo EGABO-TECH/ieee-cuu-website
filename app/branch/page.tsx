@@ -49,7 +49,7 @@ const BRANCH_HIGHLIGHTS = [
 export default function BranchPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#f5f5f1] text-slate-900">
+      <main className="min-h-screen bg-[#F5F8FB] text-ink">
 
         {/* ── PAGE HERO ── */}
         <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden sm:min-h-[720px] lg:min-h-[760px]">
@@ -63,14 +63,14 @@ export default function BranchPage() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[#03131f]/95 via-[#03131f]/55 to-[#03131f]/5 sm:bg-gradient-to-r sm:from-[#03131f]/90 sm:via-[#03131f]/45 sm:to-transparent"
+            className="absolute inset-0 bg-gradient-to-t from-[#002855]/95 via-[#002855]/55 to-[#002855]/5 sm:bg-gradient-to-r sm:from-[#002855]/90 sm:via-[#002855]/45 sm:to-transparent"
           />
 
           <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-32 lg:px-12 lg:pb-20">
             <div className="mt-auto max-w-4xl">
-              <h1 className="font-serif text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+              <h1 className="font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
                 The Branch: Where
-                <span className="block text-[#72d5cc] italic">Ambition Meets</span>
+                <span className="block text-[#FFC72C]">Ambition Meets</span>
                 Technical Mastery
               </h1>
 
@@ -88,14 +88,14 @@ export default function BranchPage() {
 
         {/* ── TIMELINE ── */}
         <section aria-labelledby="timeline-title" className="relative mx-auto max-w-3xl px-4 sm:px-10 py-16">
-          <h2 id="timeline-title" className="font-serif text-3xl font-bold text-slate-900">
+          <h2 id="timeline-title" className="font-display text-3xl font-bold text-ink">
             How the branch got here
           </h2>
-          <ol className="mt-8 border-l-2 border-[#9dbdc1] pl-6">
+          <ol className="mt-8 border-l-2 border-[#CADCEA] pl-6">
             {TIMELINE.map((t) => (
               <li key={t.label} className="relative pb-6 last:pb-0">
-                <span aria-hidden="true" className="absolute -left-[33px] top-1.5 h-3 w-3 rounded-full border-2 border-[#0D6E6E] bg-white" />
-                {t.date && <p className="text-xs font-semibold uppercase tracking-wider text-[#0D6E6E]">{t.date}</p>}
+                <span aria-hidden="true" className="absolute -left-[33px] top-1.5 h-3 w-3 rounded-full border-2 border-[#00629B] bg-white" />
+                {t.date && <p className="text-xs font-semibold uppercase tracking-wider text-[#00629B]">{t.date}</p>}
                 <p className="text-sm font-medium text-slate-800">{t.label}</p>
               </li>
             ))}
@@ -108,7 +108,7 @@ export default function BranchPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
               Branch Architecture
             </span>
-            <h2 className="mt-3 font-serif text-3xl font-bold text-ink sm:text-4xl">
+            <h2 className="mt-3 font-display text-3xl font-bold text-ink sm:text-4xl">
               Why Join the IEEE CUU Student Branch?
             </h2>
             <p className="mt-3 text-sm text-muted">
@@ -122,9 +122,9 @@ export default function BranchPage() {
               return (
                 <div
                   key={item.title}
-                  className="rounded-2xl border border-ieee/10 bg-white p-7 transition duration-300 hover:border-[#1A9090]/50"
+                  className="rounded-2xl border border-ieee/10 bg-white p-7 transition duration-300 hover:border-[#007DAF]/50"
                 >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg border border-[#0D5B8F]/10 bg-[#eaf2f4] text-[#0D5B8F]">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg border border-[#00629B]/10 bg-[#E6EFF6] text-[#00629B]">
                     <Icon size={24} strokeWidth={2.25} />
                   </div>
                   <h3 className="font-bold text-ink text-lg mb-2">{item.title}</h3>
@@ -137,8 +137,8 @@ export default function BranchPage() {
 
         {/* ── CALL TO ACTION STRIP ── */}
         <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pb-24 pt-8">
-          <div className="rounded-3xl border border-white/[0.08] bg-gradient-to-r from-[#0d1424] to-[#12141f] p-8 sm:p-12 text-center">
-            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white">
+          <div className="rounded-3xl border border-white/[0.08] sheet-grid bg-[#002855] p-8 sm:p-12 text-center">
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
               Get Involved with the IEEE Student Branch
             </h2>
             <p className="mt-3 text-sm text-slate-300 max-w-lg mx-auto">
@@ -147,14 +147,14 @@ export default function BranchPage() {
             <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/team"
-                className="inline-flex items-center gap-2 rounded-full bg-[#0D6E6E] px-7 py-3 text-xs sm:text-sm font-bold text-ink transition hover:bg-[#1A9090]"
+                className="inline-flex items-center gap-2 bg-[#FFC72C] px-7 py-3 text-xs sm:text-sm font-bold text-[#002855] transition hover:bg-white"
               >
                 Meet the Team
                 <ArrowUpRight size={14} />
               </Link>
               <Link
                 href="/join"
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
+                className="inline-flex items-center gap-2 border border-slate-200 bg-white px-6 py-3 text-xs sm:text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
               >
                 Explore Membership
               </Link>

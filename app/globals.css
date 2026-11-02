@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #f6f3ee;
+  --color-bg: #F5F8FB;
   --color-surface: #ffffff;
-  --color-surface-alt: #f2efe9;
-  --color-ink: #0f172a;
-  --color-muted: #475569;
-  --color-border: rgba(15, 23, 42, 0.08);
-  --color-ieee: #0d5b8f;
-  --color-ieee-soft: #edf6fb;
-  --color-footer: #DFEFF0;
+  --color-surface-alt: #F5F8FB;
+  --color-ink: #002855;
+  --color-muted: #2D4D76;
+  --color-border: rgba(0, 40, 85, 0.08);
+  --color-ieee: #00629B;
+  --color-ieee-soft: #E6EFF6;
+  --color-footer: #CADCEA;
 }
 
 html {
@@ -21,7 +21,7 @@ html {
 
 body {
   @apply bg-bg text-ink font-body antialiased;
-  background-image: radial-gradient(circle at top, rgba(13, 91, 143, 0.08), transparent 35%);
+  background-image: radial-gradient(circle at top, rgba(0, 98, 155, 0.08), transparent 35%);
 }
 
 main:not(.home-page) {
@@ -43,12 +43,12 @@ img {
 }
 
 ::selection {
-  background: rgba(13, 91, 143, 0.2);
+  background: rgba(0, 98, 155, 0.2);
   color: var(--color-ink);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(13, 91, 143, 0.8);
+  outline: 2px solid rgba(0, 98, 155, 0.8);
   outline-offset: 3px;
 }
 
@@ -77,7 +77,7 @@ img {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: #0f172a;
+  background: #002855;
 }
 
 .hero-slide {
@@ -105,24 +105,75 @@ img {
   }
 }
 
+/* Drafting-sheet grid shared by IEEE Blue and navy surfaces. */
+.sheet-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* IEEE Blue page header: bleeds to the page edges (clipped by main) and up under the fixed header. */
+.page-banner {
+  position: relative;
+  isolation: isolate;
+  margin-bottom: 2.5rem;
+  padding-bottom: 3.5rem;
+  color: #ffffff;
+}
+
+.page-banner::before {
+  content: "";
+  position: absolute;
+  inset: -14rem -100vw 0;
+  z-index: -1;
+  background-color: #00629b;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.page-banner h1,
+.page-banner p {
+  color: #ffffff;
+}
+
+.page-banner h1 span {
+  color: #ffc72c;
+}
+
+.page-banner a[class*="bg-[#00629B]"] {
+  background-color: #ffc72c;
+  color: #002855;
+}
+
+.page-banner a[class*="bg-[#00629B]"]:hover {
+  background-color: #ffffff;
+}
+
+.page-banner :focus-visible {
+  outline-color: #ffffff;
+}
+
 .text-balance {
   text-wrap: balance;
 }
 
 .surface-card {
   background-color: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.02);
+  border: 1px solid rgba(0, 40, 85, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 40, 85, 0.02);
 }
 
 .glass {
   background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(0, 40, 85, 0.08);
   backdrop-filter: blur(10px);
 }
 
 .dark-section {
-  background-color: #0f172a;
+  background-color: #002855;
   color: #ffffff;
 }
 
