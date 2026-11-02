@@ -96,6 +96,350 @@ img {
 .hero-slide:nth-child(3) { animation-delay: 11s; }
 .hero-slide:nth-child(4) { animation-delay: 16.5s; }
 
+/* ── Home hero ─────────────────────────────────────────────────────
+   Motion system: photo slides wipe in behind a glowing IEEE-gold edge
+   with a slow push-in, PCB traces carry signal packets, and the
+   content rises in on a stagger. Everything stops for reduced motion
+   and when [data-motion="off"] (paused, or scrolled out of view). */
+.hero-home {
+  --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --hero-wipe: cubic-bezier(0.77, 0, 0.18, 1);
+  --mx: 0;
+  --my: 0;
+}
+
+.hero-home-backdrop {
+  position: absolute;
+  inset: -2%;
+  overflow: hidden;
+  background: #002855;
+  transform: translate3d(calc(var(--mx) * -22px), calc(var(--my) * -14px), 0);
+  transition: transform 0.8s var(--hero-ease);
+  will-change: transform;
+}
+
+.hero-home-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+}
+
+.hero-home-slide.is-leaving {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-home-slide.is-active {
+  opacity: 1;
+  z-index: 2;
+  animation: heroWipe 1.25s var(--hero-wipe) both;
+}
+
+/* The glowing leading edge of the wipe. */
+.hero-home-slide.is-active::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #ffc72c;
+  box-shadow: 0 0 28px 6px rgba(255, 199, 44, 0.55);
+  animation:
+    heroWipeEdge 1.25s var(--hero-wipe) both,
+    heroEdgeFade 1.45s linear both;
+}
+
+.hero-home-image {
+  object-fit: cover;
+}
+
+/* Same animation on active and leaving, so the outgoing photo keeps its zoom
+   instead of snapping back while the next one wipes over it. */
+.hero-home-slide.is-active .hero-home-image,
+.hero-home-slide.is-leaving .hero-home-image {
+  animation-name: heroPushIn;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+
+.hero-home-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0, 40, 85, 0.96) 0%, rgba(0, 40, 85, 0.84) 45%, rgba(0, 40, 85, 0.42) 100%),
+    linear-gradient(0deg, rgba(0, 40, 85, 0.82), transparent 55%),
+    linear-gradient(180deg, rgba(0, 40, 85, 0.55), transparent 30%);
+}
+
+.hero-home-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.55;
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 75% 45%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 70% 80% at 75% 45%, #000 0%, transparent 75%);
+  pointer-events: none;
+}
+
+.hero-home-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    560px circle at calc(50% + var(--mx) * 100%) calc(50% + var(--my) * 100%),
+    rgba(0, 125, 175, 0.22),
+    transparent 65%
+  );
+  mix-blend-mode: screen;
+}
+
+/* PCB traces */
+.hero-traces {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transform: translate3d(calc(var(--mx) * 16px), calc(var(--my) * 10px), 0);
+  transition: transform 0.8s var(--hero-ease);
+  -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000 80%);
+  mask-image: linear-gradient(90deg, transparent 35%, #000 80%);
+}
+
+.hero-trace {
+  stroke: rgba(202, 220, 234, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: heroDraw 1.6s var(--hero-ease) var(--draw-delay, 0s) forwards;
+}
+
+.hero-packet {
+  stroke: #ffc72c;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.07 1;
+  stroke-dashoffset: 0.07;
+  filter: drop-shadow(0 0 5px rgba(255, 199, 44, 0.9));
+  animation: heroPacket var(--dur, 5s) linear var(--delay, 2s) infinite;
+}
+
+.hero-via {
+  stroke: rgba(202, 220, 234, 0.55);
+  stroke-width: 1.5;
+  opacity: 0;
+  animation: heroFade 0.6s ease-out calc(var(--draw-delay, 0s) + 1.1s) forwards;
+}
+
+.hero-via-core {
+  fill: #ffc72c;
+  opacity: 0;
+  animation: heroViaPulse var(--dur, 5s) ease-out var(--delay, 2s) infinite;
+}
+
+/* Content entrance */
+.hero-rise {
+  animation: heroRise 0.9s var(--hero-ease) both;
+}
+
+.hero-fade {
+  animation: heroFade 0.7s ease-out both;
+}
+
+.hero-draw {
+  stroke-dasharray: 1;
+  animation: heroDrawIn 1.1s var(--hero-ease) both;
+}
+
+.hero-word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+  vertical-align: top;
+}
+
+.hero-word > span {
+  display: inline-block;
+  animation: heroWordRise 1s var(--hero-ease) both;
+}
+
+.hero-word-accent {
+  padding-bottom: 0.22em;
+  margin-bottom: -0.22em;
+}
+
+.hero-underline {
+  position: absolute;
+  left: 0;
+  bottom: -0.16em;
+  width: 100%;
+  height: 0.2em;
+  overflow: visible;
+}
+
+.hero-underline path {
+  fill: none;
+  stroke: #ffc72c;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: heroDraw 0.9s var(--hero-ease) 1.15s forwards;
+}
+
+.hero-eyebrow-dot {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.6rem;
+  border-radius: 9999px;
+  background: #ffc72c;
+  vertical-align: 0.05em;
+  animation: heroDot 2.4s ease-in-out infinite;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
+  transform: translateX(-120%);
+  animation: heroSheen 7s ease-in-out 2.5s infinite;
+  pointer-events: none;
+}
+
+.hero-card-swap {
+  animation: heroCardSwap 0.7s var(--hero-ease) both;
+}
+
+.hero-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: #002855;
+  transform-origin: left;
+  animation-name: heroProgress;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+.hero-cta {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-cta::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  transform: translateX(-120%);
+  animation: heroSheen 5s ease-in-out 3s infinite;
+  pointer-events: none;
+}
+
+/* Paused, or scrolled out of view: freeze the ambient loops. */
+.hero-home[data-motion="off"] .hero-packet,
+.hero-home[data-motion="off"] .hero-via-core,
+.hero-home[data-motion="off"] .hero-card::before,
+.hero-home[data-motion="off"] .hero-cta::after,
+.hero-home[data-motion="off"] .hero-eyebrow-dot {
+  animation-play-state: paused;
+}
+
+@keyframes heroWipe {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+@keyframes heroWipeEdge {
+  from { left: 100%; }
+  to { left: 0; }
+}
+
+@keyframes heroEdgeFade {
+  0%, 75% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes heroPushIn {
+  from { transform: scale(1); }
+  to { transform: scale(1.14); }
+}
+
+@keyframes heroDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes heroDrawIn {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes heroPacket {
+  from { stroke-dashoffset: 0.07; }
+  to { stroke-dashoffset: -1; }
+}
+
+@keyframes heroViaPulse {
+  0%, 85% { opacity: 0; }
+  92% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes heroWordRise {
+  from { transform: translateY(105%) rotate(4deg); opacity: 0; }
+  to { transform: translateY(0) rotate(0); opacity: 1; }
+}
+
+@keyframes heroCardSwap {
+  from { opacity: 0; transform: translateX(16px); filter: blur(4px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+@keyframes heroSheen {
+  0% { transform: translateX(-120%); }
+  25%, 100% { transform: translateX(120%); }
+}
+
+@keyframes heroDot {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.35); }
+}
+
+@keyframes heroProgress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-packet,
+  .hero-via-core,
+  .hero-card::before,
+  .hero-cta::after,
+  .hero-home-slide.is-active::after {
+    display: none;
+  }
+
+  .hero-home-backdrop,
+  .hero-traces {
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
