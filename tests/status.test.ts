@@ -35,6 +35,13 @@ test("callStatus: volunteer call is closing soon inside 48 hours", () => {
   assert.equal(callStatus(volunteer, at("2026-10-27T23:59:00+03:00")), "closing-soon");
 });
 
+test("callStatus: exactly 48 hours remaining is still closing soon", () => {
+  const call = { closes: "2026-11-07T00:00:00+03:00" };
+  assert.equal(callStatus(call, at("2026-11-05T00:00:00+03:00")), "closing-soon");
+  assert.equal(callStatus(call, at("2026-11-07T00:00:00+03:00")), "closing-soon");
+  assert.equal(callStatus(call, at("2026-11-07T00:00:01+03:00")), "closed");
+});
+
 test("callStatus: volunteer call is closed after 23:59 EAT on 27 October", () => {
   assert.equal(callStatus(volunteer, at("2026-10-27T21:00:00Z")), "closed");
   assert.equal(callStatus(volunteer, at("2026-10-28T08:00:00+03:00")), "closed");

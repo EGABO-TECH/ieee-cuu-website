@@ -37,7 +37,7 @@ export function callStatus(c: { opens?: string; closes: string }, now = new Date
   if (c.opens && t < new Date(c.opens).getTime()) return "upcoming";
   const closes = new Date(c.closes).getTime();
   if (t > closes) return "closed";
-  return closes - t < CLOSING_SOON_MS ? "closing-soon" : "open";
+  return closes - t <= CLOSING_SOON_MS ? "closing-soon" : "open";
 }
 
 export function computeStatus(

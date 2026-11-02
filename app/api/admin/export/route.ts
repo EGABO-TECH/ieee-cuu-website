@@ -1,6 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllJoins, getAllContacts } from "@/lib/submissions";
 
+/** Quote a CSV cell and neutralise spreadsheet formulas (CSV injection). */
+function cell(value: unknown): string {
+  let text = value == null ? "" : String(value);
+  if (/^[=+\-@\t\r]/.test(text)) text = `'${text}`;
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function toCsv(headers: string[], rows: unknown[][]): string {
+  return [headers, ...rows].map((r) => r.map(cell).join(",")).join("\r\n");
+}
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const secret = searchParams.get("key") || req.headers.get("authorization")?.replace("Bearer ", "");
@@ -20,15 +31,8 @@ export async function GET(req: NextRequest) {
   if (type === "contacts") {
     const contacts = getAllContacts();
     const headers = ["ID", "Name", "Email", "Topic", "Message", "Created At"];
-    const rows = contacts.map((c) => [
-      c.id,
-      `"${c.name.replace(/"/g, '""')}"`,
-      c.email,
-      `"${c.topic.replace(/"/g, '""')}"`,
-      `"${c.message.replace(/"/g, '""')}"`,
-      c.createdAt,
-    ]);
-    const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+    const rows = contacts.map((c) => [c.id, c.name, c.email, c.topic, c.message, c.createdAt]);
+    const csvContent = toCsv(headers, rows);
 
     return new NextResponse(csvContent, {
       status: 200,
@@ -53,16 +57,16 @@ export async function GET(req: NextRequest) {
   ];
   const rows = joins.map((j) => [
     j.id,
-    `"${j.fullName.replace(/"/g, '""')}"`,
+    j.fullName,
     j.email,
-    j.studentId || "",
-    `"${j.program.replace(/"/g, '""')}"`,
+    j.studentId,
+    j.program,
     j.yearOfStudy,
-    `"${j.interests.join("; ")}"`,
-    `"${j.contactPreferences.join("; ")}"`,
+    j.interests.join("; "),
+    j.contactPreferences.join("; "),
     j.createdAt,
   ]);
-  const csvContent = [headers.join(","), ...rows.map((r) => r.join(","))].join("\n");
+  const csvContent = toCsv(headers, rows);
 
   return new NextResponse(csvContent, {
     status: 200,

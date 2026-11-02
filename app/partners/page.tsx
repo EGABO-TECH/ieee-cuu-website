@@ -18,7 +18,7 @@ const PARTNERS = [
     category: "Host Institution",
     description:
       "Our founding university host, providing facilities at Siyani Campus, academic advisory oversight, and institutional support.",
-    logo: "/images/partners/cuu.png",
+    logo: "/images/Cavendish-University-Uganda-Logo.png",
     url: SITE.universityUrl,
     official: true,
   },
@@ -36,7 +36,7 @@ const PARTNERS = [
     category: "Campus Partner",
     description:
       "Cavendish University Uganda Computing Students' Association — collaborating on student outreach, coding sessions, and campus tech initiatives.",
-    logo: "/images/partners/cuucsa.png",
+    logo: "/images/cuucsa/cuucsa-logo.png",
     url: "/cuucsa",
     official: false,
   },
@@ -45,7 +45,7 @@ const PARTNERS = [
     category: "Community Partner",
     description:
       "Student cloud computing initiative offering cloud literacy and builder skills workshops to university students.",
-    logo: "/images/partners/aws.png",
+    logo: "/images/AWS_Student_Builders.png",
     url: "https://aws.amazon.com/developer/community/students/",
     official: false,
   },
@@ -54,7 +54,7 @@ const PARTNERS = [
     category: "Community Partner",
     description:
       "Global community elevating black Python developers and learners through training, mentorship, and conference representation.",
-    logo: "/images/partners/black-python-devs.png",
+    logo: "/images/Black_Python_Devs.png",
     url: "https://blackpythondevs.com/",
     official: false,
   },
@@ -63,7 +63,7 @@ const PARTNERS = [
     category: "Event Technology Partner",
     description:
       "Interactive game-based learning platform utilized during branch workshops and launch event quizzes.",
-    logo: "/images/partners/kahoot.png",
+    logo: "/images/Kahoot.png",
     url: "https://kahoot.com/",
     official: false,
   },

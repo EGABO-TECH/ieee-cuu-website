@@ -9,13 +9,9 @@
 import branchLaunchData from "@/content/events/branch-launch-2026.json";
 import ieeeDayData from "@/content/events/ieee-day-2026.json";
 import ieeextremeData from "@/content/events/ieeextreme-20.json";
+import { computeStatus as computeEventStatus, type EventStatus } from "@/lib/status";
 
-export type EventStatus =
-  | "upcoming"
-  | "registration-open"
-  | "registration-closed"
-  | "live"
-  | "ended";
+export type { EventStatus };
 
 export type EventAgendaItem = {
   start: string;
@@ -86,30 +82,9 @@ export type EventItem = {
   status: EventStatus;
 };
 
-/**
- * Compute event status relative to the current server time.
- * All comparisons are purely numeric (ms), so timezone-safe.
- */
-export function computeStatus(
-  now: Date,
-  event: Omit<EventItem, "status">
-): EventStatus {
-  const start = new Date(event.startsAt).getTime();
-  const end = new Date(event.endsAt).getTime();
-  const nowMs = now.getTime();
-
-  const regOpens = event.registration?.opensAt
-    ? new Date(event.registration.opensAt).getTime()
-    : null;
-  const regCloses = event.registration?.closesAt
-    ? new Date(event.registration.closesAt).getTime()
-    : null;
-
-  if (nowMs >= end) return "ended";
-  if (nowMs >= start) return "live";
-  if (regCloses !== null && nowMs >= regCloses) return "registration-closed";
-  if (regOpens !== null && nowMs >= regOpens) return "registration-open";
-  return "upcoming";
+/** Event status relative to `now`; the rules live (and are tested) in lib/status.ts. */
+export function computeStatus(now: Date, event: Omit<EventItem, "status">): EventStatus {
+  return computeEventStatus(now, event);
 }
 
 /**

@@ -4,7 +4,7 @@ import { saveJoinSubmission, checkRateLimit } from "@/lib/submissions";
 
 export async function POST(req: NextRequest) {
   try {
-    const ip = req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "anonymous";
+    const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() || req.headers.get("x-real-ip") || "anonymous";
 
     // Rate limiting: 5 submissions per minute per IP
     if (!checkRateLimit(ip, 5, 60000)) {

@@ -71,7 +71,7 @@ export function VideoSpotlight() {
             <video
               ref={videoRef}
               className="absolute inset-0 h-full w-full cursor-pointer object-cover"
-              src="/images/IEEE_Day.mp4"
+              src="/IEEE_Day.mp4"
               poster="/images/IEEE.webp"
               muted
               playsInline
