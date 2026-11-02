@@ -113,8 +113,8 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   const linkClass = (active: boolean) =>
-    `relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
-      active ? "text-white after:absolute after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#FFC72C]" : "text-white/75 hover:text-white"
+    `relative whitespace-nowrap rounded-md px-2 py-2 text-sm font-medium transition-colors xl:px-3 ${
+      active ? "text-white after:absolute after:inset-x-2 xl:after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#FFC72C]" : "text-white/75 hover:text-white"
     }`;
   const eventsActive = isActive(pathname, "/events");
 
@@ -140,6 +140,9 @@ export function SiteHeader() {
 
             {/* Desktop navigation */}
             <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+              <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={linkClass(pathname === "/")}>
+                Home
+              </Link>
               {PRIMARY.slice(0, 2).map((l) => (
                 <Link key={l.href} href={l.href} aria-current={isActive(pathname, l.href) ? "page" : undefined} className={linkClass(isActive(pathname, l.href))}>
                   {l.label}
