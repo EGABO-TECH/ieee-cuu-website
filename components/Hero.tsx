@@ -10,10 +10,11 @@ import { btn, container, nudge } from "@/lib/ui";
 const SLIDE_MS = 7000;
 
 const SLIDES: { photo: PhotoKey; caption: string }[] = [
-  { photo: "ghanaCoders", caption: "Young coders at the African Summit on Women and Girls in Technology" },
-  { photo: "aircraftEngineers", caption: "Women aircraft engineers at work in Kwara State, Nigeria" },
-  { photo: "epicsKenya", caption: "A solar medical-delivery drone built through EPICS in IEEE, Kenya" },
-  { photo: "solarTechnicians", caption: "Technicians installing solar power" },
+  { photo: "ieeeDayCertificate", caption: "Cavendish University Uganda receives its certificate of recognition at IEEE Day 2026" },
+  { photo: "ieeeDayGuests", caption: "Senior IEEE members and guests of honour in the front row at IEEE Day 2026" },
+  { photo: "ieeeDayStage", caption: "Student leaders, IEEE Uganda Section officials and guests on stage" },
+  { photo: "ieeeDayGroupPhoto", caption: "Branches from across Uganda together at the American Center, Kampala" },
+  { photo: "ieeeDayWelcome", caption: "Volunteers welcome delegates to IEEE Day 2026" },
 ];
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties;

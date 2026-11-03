@@ -28,6 +28,14 @@ export type Photo = {
 
 const COMMONS = "Wikimedia Commons";
 
+/** Branch's own IEEE Day 2026 event photography. */
+const IEEE_DAY_CREDIT = {
+  author: "IEEE Day Uganda 2026 album",
+  sourceUrl: "https://photos.app.goo.gl/sFtwdZnFuJA8nM1E8",
+  sourceName: "IEEE Day Uganda 2026 album",
+  license: "Event photography, used with credit",
+} as const;
+
 const PHOTOS_RAW = {
   ghanaCoders: {
     src: "/images/hero/ghana-code-club-coders.jpg",
@@ -123,6 +131,46 @@ const PHOTOS_RAW = {
     sourceName: "IEEE Day Uganda 2026 album",
     license: "Event photography, used with credit",
     focus: "50% 35%",
+  },
+  ieeeDayCertificate: {
+    src: "/images/events/ieee-day-2026/certificate-presentation.jpg",
+    alt: "IEEE Uganda Section officials present the certificate of recognition to the IEEE Student Branch at Cavendish University Uganda on IEEE Day 2026.",
+    width: 1600,
+    height: 1067,
+    ...IEEE_DAY_CREDIT,
+    focus: "50% 30%",
+  },
+  ieeeDayGuests: {
+    src: "/images/events/ieee-day-2026/guests-of-honour-seated.jpg",
+    alt: "Senior IEEE members and guests of honour seated in the front row at IEEE Day 2026.",
+    width: 1920,
+    height: 1280,
+    ...IEEE_DAY_CREDIT,
+    focus: "55% 35%",
+  },
+  ieeeDayStage: {
+    src: "/images/events/ieee-day-2026/leaders-and-guests-on-stage.jpg",
+    alt: "Student leaders, IEEE Uganda Section officials and guests stand together on stage holding IEEE Day banners.",
+    width: 1920,
+    height: 1280,
+    ...IEEE_DAY_CREDIT,
+    focus: "55% 40%",
+  },
+  ieeeDayGroupPhoto: {
+    src: "/images/events/ieee-day-2026/group-photo.jpg",
+    alt: "Students and IEEE Uganda Section officials in IEEE Day t-shirts pose together for a group photo at the American Center.",
+    width: 1600,
+    height: 1067,
+    ...IEEE_DAY_CREDIT,
+    focus: "50% 30%",
+  },
+  ieeeDayWelcome: {
+    src: "/images/events/ieee-day-2026/welcome-volunteers-banner.jpg",
+    alt: "Three volunteers in IEEE Day t-shirts smile and give a thumbs up beside the IEEE Day Uganda Section banner.",
+    width: 1920,
+    height: 1280,
+    ...IEEE_DAY_CREDIT,
+    focus: "50% 30%",
   },
 } satisfies Record<string, Photo>;
 

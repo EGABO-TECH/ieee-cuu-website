@@ -371,9 +371,9 @@ export const team: TeamMember[] = [
   },
   {
     name: "Niwasiima Ashelycole",
-    role: "Technical Coordinator",
-    department: "Technical & Projects",
-    description: "Co-leads technical activities and coding initiatives; also serves as a CUU AWS Student Builder.",
+    role: "Technical Programs Coordinator – Projects & Innovation",
+    department: "Projects & Innovation",
+    description: "Runs the branch's projects and innovation track, taking student ideas from hackathon pitch to working prototype. Leads project teams, bootcamps and build nights, brings in guest speakers, researchers and industry mentors, and keeps the branch's learning content true to IEEE's technical focus. Also a CUU AWS Student Builder.",
     linkedin: "#",
     image: "/images/ambassadors/Niwasiima_Ashelycole.png",
   },
@@ -383,7 +383,7 @@ export const team: TeamMember[] = [
     department: "Student Leadership",
     description: "Connects student members with Branch leadership and supports student participation.",
     linkedin: "#",
-    image: "",
+    image: "/images/cuucsa/Rwothomio_Evans.jpg",
   },
   {
     name: "Dahomey Mortifer",
