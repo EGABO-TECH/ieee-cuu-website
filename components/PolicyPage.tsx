@@ -1,3 +1,5 @@
+import { PageHero } from "./PageHero";
+
 type PolicySection = {
   id: string;
   title: string;
@@ -17,23 +19,14 @@ export function PolicyPage({
   sections: PolicySection[];
 }) {
   return (
-    <main className="min-h-screen bg-[#F5F8FB] px-4 pb-20 pt-28 text-ink sm:px-8 sm:pt-36">
-      <header className="mx-auto max-w-5xl border-b border-slate-300 pb-9 sm:pb-12">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#00629B]">
-          IEEE CUU Student Branch / Policies
+    <main className="min-h-screen bg-bg pb-20 text-ink">
+      <PageHero eyebrow="Policies" title={title} lede={summary}>
+        <p className="text-sm text-white/65">
+          Effective <time dateTime="2026-09-27">{effectiveDate}</time>
         </p>
-        <h1 className="mt-5 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl">
-          {title}
-        </h1>
-        <p className="mt-5 max-w-3xl text-base leading-7 text-muted sm:text-lg">
-          {summary}
-        </p>
-        <p className="mt-6 text-sm text-slate-600">
-          Effective date: <time dateTime="2026-09-27">{effectiveDate}</time>
-        </p>
-      </header>
+      </PageHero>
 
-      <div className="mx-auto mt-10 grid max-w-5xl gap-10 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-16">
+      <div className="mx-auto mt-14 grid max-w-5xl gap-10 px-4 sm:px-8 lg:grid-cols-[210px_minmax(0,1fr)] lg:gap-16">
         <nav aria-label="On this page" className="h-fit lg:sticky lg:top-28">
           <h2 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-500">
             On this page

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { FolderGit2, PlusCircle, Github, Globe, CheckCircle2, ArrowRight } from "lucide-react";
 import { SITE } from "@/config/site";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
@@ -29,17 +30,13 @@ const PROJECTS: Project[] = [];
 export default function ProjectsPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner max-w-3xl">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              Student Projects Showcase
-            </h1>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-              Technical work built by Cavendish University students across software engineering,
-              data science, embedded systems, and humanitarian tech.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Projects"
+          title={<>Built by <em>Cavendish students</em></>}
+          lede={<>Technical work built by Cavendish University students across software engineering, data science, embedded systems, and humanitarian tech.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           {PROJECTS.length === 0 ? (
             <div className="mt-12 rounded-3xl border border-dashed border-slate-300 bg-white p-8 sm:p-14 text-center">

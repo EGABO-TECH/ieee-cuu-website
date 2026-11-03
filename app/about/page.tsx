@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { Globe2, Cpu, BookOpenText, Users2, ShieldCheck, Award, ArrowUpRight } from "lucide-react";
 import { WhatIsIEEE } from "@/components/WhatIsIEEE";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = pageMetadata({
   title: "About IEEE",
@@ -10,13 +11,6 @@ export const metadata: Metadata = pageMetadata({
     "Learn about IEEE, the world's largest technical professional organization, and the IEEE Student Branch at Cavendish University Uganda.",
   path: "/about",
 });
-
-const ABOUT_SLIDES = [
-  "https://images.unsplash.com/photo-1629904853893-c2c8981a1dc5?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1549692520-acc6669e2f0c?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1600&q=80",
-  "https://images.unsplash.com/photo-1745571479662-54a2ad1c747f?auto=format&fit=crop&w=1600&q=80",
-];
 
 const STATS = [
   { value: "400,000+", label: "Global IEEE Members", sub: "Engineers, scientists & students" },
@@ -51,47 +45,26 @@ const VALUES = [
 export default function AboutPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink">
-        {/* ── PAGE HERO ── */}
-        <section className="relative isolate overflow-hidden">
-          <div className="hero-slideshow absolute inset-0" aria-hidden="true">
-            {ABOUT_SLIDES.map((slide, index) => (
-              <div
-                key={slide}
-                className="hero-slide"
-                style={{
-                  backgroundImage: `linear-gradient(90deg, rgba(0, 40, 85,0.88), rgba(0, 40, 85,0.54) 52%, rgba(0, 40, 85,0.22)), url(${slide})`,
-                  animationDelay: `${index * 5.5}s`,
-                }}
-              />
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="About IEEE"
+          title={
+            <>
+              Advancing technology <em>for humanity</em>
+            </>
+          }
+          lede="IEEE is the world's largest technical professional organisation. Our branch brings its programmes, publications and people to students at Cavendish University Uganda."
+          photo="epicsKenya"
+        >
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-6 border-t border-white/15 pt-6 sm:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.label} className="flex flex-col-reverse">
+                <dt className="mt-1 text-xs text-white/60">{s.label}</dt>
+                <dd className="font-display text-xl font-bold text-white sm:text-2xl">{s.value}</dd>
+              </div>
             ))}
-          </div>
-
-          <div className="relative z-10 mx-auto flex min-h-[780px] max-w-7xl flex-col justify-center px-6 pb-12 pt-32 sm:px-10 sm:pb-16 sm:pt-36 lg:px-12 lg:pt-40">
-            <div className="max-w-4xl">
-              <h1 className="font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
-                Advancing Technology
-                <span className="block text-[#FFC72C]">for Humanity</span>
-                at CUU
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-                The Institute of Electrical and Electronics Engineers (IEEE) is the world&apos;s largest technical
-                professional organization dedicated to advancing technology for the benefit of humanity.
-              </p>
-            </div>
-
-            <div className="mt-12 grid grid-cols-2 gap-x-5 gap-y-7 lg:grid-cols-4 lg:gap-6">
-              {STATS.map((s) => (
-                <div key={s.label} className="border-l border-white/25 pl-4 sm:pl-5">
-                  <div className="font-display text-2xl font-bold text-white sm:text-3xl">{s.value}</div>
-                  <div className="mt-1 text-xs font-semibold text-white/90">{s.label}</div>
-                  <div className="mt-0.5 text-[11px] text-white/65">{s.sub}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+          </dl>
+        </PageHero>
 
         {/* ── CORE COMPONENT EMBED (WHAT IS IEEE) ── */}
         <WhatIsIEEE />

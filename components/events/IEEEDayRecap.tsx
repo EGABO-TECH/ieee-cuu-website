@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Calendar, MapPin, ArrowUpRight, ImageIcon } from "lucide-react";
 import { getEventBySlug } from "@/lib/events";
+import { PageHero } from "@/components/PageHero";
+import { btn } from "@/lib/ui";
 
 
 
@@ -23,36 +25,37 @@ export function IEEEDayRecap() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-32 sm:pt-36">
-        <div className="mx-auto max-w-4xl px-4 sm:px-10 pt-4">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <span className="inline-flex items-center border border-slate-300 bg-slate-100 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-slate-600">
-              Recap
-            </span>
-            <Link href="/events" className="text-xs text-[#00629B] transition hover:text-[#007DAF]">
-              ← All events
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Event recap"
+          title={
+            <>
+              IEEE Day 2026 at the <em>American Center</em>
+            </>
+          }
+          lede="Student branches from across Uganda celebrated IEEE Day together in Kabalagala, Kampala."
+          actions={
+            <Link href="/events" className={btn.ghost}>
+              All events
             </Link>
-          </div>
-        </div>
-
-        <section className="mx-auto max-w-4xl px-4 sm:px-10 py-10">
-          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl">
-            IEEE Day 2026 at the American Center, Kabalagala
-          </h1>
-
-          <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-700">
-            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-              <Calendar size={16} className="text-[#00629B]" aria-hidden="true" />
+          }
+        >
+          <ul className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-sm text-white/80">
+            <li className="flex items-center gap-2">
+              <Calendar size={16} className="text-[#FFC72C]" aria-hidden="true" />
               Tuesday 6 October 2026
-            </span>
-            <span className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-              <MapPin size={16} className="text-[#00629B]" aria-hidden="true" />
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} className="text-[#FFC72C]" aria-hidden="true" />
               American Center, Kabalagala, Kampala
-            </span>
-          </div>
+            </li>
+          </ul>
+        </PageHero>
+
+        <section className="mx-auto max-w-4xl px-4 py-14 sm:px-8">
 
           {recap && (
-            <p className="mt-8 text-base leading-relaxed text-slate-700 sm:text-lg">{recap}</p>
+            <p className="text-base leading-relaxed text-slate-700 sm:text-lg">{recap}</p>
           )}
 
           <div className="mt-10">

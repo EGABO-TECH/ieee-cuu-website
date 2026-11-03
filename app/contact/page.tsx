@@ -5,6 +5,7 @@ import Link from "next/link";
 import { SITE } from "@/config/site";
 import { ContactForm } from "@/components/ContactForm";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Contact",
   description:
@@ -15,17 +16,13 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              Contact us
-            </h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              Reach out with questions about the branch, membership, events, or partnerships.
-              We aim to reply within three working days.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Contact"
+          title={<>Get in <em>touch</em></>}
+          lede={<>Reach out with questions about the branch, membership, events, or partnerships. We aim to reply within three working days.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
             {/* Contact details */}

@@ -3,39 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --color-bg: #F5F8FB;
-  --color-surface: #ffffff;
-  --color-surface-alt: #F5F8FB;
-  --color-ink: #002855;
-  --color-muted: #2D4D76;
-  --color-border: rgba(0, 40, 85, 0.08);
-  --color-ieee: #00629B;
-  --color-ieee-soft: #E6EFF6;
-  --color-footer: #CADCEA;
+  --ieee-blue: #00629b;
+  --ieee-navy: #002855;
+  --ieee-steel: #007daf;
+  --ieee-yellow: #ffc72c;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 6rem;
 }
 
 body {
-  @apply bg-bg text-ink font-body antialiased;
-  background-image: radial-gradient(circle at top, rgba(0, 98, 155, 0.08), transparent 35%);
+  @apply bg-bg font-body text-ink antialiased;
 }
 
-main:not(.home-page) {
+main {
   position: relative;
   overflow-x: clip;
-}
-
-.mobile-menu-panel {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.mobile-menu-panel::-webkit-scrollbar {
-  display: none;
 }
 
 img {
@@ -44,487 +31,174 @@ img {
 
 ::selection {
   background: rgba(0, 98, 155, 0.2);
-  color: var(--color-ink);
+  color: var(--ieee-navy);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(0, 98, 155, 0.8);
+  outline: 2px solid var(--ieee-blue);
   outline-offset: 3px;
 }
 
-@keyframes heroSlideFade {
-  0% {
-    opacity: 0;
-    transform: scale(1.06);
-  }
-  8% {
-    opacity: 1;
-  }
-  35% {
-    opacity: 1;
-  }
-  48% {
-    opacity: 0;
-    transform: scale(1.09);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(1.06);
-  }
+.mobile-menu-panel {
+  scrollbar-width: none;
 }
-
-.hero-slideshow {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  background: #002855;
-}
-
-.hero-slide {
-  position: absolute;
-  inset: -2% -2%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  animation: heroSlideFade 22s ease-in-out infinite;
-  transform: scale(1.06);
-}
-
-.hero-slide:nth-child(1) { animation-delay: 0s; }
-.hero-slide:nth-child(2) { animation-delay: 5.5s; }
-.hero-slide:nth-child(3) { animation-delay: 11s; }
-.hero-slide:nth-child(4) { animation-delay: 16.5s; }
-
-/* ── Home hero ─────────────────────────────────────────────────────
-   Motion system: photo slides wipe in behind a glowing IEEE-gold edge
-   with a slow push-in, PCB traces carry signal packets, and the
-   content rises in on a stagger. Everything stops for reduced motion
-   and when [data-motion="off"] (paused, or scrolled out of view). */
-.hero-home {
-  --hero-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --hero-wipe: cubic-bezier(0.77, 0, 0.18, 1);
-  --mx: 0;
-  --my: 0;
-}
-
-.hero-home-backdrop {
-  position: absolute;
-  inset: -2%;
-  overflow: hidden;
-  background: #002855;
-  transform: translate3d(calc(var(--mx) * -22px), calc(var(--my) * -14px), 0);
-  transition: transform 0.8s var(--hero-ease);
-  will-change: transform;
-}
-
-.hero-home-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  z-index: 0;
-}
-
-.hero-home-slide.is-leaving {
-  opacity: 1;
-  z-index: 1;
-}
-
-.hero-home-slide.is-active {
-  opacity: 1;
-  z-index: 2;
-  animation: heroWipe 1.25s var(--hero-wipe) both;
-}
-
-/* The glowing leading edge of the wipe. */
-.hero-home-slide.is-active::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: #ffc72c;
-  box-shadow: 0 0 28px 6px rgba(255, 199, 44, 0.55);
-  animation:
-    heroWipeEdge 1.25s var(--hero-wipe) both,
-    heroEdgeFade 1.45s linear both;
-}
-
-.hero-home-image {
-  object-fit: cover;
-}
-
-/* Same animation on active and leaving, so the outgoing photo keeps its zoom
-   instead of snapping back while the next one wipes over it. */
-.hero-home-slide.is-active .hero-home-image,
-.hero-home-slide.is-leaving .hero-home-image {
-  animation-name: heroPushIn;
-  animation-timing-function: ease-out;
-  animation-fill-mode: both;
-}
-
-.hero-home-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(0, 40, 85, 0.96) 0%, rgba(0, 40, 85, 0.84) 45%, rgba(0, 40, 85, 0.42) 100%),
-    linear-gradient(0deg, rgba(0, 40, 85, 0.82), transparent 55%),
-    linear-gradient(180deg, rgba(0, 40, 85, 0.55), transparent 30%);
-}
-
-.hero-home-grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.55;
-  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 75% 45%, #000 0%, transparent 75%);
-  mask-image: radial-gradient(ellipse 70% 80% at 75% 45%, #000 0%, transparent 75%);
-  pointer-events: none;
-}
-
-.hero-home-spotlight {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(
-    560px circle at calc(50% + var(--mx) * 100%) calc(50% + var(--my) * 100%),
-    rgba(0, 125, 175, 0.22),
-    transparent 65%
-  );
-  mix-blend-mode: screen;
-}
-
-/* PCB traces */
-.hero-traces {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  transform: translate3d(calc(var(--mx) * 16px), calc(var(--my) * 10px), 0);
-  transition: transform 0.8s var(--hero-ease);
-  -webkit-mask-image: linear-gradient(90deg, transparent 35%, #000 80%);
-  mask-image: linear-gradient(90deg, transparent 35%, #000 80%);
-}
-
-.hero-trace {
-  stroke: rgba(202, 220, 234, 0.35);
-  stroke-width: 1.5;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: heroDraw 1.6s var(--hero-ease) var(--draw-delay, 0s) forwards;
-}
-
-.hero-packet {
-  stroke: #ffc72c;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-dasharray: 0.07 1;
-  stroke-dashoffset: 0.07;
-  filter: drop-shadow(0 0 5px rgba(255, 199, 44, 0.9));
-  animation: heroPacket var(--dur, 5s) linear var(--delay, 2s) infinite;
-}
-
-.hero-via {
-  stroke: rgba(202, 220, 234, 0.55);
-  stroke-width: 1.5;
-  opacity: 0;
-  animation: heroFade 0.6s ease-out calc(var(--draw-delay, 0s) + 1.1s) forwards;
-}
-
-.hero-via-core {
-  fill: #ffc72c;
-  opacity: 0;
-  animation: heroViaPulse var(--dur, 5s) ease-out var(--delay, 2s) infinite;
-}
-
-/* Content entrance */
-.hero-rise {
-  animation: heroRise 0.9s var(--hero-ease) both;
-}
-
-.hero-fade {
-  animation: heroFade 0.7s ease-out both;
-}
-
-.hero-draw {
-  stroke-dasharray: 1;
-  animation: heroDrawIn 1.1s var(--hero-ease) both;
-}
-
-.hero-word {
-  display: inline-block;
-  overflow: hidden;
-  padding-bottom: 0.1em;
-  margin-bottom: -0.1em;
-  vertical-align: top;
-}
-
-.hero-word > span {
-  display: inline-block;
-  animation: heroWordRise 1s var(--hero-ease) both;
-}
-
-.hero-word-accent {
-  padding-bottom: 0.22em;
-  margin-bottom: -0.22em;
-}
-
-.hero-underline {
-  position: absolute;
-  left: 0;
-  bottom: -0.16em;
-  width: 100%;
-  height: 0.2em;
-  overflow: visible;
-}
-
-.hero-underline path {
-  fill: none;
-  stroke: #ffc72c;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: heroDraw 0.9s var(--hero-ease) 1.15s forwards;
-}
-
-.hero-eyebrow-dot {
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.6rem;
-  border-radius: 9999px;
-  background: #ffc72c;
-  vertical-align: 0.05em;
-  animation: heroDot 2.4s ease-in-out infinite;
-}
-
-.hero-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.12) 50%, transparent 60%);
-  transform: translateX(-120%);
-  animation: heroSheen 7s ease-in-out 2.5s infinite;
-  pointer-events: none;
-}
-
-.hero-card-swap {
-  animation: heroCardSwap 0.7s var(--hero-ease) both;
-}
-
-.hero-progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 3px;
-  background: #002855;
-  transform-origin: left;
-  animation-name: heroProgress;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-}
-
-.hero-cta {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-cta::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
-  transform: translateX(-120%);
-  animation: heroSheen 5s ease-in-out 3s infinite;
-  pointer-events: none;
-}
-
-/* Paused, or scrolled out of view: freeze the ambient loops. */
-.hero-home[data-motion="off"] .hero-packet,
-.hero-home[data-motion="off"] .hero-via-core,
-.hero-home[data-motion="off"] .hero-card::before,
-.hero-home[data-motion="off"] .hero-cta::after,
-.hero-home[data-motion="off"] .hero-eyebrow-dot {
-  animation-play-state: paused;
-}
-
-@keyframes heroWipe {
-  from { clip-path: inset(0 0 0 100%); }
-  to { clip-path: inset(0 0 0 0); }
-}
-
-@keyframes heroWipeEdge {
-  from { left: 100%; }
-  to { left: 0; }
-}
-
-@keyframes heroEdgeFade {
-  0%, 75% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes heroPushIn {
-  from { transform: scale(1); }
-  to { transform: scale(1.14); }
-}
-
-@keyframes heroDraw {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes heroDrawIn {
-  from { stroke-dashoffset: 1; }
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes heroPacket {
-  from { stroke-dashoffset: 0.07; }
-  to { stroke-dashoffset: -1; }
-}
-
-@keyframes heroViaPulse {
-  0%, 85% { opacity: 0; }
-  92% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes heroRise {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heroFade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes heroWordRise {
-  from { transform: translateY(105%) rotate(4deg); opacity: 0; }
-  to { transform: translateY(0) rotate(0); opacity: 1; }
-}
-
-@keyframes heroCardSwap {
-  from { opacity: 0; transform: translateX(16px); filter: blur(4px); }
-  to { opacity: 1; transform: translateX(0); filter: blur(0); }
-}
-
-@keyframes heroSheen {
-  0% { transform: translateX(-120%); }
-  25%, 100% { transform: translateX(120%); }
-}
-
-@keyframes heroDot {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.35); }
-}
-
-@keyframes heroProgress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-packet,
-  .hero-via-core,
-  .hero-card::before,
-  .hero-cta::after,
-  .hero-home-slide.is-active::after {
-    display: none;
-  }
-
-  .hero-home-backdrop,
-  .hero-traces {
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* Drafting-sheet grid shared by IEEE Blue and navy surfaces. */
-.sheet-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* IEEE Blue page header: bleeds to the page edges (clipped by main) and up under the fixed header. */
-.page-banner {
-  position: relative;
-  isolation: isolate;
-  margin-bottom: 2.5rem;
-  padding-bottom: 3.5rem;
-  color: #ffffff;
-}
-
-.page-banner::before {
-  content: "";
-  position: absolute;
-  inset: -14rem -100vw 0;
-  z-index: -1;
-  background-color: #00629b;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-.page-banner h1,
-.page-banner p {
-  color: #ffffff;
-}
-
-.page-banner h1 span {
-  color: #ffc72c;
-}
-
-.page-banner a[class*="bg-[#00629B]"] {
-  background-color: #ffc72c;
-  color: #002855;
-}
-
-.page-banner a[class*="bg-[#00629B]"]:hover {
-  background-color: #ffffff;
-}
-
-.page-banner :focus-visible {
-  outline-color: #ffffff;
+.mobile-menu-panel::-webkit-scrollbar {
+  display: none;
 }
 
 .text-balance {
   text-wrap: balance;
 }
-
-.surface-card {
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 40, 85, 0.08);
-  box-shadow: 0 10px 30px rgba(0, 40, 85, 0.02);
+.text-pretty {
+  text-wrap: pretty;
 }
 
-.glass {
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(0, 40, 85, 0.08);
-  backdrop-filter: blur(10px);
+/* Drafting-sheet grid used on navy and IEEE Blue surfaces. */
+.sheet-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
-.dark-section {
-  background-color: #002855;
-  color: #ffffff;
+/* ── Shared entrance motion ────────────────────────────────────────
+   One vocabulary for every hero: content rises on a stagger set with
+   --d, photos are revealed by a wipe and settle from a slight zoom,
+   then drift slowly. Reduced-motion users get the final state. */
+.m-rise {
+  animation: mRise 0.9s var(--ease-out) var(--d, 0ms) both;
+}
+.m-fade {
+  animation: mFade 1.2s ease-out var(--d, 0ms) both;
+}
+.m-rule {
+  transform-origin: left;
+  animation: mRule 0.9s var(--ease-out) var(--d, 0ms) both;
 }
 
-.kicker-teal {
-  color: var(--color-ieee);
-  font-size: 0.6875rem;
+/* Page hero */
+.ph-grid {
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 85% 10%, #000 0%, transparent 70%);
+  mask-image: radial-gradient(ellipse 80% 90% at 85% 10%, #000 0%, transparent 70%);
+}
+.ph-glow {
+  background: radial-gradient(closest-side, rgba(0, 125, 175, 0.45), transparent);
+  animation: phGlow 18s var(--ease-in-out) infinite alternate;
+}
+.ph-figure {
+  animation: phReveal 1.3s var(--ease-in-out) 200ms both;
+}
+.ph-figure img {
+  animation:
+    phSettle 1.8s var(--ease-out) 200ms both,
+    phDrift 26s ease-in-out 2s infinite alternate;
+}
+.ph-title em {
+  font-style: normal;
+  color: var(--ieee-yellow);
+}
+
+/* Home hero: crossfading photos with a slow push-in. */
+.hh-slide {
+  opacity: 0;
+  transition: opacity 1.4s ease-in-out;
+}
+.hh-slide[data-active="true"] {
+  opacity: 1;
+}
+.hh-slide img {
+  transform: scale(1.04);
+}
+.hh-slide[data-active="true"] img {
+  animation: hhPush 9s linear both;
+}
+.hh-running-false .hh-slide img,
+.hh-running-false .hh-bar > span {
+  animation-play-state: paused !important;
+}
+.hh-bar > span {
+  transform-origin: left;
+  animation: hhBar linear both;
+}
+
+@keyframes mRise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes mRule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes phGlow {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to { transform: translate3d(-12%, 10%, 0) scale(1.15); }
+}
+@keyframes phReveal {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes phSettle {
+  from { transform: scale(1.14); }
+  to { transform: scale(1.02); }
+}
+@keyframes phDrift {
+  from { transform: scale(1.02) translate3d(0, 0, 0); }
+  to { transform: scale(1.08) translate3d(-1.5%, -1%, 0); }
+}
+@keyframes hhPush {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.12); }
+}
+@keyframes hhBar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ── Article typography (news posts) ───────────────────────────── */
+.article-body {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: #2d4766;
+}
+.article-body > * + * {
+  margin-top: 1.4em;
+}
+.article-body > p:first-child::first-letter {
+  float: left;
+  margin: 0.08em 0.12em 0 0;
+  font-family: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  font-size: 3.6em;
   font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
+  line-height: 0.82;
+  color: var(--ieee-blue);
+}
+.article-body a {
+  color: var(--ieee-blue);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.article-body a:hover {
+  color: var(--ieee-navy);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ph-figure img,
+  .hh-slide img {
+    animation: none !important;
+    transform: none !important;
+  }
 }

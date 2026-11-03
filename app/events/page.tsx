@@ -15,6 +15,7 @@ import { getAllEvents, partitionEvents, formatDateEAT, msUntil, type EventItem }
 import { Countdown } from "@/components/ui/Countdown";
 import { calls } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = pageMetadata({
   title: "Events",
@@ -39,40 +40,36 @@ export default function EventsPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[500px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 75%)" }}
-        />
-
-        {/* ── HERO ── */}
-        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-display text-4xl font-bold leading-[1.15] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            Branch Events
-          </h1>
-          <p className="mt-5 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-600">
-            Celebrations, global programming contests, and hands-on technical workshops
-            hosted by the IEEE Student Branch at Cavendish University Uganda.
-          </p>
-        </section>
-
-        <nav aria-label="Event sections" className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-          <ul className="flex flex-wrap justify-center gap-2">
-            {tabs.map((t) => (
-              <li key={t.id}>
-                <a
-                  href={`#${t.id}`}
-                  className="inline-flex items-center gap-2 border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-[#00629B] hover:text-[#00629B]"
-                >
-                  {t.label}
-                  <span className=" bg-slate-100 px-2 text-xs">{t.count}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Events"
+          title={
+            <>
+              Launches, contests <em>and workshops</em>
+            </>
+          }
+          lede="Celebrations, global programming contests and hands-on technical sessions from the IEEE Student Branch at Cavendish University Uganda."
+          photo="r8Robotics"
+        >
+          {tabs.length > 0 && (
+            <nav aria-label="Event sections">
+              <ul className="flex flex-wrap gap-2">
+                {tabs.map((t) => (
+                  <li key={t.id}>
+                    <a
+                      href={`#${t.id}`}
+                      className="inline-flex min-h-11 items-center gap-2 border border-white/30 px-4 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white/10"
+                    >
+                      {t.label}
+                      <span className="bg-white/15 px-1.5 text-xs tabular-nums">{t.count}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )}
+        </PageHero>
+        <div className="h-6" aria-hidden="true" />
 
         {/* ── UPCOMING EVENTS ── */}
         {upcoming.length > 0 && (

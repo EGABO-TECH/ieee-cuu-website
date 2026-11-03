@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { Programs } from "@/components/Programs";
 import { Communities } from "@/components/Communities";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = pageMetadata({
   title: "Programs and societies",
@@ -13,25 +14,17 @@ export const metadata: Metadata = pageMetadata({
 export default function ProgramsPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 75%)" }}
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Programs"
+          title={
+            <>
+              Societies, ambassadors <em>and communities</em>
+            </>
+          }
+          lede="IEEE technical societies and affinity groups, plus campus programmes with AWS Student Builders and Black Python Devs."
+          photo="summitCoder"
         />
-
-        {/* ── PAGE HERO ── */}
-        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            Ambassador Programs &amp;<br />
-            <span className="text-[#007DAF]">Specialized Technical</span> Societies
-          </h1>
-
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted">
-            Accelerate your engineering journey. From official cloud ambassadorships with AWS to open-source Python initiatives and niche IEEE technical societies.
-          </p>
-        </section>
 
         {/* ── IEEE TECHNICAL SOCIETIES & AFFINITY GROUPS ── */}
         <Communities />

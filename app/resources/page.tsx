@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { ExternalLink, BookOpen, Code, GraduationCap, Award, Cpu, Users } from "lucide-react";
 import { SITE } from "@/config/site";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Resources",
   description:
@@ -139,17 +140,13 @@ const RESOURCE_SECTIONS: ResourceSection[] = [
 export default function ResourcesPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner max-w-3xl">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              Curated Resources
-            </h1>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-              Essential technical references, competition preparation portals, academic archives,
-              and career tools for Cavendish University students. All links connect to official, verified sources.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Resources"
+          title={<>Tools for <em>learning and building</em></>}
+          lede={<>Essential technical references, competition preparation portals, academic archives, and career tools for Cavendish University students. All links connect to official, verified sources.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           <div className="mt-12 space-y-12">
             {RESOURCE_SECTIONS.map((sec) => {

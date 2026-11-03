@@ -95,7 +95,7 @@ export function Countdown({
       {cells.map((c) => (
         <div
           key={c.label}
-          className="min-w-[58px] rounded-xl border border-ieee/10 bg-slate-50 px-3 py-2 text-center shadow-[0_4px_12px_rgba(0, 40, 85,0.03)]"
+          className="min-w-[60px] border border-slate-200 bg-white px-3 py-2 text-center"
         >
           <b className="block font-display text-xl text-ink">
             {String(c.value).padStart(2, "0")}

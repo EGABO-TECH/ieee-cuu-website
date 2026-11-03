@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { ArrowUpRight, ChevronDown, ChevronRight, Linkedin, MessageCircle } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 import { CUUCSA_LINKEDIN_URL, CUUCSA_WHATSAPP_URL } from "@/lib/data";
+import teamData from "@/content/team.json";
 import {
   cuucsaBatchReps,
   cuucsaCore,
@@ -11,158 +12,133 @@ import {
   cuucsaJourney,
   cuucsaMembership,
   cuucsaMission,
-  cuucsaMotto,
   cuucsaPillars,
   cuucsaProgrammes,
   cuucsaVision,
 } from "@/content/cuucsa";
+import { PageHero } from "./PageHero";
+import { PersonCard, PersonRow } from "./PersonCard";
+import { btn, container, nudge } from "@/lib/ui";
 
-function initials(name: string) {
-  return name
-    .trim()
-    .split(/\s+/)
-    .map((p) => p[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
+/** People who sit on both teams share one photo and LinkedIn URL, kept in content/team.json. */
+const branchProfiles = new Map(
+  (teamData as { name: string; photo?: string; linkedin?: string }[]).map((m) => [m.name.toLowerCase(), m])
+);
+function profileFor(name: string) {
+  return branchProfiles.get(name.toLowerCase());
 }
 
-function ConnectButtons({ light = false }: { light?: boolean }) {
+function Head({ id, index, title, body }: { id: string; index: string; title: string; body?: string }) {
   return (
-    <div className="flex flex-wrap gap-3">
-      <a
-        href={CUUCSA_WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-flex items-center gap-2 rounded-md px-4 py-3 text-sm font-semibold transition ${
-          light ? "bg-white text-[#002855] hover:bg-[#E6EFF6]" : "bg-[#00629B] text-white hover:bg-[#002855]"
-        }`}
-      >
-        <MessageCircle size={17} aria-hidden="true" />
-        WhatsApp community
-        <ArrowUpRight size={15} aria-hidden="true" />
-      </a>
-      <a
-        href={CUUCSA_LINKEDIN_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`inline-flex items-center gap-2 rounded-md border px-4 py-3 text-sm font-semibold transition ${
-          light
-            ? "border-white/35 text-white hover:border-white hover:bg-white/10"
-            : "border-slate-300 bg-white text-slate-800 hover:bg-slate-50"
-        }`}
-      >
-        <Linkedin size={17} aria-hidden="true" />
-        LinkedIn
-        <ArrowUpRight size={15} aria-hidden="true" />
-      </a>
-    </div>
-  );
-}
-
-function SectionTitle({ id, children, kicker }: { id: string; children: React.ReactNode; kicker?: string }) {
-  return (
-    <div className="mb-7 border-b border-ink/10 pb-5">
-      {kicker && <p className="text-xs font-semibold uppercase tracking-wider text-[#00629B]">{kicker}</p>}
-      <h2 id={id} className="mt-1 font-display text-2xl font-bold text-ink sm:text-3xl">
-        {children}
+    <header className="mb-10 max-w-3xl">
+      <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#00629B]">
+        <span className="font-display tabular-nums">{index}</span>
+        <span aria-hidden="true" className="h-0.5 w-8 bg-[#00629B]" />
+      </p>
+      <h2 id={id} className="mt-4 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+        {title}
       </h2>
-    </div>
+      {body && <p className="mt-3 text-base leading-relaxed text-slate-500">{body}</p>}
+    </header>
   );
 }
 
 export function CUUCSA() {
   return (
     <>
-      {/* 1. Hero */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 lg:py-14">
-        <div className="grid grid-cols-1 items-center gap-8 rounded-2xl border border-ink/10 bg-white p-6 sm:p-10 md:grid-cols-[10rem_minmax(0,1fr)]">
-          <div className="relative mx-auto h-32 w-32 md:h-40 md:w-40">
-            <Image
-              src="/images/cuucsa/cuucsa-emblem.png"
-              alt="CUUCSA seal"
-              fill
-              className="object-contain"
-              sizes="160px"
-              priority
-            />
-          </div>
-          <div>
-            <h1 className="font-display text-3xl font-bold leading-tight text-ink sm:text-4xl lg:text-5xl">
-              Cavendish University Uganda Computing Students&apos; Association
-            </h1>
-            <p className="mt-3 text-sm font-bold tracking-[0.2em] text-[#00629B]">{cuucsaMotto}</p>
-            <div className="mt-6">
-              <ConnectButtons />
+      <PageHero
+        eyebrow="CUUCSA · Computing Students' Association"
+        title={
+          <>
+            Learn. Build. <em>Innovate. Impact.</em>
+          </>
+        }
+        lede="The Cavendish University Uganda Computing Students' Association: an independent student community of the Faculty of Science and Technology."
+        actions={
+          <>
+            <a href={CUUCSA_WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={btn.accent}>
+              Join the WhatsApp community
+              <ArrowUpRight size={16} aria-hidden="true" className={nudge} />
+            </a>
+            <a href={CUUCSA_LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={btn.ghost}>
+              Follow on LinkedIn
+            </a>
+          </>
+        }
+        aside={
+          <div className="mx-auto flex aspect-square w-full max-w-sm items-center justify-center bg-white p-10 lg:ml-auto">
+            <div className="relative h-full w-full">
+              <Image src="/images/cuucsa/cuucsa-emblem.png" alt="CUUCSA seal" fill sizes="320px" className="object-contain" priority />
             </div>
           </div>
+        }
+      />
+
+      <div className="border-b border-slate-200 bg-white">
+        <p className={`${container} py-5 text-sm leading-relaxed text-slate-600`}>{cuucsaIndependence}</p>
+      </div>
+
+      {/* Vision, mission, journey */}
+      <section aria-labelledby="cuucsa-vision" className="bg-bg py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-vision" index="01" title="Where CUUCSA is going" />
+          <div className="grid gap-px bg-slate-200 md:grid-cols-2">
+            {[
+              ["Vision", cuucsaVision],
+              ["Mission", cuucsaMission],
+            ].map(([label, text]) => (
+              <div key={label} className="bg-white p-7 sm:p-10">
+                <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00629B]">{label}</h3>
+                <p className="mt-4 text-pretty font-display text-lg font-semibold leading-snug text-ink sm:text-xl">{text}</p>
+              </div>
+            ))}
+          </div>
+          <ol aria-label="The student journey" className="mt-8 grid grid-cols-2 gap-px bg-slate-200 sm:grid-cols-4 lg:grid-cols-8">
+            {cuucsaJourney.map((step, i) => (
+              <li key={step} className="bg-bg px-4 py-4">
+                <span className="block font-display text-xs font-bold tabular-nums text-[#00629B]">{String(i + 1).padStart(2, "0")}</span>
+                <span className="mt-1 block text-sm font-semibold text-ink">{step}</span>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
-      {/* 2. Independence statement */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 pb-6">
-        <p className="rounded-xl border-l-4 border-[#00629B] bg-white p-5 text-sm leading-relaxed text-slate-700 sm:text-base">
-          {cuucsaIndependence}
-        </p>
-      </section>
-
-      {/* 3. Vision and mission, 4. Journey */}
-      <section aria-labelledby="cuucsa-vision" className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">
-        <h2 id="cuucsa-vision" className="sr-only">Vision and mission</h2>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          <div className="rounded-xl border border-ink/10 bg-white p-6">
-            <h3 className="font-display text-xl font-bold text-ink">Vision</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{cuucsaVision}</p>
-          </div>
-          <div className="rounded-xl border border-ink/10 bg-white p-6">
-            <h3 className="font-display text-xl font-bold text-ink">Mission</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{cuucsaMission}</p>
-          </div>
-        </div>
-        <ol aria-label="Student journey" className="mt-6 flex flex-wrap items-center gap-x-1 gap-y-2 text-sm font-semibold text-[#002855]">
-          {cuucsaJourney.map((step, i) => (
-            <li key={step} className="flex items-center gap-1">
-              <span className=" bg-[#CADCEA] px-3 py-1">{step}</span>
-              {i < cuucsaJourney.length - 1 && <ChevronRight size={14} aria-hidden="true" className="text-[#00629B]" />}
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {/* 5. Pillars */}
-      <section aria-labelledby="cuucsa-pillars" className="bg-white py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-          <SectionTitle id="cuucsa-pillars">Six pillars</SectionTitle>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Pillars */}
+      <section aria-labelledby="cuucsa-pillars" className="bg-white py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-pillars" index="02" title="Six pillars" />
+          <ul className="grid gap-px bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
             {cuucsaPillars.map((p) => (
-              <li key={p.title} className="rounded-md border border-ink/10 bg-[#F5F8FB] p-5">
-                <h3 className="text-base font-semibold text-ink">{p.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{p.outcome}</p>
+              <li key={p.title} className="bg-white p-6 transition-colors hover:bg-bg">
+                <h3 className="font-display text-lg font-bold text-ink">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-500">{p.outcome}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* 6. Programmes, 7. Flagship events */}
-      <section aria-labelledby="cuucsa-programmes" className="py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-          <SectionTitle id="cuucsa-programmes">Eight flagship programmes</SectionTitle>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Programmes and events */}
+      <section aria-labelledby="cuucsa-programmes" className="bg-bg py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-programmes" index="03" title="Eight flagship programmes" />
+          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {cuucsaProgrammes.map((p) => (
-              <li key={p.name} className="rounded-md border border-ink/10 bg-white p-5">
-                <h3 className="text-base font-semibold text-ink">CUUCSA {p.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{p.purpose}</p>
-                <p className="mt-3 text-xs font-medium text-[#00629B]">Led by {p.lead}</p>
+              <li key={p.name} className="flex flex-col border border-slate-200 bg-white p-6">
+                <h3 className="font-display text-lg font-bold text-ink">{p.name}</h3>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-600">{p.purpose}</p>
+                <p className="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-500">Led by {p.lead}</p>
               </li>
             ))}
           </ul>
-
-          <h3 className="mt-10 font-display text-xl font-bold text-ink">Flagship events</h3>
-          <p className="mt-1 text-sm text-muted">Dates will be announced.</p>
+          <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:items-baseline">
+            <h3 className="shrink-0 font-display text-lg font-bold text-ink">Flagship events</h3>
+            <p className="text-sm text-slate-500">Dates to be announced.</p>
+          </div>
           <ul className="mt-4 flex flex-wrap gap-2">
             {cuucsaFlagshipEvents.map((e) => (
-              <li key={e} className=" border border-[#CADCEA] bg-[#E6EFF6] px-3.5 py-1.5 text-xs font-medium text-[#2D4D76]">
+              <li key={e} className="border border-slate-300 bg-white px-3.5 py-1.5 text-sm text-slate-700">
                 {e}
               </li>
             ))}
@@ -170,99 +146,83 @@ export function CUUCSA() {
         </div>
       </section>
 
-      {/* 8. Core team */}
-      <section aria-labelledby="cuucsa-team" className="bg-white py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-          <SectionTitle id="cuucsa-team">Core team</SectionTitle>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            {cuucsaCore.map((m) => (
-              <li key={m.office} className="flex items-start gap-3 rounded-md border border-ink/10 bg-[#F5F8FB] p-4">
-                <span
-                  aria-hidden="true"
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#E6EFF6] font-display text-sm font-semibold text-[#00629B]"
-                >
-                  {initials(m.name)}
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[11px] font-semibold uppercase tracking-wider text-[#00629B]">{m.office}</p>
-                  <p className="mt-0.5 font-semibold leading-snug text-ink">{m.name}</p>
-                  <p className="text-xs text-muted">
-                    {m.programme}
-                    {m.note && <span className="block">{m.note}</span>}
-                  </p>
-                </div>
+      {/* Core team */}
+      <section id="team" aria-labelledby="cuucsa-team" className="bg-white py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-team" index="04" title="Core team" body="The executive that runs CUUCSA's programmes, records and representation." />
+          <ul className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {cuucsaCore.map((m) => {
+              const shared = profileFor(m.name);
+              return (
+                <li key={m.office}>
+                  <PersonCard
+                    person={{
+                      name: m.name,
+                      role: m.office,
+                      meta: [m.programme, m.note].filter(Boolean).join(" · "),
+                      photo: shared?.photo || undefined,
+                      linkedin: m.linkedin || shared?.linkedin,
+                    }}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+
+          <h3 className="mt-16 font-display text-xl font-bold text-ink">Batch representatives</h3>
+          <ul className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {cuucsaBatchReps.map((r) => (
+              <li key={r.name}>
+                <PersonRow person={{ name: r.name, role: "Batch representative", linkedin: r.linkedin || profileFor(r.name)?.linkedin }} />
               </li>
             ))}
           </ul>
-
-          <h3 className="mt-10 text-base font-semibold text-ink">Batch representatives</h3>
-          <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 text-sm text-muted sm:grid-cols-2 lg:grid-cols-4">
-            {cuucsaBatchReps.map((n) => (
-              <li key={n}>{n}</li>
-            ))}
-          </ul>
         </div>
       </section>
 
-      {/* 9. Membership, 10. Governance */}
-      <section aria-labelledby="cuucsa-membership" className="py-12 sm:py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 sm:px-10 lg:grid-cols-2 lg:px-12">
-          <div>
-            <SectionTitle id="cuucsa-membership">Membership</SectionTitle>
-            <dl className="space-y-3">
+      {/* Membership and governance */}
+      <section aria-labelledby="cuucsa-membership" className="bg-bg py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-membership" index="05" title="Membership and governance" />
+          <div className="grid gap-12 lg:grid-cols-12">
+            <dl className="divide-y divide-slate-200 border-y border-slate-200 lg:col-span-7">
               {cuucsaMembership.map((m) => (
-                <div key={m.name} className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
-                  <dt className="w-36 shrink-0 text-sm font-semibold text-ink">{m.name}</dt>
-                  <dd className="text-sm text-muted">{m.desc}</dd>
+                <div key={m.name} className="grid gap-1 py-4 sm:grid-cols-[10rem_1fr] sm:gap-6">
+                  <dt className="text-sm font-semibold text-ink">{m.name}</dt>
+                  <dd className="text-sm text-slate-600">{m.desc}</dd>
                 </div>
               ))}
             </dl>
-          </div>
-          <div>
-            <SectionTitle id="cuucsa-governance">Governance in brief</SectionTitle>
-            <ul className="list-disc space-y-2 pl-5 text-sm text-muted">
-              {cuucsaGovernance.map((g) => (
-                <li key={g}>{g}</li>
-              ))}
-            </ul>
+            <div className="lg:col-span-5">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#00629B]">How it is run</h3>
+              <ul className="mt-4 space-y-3">
+                {cuucsaGovernance.map((g) => (
+                  <li key={g} className="flex gap-3 text-sm text-slate-700">
+                    <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 bg-[#00629B]" />
+                    {g}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 11. FAQ */}
-      <section aria-labelledby="cuucsa-faq-title" className="bg-white py-12 sm:py-16">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-10 lg:grid-cols-12 lg:gap-12 lg:px-12">
-          <div className="lg:col-span-4">
-            <h2 id="cuucsa-faq-title" className="font-display text-2xl font-bold text-ink sm:text-3xl">
-              Frequently asked questions
-            </h2>
-          </div>
-          <div className="lg:col-span-8">
-            {cuucsaFaqs.map((faq, index) => (
-              <details key={faq.question} className="group border-t border-ink/15 py-4" open={index === 0}>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-sm font-semibold text-ink [&::-webkit-details-marker]:hidden">
+      {/* FAQ */}
+      <section aria-labelledby="cuucsa-faq" className="bg-white py-16 sm:py-24">
+        <div className={container}>
+          <Head id="cuucsa-faq" index="06" title="Questions" />
+          <div className="max-w-4xl">
+            {cuucsaFaqs.map((faq, i) => (
+              <details key={faq.question} className="group border-b border-slate-200 py-5 first:border-t" open={i === 0}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold text-ink [&::-webkit-details-marker]:hidden">
                   {faq.question}
-                  <ChevronDown size={16} className="shrink-0 text-[#00629B] transition-transform group-open:rotate-180" aria-hidden="true" />
+                  <ChevronDown size={18} aria-hidden="true" className="shrink-0 text-[#00629B] transition-transform duration-300 group-open:rotate-180" />
                 </summary>
-                <p className="mt-3 max-w-2xl pr-8 text-sm leading-relaxed text-muted">{faq.answer}</p>
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600">{faq.answer}</p>
               </details>
             ))}
-            <div className="border-t border-ink/15" />
           </div>
-        </div>
-      </section>
-
-      <section aria-labelledby="cuucsa-connect-title" className="sheet-grid bg-[#002855] py-10 text-white sm:py-12">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 sm:px-10 md:flex-row md:items-center md:justify-between lg:px-12">
-          <div className="max-w-xl">
-            <h2 id="cuucsa-connect-title" className="font-display text-2xl font-bold sm:text-3xl">
-              Connect with CUUCSA
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-white/75">
-              Join the student community or follow CUUCSA for updates.
-            </p>
-          </div>
-          <ConnectButtons light />
         </div>
       </section>
     </>

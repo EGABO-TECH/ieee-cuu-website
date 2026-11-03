@@ -8,15 +8,6 @@ const ICONS = { cyan: Cpu, violet: BookOpenText, ember: Users2, mint: Globe2 } a
 export function WhatIsIEEE() {
   return (
     <section id="about" className="relative overflow-hidden bg-bg py-28 sm:py-36">
-      {/* Subtle radial ambient glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-[0.08]"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 70%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* ── Editorial Header ── */}
@@ -96,7 +87,7 @@ export function WhatIsIEEE() {
               return (
                 <div
                   key={p.title}
-                  className="group relative flex flex-col rounded-2xl border border-ieee/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0, 98, 155,0.15)]"
+                  className="group relative flex flex-col rounded-2xl border border-ieee/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0,98,155,0.15)]"
                 >
                   {/* Icon */}
                   <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl border border-[#007DAF]/30 bg-ieee/10 text-ieee transition-transform duration-300 group-hover:scale-105">

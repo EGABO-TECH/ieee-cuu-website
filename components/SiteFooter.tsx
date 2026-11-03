@@ -7,6 +7,7 @@ const NAV_LINKS = {
     { href: "/about", label: "About IEEE" },
     { href: "/branch", label: "The Branch" },
     { href: "/team", label: "Team" },
+    { href: "/news", label: "News" },
     { href: "/programs", label: "Programs" },
     { href: "/cuucsa", label: "CUUCSA" },
   ],
@@ -14,7 +15,8 @@ const NAV_LINKS = {
     { href: "/events", label: "Events" },
     { href: "/volunteer", label: "Volunteer" },
     { href: "/join", label: "Join the Branch" },
-    { href: "/gallery", label: "Gallery" },
+    { href: "/resources", label: "Resources" },
+    { href: "/partners", label: "Partners" },
     { href: "/contact", label: "Contact" },
   ],
   "Official IEEE": [
@@ -194,7 +196,7 @@ export function SiteFooter() {
 
         <div className="mt-4 flex flex-col gap-3 pt-2 text-[12px] text-white/60 sm:mt-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-4">
-            <span>© 2026 IEEE Student Branch, Cavendish University Uganda.</span>
+            <span>© {new Date().getFullYear()} IEEE Student Branch, Cavendish University Uganda.</span>
             <span className="hidden text-white/25 sm:inline">|</span>
             <span>Part of IEEE Region 8 &amp; IEEE Uganda Section</span>
           </div>
@@ -203,6 +205,7 @@ export function SiteFooter() {
             <a href="/terms" className="transition hover:text-white">Terms</a>
             <a href="/cookies" className="transition hover:text-white">Cookies</a>
             <a href="/governance" className="transition hover:text-white">Governance</a>
+            <a href="/credits" className="transition hover:text-white">Photo credits</a>
             <span className="text-white/40">Built by the Branch, for the Branch.</span>
           </div>
         </div>

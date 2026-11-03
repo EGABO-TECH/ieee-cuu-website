@@ -5,6 +5,8 @@ import { CheckCircle2, HelpCircle, ArrowUpRight, ExternalLink } from "lucide-rea
 import { JoinBanner } from "@/components/JoinBanner";
 import { JoinForm } from "@/components/JoinForm";
 import { SITE } from "@/config/site";
+import { PageHero } from "@/components/PageHero";
+import { btn, nudge } from "@/lib/ui";
 
 export const metadata: Metadata = pageMetadata({
   title: "Join the branch",
@@ -96,49 +98,32 @@ const MEMBERSHIP_FAQS = [
 export default function JoinPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 40%, transparent 75%)" }}
-        />
-
-        {/* ── PAGE HERO ── */}
-        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            Join the IEEE Community at<br />
-            Cavendish University Uganda
-          </h1>
-
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-slate-600">
-            IEEE Xplore research tools, global competitions, leadership opportunities, and a worldwide
-            network of engineers and technologists.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href="#register"
-              className="inline-flex items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
-            >
-              Register with Branch
-              <ArrowUpRight size={14} />
-            </a>
-            <a
-              href={SITE.ieee.membership}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              Apply on IEEE Students
-              <ExternalLink size={14} />
-            </a>
-          </div>
-
-          <p className="mt-3 text-xs text-slate-400">
-            Joining the WhatsApp group is not the same as IEEE membership.
-          </p>
-        </section>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Join"
+          title={
+            <>
+              Join IEEE at <em>Cavendish University</em>
+            </>
+          }
+          lede="IEEE Xplore, global competitions, leadership roles and a worldwide network of engineers and technologists, starting on campus."
+          photo="aircraftEngineers"
+          actions={
+            <>
+              <a href="#register" className={btn.accent}>
+                Register with the branch
+                <ArrowUpRight size={16} aria-hidden="true" className={nudge} />
+              </a>
+              <a href={SITE.ieee.membership} target="_blank" rel="noopener noreferrer" className={btn.ghost}>
+                Apply on IEEE Students
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
+            </>
+          }
+        >
+          <p className="text-xs text-white/60">Joining the WhatsApp group is not the same as IEEE membership.</p>
+        </PageHero>
+        <div className="h-10" aria-hidden="true" />
 
         {/* ── THREE STEPS ── */}
         <section aria-labelledby="join-steps" className="relative mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-6">

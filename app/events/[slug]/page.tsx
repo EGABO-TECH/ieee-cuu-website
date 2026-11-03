@@ -21,6 +21,8 @@ import { IEEExtremeDetail } from "@/components/events/IEEExtremeDetail";
 import { pageMetadata } from "@/lib/metadata";
 import { calls } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
+import { PageHero } from "@/components/PageHero";
+import { btn } from "@/lib/ui";
 
 // Re-render every 5 minutes so status labels follow the clock.
 export const revalidate = 300;
@@ -94,34 +96,21 @@ export default function EventDetailPage({ params }: Props) {
 
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
+      <main className="min-h-screen bg-bg text-ink">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <div className="mx-auto max-w-5xl px-4 sm:px-10 lg:px-12 py-12">
-          <Link
-            href="/events"
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#00629B] mb-8"
-          >
-            <ArrowLeft size={14} /> Back to all events
-          </Link>
+        <PageHero
+          eyebrow={`${event.kind} · ${STATUS_LABEL[event.status] ?? event.status}`}
+          title={event.title}
+          lede={event.summary}
+          actions={
+            <Link href="/events" className={btn.ghost}>
+              <ArrowLeft size={15} aria-hidden="true" /> All events
+            </Link>
+          }
+        />
+        <div className="mx-auto max-w-5xl px-4 pb-16 pt-10 sm:px-8 lg:px-12">
 
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className=" bg-slate-200/80 px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-700">
-              {event.kind}
-            </span>
-            <span className=" border border-slate-200 bg-white px-3 py-1 text-xs font-semibold text-slate-600">
-              {STATUS_LABEL[event.status] ?? event.status}
-            </span>
-          </div>
-
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink leading-tight">
-            {event.title}
-          </h1>
-
-          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-3xl">
-            {event.summary}
-          </p>
-
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="flex items-start gap-3">
               <Calendar size={18} className="text-[#00629B] shrink-0 mt-0.5" />
               <div>

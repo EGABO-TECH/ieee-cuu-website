@@ -25,14 +25,6 @@ const PERKS = [
 export function JoinBanner() {
   return (
     <section id="join" className="relative overflow-hidden px-4 pb-28 pt-8 sm:px-8 sm:pb-36">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-[0.10] blur-3xl"
-        style={{
-          background: "radial-gradient(circle, #CADCEA 0%, #CADCEA 60%, transparent 80%)",
-        }}
-      />
-
       <div className="relative mx-auto max-w-6xl">
         <div className="relative overflow-hidden rounded-3xl border border-[#CADCEA] bg-white p-8 sm:p-14 lg:p-16 text-center shadow-[0_30px_90px_rgba(0,0,0,0.08)]">
           <div className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#95BCD6]/60 to-transparent" />

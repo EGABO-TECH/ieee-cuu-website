@@ -49,32 +49,38 @@ export const cuucsaFlagshipEvents = [
   "Solve a Cavendish Problem",
 ];
 
-/** All listed members have agreed to be listed. */
-export const cuucsaCore: { office: string; name: string; programme: string; note?: string }[] = [
-  { office: "President", name: "Ausi Mulo", programme: "BSE" },
-  { office: "Vice President", name: "Nakanjako Victoria", programme: "BSE" },
-  { office: "Secretary General", name: "Nuwasiima Libby", programme: "BSE" },
-  { office: "Assistant Secretary", name: "Ekalam Joshua", programme: "BCS" },
-  { office: "Junior Treasurer", name: "Ntambi Calvin", programme: "BSE" },
-  { office: "Technical Lead", name: "Egabo Aaron", programme: "BSE" },
-  { office: "Academic Affairs Officer", name: "Rwothomio Evans E.", programme: "BSE" },
-  { office: "PR and Partnerships Officer", name: "Niwasiima Ashelycole", programme: "BSE" },
-  { office: "Legal and Compliance Officer", name: "Bamidele-Oseni Oyindamola Abigail", programme: "LLB" },
-  { office: "Advisor", name: "Kayizzi Sadat", programme: "BIT", note: "Outgoing Minister of ICT and Innovation" },
+/**
+ * All listed members have agreed to be listed.
+ * Add each person's LinkedIn profile URL (https://www.linkedin.com/in/...) to
+ * `linkedin`; the card shows a LinkedIn button as soon as one is filled in.
+ */
+export type CuucsaMember = { office: string; name: string; programme: string; note?: string; linkedin?: string };
+
+export const cuucsaCore: CuucsaMember[] = [
+  { office: "President", name: "Ausi Mulo", programme: "BSE", linkedin: "" },
+  { office: "Vice President", name: "Nakanjako Victoria", programme: "BSE", linkedin: "" },
+  { office: "Secretary General", name: "Nuwasiima Libby", programme: "BSE", linkedin: "" },
+  { office: "Assistant Secretary", name: "Ekalam Joshua", programme: "BCS", linkedin: "" },
+  { office: "Junior Treasurer", name: "Ntambi Calvin", programme: "BSE", linkedin: "" },
+  { office: "Technical Lead", name: "Egabo Aaron", programme: "BSE", linkedin: "" },
+  { office: "Academic Affairs Officer", name: "Rwothomio Evans E.", programme: "BSE", linkedin: "" },
+  { office: "PR and Partnerships Officer", name: "Niwasiima Ashelycole", programme: "BSE", linkedin: "" },
+  { office: "Legal and Compliance Officer", name: "Bamidele-Oseni Oyindamola Abigail", programme: "LLB", linkedin: "" },
+  { office: "Advisor", name: "Kayizzi Sadat", programme: "BIT", note: "Outgoing Minister of ICT and Innovation", linkedin: "" },
 ];
 
-export const cuucsaBatchReps = [
-  "Maha Ahmed Farah",
-  "Onyango John Steven",
-  "Namusana Rebecca",
-  "Kawuma Michael",
-  "Natozo Patience Martha",
-  "Nassuna Marsha Favour Ntale",
-  "Olubwar Stephen",
-  "Shambe Andrew",
-  "Naume Catherine",
-  "Atukwatse Arnold",
-  "Dahomey Mortifer",
+export const cuucsaBatchReps: { name: string; linkedin?: string }[] = [
+  { name: "Maha Ahmed Farah", linkedin: "" },
+  { name: "Onyango John Steven", linkedin: "" },
+  { name: "Namusana Rebecca", linkedin: "" },
+  { name: "Kawuma Michael", linkedin: "" },
+  { name: "Natozo Patience Martha", linkedin: "" },
+  { name: "Nassuna Marsha Favour Ntale", linkedin: "" },
+  { name: "Olubwar Stephen", linkedin: "" },
+  { name: "Shambe Andrew", linkedin: "" },
+  { name: "Naume Catherine", linkedin: "" },
+  { name: "Atukwatse Arnold", linkedin: "" },
+  { name: "Dahomey Mortifer", linkedin: "" },
 ];
 
 export const cuucsaMembership = [

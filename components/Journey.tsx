@@ -35,14 +35,6 @@ const PILLARS = [
 export function Journey() {
   return (
     <section id="branch" className="relative overflow-hidden bg-bg py-28 sm:py-36 border-t border-ieee/10">
-      {/* Subtle ambient lighting */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-40 right-1/4 h-[500px] w-[700px] rounded-full opacity-[0.08]"
-        style={{
-          background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 50%, transparent 70%)",
-        }}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* Split Layout: Left Headline + Right 2x2 Cards Grid */}
@@ -71,7 +63,7 @@ export function Journey() {
                 return (
                   <div
                     key={p.title}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-ieee/10 bg-white p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0, 98, 155,0.15)]"
+                    className="group relative flex flex-col justify-between rounded-2xl border border-ieee/10 bg-white p-7 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#007DAF]/60 hover:shadow-[0_8px_32px_rgba(0,98,155,0.15)]"
                   >
                     <div>
                       {/* Squircle Icon Container */}

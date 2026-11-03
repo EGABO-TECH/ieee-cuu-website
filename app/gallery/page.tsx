@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
 import { ImageIcon } from "lucide-react";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Gallery",
   description:
@@ -31,15 +32,13 @@ const GALLERY: {
 export default function GalleryPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">Gallery</h1>
-            <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
-              Photos from branch events, workshops, and community activities.
-              All photos are published with the consent of the people pictured.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Gallery"
+          title={<>Moments from <em>the branch</em></>}
+          lede={<>Photos from branch events, workshops, and community activities. All photos are published with the consent of the people pictured.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           {GALLERY.length === 0 ? (
             <div className="mt-16 flex flex-col items-center justify-center rounded-3xl border border-dashed border-slate-200 bg-white py-24 px-6 text-center">

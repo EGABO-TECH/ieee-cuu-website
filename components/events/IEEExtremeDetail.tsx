@@ -16,6 +16,8 @@ import {
 } from "lucide-react";
 import { getEventBySlug } from "@/lib/events";
 import { SITE } from "@/config/site";
+import { PageHero } from "@/components/PageHero";
+import { btn, nudge } from "@/lib/ui";
 
 
 const STATS = [
@@ -80,86 +82,39 @@ export function IEEExtremeDetail() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        {/* Ambient glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[1000px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 40%, transparent 75%)" }}
-        />
-
-        {/* ── STATUS STRIP ── */}
-        <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 pt-4 pb-2">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex items-center border border-amber-400/30 bg-amber-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-amber-700">
-                Registration closed
-              </span>
-              <span className="text-xs text-slate-500">
-                Deadline: 17 October 2026, 11:59 PM GMT
-              </span>
-            </div>
-            <Link href="/events" className="text-xs text-[#00629B] hover:text-[#007DAF] transition">
-              ← All events
-            </Link>
-          </div>
-        </div>
-
-        {/* ── HERO ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-              IEEEXtreme 20.0<br />
-              <span className="text-[#007DAF]">Global Programming</span> Challenge
-            </h1>
-
-            <p className="mt-6 text-base sm:text-lg leading-relaxed text-slate-600">
-              A 24-hour worldwide algorithmic battle for teams of IEEE Student Members.
-              Solve intense challenges, test your problem-solving under real-time pressure,
-              and put Cavendish University Uganda on the global leaderboard.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-700">
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-                <Clock size={17} className="text-[#00629B]" />
-                <span className="font-semibold">Registration closed: 17 Oct 2026</span>
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5">
-                <Terminal size={17} className="text-[#00629B]" />
-                <span>24-hour algorithmic contest</span>
-              </div>
-            </div>
-
-            {/* Info box — registration closed */}
-            <div className="mt-10 mx-auto max-w-md overflow-hidden rounded-2xl border border-amber-200 bg-amber-50 p-6 text-left">
-              <p className="text-sm font-semibold text-amber-800 mb-2">
-                Registration has closed
-              </p>
-              <p className="text-xs text-amber-700 leading-relaxed">
-                The IEEEXtreme 20.0 registration deadline was 17 October 2026, 11:59 PM GMT.
-                {/* TODO(owner): Add contest date and CUU team results when available */}
-                Contest date and CUU team results will be added here once confirmed.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <a
-                  href={SITE.ieee.extreme}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-amber-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
-                >
-                  Official IEEEXtreme site
-                  <ExternalLink size={12} />
-                </a>
-                <Link
-                  href="/join"
-                  className="inline-flex items-center gap-2 bg-[#00629B] px-4 py-2 text-xs font-bold text-white transition hover:bg-[#002855]"
-                >
-                  Join the branch for next year
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="IEEEXtreme 20.0 · Registration closed"
+          title={
+            <>
+              24 hours. One team. <em>The global leaderboard.</em>
+            </>
+          }
+          lede="IEEEXtreme is IEEE's worldwide algorithmic programming contest for teams of IEEE Student Members. Registration for 20.0 closed on 17 October 2026, 11:59 PM GMT; contest date and CUU team results will be added here once confirmed."
+          actions={
+            <>
+              <Link href="/join" className={btn.accent}>
+                Join the branch for next year
+                <ArrowUpRight size={16} aria-hidden="true" className={nudge} />
+              </Link>
+              <a href={SITE.ieee.extreme} target="_blank" rel="noopener noreferrer" className={btn.ghost}>
+                Official IEEEXtreme site
+                <ExternalLink size={15} aria-hidden="true" />
+              </a>
+            </>
+          }
+        >
+          <ul className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-sm text-white/80">
+            <li className="flex items-center gap-2">
+              <Clock size={16} className="text-[#FFC72C]" aria-hidden="true" />
+              Registration closed 17 Oct 2026
+            </li>
+            <li className="flex items-center gap-2">
+              <Terminal size={16} className="text-[#FFC72C]" aria-hidden="true" />
+              24-hour algorithmic contest
+            </li>
+          </ul>
+        </PageHero>
 
         {/* ── RESULTS / RECAP ── */}
         {hasResults ? null : (
@@ -168,7 +123,7 @@ export function IEEExtremeDetail() {
               <Trophy size={28} className="text-slate-300 mx-auto mb-3" />
               <p className="text-sm text-slate-400 font-medium">CUU team results coming soon</p>
               {/* TODO(owner): Add team names, scores, and global ranking once the contest runs */}
-              <p className="text-xs text-slate-300 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Results will be posted here once the branch supplies team names, scores, and ranking.
               </p>
             </div>

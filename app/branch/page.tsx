@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
-import Image from "next/image";
 import Link from "next/link";
 import { Rocket, Sparkles, BookOpen, Users, Compass, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Journey } from "@/components/Journey";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = pageMetadata({
   title: "The Branch",
@@ -49,39 +49,17 @@ const BRANCH_HIGHLIGHTS = [
 export default function BranchPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink">
-
-        {/* ── PAGE HERO ── */}
-        <section className="relative isolate flex min-h-[760px] flex-col overflow-hidden sm:min-h-[720px] lg:min-h-[760px]">
-          <Image
-            src="/images/The_Branch_Hero.png"
-            alt="Cavendish University Uganda students celebrating with regional flags"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[58%_center]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[#002855]/95 via-[#002855]/55 to-[#002855]/5 sm:bg-gradient-to-r sm:from-[#002855]/90 sm:via-[#002855]/45 sm:to-transparent"
-          />
-
-          <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-12 pt-28 sm:px-10 sm:pb-16 sm:pt-32 lg:px-12 lg:pb-20">
-            <div className="mt-auto max-w-4xl">
-              <h1 className="font-display text-4xl font-bold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
-                The Branch: Where
-                <span className="block text-[#FFC72C]">Ambition Meets</span>
-                Technical Mastery
-              </h1>
-
-              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-                Founded to bridge classroom curricula with real-world engineering excellence.
-                Discover how the IEEE Student Branch at Cavendish University Uganda equips you
-                with global tools, networks, and opportunities.
-              </p>
-            </div>
-          </div>
-        </section>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="The Branch"
+          title={
+            <>
+              Where classroom ideas <em>meet real engineering</em>
+            </>
+          }
+          lede="How the IEEE Student Branch at Cavendish University Uganda connects students with global tools, networks and opportunities, in every faculty."
+          photo="ghanaYoungCoders"
+        />
 
         {/* ── CORE COMPONENT EMBED (JOURNEY) ── */}
         <Journey />

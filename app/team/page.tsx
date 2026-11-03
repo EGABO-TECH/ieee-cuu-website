@@ -1,105 +1,64 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/metadata";
 import Link from "next/link";
-import { Users, ShieldCheck, HeartHandshake, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { pageMetadata } from "@/lib/metadata";
+import { PageHero } from "@/components/PageHero";
 import { Team } from "@/components/Team";
+import teamData from "@/content/team.json";
+import { btn, container, nudge } from "@/lib/ui";
 
 export const metadata: Metadata = pageMetadata({
   title: "Team",
   description:
-    "Meet the executive committee, technical coordinators, and outreach mobilizers leading the IEEE Student Branch at Cavendish University Uganda.",
+    "Meet the counselor, advisor, executive committee and coordinators of the IEEE Student Branch at Cavendish University Uganda.",
   path: "/team",
 });
 
-const PILLARS_OF_LEADERSHIP = [
-  {
-    icon: ShieldCheck,
-    title: "Transparent Governance",
-    desc: "All branch meetings, budgets, and operational decisions adhere to official IEEE Region 8 Student Branch reporting frameworks.",
-  },
-  {
-    icon: Users,
-    title: "Student-Led, Faculty-Advised",
-    desc: "Empowering undergraduate and postgraduate students to take executive ownership of campus initiatives under seasoned academic guidance.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "Inclusive Leadership Pathways",
-    desc: "Every semester, active volunteers are mentored into subcommittee leads, project coordinators, and future executive candidates.",
-  },
-];
-
 export default function TeamPage() {
+  const count = (teamData as { consent: boolean }[]).filter((m) => m.consent).length;
+
   return (
-    <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        {/* Ambient Glows */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 h-[550px] w-[1100px] rounded-full opacity-[0.06]"
-          style={{ background: "radial-gradient(ellipse at center, #00629B 0%, #007DAF 40%, transparent 75%)" }}
-        />
-
-        {/* ── PAGE HERO ── */}
-        <section className="page-banner relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16 text-center">
-          <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            Passionate Students Driving<br />
-            <span className="text-[#007DAF]">Innovation on Campus</span>
-          </h1>
-
-          <p className="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed text-muted">
-            Meet the student executives, technical leads, and outreach mobilizers dedicated to serving
-            the Cavendish University Uganda student community.
-          </p>
-        </section>
-
-        {/* ── CORE COMPONENT EMBED (TEAM) ── */}
-        <Team />
-
-        {/* ── LEADERSHIP PHILOSOPHY ── */}
-        <section className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-16">
-          <div className="rounded-3xl border border-ieee/10 bg-white p-8 sm:p-12">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-700">
-                Branch Governance
-              </span>
-              <h2 className="mt-3 font-display text-3xl font-bold text-ink">
-                How Our Leadership Operates
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {PILLARS_OF_LEADERSHIP.map((p) => {
-                const Icon = p.icon;
-                return (
-                  <div key={p.title} className="rounded-md border border-ink/10 bg-[#F5F8FB] p-6">
-                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-md bg-[#00629B] text-white">
-                      <Icon size={22} strokeWidth={1.8} aria-hidden="true" />
-                    </div>
-                    <h4 className="font-bold text-ink text-base mb-2">{p.title}</h4>
-                    <p className="text-xs sm:text-sm text-muted leading-relaxed">{p.desc}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="mt-10 border-t border-white/[0.08] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div>
-                <h4 className="font-semibold text-ink text-sm">Want to volunteer for the Branch?</h4>
-                <p className="text-xs text-slate-600 mt-0.5">We welcome students from all faculties to join our event and technical committees.</p>
-              </div>
-              <Link
-                href="/volunteer"
-                className="shrink-0 inline-flex items-center gap-2 bg-[#00629B] px-6 py-2.5 text-xs font-bold text-white transition hover:bg-[#002855]"
-              >
-                Volunteer with the branch
-                <ArrowUpRight size={14} aria-hidden="true" />
-              </Link>
-            </div>
+    <main className="min-h-screen bg-bg text-ink">
+      <PageHero
+        eyebrow="Team · 2026/27"
+        title={
+          <>
+            The people <em>running the branch</em>
+          </>
+        }
+        lede="A faculty counselor and advisor, a student executive and coordinators across technical work, finance and outreach."
+        actions={
+          <Link href="/cuucsa#team" className={btn.ghost}>
+            CUUCSA core team
+          </Link>
+        }
+      >
+        <dl className="flex gap-10 border-t border-white/15 pt-6">
+          <div>
+            <dt className="text-xs uppercase tracking-[0.16em] text-white/55">Members listed</dt>
+            <dd className="mt-1 font-display text-3xl font-bold">{count}</dd>
           </div>
-        </section>
-      </main>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.16em] text-white/55">Region</dt>
+            <dd className="mt-1 font-display text-3xl font-bold">R8</dd>
+          </div>
+        </dl>
+      </PageHero>
 
-    </>
+      <Team />
+
+      <section className="border-t border-slate-200 bg-white py-14">
+        <div className={`${container} flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between`}>
+          <div>
+            <h2 className="font-display text-2xl font-bold text-ink">Want to help run the branch?</h2>
+            <p className="mt-1 text-sm text-slate-500">Students from every faculty are welcome on event and technical committees.</p>
+          </div>
+          <Link href="/join" className={btn.primary}>
+            Register your interest
+            <ArrowRight size={16} aria-hidden="true" className={nudge} />
+          </Link>
+        </div>
+      </section>
+    </main>
   );
 }

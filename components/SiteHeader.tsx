@@ -19,14 +19,14 @@ const PRIMARY: NavItem[] = [
   { href: "/about", label: "About" },
   { href: "/branch", label: "The Branch" },
   { href: "/programs", label: "Programs" },
+  { href: "/news", label: "News" },
+  { href: "/team", label: "Team" },
   { href: "/cuucsa", label: "CUUCSA" },
-  { href: "/volunteer", label: "Volunteer" },
 ];
 
 /** Shown only in the mobile menu; on desktop they live in the footer. */
 const SECONDARY: NavItem[] = [
-  { href: "/team", label: "Team" },
-  { href: "/news", label: "News" },
+  { href: "/volunteer", label: "Volunteer" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -68,6 +68,16 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [eventsOpen, setEventsOpen] = useState(false);
+  // The floating WhatsApp button waits until the first screen has scrolled
+  // away, so it never covers hero content or controls.
+  const [showFab, setShowFab] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setShowFab(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
   const eventsRef = useRef<HTMLDivElement>(null);
 
   // Close everything on navigation.
@@ -101,7 +111,7 @@ export function SiteHeader() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMenuOpen(false);
     };
-    const mq = window.matchMedia("(min-width: 1024px)");
+    const mq = window.matchMedia("(min-width: 1280px)");
     const onResize = () => mq.matches && setMenuOpen(false);
     document.addEventListener("keydown", onKey);
     mq.addEventListener("change", onResize);
@@ -113,8 +123,8 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   const linkClass = (active: boolean) =>
-    `relative whitespace-nowrap rounded-md px-2 py-2 text-sm font-medium transition-colors xl:px-3 ${
-      active ? "text-white after:absolute after:inset-x-2 xl:after:inset-x-3 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#FFC72C]" : "text-white/75 hover:text-white"
+    `relative whitespace-nowrap rounded-md px-2 py-2 text-sm font-medium transition-colors ${
+      active ? "text-white after:absolute after:inset-x-2 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-[#FFC72C]" : "text-white/75 hover:text-white"
     }`;
   const eventsActive = isActive(pathname, "/events");
 
@@ -139,7 +149,7 @@ export function SiteHeader() {
             </Link>
 
             {/* Desktop navigation */}
-            <nav aria-label="Main" className="hidden items-center gap-1 lg:flex">
+            <nav aria-label="Main" className="hidden items-center gap-0.5 xl:flex">
               <Link href="/" aria-current={pathname === "/" ? "page" : undefined} className={linkClass(pathname === "/")}>
                 Home
               </Link>
@@ -216,7 +226,7 @@ export function SiteHeader() {
                 aria-expanded={menuOpen}
                 aria-controls="mobile-menu"
                 onClick={() => setMenuOpen((v) => !v)}
-                className="flex h-10 w-10 items-center justify-center rounded-md text-white hover:bg-white/10 lg:hidden"
+                className="flex h-10 w-10 items-center justify-center rounded-md text-white hover:bg-white/10 xl:hidden"
               >
                 {menuOpen ? <X size={22} /> : <Menu size={22} />}
               </button>
@@ -227,7 +237,7 @@ export function SiteHeader() {
           {menuOpen && (
             <div
               id="mobile-menu"
-              className="mobile-menu-panel max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/10 bg-[#002855] lg:hidden"
+              className="mobile-menu-panel max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-white/10 bg-[#002855] xl:hidden"
             >
               <nav aria-label="Mobile" className="mx-auto max-w-7xl px-4 py-4 sm:px-8">
                 <ul className="divide-y divide-white/10">
@@ -299,16 +309,16 @@ export function SiteHeader() {
         </div>
       </header>
 
-      {!menuOpen && (
+      {!menuOpen && showFab && (
         <a
           href={WHATSAPP_INVITE_URL}
           target="_blank"
           rel="noreferrer"
           aria-label="Join the official IEEE WhatsApp group"
           title="Join the official IEEE WhatsApp group"
-          className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_12px_28px_rgba(37,211,102,0.35)] transition duration-200 hover:scale-105"
+          className="m-fade fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_24px_-8px_rgba(0,40,85,0.5)] transition-transform duration-200 hover:scale-105"
         >
-          <svg aria-hidden="true" className="h-8 w-8 fill-current" viewBox="0 0 24 24">
+          <svg aria-hidden="true" className="h-7 w-7 fill-current" viewBox="0 0 24 24">
             <path d={SOCIALS[3].path} />
           </svg>
         </a>

@@ -1,85 +1,68 @@
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/metadata";
-import Link from "next/link";
-import { Calendar, Tag, ArrowRight, User } from "lucide-react";
 import { getAllNews } from "@/lib/news";
+import { PageHero } from "@/components/PageHero";
+import { FeaturedNewsCard, NewsCard } from "@/components/news/NewsCard";
+import { container } from "@/lib/ui";
 
 export const metadata: Metadata = pageMetadata({
   title: "News",
   description:
-    "Latest updates, announcements, event recaps, and stories from the IEEE Student Branch at Cavendish University Uganda.",
+    "Announcements, event recaps and stories from the IEEE Student Branch at Cavendish University Uganda.",
   path: "/news",
 });
 
 export default function NewsPage() {
-  const posts = getAllNews();
+  const [featured, ...rest] = getAllNews();
+  const topics = Array.from(new Set(getAllNews().flatMap((p) => p.tags))).slice(0, 8);
 
   return (
-    <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner max-w-3xl">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              News &amp; Stories
-            </h1>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-              Announcements, workshop summaries, competition updates, and community milestones from our branch.
+    <main className="min-h-screen bg-bg text-ink">
+      <PageHero
+        eyebrow="News & stories"
+        title={
+          <>
+            What&apos;s happening <em>at the branch</em>
+          </>
+        }
+        lede="Announcements, event recaps and practical guides from the IEEE Student Branch at Cavendish University Uganda."
+      >
+        {topics.length > 0 && (
+          <ul aria-label="Topics covered" className="flex flex-wrap gap-2">
+            {topics.map((t) => (
+              <li key={t} className="border border-white/25 px-3 py-1 text-xs text-white/80">
+                {t}
+              </li>
+            ))}
+          </ul>
+        )}
+      </PageHero>
+
+      <section className="py-14 sm:py-20">
+        <div className={container}>
+          {!featured ? (
+            <p className="border border-dashed border-slate-300 bg-white p-12 text-center text-slate-500">
+              No stories published yet.
             </p>
-          </div>
-
-          {posts.length === 0 ? (
-            <div className="mt-12 rounded-3xl border border-dashed border-slate-300 bg-white p-12 text-center">
-              <p className="text-slate-500">No news articles published yet.</p>
-            </div>
           ) : (
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {posts.map((post) => (
-                <article
-                  key={post.slug}
-                  className="group flex flex-col justify-between rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 shadow-sm transition hover:shadow-md"
-                >
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      {post.tags.slice(0, 2).map((t) => (
-                        <span key={t} className=" bg-slate-100 px-2.5 py-0.5 text-[10px] font-semibold text-slate-600">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-
-                    <h2 className="font-display text-xl font-bold text-ink group-hover:text-[#00629B] transition">
-                      <Link href={`/news/${post.slug}`}>
-                        {post.title}
-                      </Link>
-                    </h2>
-
-                    <p className="mt-3 text-sm text-slate-600 leading-relaxed line-clamp-3">
-                      {post.summary}
-                    </p>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={13} />
-                      {new Date(post.date).toLocaleDateString("en-GB", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                      })}
-                    </span>
-                    <Link
-                      href={`/news/${post.slug}`}
-                      className="inline-flex items-center gap-1 font-bold text-[#00629B] hover:underline"
-                    >
-                      Read story <ArrowRight size={13} />
-                    </Link>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <>
+              <FeaturedNewsCard post={featured} />
+              {rest.length > 0 && (
+                <>
+                  <h2 className="mb-6 mt-16 font-display text-2xl font-bold text-ink">More stories</h2>
+                  <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    {rest.map((post) => (
+                      <li key={post.slug}>
+                        <NewsCard post={post} />
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
+            </>
           )}
         </div>
-      </main>
-    </>
+      </section>
+    </main>
   );
 }

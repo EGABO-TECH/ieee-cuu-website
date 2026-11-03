@@ -60,19 +60,28 @@ export function VideoSpotlight() {
   };
 
   return (
-    <section className="bg-[#F5F8FB] py-8 sm:py-12">
-      <div className="mx-auto max-w-5xl px-6">
-        <div className="relative mx-auto max-w-[960px] overflow-hidden rounded-sm border border-[#CADCEA] bg-[#002855] shadow-[0_20px_45px_rgba(0, 40, 85,0.16)]">
-          <div className="relative aspect-video w-full overflow-hidden bg-[radial-gradient(circle_at_15%_10%,rgba(255,255,255,0.18),transparent_18%),linear-gradient(120deg,#1f2f3c_0%,#0f172a_48%,#1a2731_100%)]">
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.05),transparent_40%,rgba(255,255,255,0.04))]" />
-            <div className="absolute left-10 top-10 h-16 w-16 rounded-full bg-white/10 blur-3xl" />
-            <div className="absolute bottom-10 right-10 h-24 w-24 rounded-full bg-[#007DAF]/20 blur-3xl" />
-
+    <section aria-labelledby="video-title" className="bg-[#002855] py-20 text-white sm:py-28 [&_:focus-visible]:outline-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-12">
+        <div className="mb-10 grid gap-4 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7">
+            <p className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#CADCEA]">
+              <span aria-hidden="true" className="h-0.5 w-8 bg-[#FFC72C]" />
+              IEEE Day 2026
+            </p>
+            <h2 id="video-title" className="mt-4 font-display text-3xl font-bold tracking-tight sm:text-4xl">
+              Branches from across Uganda, one celebration
+            </h2>
+          </div>
+          <p className="text-sm leading-relaxed text-white/70 lg:col-span-5">
+            Highlights from the American Center, Kabalagala, where Cavendish University Uganda received its certificate of approval.
+          </p>
+        </div>
+        <div className="relative overflow-hidden border border-white/15 bg-black">
+          <div className="relative aspect-video w-full overflow-hidden">
             <video
               ref={videoRef}
               className="absolute inset-0 h-full w-full cursor-pointer object-cover"
-              src="/IEEE_Day.mp4"
-              poster="/images/IEEE.webp"
+              src="/IEEE_Day.mp4#t=0.5"
               muted
               playsInline
               preload="metadata"
@@ -87,21 +96,19 @@ export function VideoSpotlight() {
               Your browser does not support the video tag.
             </video>
 
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/35 via-transparent to-slate-900/10" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#002855]/50 via-transparent to-transparent" />
 
             <button
               type="button"
               onClick={togglePlayback}
               aria-label={isPlaying ? "Pause video" : "Play video"}
-              className="pointer-events-auto absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white shadow-[0_10px_25px_rgba(0,0,0,0.18)] backdrop-blur-md transition hover:scale-105 hover:bg-white/15 sm:h-20 sm:w-20"
+              className="pointer-events-auto absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#FFC72C] text-[#002855] transition hover:scale-105 hover:bg-white sm:h-20 sm:w-20"
             >
-              {isPlaying ? <Pause className="h-7 w-7 sm:h-8 sm:w-8" /> : <Play className="ml-1 h-7 w-7 fill-current sm:h-8 sm:w-8" />}
+              {isPlaying ? <Pause aria-hidden="true" className="h-7 w-7 sm:h-8 sm:w-8" /> : <Play aria-hidden="true" className="ml-1 h-7 w-7 fill-current sm:h-8 sm:w-8" />}
             </button>
 
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-4 sm:p-6">
-              <div className=" border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.28em] text-white/80 backdrop-blur-sm sm:text-[11px]">
-                IEEE Day
-              </div>
+              <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/80">Kampala · 6 Oct 2026</span>
 
               <button
                 type="button"
@@ -109,7 +116,7 @@ export function VideoSpotlight() {
                 aria-label={isMuted ? "Unmute video" : "Mute video"}
                 className="pointer-events-auto flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/90 backdrop-blur-sm transition hover:bg-black/30"
               >
-                {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+                {isMuted ? <VolumeX aria-hidden="true" className="h-4 w-4" /> : <Volume2 aria-hidden="true" className="h-4 w-4" />}
               </button>
             </div>
           </div>

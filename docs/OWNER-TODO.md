@@ -82,3 +82,10 @@ These claims were toned down to stay accurate. Confirm each one before making it
 - [ ] Check WhatsApp and LinkedIn link previews by pasting the site URL into each
 - [ ] Check these links from a normal connection (they could not be reached during the build): authorcenter.ieee.org, blackpythondevs.com, www.cavendish.ac.ug
 - [ ] Rotate `ADMIN_SECRET` at every executive handover
+
+## Team cards and photos (added November 2026)
+
+- [ ] LinkedIn: add each person's profile URL to `linkedin` in `content/team.json` (IEEE team) and `content/cuucsa.ts` (CUUCSA core team and batch reps). The button switches from "Soon" to a live LinkedIn link as soon as a valid `https://www.linkedin.com/in/...` URL is present. People on both teams only need it in `team.json`.
+- [ ] Headshots: add portraits to `public/images/` and set `photo` in `content/team.json`.
+- [ ] Hero photos: every photo is listed with its author, source and licence in `content/media.ts`, and published at `/credits`. Add only the branch's own photos, IEEE-published photos (credited), or openly licensed ones with a source page. No generated images.
+- [ ] News: set `"featured": true` on a post in `content/news/` to pin it to the top. Add `coverImage` (and `coverAlt`) for a photo cover; without one the post gets a typographic cover.

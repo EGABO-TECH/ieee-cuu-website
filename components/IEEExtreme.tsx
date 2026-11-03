@@ -16,12 +16,6 @@ const FACTS = [
 export function IEEExtreme() {
   return (
     <section id="xtreme" className="relative overflow-hidden bg-bg pb-28 pt-0 sm:pb-36">
-      {/* Subtle ambient glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-20 right-0 h-[600px] w-[600px] rounded-full opacity-[0.05]"
-        style={{ background: "radial-gradient(ellipse at center, #CADCEA 0%, transparent 70%)" }}
-      />
 
       <div className="relative mx-auto max-w-7xl px-6 sm:px-10 lg:px-12">
         {/* Section kicker */}

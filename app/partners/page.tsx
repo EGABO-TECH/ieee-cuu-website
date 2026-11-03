@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Handshake, ArrowRight, ShieldCheck, Mail } from "lucide-react";
 import { SITE } from "@/config/site";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Partners and sponsors",
   description:
@@ -72,17 +73,13 @@ const PARTNERS = [
 export default function PartnersPage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner max-w-3xl">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              Partners &amp; Collaborators
-            </h1>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-              We collaborate with academic departments, global technical organizations, and industry initiatives
-              to create real opportunities for Cavendish University students.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Partners"
+          title={<>Partners and <em>collaborators</em></>}
+          lede={<>We collaborate with academic departments, global technical organizations, and industry initiatives to create real opportunities for Cavendish University students.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           {/* Disclaimer box */}
           <div className="mt-8 rounded-2xl border border-amber-200/80 bg-amber-50/60 p-4 sm:p-5 flex items-start gap-3">

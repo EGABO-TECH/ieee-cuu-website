@@ -1,58 +1,40 @@
 import Image from "next/image";
+import Link from "next/link";
+import { SectionHead } from "./SectionHead";
+import { container } from "@/lib/ui";
 
 const partners = [
-  {
-    name: "Cavendish University Uganda",
-    src: "/images/Cavendish-University-Uganda-Logo.png",
-    alt: "Cavendish University Uganda",
-  },
-  { name: "CUUCSA", src: "/images/cuucsa/cuucsa-emblem.png", alt: "CUUCSA" },
-  { name: "Kahoot", src: "/images/Kahoot.png", alt: "Kahoot" },
-  { name: "IEEE", src: "/images/IEEE.webp", alt: "IEEE" },
-  { name: "AWS Student Builders", src: "/images/AWS_Student_Builders.png", alt: "AWS Student Builders" },
-  { name: "Black Python Devs", src: "/images/Black_Python_Devs.png", alt: "Black Python Devs" },
+  { name: "IEEE", src: "/images/IEEE.webp" },
+  { name: "Cavendish University Uganda", src: "/images/Cavendish-University-Uganda-Logo.png" },
+  { name: "CUUCSA", src: "/images/cuucsa/cuucsa-emblem.png", href: "/cuucsa" },
+  { name: "AWS Student Builders", src: "/images/AWS_Student_Builders.png" },
+  { name: "Black Python Devs", src: "/images/Black_Python_Devs.png" },
+  { name: "Kahoot", src: "/images/Kahoot.png" },
 ];
 
 export function Partnerships() {
   return (
-    <section className="bg-white py-8 sm:py-10">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mb-8 max-w-2xl sm:mb-10">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-[#007DAF]">
-            Partnerships
-          </p>
-          <h2 className="font-display text-3xl font-bold text-[#002855] sm:text-4xl">
-            Working with global and campus partners
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-6">
-          {partners.map((partner) => (
-            <div
-              key={partner.name}
-              className="group flex min-h-[100px] items-center justify-center rounded-xl p-2 transition duration-300 ease-out sm:min-h-[120px]"
-            >
-              <div className="flex w-full flex-col items-center justify-center gap-3 text-center">
-                <div className="relative flex h-16 w-full max-w-[150px] items-center justify-center overflow-hidden rounded-xl bg-transparent p-0 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_12px_30px_rgba(0, 125, 175,0.10)] sm:h-20">
-                  <div className="absolute inset-3 rounded-full bg-[#CADCEA]/80 opacity-0 blur-xl transition duration-300 group-hover:opacity-100" />
-                  {partner.src ? (
-                    <Image
-                      src={partner.src}
-                      alt={partner.alt}
-                      width={160}
-                      height={90}
-                      className="relative z-10 h-12 w-auto max-w-[120px] object-contain opacity-80 transition duration-300 group-hover:opacity-100 group-hover:scale-[1.04] sm:h-14 sm:max-w-[140px]"
-                    />
-                  ) : (
-                    <div className="relative z-10 flex h-14 w-24 items-center justify-center text-[10px] font-bold uppercase tracking-[0.2em] text-[#2D4D76] transition duration-300 group-hover:text-[#002855]">
-                      {partner.name.slice(0, 2)}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+    <section aria-labelledby="partners-title" className="border-t border-slate-200 bg-white py-20">
+      <div className={container}>
+        <SectionHead id="partners-title" kicker="Partners" title="Working with campus and global partners" href="/partners" linkLabel="All partners" />
+        <ul className="grid grid-cols-2 gap-px border border-slate-200 bg-slate-200 sm:grid-cols-3 lg:grid-cols-6">
+          {partners.map((p) => {
+            const logo = (
+              <Image
+                src={p.src}
+                alt={p.name}
+                width={160}
+                height={90}
+                className="h-12 w-auto max-w-[120px] object-contain opacity-70 grayscale transition duration-300 group-hover:opacity-100 group-hover:grayscale-0 sm:h-14"
+              />
+            );
+            return (
+              <li key={p.name} className="group flex h-28 items-center justify-center bg-white p-4">
+                {p.href ? <Link href={p.href}>{logo}</Link> : logo}
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </section>
   );

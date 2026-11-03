@@ -24,7 +24,7 @@ export function BranchDirectory() {
             <a
               key={page.href}
               href={page.href}
-              className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(0, 40, 85,0.04)]"
+              className="group flex h-full flex-col justify-between rounded-2xl border border-slate-200 bg-white p-5 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_12px_24px_rgba(0,40,85,0.04)]"
             >
               <div>
                 <div className="mb-5 flex items-center justify-between gap-3">

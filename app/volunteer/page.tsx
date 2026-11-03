@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Download, Calendar, MapPin, Users, CheckCircle2 } from "lucide-react";
 import { Countdown } from "@/components/ui/Countdown";
@@ -7,6 +6,8 @@ import { VOLUNTEER_CALL as CALL } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
 import { msUntil } from "@/lib/events";
 import { pageMetadata } from "@/lib/metadata";
+import { PageHero } from "@/components/PageHero";
+import { btn, nudge } from "@/lib/ui";
 
 // Re-render every 5 minutes so the page flips to "closed" after the deadline.
 export const revalidate = 300;
@@ -61,94 +62,60 @@ export default function VolunteerPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-32 sm:pt-36">
-        {/* ── HERO ── */}
-        <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10 lg:py-14">
-          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#00629B]">Call for volunteers</p>
-              <h1 className="mt-3 font-display text-4xl font-bold leading-[1.12] text-ink sm:text-5xl">
-                {isOpen ? "We're looking for 15 student volunteers" : "Applications closed. Thank you."}
-              </h1>
-              <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
-                {isOpen
-                  ? "Open to every Cavendish University Uganda student, any faculty, any year. Help make the Official Branch Launch a success."
-                  : "Thank you to everyone who applied to volunteer at the Official Branch Launch. Selected volunteers will be contacted before 4 November."}
-              </p>
-
-              <ul className="mt-6 space-y-2 text-sm text-slate-700">
-                <li className="flex items-center gap-3">
-                  <Calendar size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
-                  Launch on Wednesday 4 November 2026
-                </li>
-                <li className="flex items-center gap-3">
-                  <MapPin size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
-                  Cavendish University Uganda
-                </li>
-                <li className="flex items-center gap-3">
-                  <Users size={16} className="shrink-0 text-[#00629B]" aria-hidden="true" />
-                  15 volunteer spots
-                </li>
-              </ul>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                {isOpen ? (
-                  <a
-                    href={CALL.formUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#00629B] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#002855]"
-                  >
-                    Apply on Google Forms
-                    <ArrowUpRight size={15} aria-hidden="true" />
-                  </a>
-                ) : (
-                  <Link
-                    href="/join"
-                    className="inline-flex items-center gap-2 bg-[#00629B] px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:bg-[#002855]"
-                  >
-                    Join the volunteer interest list
-                    <ArrowUpRight size={15} aria-hidden="true" />
-                  </Link>
-                )}
-                {CALL.flyer && (
-                  <a
-                    href={CALL.flyer}
-                    download="IEEE-CUU-Call-for-Volunteers.png"
-                    className="inline-flex items-center gap-2 border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-800 transition hover:bg-slate-50"
-                  >
-                    <Download size={15} aria-hidden="true" />
-                    Download the flyer
-                  </a>
-                )}
-              </div>
-
-              {/* Deadline strip */}
-              {isOpen && (
-                <div className="mt-8 rounded-2xl border border-[#CADCEA] bg-white p-5">
-                  <p className="mb-3 text-sm font-semibold text-[#2D4D76]">{DEADLINE_LABEL}</p>
-                  <Countdown targetISO={CALL.closes} initialMs={msUntil(CALL.closes)} showSeconds={false} />
-                </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Call for volunteers"
+          title={isOpen ? <>We&apos;re looking for <em>15 student volunteers</em></> : <>Applications closed. <em>Thank you.</em></>}
+          lede={
+            isOpen
+              ? "Open to every Cavendish University Uganda student, any faculty, any year. Help make the Official Branch Launch a success."
+              : "Thank you to everyone who applied to volunteer at the Official Branch Launch. Selected volunteers have been contacted, and the next call will be announced here."
+          }
+          photo="solarTechnicians"
+          actions={
+            <>
+              {isOpen ? (
+                <a href={CALL.formUrl} target="_blank" rel="noopener noreferrer" className={btn.accent}>
+                  Apply on Google Forms
+                  <ArrowUpRight size={16} aria-hidden="true" className={nudge} />
+                </a>
+              ) : (
+                <Link href="/join" className={btn.accent}>
+                  Join the volunteer interest list
+                  <ArrowUpRight size={16} aria-hidden="true" className={nudge} />
+                </Link>
               )}
+              {CALL.flyer && (
+                <a href={CALL.flyer} download="IEEE-CUU-Call-for-Volunteers.png" className={btn.ghost}>
+                  <Download size={15} aria-hidden="true" />
+                  Download the flyer
+                </a>
+              )}
+            </>
+          }
+        >
+          <ul className="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/15 pt-6 text-sm text-white/80">
+            <li className="flex items-center gap-2">
+              <Calendar size={16} className="text-[#FFC72C]" aria-hidden="true" />
+              Launch: Wednesday 4 November 2026
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} className="text-[#FFC72C]" aria-hidden="true" />
+              Cavendish University Uganda
+            </li>
+            <li className="flex items-center gap-2">
+              <Users size={16} className="text-[#FFC72C]" aria-hidden="true" />
+              15 volunteer spots
+            </li>
+          </ul>
+          {isOpen && (
+            <div className="mt-8 bg-white p-5 text-ink">
+              <p className="mb-3 text-sm font-semibold text-[#2D4D76]">{DEADLINE_LABEL}</p>
+              <Countdown targetISO={CALL.closes} initialMs={msUntil(CALL.closes)} showSeconds={false} />
             </div>
-
-            {CALL.flyer && (
-              <div className="lg:col-span-5 flex justify-center">
-                <div className="w-full max-w-[360px] overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
-                  <Image
-                    src={CALL.flyer}
-                    alt="Call for volunteers flyer: IEEE CUU Student Branch launch, 4 November 2026 at Cavendish University Uganda. Open to all CUU students, 15 volunteers, application deadline 27 October 2026."
-                    width={1024}
-                    height={1536}
-                    sizes="(max-width: 1024px) 90vw, 360px"
-                    className="h-auto w-full"
-                    priority
-                  />
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
+          )}
+        </PageHero>
+        <div className="h-6" aria-hidden="true" />
 
         {/* ── ROLES ── */}
         <section className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12 py-10">

@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/metadata";
 import { FileText, Download, ShieldCheck, Clock, ExternalLink } from "lucide-react";
 import { SITE } from "@/config/site";
 
+import { PageHero } from "@/components/PageHero";
 export const metadata: Metadata = pageMetadata({
   title: "Governance and transparency",
   description:
@@ -73,18 +74,13 @@ const GOVERNANCE_DOCS: GovernanceDoc[] = [
 export default function GovernancePage() {
   return (
     <>
-      <main className="min-h-screen bg-[#F5F8FB] text-ink pt-28 sm:pt-32">
-        <div className="mx-auto max-w-7xl px-6 sm:px-10 lg:px-12 py-12 lg:py-16">
-          <div className="page-banner max-w-3xl">
-            <h1 className="font-display text-4xl font-bold text-ink sm:text-5xl">
-              Governance &amp; Transparency
-            </h1>
-            <p className="mt-4 text-base sm:text-lg leading-relaxed text-slate-600">
-              The IEEE Student Branch at Cavendish University Uganda operates in accordance with
-              IEEE Member and Geographic Activities (MGA) policies, IEEE Region 8 regulations,
-              and Cavendish University student leadership guidelines.
-            </p>
-          </div>
+      <main className="min-h-screen bg-bg text-ink">
+        <PageHero
+          eyebrow="Governance"
+          title={<>Governance and <em>transparency</em></>}
+          lede={<>The IEEE Student Branch at Cavendish University Uganda operates in accordance with IEEE Member and Geographic Activities (MGA) policies, IEEE Region 8 regulations, and Cavendish University student leadership guidelines.</>}
+        />
+        <div className="mx-auto max-w-7xl px-4 pb-16 pt-4 sm:px-8 lg:px-12">
 
           {/* Pillars Box */}
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">

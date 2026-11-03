@@ -1,69 +1,58 @@
 import Link from "next/link";
-import { ArrowUpRight, Award, BookOpen, Calendar, Code2, Globe2, HandHeart, MapPin, Trophy, UserPlus, Users2 } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Calendar, MapPin } from "lucide-react";
 import { Countdown } from "./ui/Countdown";
+import { SectionHead } from "./SectionHead";
+import { PersonCard } from "./PersonCard";
+import { NewsCard } from "./news/NewsCard";
 import { getEventBySlug, msUntil } from "@/lib/events";
 import { VOLUNTEER_CALL } from "@/lib/calls";
 import { callStatus } from "@/lib/status";
-import { journey } from "@/lib/data";
-import { cuucsaIndependence } from "@/content/cuucsa";
-import teamData from "@/content/team.json";
 import { getAllNews } from "@/lib/news";
+import teamData from "@/content/team.json";
+import { btn, container, nudge } from "@/lib/ui";
 
 const LAUNCH_SLUG = "branch-launch-2026";
 
-/** Next flagship event, driven by content/events/branch-launch-2026.json. */
+/** Next flagship event, driven by content/events/branch-launch-2026.json. Hidden once it has ended. */
 export function LaunchBlock() {
   const launch = getEventBySlug(LAUNCH_SLUG);
   if (!launch || launch.status === "ended") return null;
   const live = launch.status === "live";
 
   return (
-    <section aria-labelledby="launch-title" className="bg-bg py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="grid grid-cols-1 gap-8 sheet-grid rounded-3xl bg-[#002855] p-8 text-white sm:p-12 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#FFC72C]/90">
-              {live ? "Happening today" : "Next flagship event"}
-            </p>
-            <h2 id="launch-title" className="mt-3 font-display text-3xl font-bold leading-tight sm:text-4xl">
-              {launch.title}
-            </h2>
-            <ul className="mt-6 space-y-2 text-sm text-white/85">
-              <li className="flex items-center gap-3">
-                <Calendar size={16} aria-hidden="true" className="shrink-0 text-[#FFC72C]" />
-                Wednesday 4 November 2026
-              </li>
-              <li className="flex items-center gap-3">
-                <MapPin size={16} aria-hidden="true" className="shrink-0 text-[#FFC72C]" />
-                {launch.venue?.name}
-                {launch.venue?.detail && `, ${launch.venue.detail}`}
-              </li>
-            </ul>
-            {launch.timeTbc && <p className="mt-4 text-sm text-white/70">Time and venue details coming soon.</p>}
-          </div>
-          <div className="lg:justify-self-end">
-            {!live && (
-              <div className="[&_b]:text-ink">
-                <Countdown targetISO={launch.startsAt} initialMs={msUntil(launch.startsAt)} showSeconds={false} hideWhenExpired />
-              </div>
+    <section aria-labelledby="launch-title" className="bg-[#00629B] text-white [&_:focus-visible]:outline-white">
+      <div className={`${container} grid gap-8 py-12 lg:grid-cols-12 lg:items-center`}>
+        <div className="lg:col-span-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#FFC72C]">
+            {live ? "Happening today" : "Next flagship event"}
+          </p>
+          <h2 id="launch-title" className="mt-3 font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+            {launch.title}
+          </h2>
+          <ul className="mt-5 flex flex-wrap gap-x-8 gap-y-2 text-sm text-white/85">
+            <li className="flex items-center gap-2">
+              <Calendar size={16} aria-hidden="true" className="text-[#FFC72C]" />
+              Wednesday 4 November 2026
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={16} aria-hidden="true" className="text-[#FFC72C]" />
+              {launch.venue?.name}
+              {launch.venue?.detail && `, ${launch.venue.detail}`}
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col gap-5 lg:col-span-5 lg:items-end">
+          {!live && <Countdown targetISO={launch.startsAt} initialMs={msUntil(launch.startsAt)} showSeconds={false} hideWhenExpired />}
+          <div className="flex flex-wrap gap-3">
+            <Link href={`/events/${LAUNCH_SLUG}`} className={btn.accent}>
+              {live ? "Live details" : "Launch details"}
+              <ArrowRight size={16} aria-hidden="true" className={nudge} />
+            </Link>
+            {!launch.timeTbc && (
+              <a href={`/events/${LAUNCH_SLUG}/calendar.ics`} className={btn.ghost}>
+                Add to calendar
+              </a>
             )}
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Link
-                href={`/events/${LAUNCH_SLUG}`}
-                className="inline-flex items-center gap-2 bg-white px-6 py-3 text-sm font-bold text-[#002855] transition hover:bg-[#CADCEA]"
-              >
-                {live ? "Live details" : "Launch details"}
-                <ArrowUpRight size={15} aria-hidden="true" />
-              </Link>
-              {!launch.timeTbc && (
-                <a
-                  href={`/events/${LAUNCH_SLUG}/calendar.ics`}
-                  className="inline-flex items-center gap-2 border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-                >
-                  Add to calendar
-                </a>
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -75,23 +64,20 @@ export function WaysIn() {
   const volunteerOpen = callStatus(VOLUNTEER_CALL) !== "closed";
   const ways = [
     {
-      icon: UserPlus,
       title: "Join",
-      body: "Register your interest, then become an IEEE Student Member when you are ready.",
+      body: "Register your interest with the branch, then become an IEEE Student Member when you are ready.",
       href: "/join",
       cta: "Join the branch",
     },
     {
-      icon: HandHeart,
       title: "Volunteer",
       body: volunteerOpen
         ? `${VOLUNTEER_CALL.slots} spots to help run the Official Branch Launch. No experience needed.`
-        : "Help run branch events. Register your interest for the next call.",
+        : "Help run workshops and events. Register your interest and we'll contact you for the next call.",
       href: volunteerOpen ? VOLUNTEER_CALL.href : "/join",
       cta: volunteerOpen ? "Apply to volunteer" : "Register interest",
     },
     {
-      icon: Code2,
       title: "Compete",
       body: "IEEEXtreme is IEEE's 24-hour global programming contest for teams of Student Members.",
       href: "/events/ieeextreme-20",
@@ -100,77 +86,19 @@ export function WaysIn() {
   ];
 
   return (
-    <section aria-labelledby="ways-title" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="ways-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
-          Three ways in
-        </h2>
-        <ul className="grid grid-cols-1 gap-5 md:grid-cols-3">
-          {ways.map(({ icon: Icon, ...w }) => (
-            <li key={w.title} className="flex flex-col rounded-2xl border border-ink/10 bg-[#F5F8FB] p-6">
-              <Icon size={22} aria-hidden="true" className="text-[#00629B]" />
-              <h3 className="mt-4 text-xl font-semibold text-ink">{w.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{w.body}</p>
-              <Link href={w.href} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
+    <section aria-labelledby="ways-title" className="bg-white py-20 sm:py-28">
+      <div className={container}>
+        <SectionHead id="ways-title" kicker="Get involved" title="Three ways in" />
+        <ol className="grid border-t border-slate-200 md:grid-cols-3">
+          {ways.map((w, i) => (
+            <li key={w.title} className="group border-b border-slate-200 py-8 md:border-b-0 md:border-r md:px-8 md:first:pl-0 md:last:border-r-0 md:last:pr-0">
+              <span className="font-display text-sm font-bold tabular-nums text-[#00629B]">0{i + 1}</span>
+              <h3 className="mt-3 font-display text-2xl font-bold text-ink">{w.title}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-slate-600">{w.body}</p>
+              <Link href={w.href} className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#00629B] hover:text-[#002855]">
                 {w.cta}
-                <ArrowUpRight size={14} aria-hidden="true" />
+                <ArrowRight size={15} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
               </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-const BENEFITS = [
-  { icon: BookOpen, title: "IEEE Xplore", body: "Search IEEE's research library. Full-text access depends on your institution or IEEE membership options.", href: "/resources" },
-  { icon: Trophy, title: "Competitions", body: "Take part in IEEEXtreme and other IEEE student contests.", href: "/events/ieeextreme-20" },
-  { icon: Users2, title: "Societies", body: "Explore IEEE technical societies such as the Computer Society and Women in Engineering.", href: "/programs" },
-  { icon: Award, title: "Leadership", body: "Volunteer, take on branch roles and help run events.", href: "/team" },
-  { icon: Globe2, title: "A global network", body: "Connect with students and professionals across the IEEE Uganda Section and Region 8.", href: "/about" },
-];
-
-export function WhatYouGet() {
-  return (
-    <section aria-labelledby="benefits-title" className="bg-bg py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="benefits-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
-          What you get
-        </h2>
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-          {BENEFITS.map(({ icon: Icon, ...b }) => (
-            <li key={b.title}>
-              <Link href={b.href} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-5 transition hover:border-[#007DAF]/50">
-                <Icon size={20} aria-hidden="true" className="text-[#00629B]" />
-                <h3 className="mt-3 font-semibold text-ink group-hover:text-[#00629B]">{b.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{b.body}</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  );
-}
-
-export function StudentJourney() {
-  return (
-    <section aria-labelledby="journey-title" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <h2 id="journey-title" className="mb-8 font-display text-3xl font-bold text-ink sm:text-4xl">
-          Your journey with the branch
-        </h2>
-        <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {journey.map((j) => (
-            <li key={j.step} className="flex gap-4 rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5">
-              <span className="font-display text-2xl font-bold text-[#007DAF]" aria-hidden="true">
-                {j.step}
-              </span>
-              <div>
-                <h3 className="font-semibold text-ink">{j.title}</h3>
-                <p className="mt-1 text-sm leading-relaxed text-muted">{j.body}</p>
-              </div>
             </li>
           ))}
         </ol>
@@ -179,63 +107,30 @@ export function StudentJourney() {
   );
 }
 
-export function Recognition() {
+const BENEFITS = [
+  { title: "IEEE Xplore", body: "Search IEEE's research library. Full-text access depends on your institution or membership.", href: "/resources" },
+  { title: "Competitions", body: "IEEEXtreme and other IEEE student contests.", href: "/events/ieeextreme-20" },
+  { title: "Technical societies", body: "Computer Society, Women in Engineering, Robotics and more.", href: "/programs" },
+  { title: "Leadership", body: "Volunteer, take on branch roles and run events.", href: "/team" },
+  { title: "A global network", body: "Students and professionals across the Uganda Section and Region 8.", href: "/about" },
+  { title: "Mentoring", body: "Industry speakers, IEEE Young Professionals and peer learning.", href: "/programs" },
+];
+
+export function WhatYouGet() {
   return (
-    <section aria-labelledby="recognition-title" className="bg-bg py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="flex flex-col gap-6 rounded-3xl border border-[#CADCEA] bg-white p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
-          <div className="max-w-2xl">
-            <p className="inline-flex items-center gap-2 bg-[#CADCEA] px-3 py-1 text-xs font-semibold text-[#2D4D76]">
-              <Award size={14} aria-hidden="true" />
-              Recognised on IEEE Day 2026
-            </p>
-            <h2 id="recognition-title" className="mt-4 font-display text-2xl font-bold text-ink sm:text-3xl">
-              Certificate of approval, 6 October 2026
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">
-              At the American Center in Kabalagala, student branches from across Uganda celebrated IEEE Day together.
-              Cavendish University Uganda was recognised as one of the branches being reborn and received its official
-              certificate of approval.
-            </p>
-          </div>
-          <Link
-            href="/events/ieee-day-2026"
-            className="inline-flex shrink-0 items-center gap-2 bg-[#00629B] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#002855]"
-          >
-            Read the recap
-            <ArrowUpRight size={15} aria-hidden="true" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-type TeamMember = { id: string; name: string; role: string; group: string; consent: boolean };
-const LEADERSHIP_IDS = ["mulondo-andrew", "dr-john-bosco-ssemakula", "tabingwa-evans-maganda"];
-
-export function LeadershipStrip() {
-  const team = teamData as TeamMember[];
-  const leaders = LEADERSHIP_IDS.map((id) => team.find((m) => m.id === id && m.consent)).filter(
-    (m): m is TeamMember => Boolean(m)
-  );
-
-  return (
-    <section aria-labelledby="leaders-title" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <h2 id="leaders-title" className="font-display text-3xl font-bold text-ink sm:text-4xl">
-            Branch leadership
-          </h2>
-          <Link href="/team" className="text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
-            Meet the full team →
-          </Link>
-        </div>
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {leaders.map((m) => (
-            <li key={m.id} className="rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-wider text-[#00629B]">{m.role}</p>
-              <p className="mt-1 font-display text-lg font-bold text-ink">{m.name}</p>
+    <section aria-labelledby="benefits-title" className="bg-bg py-20 sm:py-28">
+      <div className={container}>
+        <SectionHead id="benefits-title" kicker="Membership" title="What being part of IEEE gives you" />
+        <ul className="grid gap-px border border-slate-200 bg-slate-200 sm:grid-cols-2 lg:grid-cols-3">
+          {BENEFITS.map((b) => (
+            <li key={b.title}>
+              <Link href={b.href} className="group flex h-full flex-col bg-white p-7 transition-colors hover:bg-[#F5F8FB]">
+                <h3 className="flex items-center justify-between font-display text-lg font-bold text-ink group-hover:text-[#00629B]">
+                  {b.title}
+                  <ArrowUpRight size={17} aria-hidden="true" className="text-slate-300 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#00629B]" />
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{b.body}</p>
+              </Link>
             </li>
           ))}
         </ul>
@@ -244,19 +139,24 @@ export function LeadershipStrip() {
   );
 }
 
-export function CuucsaTieIn() {
+export function Recognition() {
   return (
-    <section aria-labelledby="cuucsa-tie-title" className="bg-bg py-12">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="flex flex-col gap-4 rounded-2xl border border-ink/10 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="max-w-3xl">
-            <h2 id="cuucsa-tie-title" className="font-semibold text-ink">
-              Working with CUUCSA
-            </h2>
-            <p className="mt-1 text-sm leading-relaxed text-muted">{cuucsaIndependence}</p>
-          </div>
-          <Link href="/cuucsa" className="shrink-0 text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
-            About CUUCSA →
+    <section aria-labelledby="recognition-title" className="bg-white py-20 sm:py-24">
+      <div className={`${container} grid gap-8 lg:grid-cols-12 lg:items-end`}>
+        <div className="lg:col-span-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#00629B]">IEEE Day · 6 October 2026</p>
+          <h2 id="recognition-title" className="mt-4 text-balance font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+            Officially recognised, with a certificate of approval
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-slate-600">
+            At the American Center in Kabalagala, student branches from across Uganda celebrated IEEE Day together.
+            Cavendish University Uganda was recognised as one of the branches being reborn.
+          </p>
+        </div>
+        <div className="lg:col-span-4 lg:text-right">
+          <Link href="/events/ieee-day-2026" className={btn.primary}>
+            Read the recap
+            <ArrowRight size={16} aria-hidden="true" className={nudge} />
           </Link>
         </div>
       </div>
@@ -264,32 +164,41 @@ export function CuucsaTieIn() {
   );
 }
 
+type TeamMember = { id: string; name: string; role: string; group: string; photo?: string; linkedin?: string; consent: boolean };
+const LEADERSHIP_IDS = ["mulondo-andrew", "dr-john-bosco-ssemakula", "tabingwa-evans-maganda"];
+
+export function LeadershipStrip() {
+  const team = teamData as TeamMember[];
+  const leaders = LEADERSHIP_IDS.map((id) => team.find((m) => m.id === id && m.consent)).filter((m): m is TeamMember => Boolean(m));
+
+  return (
+    <section aria-labelledby="leaders-title" className="bg-bg py-20 sm:py-28">
+      <div className={container}>
+        <SectionHead id="leaders-title" kicker="Leadership" title="Who leads the branch" href="/team" linkLabel="Meet the full team" />
+        <ul className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+          {leaders.map((m) => (
+            <li key={m.id}>
+              <PersonCard person={{ name: m.name, role: m.role, photo: m.photo, linkedin: m.linkedin }} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
 
 export function LatestNews() {
   const posts = getAllNews().slice(0, 3);
   if (posts.length === 0) return null;
 
   return (
-    <section aria-labelledby="news-title" className="bg-white py-16 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-10 lg:px-12">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-          <h2 id="news-title" className="font-display text-3xl font-bold text-ink sm:text-4xl">
-            Latest from the branch
-          </h2>
-          <Link href="/news" className="text-sm font-semibold text-[#00629B] hover:text-[#007DAF]">
-            All news →
-          </Link>
-        </div>
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-3">
+    <section aria-labelledby="news-title" className="bg-white py-20 sm:py-28">
+      <div className={container}>
+        <SectionHead id="news-title" kicker="News" title="Latest from the branch" href="/news" linkLabel="All stories" />
+        <ul className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {posts.map((p) => (
             <li key={p.slug}>
-              <Link href={`/news/${p.slug}`} className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-[#F5F8FB] p-5 transition hover:border-[#007DAF]/50">
-                <time dateTime={p.date} className="text-xs text-muted">
-                  {new Date(p.date).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
-                </time>
-                <h3 className="mt-2 font-semibold text-ink group-hover:text-[#00629B]">{p.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-muted">{p.summary}</p>
-              </Link>
+              <NewsCard post={p} />
             </li>
           ))}
         </ul>

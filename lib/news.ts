@@ -8,8 +8,28 @@ export interface NewsPost {
   author: string;
   tags: string[];
   summary: string;
+  /** Optional photo; without one the card uses a typographic cover. */
   coverImage?: string;
+  coverAlt?: string;
+  /** Pin to the top of /news and the home page. */
+  featured?: boolean;
   content: string;
+}
+
+/** About 220 words a minute, never less than one. */
+export function readingMinutes(post: Pick<NewsPost, "content" | "summary">) {
+  const words = `${post.summary} ${post.content}`.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 220));
+}
+
+export function formatNewsDate(iso: string, month: "long" | "short" = "long") {
+  // Dates are calendar days; format in UTC so the day never shifts.
+  return new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month,
+    year: "numeric",
+    timeZone: "UTC",
+  });
 }
 
 const NEWS_DIR = path.join(process.cwd(), "content", "news");
@@ -27,7 +47,9 @@ export function getAllNews(): NewsPost[] {
     });
 
     // Sort descending by date
-    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    return posts.sort(
+      (a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug)
+    );
   } catch (err) {
     console.error("Error reading news posts:", err);
     return [];
