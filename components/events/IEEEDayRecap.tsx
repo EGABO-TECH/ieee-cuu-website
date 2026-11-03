@@ -22,12 +22,15 @@ export function IEEEDayRecap() {
   const event = getEventBySlug("ieee-day-2026");
   const recap = event?.recap?.summary;
   const photos = event?.recap?.photos ?? [];
+  const [lead, ...rest] = photos;
+  const album = event?.recap?.links?.[0];
 
   return (
     <>
       <main className="min-h-screen bg-bg text-ink">
         <PageHero
           eyebrow="Event recap"
+          photo="ieeeDayGroup"
           title={
             <>
               IEEE Day 2026 at the <em>American Center</em>
@@ -58,19 +61,59 @@ export function IEEEDayRecap() {
             <p className="text-base leading-relaxed text-slate-700 sm:text-lg">{recap}</p>
           )}
 
-          <div className="mt-10">
-            <h2 className="font-display text-2xl font-bold text-ink">Photos</h2>
-            {photos.length > 0 ? (
-              <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {photos.map((photo) => (
-                  <figure key={photo.src}>
-                    <div className="relative aspect-square overflow-hidden rounded-xl border border-slate-100">
-                      <Image src={photo.src} alt={photo.alt} fill className="object-cover" sizes="(max-width: 640px) 50vw, 280px" />
-                    </div>
-                    {photo.caption && <figcaption className="mt-1.5 text-xs text-slate-500">{photo.caption}</figcaption>}
-                  </figure>
-                ))}
+          <div className="mt-12">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#00629B]">Gallery</p>
+                <h2 className="mt-2 font-display text-2xl font-bold text-ink sm:text-3xl">Moments from the day</h2>
               </div>
+              {album && (
+                <a href={album.url} target="_blank" rel="noopener noreferrer" className={btn.secondary}>
+                  See all photos
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                  <span className="sr-only">(opens Google Photos in a new tab)</span>
+                </a>
+              )}
+            </div>
+            {lead ? (
+              <>
+                <figure className="mt-6">
+                  <div className="relative aspect-[3/2] overflow-hidden bg-[#002855]">
+                    <Image
+                      src={lead.src}
+                      alt={lead.alt}
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 896px, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  {lead.caption && (
+                    <figcaption className="mt-3 border-l-2 border-[#FFC72C] pl-3 text-sm font-medium text-slate-700">
+                      {lead.caption}
+                    </figcaption>
+                  )}
+                </figure>
+
+                <div className="mt-6 columns-2 gap-3 sm:columns-3 sm:gap-4">
+                  {rest.map((photo) => (
+                    <figure key={photo.src} className="group mb-3 break-inside-avoid sm:mb-4">
+                      <div className="overflow-hidden bg-[#E6EFF6]">
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          width={photo.width ?? 1600}
+                          height={photo.height ?? 1067}
+                          sizes="(min-width: 1024px) 290px, (min-width: 640px) 33vw, 50vw"
+                          className="h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                        />
+                      </div>
+                      {photo.caption && <figcaption className="mt-1.5 text-xs leading-5 text-slate-500">{photo.caption}</figcaption>}
+                    </figure>
+                  ))}
+                </div>
+                <p className="mt-2 text-xs text-slate-500">Photos: IEEE Day Uganda 2026 event album.</p>
+              </>
             ) : (
               <div className="mt-4 flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white p-10 text-center">
                 <ImageIcon size={28} className="mb-3 text-slate-300" aria-hidden="true" />

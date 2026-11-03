@@ -113,6 +113,17 @@ const PHOTOS_RAW = {
     sourceName: "IEEE Region 8",
     license: "© IEEE, used with credit",
   },
+  ieeeDayGroup: {
+    src: "/images/events/ieee-day-2026/group-uganda-flag.jpg",
+    alt: "Students and IEEE Uganda Section officials hold up the Ugandan flag at IEEE Day 2026, American Center, Kampala.",
+    width: 1600,
+    height: 868,
+    author: "IEEE Day Uganda 2026 album",
+    sourceUrl: "https://photos.app.goo.gl/sFtwdZnFuJA8nM1E8",
+    sourceName: "IEEE Day Uganda 2026 album",
+    license: "Event photography, used with credit",
+    focus: "50% 35%",
+  },
 } satisfies Record<string, Photo>;
 
 export type PhotoKey = keyof typeof PHOTOS_RAW;

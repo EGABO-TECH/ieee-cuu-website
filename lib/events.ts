@@ -25,6 +25,9 @@ export type EventPhoto = {
   src: string;
   alt: string;
   caption?: string;
+  /** Intrinsic size, so the gallery can keep each photo's shape. */
+  width?: number;
+  height?: number;
 };
 
 export type EventLink = {

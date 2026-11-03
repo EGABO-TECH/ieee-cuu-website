@@ -11,6 +11,9 @@ export interface NewsPost {
   /** Optional photo; without one the card uses a typographic cover. */
   coverImage?: string;
   coverAlt?: string;
+  /** Optional photo set shown after the story. */
+  gallery?: { src: string; alt: string; caption?: string; width: number; height: number }[];
+  galleryTitle?: string;
   /** Pin to the top of /news and the home page. */
   featured?: boolean;
   content: string;

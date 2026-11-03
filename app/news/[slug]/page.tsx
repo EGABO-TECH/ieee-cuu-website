@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { formatNewsDate, getAllNews, getNewsBySlug, readingMinutes } from "@/lib/news";
@@ -144,6 +145,32 @@ export default function NewsArticlePage({ params }: Props) {
               <Paragraph key={i} text={para} />
             ))}
           </div>
+          {post.gallery && post.gallery.length > 0 && (
+            <section aria-labelledby="gallery-title" className="mt-14">
+              <h2 id="gallery-title" className="font-display text-2xl font-bold text-ink">
+                {post.galleryTitle ?? "Photos"}
+              </h2>
+              <ul className="mt-6 columns-2 gap-4 sm:columns-3">
+                {post.gallery.map((img) => (
+                  <li key={img.src} className="mb-4 break-inside-avoid">
+                    <figure>
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={img.width}
+                        height={img.height}
+                        sizes="(min-width: 640px) 220px, 45vw"
+                        className="h-auto w-full border border-slate-200"
+                      />
+                      {img.caption && (
+                        <figcaption className="mt-2 text-sm font-semibold text-ink">{img.caption}</figcaption>
+                      )}
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
           <div className="mt-12 border-t border-slate-200 pt-6">
             <ShareLinks title={post.title} url={url} />
           </div>

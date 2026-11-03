@@ -8,5 +8,73 @@
     "Launch"
   ],
   "summary": "The branch is looking for 15 Cavendish University Uganda students to help run the Official Branch Launch on 4 November 2026. Applications close 27 October.",
-  "content": "The IEEE Student Branch at Cavendish University Uganda is looking for 15 student volunteers to help make the Official Branch Launch a success.\n\nThe call is open to every CUU student, from any faculty and any year. You do not need IEEE membership or technical skills. Volunteers will help with registration and ushering, logistics, media and photography, social content, tech and live updates, and mobilisation before the day.\n\nApplications close on 27 October 2026 at 11:59 PM EAT. Selected volunteers will be contacted before the launch and invited to a short briefing.\n\nSee the roles and apply on the Volunteer page: /volunteer"
+  "coverImage": "/images/events/volunteers-cover.jpg",
+  "coverAlt": "\"I'm volunteering\" cards for six of the student volunteers at the Official Branch Launch on 4 November 2026.",
+  "content": "The IEEE Student Branch at Cavendish University Uganda is looking for 15 student volunteers to help make the Official Branch Launch a success.\n\nThe call is open to every CUU student, from any faculty and any year. You do not need IEEE membership or technical skills. Volunteers will help with registration and ushering, logistics, media and photography, social content, tech and live updates, and mobilisation before the day.\n\nApplications close on 27 October 2026 at 11:59 PM EAT. Selected volunteers will be contacted before the launch and invited to a short briefing.\n\nSee the roles and apply on the Volunteer page: /volunteer",
+  "galleryTitle": "Meet the volunteers",
+  "gallery": [
+    {
+      "src": "/images/events/V1.jpg",
+      "alt": "\"I'm volunteering\" card for Emmanuel Angelo, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Emmanuel Angelo",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "src": "/images/events/V2.jpg",
+      "alt": "\"I'm volunteering\" card for Martha M., volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Martha M.",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/images/events/V3.jpg",
+      "alt": "\"I'm volunteering\" card for Aber Gloria Emma, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Aber Gloria Emma",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "src": "/images/events/V4.jpg",
+      "alt": "\"I'm volunteering\" card for Muwaya Tresha, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Muwaya Tresha",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "src": "/images/events/V5.jpg",
+      "alt": "\"I'm volunteering\" card for Asiimwe Moses, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Asiimwe Moses",
+      "width": 1080,
+      "height": 1080
+    },
+    {
+      "src": "/images/events/V6.jpg",
+      "alt": "\"I'm volunteering\" card for Muhindo Vicent, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Muhindo Vicent",
+      "width": 720,
+      "height": 1280
+    },
+    {
+      "src": "/images/events/V7-cropped.jpg",
+      "alt": "\"I'm volunteering\" card for Ssebutinde Charles, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Ssebutinde Charles",
+      "width": 828,
+      "height": 824
+    },
+    {
+      "src": "/images/events/V8.jpg",
+      "alt": "\"I'm volunteering\" card for Judith, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Judith",
+      "width": 540,
+      "height": 960
+    },
+    {
+      "src": "/images/events/V9.jpg",
+      "alt": "\"I'm volunteering\" card for Diana Joy Musoki, volunteer at the Official Branch Launch, 4 November 2026.",
+      "caption": "Diana Joy Musoki",
+      "width": 1080,
+      "height": 1080
+    }
+  ]
 }
